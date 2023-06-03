@@ -32,14 +32,18 @@ from flask_login import UserMixin
 #             'email': self.email
 #         }
 
-follows = db.Table(
-    'follows',
-    db.Model.metadata,
-    db.Column('followed', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True),
-    db.Column('follower', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
-)
-if environment == "production":
-    follows.schema = SCHEMA
+class Follow(db.Model):
+    __tablename__ = 'follows'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    following = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    user_is = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+
+    # def__repr__
+
 
 
 
@@ -61,9 +65,9 @@ class User(db.Model, UserMixin):
     posts = db.relationship('Post', back_populates='user')
     comments = db.relationship('Comment', back_populates='user')
     followers = db.relationship('User', secondary='follows',
-                                primaryjoin=follows.c.followed == id,
-                                secondaryjoin=follows.c.follower == id,
-                                backref='followed')
+                                primaryjoin=Follow.following == id,
+                                secondaryjoin=Follow.user_is == id,
+                                backref='following')
     @property
     def password(self):
         return self.hashed_password
