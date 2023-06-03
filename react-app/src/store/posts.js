@@ -25,10 +25,11 @@ const initialState = {};
 //reducer -->
 const postsReducer = (state = initialState, action) => {
     let newState;
-    switch(action.type) {
+    switch (action.type) {
         case LOAD_POSTS:
-            newState = {...state};
-            action.posts.forEach(post => newState[post.id] = post)
+            newState = { ...state };
+            // action.posts.forEach(post => newState[post.id] = post)
+            console.log('action posts from front end ------> ', action.posts)
             return newState;
         default:
             return state;

@@ -1,15 +1,17 @@
-from flask import Blueprint, flash
+from flask import Blueprint, flash,render_template,request
 from flask_login import login_required, current_user
+from datetime import date
 from ...models.db import db
 from ...models.models import Post, PostImage, Comment
 from ...models.user import User,Follow
+from ...forms.post_form import PostForm,PostImageForm
 
 
 
 posts = Blueprint("posts", __name__)
 
 @posts.route("")
-# @login_required
+@login_required
 def all_posts():
     posts = Post.query.order_by(Post.created_at.desc()).all()
 
@@ -34,8 +36,79 @@ def all_posts():
     return res
 
 
+@posts.route("", methods=["POST"])
+@login_required
+def create_posts():
+    form = PostForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        selected_user = User.query.get(current_user.id)
+        result = Post(
+            text = form.data["text"],
+            created_at = date.today(),
+            user = selected_user
+        )
+        print(result)
+        db.session.add(result)
+        db.session.commit()
+        return {"resPost": result.to_dict()}
+
+    if form.errors:
+        print("this is form error =====>",form.errors)
+        return {"error": form.errors}
 
 
+
+
+
+@posts.route("/<int:id>/images", methods=["POST"])
+@login_required
+def create_image(id):
+    form = PostImageForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        result = PostImage(
+            image = form.data["url"],
+            post_id = id
+        )
+        print(result)
+        db.session.add(result)
+        db.session.commit()
+        return {"resImage": result.to_dict()}
+
+    if form.errors:
+        print("this is image error =====>",form.errors)
+        return {"error": form.errors}
+
+
+
+
+
+@posts.route("/<int:id>", methods=["PUT"])
+@login_required
+def update_post(id):
+    form = PostForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    post = Post.query.get(id)
+    if post:
+        post.text = form.data['text']
+        post.created_at = date.today()
+        post.user_id = current_user.id
+
+        print(post)
+        db.session.add(post)
+        db.session.commit()
+        return {"resPost": post.to_dict()}
+
+    return {'errors': "post wasn't found"}
+
+
+
+
+
+
+# @posts.route("/delete/<int:id>")
 # posts: {
 #     1: {
 #       id: 1,
@@ -57,4 +130,4 @@ def all_posts():
 #         last_name: 'User',
 #         email: 'fake-user.io'
 #       }
-#   },
+#   }
