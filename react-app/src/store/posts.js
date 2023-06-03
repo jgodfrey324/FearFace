@@ -1,6 +1,6 @@
 //actions -->
-const LOAD_POSTS = 'posts/loadPosts';
-
+const LOAD_POSTS = 'posts/LOAD_POSTS';
+const ADD_POST = "posts/ADD_POST"
 
 //action creators -->
 const loadPosts = (posts) => {
@@ -10,6 +10,12 @@ const loadPosts = (posts) => {
     }
 }
 
+const addPost = (post) => {
+    return {
+        type: ADD_POST,
+        post,
+    }
+}
 
 //thunk action creators -->
 export const getAllPosts = () => async (dispatch) => {
@@ -19,6 +25,21 @@ export const getAllPosts = () => async (dispatch) => {
     return data;
 }
 
+export const createPost = (post) => async (dispatch) => {
+    const response = await fetch("/api/posts", {
+        method: "POST",
+        body: post
+    });
+
+    if (response.ok) {
+        const { resPost } = await response.json();
+        console.log("NEW POST ====>", resPost);
+        dispatch(addPost(resPost))
+    } else {
+        console.log("Error in making post")
+    }
+
+}
 
 //set initial state on load
 const initialState = {};
@@ -28,8 +49,11 @@ const postsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_POSTS:
             newState = { ...state };
-            // action.posts.forEach(post => newState[post.id] = post)
-            console.log('action posts from front end ------> ', action.posts)
+            action.posts.forEach(post => newState[post.id] = post)
+            return newState;
+        case ADD_POST:
+            newState = { ...state };
+            newState[action.post.id] = action.post
             return newState;
         default:
             return state;

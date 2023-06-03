@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Length, URL, Email
 
 
 class PostForm(FlaskForm):
-    text = TextAreaField("Text",validators=[Length(min=3,max=5000, message='Post characters must be between 5 and 5000 characters long.')], nullable=False)
+    text = TextAreaField("Text",validators=[Length(min=3,max=5000)])
     created_at = DateField("Date")
     submit = SubmitField("Submit")
 
