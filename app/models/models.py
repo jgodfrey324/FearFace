@@ -105,7 +105,8 @@ class Post(db.Model):
                 'first_name': self.user.first_name,
                 'last_name': self.user.last_name,
                 'email': self.user.email
-            }
+            },
+            'comments': {}
         }
 
 
@@ -135,7 +136,13 @@ class Comment(db.Model):
             'text': self.text,
             'created_at': self.created_at,
             'post_id': self.post_id,
-            'user_id': self.user_id
+            'user': {    # might not be able to do this, but want to try
+                'id': self.user.id,
+                'username': self.user.username,
+                'first_name': self.user.first_name,
+                'last_name': self.user.last_name,
+                'email': self.user.email
+            }
         }
 
 
