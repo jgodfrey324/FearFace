@@ -6,7 +6,7 @@ from ...models.user import User,Follow
 
 
 
-posts = Blueprint("posts", __name__,url_prefix="")
+posts = Blueprint("posts", __name__)
 
 @posts.route("")
 # @login_required
