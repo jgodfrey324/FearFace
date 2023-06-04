@@ -11,7 +11,7 @@ from ...forms.post_form import PostForm,PostImageForm
 posts = Blueprint("posts", __name__)
 
 @posts.route("")
-# @login_required
+@login_required
 def all_posts():
     posts = Post.query.order_by(Post.created_at.desc()).all()
 
@@ -37,7 +37,7 @@ def all_posts():
 
 
 @posts.route("", methods=["POST"])
-# @login_required
+@login_required
 def create_posts():
     form = PostForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -63,7 +63,7 @@ def create_posts():
 
 
 @posts.route("/<int:id>/images", methods=["POST"])
-# @login_required
+@login_required
 def create_image(id):
     form = PostImageForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -86,7 +86,7 @@ def create_image(id):
 
 
 @posts.route("/<int:id>", methods=["PUT"])
-# @login_required
+@login_required
 def update_post(id):
     form = PostForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
