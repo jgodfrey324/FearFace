@@ -59,7 +59,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(50), nullable=False)
+    hashed_password = db.Column(db.String(255), nullable=False)
 
     products = db.relationship('Product', back_populates='user') # double check
     posts = db.relationship('Post', back_populates='user')

@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts, createPost } from '../../store/posts';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 
 const PostsLanding = () => {
     const dispatch = useDispatch()
-    // const history = useHistory()
+    const history = useHistory()
     const posts = Object.values(useSelector(state => state.posts));
+    const user = useSelector(state => state.session);
+
 
     const [text, setText] = useState('')
     const [url, setUrl] = useState('')
@@ -31,7 +33,6 @@ const PostsLanding = () => {
     }
 
 
-
     useEffect(() => {
         dispatch(getAllPosts());
         setSubmitted(false)
@@ -44,6 +45,17 @@ const PostsLanding = () => {
         setUrl('');
         setValidationErrors([]);
     }
+
+
+
+
+    if (!user.user) {
+        console.log('there isnt a user session')
+        return history.push('/login')
+    }
+
+    console.log('went past user check')
+    console.log('user-------------> ', user.user)
 
 
 
