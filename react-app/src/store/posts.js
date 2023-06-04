@@ -20,9 +20,14 @@ const addPost = (post) => {
 //thunk action creators -->
 export const getAllPosts = () => async (dispatch) => {
     const res = await fetch('/api/posts');
-    const data = await res.json();
-    dispatch(loadPosts(data));
-    return data;
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(loadPosts(data));
+        return data;
+    } else {
+        console.log('there was an error getting all posts')
+    }
 }
 
 export const createPost = (post) => async (dispatch) => {

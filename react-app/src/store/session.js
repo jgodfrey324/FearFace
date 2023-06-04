@@ -63,7 +63,14 @@ export const logout = () => async (dispatch) => {
 	});
 
 	if (response.ok) {
+		console.log('response from logout thunk ======================>	', response);
+		const data = await response.json();
+
+		console.log('data from res ==========> ', data);
+
+
 		dispatch(removeUser());
+		return response;
 	}
 };
 

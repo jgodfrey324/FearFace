@@ -16,7 +16,7 @@ def all_posts():
     posts = Post.query.order_by(Post.created_at.desc()).all()
 
     # user_id = current_user.id
-    user = User.query.get(1)
+    user = User.query.get(current_user.id)
     user_friends = user.following
     following_ids = [following.id for following in user_friends]
 
@@ -43,7 +43,7 @@ def create_posts():
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-        selected_user = User.query.get(1)
+        selected_user = User.query.get(current_user.id)
 
         result = Post(
             text = form.data["text"],
