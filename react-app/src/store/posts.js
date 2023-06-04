@@ -1,7 +1,8 @@
 //actions -->
 const LOAD_POSTS = 'posts/LOAD_POSTS';
 const ADD_POST = "posts/ADD_POST"
-
+const EDIT_POST = "posts/EDIT_POST"
+const DELETE_POST = "posts/DELETE_POST"
 //action creators -->
 const loadPosts = (posts) => {
     return {
@@ -17,15 +18,35 @@ const addPost = (post) => {
     }
 }
 
+const editPost = (post) => {
+    return {
+        type: EDIT_POST,
+        post
+    }
+}
+
+export const deletePost = (post) => {
+    return {
+        type: DELETE_POST,
+        post
+    }
+}
+
 //thunk action creators -->
 export const getAllPosts = () => async (dispatch) => {
-    const res = await fetch('/api/posts');
+    const response = await fetch('/api/posts');
 
-    if (res.ok) {
-        const data = await res.json();
+    if (response.ok) {
+        const data = await response.json();
         dispatch(loadPosts(data));
         return data;
-    } else {
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    }
+    else {
         console.log('there was an error getting all posts')
     }
 }
@@ -41,10 +62,38 @@ export const createPost = (post) => async (dispatch) => {
         console.log("NEW POST ====>", resPost);
         dispatch(addPost(resPost))
     } else {
-        console.log("Error in making post")
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors
+        }
     }
 
 }
+
+export const updatePost = (postId, post) => async (dispatch) => {
+    const res = await fetch(`/api/posts/${postId}/update`, {
+        method: 'PUT',
+        body: post
+    })
+    if (res.ok) {
+        const { resPost } = await res.json();
+        dispatch(editPost(resPost))
+    } else {
+        const data = await res.json()
+        if (data.errors) {
+            return data.errors
+        }
+    }
+}
+
+// export const removePost = (postId) => async (dispatch) => {
+//     const response = await fetch(`/api/posts/${postId}/delete`, {
+//         method: "DELETE"
+//     })
+//     if (response.ok) {
+//         dispatch(deletePost(postId))
+//     }
+// }
 
 //set initial state on load
 const initialState = {};
@@ -60,11 +109,21 @@ const postsReducer = (state = initialState, action) => {
             newState = { ...state };
             newState[action.post.id] = action.post
             return newState;
+        case EDIT_POST:
+            newState = { ...state };
+            newState[action.post.id] = action.post
+        case DELETE_POST: {
+            newState = { ...state };
+            console.log("this is nnnenwewewewe state", newState)
+
+            delete newState[action.post.id]
+            console.log("this is  deleted new state =>>>>>>>>>>>", newState)
+            return newState
+        }
         default:
             return state;
     }
 }
-
 
 
 export default postsReducer

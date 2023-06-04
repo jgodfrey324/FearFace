@@ -1,10 +1,16 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField,TextAreaField, IntegerField,DateField
-from wtforms.validators import DataRequired, Length, URL, Email
+from wtforms.validators import DataRequired, Length, URL, Email, ValidationError
 
+
+def text_length(form, field):
+    # Checking if post length is correct
+    text = field.data
+    if len(text) > 5000 or len(text) < 5:
+        raise ValidationError('Post must be between 5 and 5,000 characters')
 
 class PostForm(FlaskForm):
-    text = TextAreaField("Text",validators=[Length(min=3,max=5000)])
+    text = TextAreaField("Text",validators=[DataRequired(), text_length])
     created_at = DateField("Date")
     submit = SubmitField("Submit")
 

@@ -9,13 +9,6 @@ import SignupFormModal from "../SignupFormModal";
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
 
-
-
-  // const history = useHistory();
-  // *********************************
-
-
-
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -41,11 +34,6 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-
-    // console.log('handle logout =============> ');
-    // // #####################################
-    // history.push('/login');
-    // return;
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
