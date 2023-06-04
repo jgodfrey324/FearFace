@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts, createPost } from '../../store/posts';
-import { useHistory } from 'react-router-dom';
 import { Redirect } from "react-router-dom";
 import OpenModalButton from '../OpenModalButton';
 import UpdatePostModal from '../UpdatePostModal';
@@ -14,42 +13,15 @@ const PostsLanding = () => {
 
     const user = useSelector(state => state.session);
 
-    const [text, setText] = useState('')
-    const [url, setUrl] = useState('')
+    const [text, setText] = useState('');
+    const [url, setUrl] = useState('');
     const [errors, setErrors] = useState('');
-    const [submitted, setSubmitted] = useState(false)
-    const [isUpdated, setIsUpdated] = useState(false)
-    const [isDeleted, setIsDeleted] = useState(false)
-
-
-    const submitForm = async (e) => {
-        e.preventDefault()
-
-        setSubmitted(true)
-
-        const formData = new FormData()
-        formData.append("text", text)
-
-        const data = await dispatch(createPost(formData))
-
-        if (data) {
-            return setErrors(data[0]);
-        }
-
-        if (submitted && errors) {
-            console.log('errors was reset!')
-            setErrors('');
-        }
-
-        reset()
-    }
+    const [submitted, setSubmitted] = useState(false);
 
 
     useEffect(() => {
         dispatch(getAllPosts());
-        setIsUpdated(false);
-        setIsDeleted(false);
-    }, [dispatch, submitted, isUpdated, isDeleted]);
+    }, [dispatch]);
 
 
 
@@ -60,12 +32,38 @@ const PostsLanding = () => {
     }
 
 
-    if (!user.user) {
-        return <Redirect to="/login" />
+    const submitForm = async (e) => {
+        e.preventDefault();
+
+        setSubmitted(true);
+
+        const formData = new FormData();
+        formData.append("text", text);
+
+        const data = await dispatch(createPost(formData));
+        // if data is sent back set errors to the data
+        if (data) {
+            // return out and display errors on form
+            return setErrors(data[0]);
+        }
+        if (submitted && errors) {
+            console.log('errors was reset!')
+            setErrors('');
+        }
+
+        // reset fields
+        reset()
     }
 
 
+    // if user isn't logged in then redirect to log in form
+    if (!user.user) {
+        return <Redirect to="/login" />
+    }
+    // wait for posts to load
     if (!posts) return null;
+
+
 
     return (
         <div>
@@ -101,13 +99,13 @@ const PostsLanding = () => {
                             {isCurrentUsers && (
                                 <OpenModalButton
                                     buttonText="Edit"
-                                    modalComponent={<UpdatePostModal setter={setIsUpdated} postId={post.id} />}
+                                    modalComponent={<UpdatePostModal postId={post.id} />}
                                 />
                             )}
                             {isCurrentUsers && (
                                 <OpenModalButton
                                     buttonText="Delete"
-                                    modalComponent={<DeletePostModal setter={setIsDeleted} postId={post.id} />}
+                                    modalComponent={<DeletePostModal postId={post.id} />}
                                 />
                             )}
                             <span>{post.user.first_name} </span>

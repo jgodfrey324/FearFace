@@ -1,18 +1,20 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import { updatePost } from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 
-function UpdatePostModal({ postId, setter }) {
+function UpdatePostModal({ postId }) {
   const current_post = useSelector(state => state.posts[postId])
 
-  const dispatch = useDispatch();
-  const [text, setText] = useState(current_post?.text);
-  const [submitted, setSubmitted] = useState(false)
-  const [errors, setErrors] = useState('');
   const { closeModal } = useModal();
+  const dispatch = useDispatch();
+  // fill state with old post text
+  const [text, setText] = useState(current_post?.text);
+  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState('');
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,15 +27,16 @@ function UpdatePostModal({ postId, setter }) {
     const data = await dispatch(updatePost(postId, formData));
     if (data) {
       return setErrors(data);
-    } else {
-      closeModal()
     }
-
     if (submitted && errors) {
       setErrors('');
     }
 
+    return closeModal()
   };
+
+
+
 
   return (
     <>
@@ -55,10 +58,7 @@ function UpdatePostModal({ postId, setter }) {
             maxLength={5000}
           />
         </label>
-        <button
-          type="submit"
-          onClick={() => setter(true)}
-        >Update</button>
+        <button type="submit">Update</button>
       </form>
     </>
   );

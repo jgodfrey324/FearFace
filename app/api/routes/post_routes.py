@@ -27,27 +27,48 @@ def validation_errors_to_error_messages(validation_errors):
 @posts.route("")
 @login_required
 def all_posts():
+    #get all posts
     posts = Post.query.order_by(Post.created_at.desc()).all()
 
-    # user_id = current_user.id
+    # get current user
     user = User.query.get(current_user.id)
+    # list of people the user is following
     user_friends = user.following
+    # grabbing ids of everyone user is following
     following_ids = [following.id for following in user_friends]
+    # add current user id to list
     following_ids.append(user.id)
 
+    # get list of posts based on followers
     follower_posts =[post for post in posts if post.user_id in following_ids]
+    # get list of ids of posts for querying for comments
     follower_post_ids =[post.id for post in follower_posts]
+    # get all comments of the posts being returned
     post_comments = Comment.query.filter(Comment.post_id.in_(follower_post_ids)).all()
+
+    # making list of 'json' objects
     comment_list = [comment.to_dict() for comment in post_comments]
     post_list = [post.to_dict() for post in follower_posts]
 
+    # loop through posts and attach comments to post
     for post in post_list:
         for comment in comment_list:
             if comment['post_id'] == post['id']:
                 comments = post['comments']
                 comments[comment['id']] = comment
 
-    return post_list
+    # make dictionary to return
+    res = {}
+    # loop through edited posts list and flatten data
+    for post in post_list:
+        post_id = post['id']
+        res[post_id] = post
+
+    # return as DICT
+    return res
+
+
+
 
 
 @posts.route("", methods=["POST"])
@@ -113,10 +134,11 @@ def update_post(id):
 
     post.created_at = date.today()
     post.user_id = current_user.id
-    db.session.add(post)
     db.session.commit()
 
     return {"resPost": post.to_dict()}
+
+
 
 
 

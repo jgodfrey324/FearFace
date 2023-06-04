@@ -25,10 +25,10 @@ const editPost = (post) => {
     }
 }
 
-export const deletePost = (post) => {
+export const deletePost = (postId) => {
     return {
         type: DELETE_POST,
-        post
+        postId
     }
 }
 
@@ -40,14 +40,11 @@ export const getAllPosts = () => async (dispatch) => {
         const data = await response.json();
         dispatch(loadPosts(data));
         return data;
-    } else if (response.status < 500) {
+    } else {
         const data = await response.json();
         if (data.errors) {
             return data.errors;
         }
-    }
-    else {
-        console.log('there was an error getting all posts')
     }
 }
 
@@ -59,7 +56,6 @@ export const createPost = (post) => async (dispatch) => {
 
     if (response.ok) {
         const { resPost } = await response.json();
-        console.log("NEW POST ====>", resPost);
         dispatch(addPost(resPost))
     } else {
         const data = await response.json();
@@ -86,14 +82,14 @@ export const updatePost = (postId, post) => async (dispatch) => {
     }
 }
 
-// export const removePost = (postId) => async (dispatch) => {
-//     const response = await fetch(`/api/posts/${postId}/delete`, {
-//         method: "DELETE"
-//     })
-//     if (response.ok) {
-//         dispatch(deletePost(postId))
-//     }
-// }
+export const removePost = (postId) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${postId}/delete`, {
+        method: "DELETE"
+    })
+    if (response.ok) {
+        dispatch(deletePost(postId))
+    }
+}
 
 //set initial state on load
 const initialState = {};
@@ -102,8 +98,7 @@ const postsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case LOAD_POSTS:
-            newState = { ...state };
-            action.posts.forEach(post => newState[post.id] = post)
+            newState = { ...action.posts };
             return newState;
         case ADD_POST:
             newState = { ...state };
@@ -112,12 +107,10 @@ const postsReducer = (state = initialState, action) => {
         case EDIT_POST:
             newState = { ...state };
             newState[action.post.id] = action.post
+            return newState;
         case DELETE_POST: {
             newState = { ...state };
-            console.log("this is nnnenwewewewe state", newState)
-
-            delete newState[action.post.id]
-            console.log("this is  deleted new state =>>>>>>>>>>>", newState)
+            delete newState[action.postId]
             return newState
         }
         default:
