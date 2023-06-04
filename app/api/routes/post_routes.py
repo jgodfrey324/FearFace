@@ -10,30 +10,65 @@ from ...forms.post_form import PostForm,PostImageForm
 
 posts = Blueprint("posts", __name__)
 
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{error}')
+    return errorMessages
+
+
+
+
 @posts.route("")
 @login_required
 def all_posts():
+    #get all posts
     posts = Post.query.order_by(Post.created_at.desc()).all()
 
-    # user_id = current_user.id
-    user = User.query.get(1)
+    # get current user
+    user = User.query.get(current_user.id)
+    # list of people the user is following
     user_friends = user.following
+    # grabbing ids of everyone user is following
     following_ids = [following.id for following in user_friends]
+    # add current user id to list
+    following_ids.append(user.id)
 
+    # get list of posts based on followers
     follower_posts =[post for post in posts if post.user_id in following_ids]
+    # get list of ids of posts for querying for comments
     follower_post_ids =[post.id for post in follower_posts]
+    # get all comments of the posts being returned
     post_comments = Comment.query.filter(Comment.post_id.in_(follower_post_ids)).all()
+
+    # making list of 'json' objects
     comment_list = [comment.to_dict() for comment in post_comments]
     post_list = [post.to_dict() for post in follower_posts]
 
+    # loop through posts and attach comments to post
     for post in post_list:
         for comment in comment_list:
             if comment['post_id'] == post['id']:
                 comments = post['comments']
                 comments[comment['id']] = comment
 
-    res = post_list
+    # make dictionary to return
+    res = {}
+    # loop through edited posts list and flatten data
+    for post in post_list:
+        post_id = post['id']
+        res[post_id] = post
+
+    # return as DICT
     return res
+
+
+
 
 
 @posts.route("", methods=["POST"])
@@ -43,10 +78,10 @@ def create_posts():
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
-        selected_user = User.query.get(1)
+        selected_user = User.query.get(current_user.id)
 
         result = Post(
-            text = form.data["text"],
+            text = request.form.get("text"),
             created_at = date.today(),
             user = selected_user
         )
@@ -56,7 +91,8 @@ def create_posts():
 
     if form.errors:
         print("this is form error =====>",form.errors)
-        return {"error": form.errors}
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
 
 
 
@@ -79,56 +115,36 @@ def create_image(id):
 
     if form.errors:
         print("this is image error =====>",form.errors)
-        return {"error": form.errors}
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 
 
 
-@posts.route("/<int:id>", methods=["PUT"])
+
+@posts.route("/<int:id>/update", methods=["PUT"])
 @login_required
 def update_post(id):
-    form = PostForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
-
     post = Post.query.get(id)
-    if post:
-        post.text = form.data['text']
-        post.created_at = date.today()
-        post.user_id = current_user.id
 
-        print(post)
-        db.session.add(post)
-        db.session.commit()
-        return {"resPost": post.to_dict()}
+    post.text = request.form.get('text')
 
-    return {'errors': "post wasn't found"}
+    if len(post.text) < 3 or len(post.text) > 5000:
+        return {'errors': 'Post must be between 5 and 5,000 characters'}, 400
 
+    post.created_at = date.today()
+    post.user_id = current_user.id
+    db.session.commit()
 
+    return {"resPost": post.to_dict()}
 
 
 
 
-# @posts.route("/delete/<int:id>")
-# posts: {
-#     1: {
-#       id: 1,
-#       text: 'Example post body...',
-#       post_images: {
-#         1: {
-#           id: 1,
-#           url: 'x.jpg'
-#         },
-#         2: {
-#           id: 2,
-#           url: 'y.jpg'
-#         }
-#       },
-#       user: {
-#         id: 4,
-#         username: 'fake-user',
-#         first_name: 'Fake',
-#         last_name: 'User',
-#         email: 'fake-user.io'
-#       }
-#   }
+
+@posts.route("/<int:id>/delete", methods=["DELETE"])
+def delete(id):
+    post_to_delete = Post.query.get(id)
+    db.session.delete(post_to_delete)
+    db.session.commit()
+    return {"res": "Successfully deleted"}
