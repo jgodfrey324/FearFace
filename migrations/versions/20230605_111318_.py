@@ -38,14 +38,14 @@ def upgrade():
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
 
-    op.create_table('follows',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('following', sa.Integer(), nullable=True),
-    sa.Column('user_is', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['following'], ['users.id'], ),
-    sa.ForeignKeyConstraint(['user_is'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
+    # op.create_table('follows',
+    # sa.Column('id', sa.Integer(), nullable=False),
+    # sa.Column('following', sa.Integer(), nullable=True),
+    # sa.Column('user_is', sa.Integer(), nullable=True),
+    # sa.ForeignKeyConstraint(['following'], ['users.id'], ),
+    # sa.ForeignKeyConstraint(['user_is'], ['users.id'], ),
+    # sa.PrimaryKeyConstraint('id')
+    # )
 
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
@@ -107,7 +107,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
-        
+
     op.create_table('product_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('url', sa.String(length=2000), nullable=False),
@@ -128,6 +128,6 @@ def downgrade():
     op.drop_table('comments')
     op.drop_table('products')
     op.drop_table('posts')
-    op.drop_table('follows')
+    # op.drop_table('follows')
     op.drop_table('users')
     # ### end Alembic commands ###
