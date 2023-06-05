@@ -25,5 +25,5 @@ class SignUpForm(FlaskForm):
         'username', validators=[DataRequired(), username_exists])
     email = StringField('email', validators=[DataRequired(), user_exists])
     password = StringField('password', validators=[DataRequired()])
-    first_name = StringField('first_name')
-    last_name = StringField("last_name")
+    first_name = StringField('first_name',validators=[DataRequired()])
+    last_name = StringField("last_name",validators=[DataRequired()])

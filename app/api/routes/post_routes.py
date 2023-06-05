@@ -68,6 +68,8 @@ def all_posts():
     return res
 
 
+
+
 # get all comments for one post
 @posts.route("/<int:id>/comments")
 @login_required
@@ -84,7 +86,9 @@ def all_comments(id):
 
     return res
 
-#re run for David..
+
+
+
 @posts.route("", methods=["POST"])
 @login_required
 def create_posts():
@@ -95,7 +99,7 @@ def create_posts():
         selected_user = User.query.get(current_user.id)
 
         result = Post(
-            text = request.form.get("text"),
+            text = form.data["text"],
             created_at = date.today(),
             user = selected_user
         )
@@ -104,7 +108,6 @@ def create_posts():
         return {"resPost": result.to_dict()}
 
     if form.errors:
-        print("this is form error =====>",form.errors)
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
@@ -135,22 +138,23 @@ def create_image(id):
 
 
 
-
 @posts.route("/<int:id>/update", methods=["PUT"])
 @login_required
 def update_post(id):
-    post = Post.query.get(id)
 
-    post.text = request.form.get('text')
+    form = PostForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    if len(post.text) < 3 or len(post.text) > 5000:
-        return {'errors': 'Post must be between 5 and 5,000 characters'}, 400
+    if form.validate_on_submit():
+        post = Post.query.get(id)
+        post.text = form.data['text']
+        post.created_at = date.today()
 
-    post.created_at = date.today()
-    post.user_id = current_user.id
-    db.session.commit()
+        db.session.commit()
+        return {"resPost": post.to_dict()}
 
-    return {"resPost": post.to_dict()}
+    if form.errors:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 
