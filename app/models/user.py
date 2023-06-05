@@ -68,6 +68,11 @@ class User(db.Model, UserMixin):
                                 primaryjoin=Follow.following == id,
                                 secondaryjoin=Follow.user_is == id,
                                 backref='following')
+    # check this
+    follows = db.relationship('User', secondary='follows',
+                                primaryjoin=Follow.following == id,
+                                secondaryjoin=Follow.user_is == id,
+                                backref='following')
     @property
     def password(self):
         return self.hashed_password
