@@ -1,6 +1,6 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
-from .follows import seed_follows,undo_follows
+# from .follows import seed_follows,undo_follows
 from .posts import seed_posts, undo_posts
 from .comments import seed_comments,undo_comments
 
