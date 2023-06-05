@@ -47,8 +47,8 @@ def upgrade():
     # sa.PrimaryKeyConstraint('id')
     # )
 
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+    # if environment == "production":
+    #     op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
 
     op.create_table('posts',
