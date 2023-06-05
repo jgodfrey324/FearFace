@@ -69,10 +69,10 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, email, password, firstName, lastName) => async (dispatch) => {
+export const signUp = (username, email, password, first_name, last_name) => async (dispatch) => {
 
-	console.log('firstName from thunk', firstName)
-	console.log('lastName from thunk', lastName)
+	console.log('firstName from thunk', first_name)
+	console.log('lastName from thunk', last_name)
 
 
 	const response = await fetch("/api/auth/signup", {
@@ -84,8 +84,8 @@ export const signUp = (username, email, password, firstName, lastName) => async 
 			username,
 			email,
 			password,
-			firstName,
-			lastName
+			first_name,
+			last_name
 		}),
 		// body: JSON.stringify(payload)
 	});
