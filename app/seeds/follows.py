@@ -1,30 +1,28 @@
 from app.models import db, environment, SCHEMA
-from ..models.user import Follow
+from ..models.user import follows
 from sqlalchemy.sql import text
+from sqlalchemy import insert
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_follows():
-    friend1 = Follow(      #friend2 follows friend1
-        following=1, user_is=2)
-    friend2 = Follow(
-        following=2, user_is=3)
-    friend3 = Follow(
-        following=3, user_is=1)
-    friend4 = Follow(
-        following=1, user_is=3)
-    friend5 = Follow(
-        following=3, user_is=2)
-    friend6 = Follow(
-        following=2, user_is=1)
+    friends_list = [
+        {'following': 1, 'user_is': 2},
+        {'following': 2, 'user_is': 3},
+        {'following': 3, 'user_is': 1},
+        {'following': 1, 'user_is': 3},
+        {'following': 3, 'user_is': 2},
+        {'following': 2, 'user_is': 1},
+    ]
+
+    for friend in friends_list:
+        user_is = friend['user_is']
+        following = friend['following']
+
+        relationship = insert(follows).values(user_is = user_is, following = following)
+        db.session.execute(relationship)
 
 
-    db.session.add(friend1)
-    db.session.add(friend2)
-    db.session.add(friend3)
-    db.session.add(friend4)
-    db.session.add(friend5)
-    db.session.add(friend6)
     db.session.commit()
 
 
@@ -36,7 +34,7 @@ def seed_follows():
 # it will reset the primary keys for you as well.
 def undo_follows():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.follows RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM follows"))
 

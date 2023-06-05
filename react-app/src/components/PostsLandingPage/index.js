@@ -15,6 +15,7 @@ const PostsLanding = () => {
     const posts = Object.values(useSelector(state => state.posts));
 
     const user = useSelector(state => state.session.user);
+    // const user_followers =
 
     const [text, setText] = useState('');
     const [url, setUrl] = useState('');
@@ -69,6 +70,9 @@ const PostsLanding = () => {
     return (
         <div className='landing-house'>
             <h1>FearFace landing page...</h1>
+            <div>
+
+            </div>
             <form onSubmit={submitForm}>
                 <div className='new-post-house'>
                     <h2>Make a new post!</h2>
