@@ -21,6 +21,6 @@ class PostImageForm(FlaskForm):
     submit = SubmitField("Submit")
 
 class CommentForm(FlaskForm):
-    text = StringField("Text")
+    text = StringField("Text", validators=[DataRequired(), text_length])
     created_at = DateField("Date")
     submit = SubmitField("Submit")

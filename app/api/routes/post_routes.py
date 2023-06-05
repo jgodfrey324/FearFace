@@ -5,6 +5,7 @@ from ...models.db import db
 from ...models.models import Post, PostImage, Comment
 from ...models.user import User,Follow
 from ...forms.post_form import PostForm,PostImageForm
+from ...forms.post_form import CommentForm
 
 
 
@@ -85,6 +86,29 @@ def all_comments(id):
         res[comment_id] = comment
 
     return res
+
+
+
+
+@posts.route("/<int:id>/comments", methods=['POST'])
+@login_required
+def post_comment(id):
+    form = CommentForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        selected_user = User.query.get(current_user.id)
+        result=Comment(
+            text = form.data['text'],
+            created_at = date.today(),
+            user = selected_user,
+            post_id = id
+        )
+        db.session.add(result)
+        db.session.commit()
+        return {"resComment":result.to_dict()}
+    if form.errors:
+         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
 
 
 

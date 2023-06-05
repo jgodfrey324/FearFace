@@ -5,6 +5,7 @@ from ...models.db import db
 from ...models.models import Comment
 from ...models.user import User
 from ...forms.post_form import CommentForm
+from flask_login import current_user
 
 
 
@@ -29,13 +30,3 @@ def delete_comment(id):
     db.session.delete(comment)
     db.session.commit()
     return {'message': 'Successfully deleted comment'}
-
-# @comments.route("", methods=['POST'])
-# @login_required
-# def post_comment():
-#     form = CommentForm()
-#     form["csrf_token"].data = request.cookies["csrf_token"]
-
-#     if form.validate_on_submit():
-#         selected_user = User.query.get(current_user.id)
-#         pass
