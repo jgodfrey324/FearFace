@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import OpenModalButton from '../OpenModalButton';
 import UpdatePostModal from '../UpdatePostModal';
 import DeletePostModal from '../UpdatePostModal/DeletePostModal';
+import './PostsLanding.css';
 
 
 const PostsLanding = () => {
@@ -66,10 +67,10 @@ const PostsLanding = () => {
 
 
     return (
-        <div>
+        <div className='landing-house'>
             <h1>FearFace landing page...</h1>
             <form onSubmit={submitForm}>
-                <div style={{ border: '2px solid green', marginBottom: '20px' }}>
+                <div className='new-post-house'>
                     <h2>Make a new post!</h2>
                     <ul>
                         {errors && (
@@ -77,7 +78,6 @@ const PostsLanding = () => {
                         )}
                     </ul>
                     <textarea
-                        style={{ height: '200px', width: '800px' }}
                         value={text}
                         placeholder='Write your status here....'
                         required
@@ -85,54 +85,57 @@ const PostsLanding = () => {
                         minLength={5}
                         maxLength={5000}
                     />
-                    <div style={{ marginTop: '20px' }}>
-                        <button style={{ padding: '10px 20px' }}>Post</button>
-                    </div>
+                    <button>Post</button>
                 </div>
             </form >
-            {
-                posts.toReversed().map(post => {
-                    let isCurrentUsers = post.user.id === user.user.id;
-                    const comments = Object.values(post.comments)
-                    return (
-                        <div key={post.id} style={{ border: '1px solid black', marginBottom: '10px' }}>
-                            {isCurrentUsers && (
-                                <OpenModalButton
-                                    buttonText="Edit"
-                                    modalComponent={<UpdatePostModal postId={post.id} />}
-                                />
-                            )}
-                            {isCurrentUsers && (
-                                <OpenModalButton
-                                    buttonText="Delete"
-                                    modalComponent={<DeletePostModal postId={post.id} />}
-                                />
-                            )}
-                            <span>{post.user.first_name} </span>
-                            <span>{post.user.last_name}...</span>
-                            <p>{post.text}</p>
-                            <div>
-                                {comments.toReversed().map(comment => {
-                                    return (
-                                        <div key={comment.id} style={{ border: '1px solid red', fontSize: '12px' }}>
-                                            <span>{comment.user.first_name} </span>
-                                            <span>{comment.user.last_name}</span>
-                                            <p>{comment.text}</p>
-                                        </div>
-                                    )
-                                })}
+            {posts.toReversed().map(post => {
+                let isCurrentUsers = post.user.id === user.user.id;
+                const comments = Object.values(post.comments)
+                return (
+                    <div key={post.id} className='post-house'>
+                        <div className='post-top-bar'>
+                            <div className='post-menu-buttons'>
+                                {isCurrentUsers && (
+                                    <OpenModalButton
+                                        buttonText="Edit"
+                                        modalComponent={<UpdatePostModal postId={post.id} />}
+                                    />
+                                )}
+                                {isCurrentUsers && (
+                                    <OpenModalButton
+                                        buttonText="Delete"
+                                        modalComponent={<DeletePostModal postId={post.id} />}
+                                    />
+                                )}
+                            </div>
+                            <div className='user-name'>
+                                <span>{post.user.first_name} </span>
+                                <span>{post.user.last_name}...</span>
                             </div>
                         </div>
-                    )
-                })
+                        <div className='post-text-house'>
+                            <p>{post.text}</p>
+                        </div>
+                        <div>
+                            {comments.toReversed().map(comment => {
+                                return (
+                                    <div key={comment.id} className='post-comment-house'>
+                                        <div className='comment-top-bar'>
+                                            <span>{comment.user.first_name} </span>
+                                            <span>{comment.user.last_name}</span>
+                                        </div>
+                                        <div className='comment-text-house'>
+                                            <p>{comment.text}</p>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                )})
             }
-        </div >
+        </div>
     )
-
-
-
-
-
 }
 
 

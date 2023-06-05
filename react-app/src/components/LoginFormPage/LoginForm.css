@@ -1,0 +1,76 @@
+.login-house {
+    border-radius: 20px;
+    /* border: 1px solid #e853622c; */
+    box-shadow: 2px 2px 7px #e853622c;
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    align-items: center;
+    padding: 50px 100px;
+    background-color: #e853621c;
+}
+
+.login-house > form {
+    /* border: 2px solid blue; */
+    display: flex;
+    flex-direction: column;
+}
+
+.login-house > form > label {
+    /* border: 3px dotted orange; */
+    margin-bottom: 15px;
+    color: #B00B1B;
+}
+
+.login-house > p {
+    /* border: 2px solid pink; */
+    margin: 0;
+    font-size: 14px;
+    color: #B00B1B;
+}
+
+.login-house > form > button {
+    margin-top: 22px;
+    padding: 8px;
+    font-size: 15px;
+    background-color: #e8536246;
+    color: #63242A;
+    border: 1px solid #63242A;
+    border-radius: 5px;
+}
+
+.login-house > form > button:hover {
+    cursor: pointer;
+    background-color: #e8536257;
+    /* font-weight: bold; */
+}
+
+.login-house > h1 {
+    margin: 0;
+    margin-bottom: 8px;
+    color: #63242A;
+    /* outline: black; */
+}
+
+.login-house > form > label > input {
+    /* border: 1px solid green; */
+    width: 100%;
+    padding: 0;
+    border: 1px solid #63242A;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.login-house > p > a:hover {
+    font-weight: bold;
+}
+
+.login-house > p > a {
+    font-size: 15px;
+    color: #B00B1B;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+}

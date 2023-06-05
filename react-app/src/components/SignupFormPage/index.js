@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './SignupForm.css';
 
@@ -28,8 +28,9 @@ function SignupFormPage() {
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
+    <div className="signup-house">
+      <h1>FearFace Signup</h1>
+      <p>Already have an account? Log in <NavLink to='/login'>here.</NavLink></p>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -72,7 +73,7 @@ function SignupFormPage() {
         </label>
         <button type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 
