@@ -32,15 +32,15 @@ from flask_login import UserMixin
 #             'email': self.email
 #         }
 
-class Follow(db.Model):
-    __tablename__ = 'follows'
+# class Follow(db.Model):
+#     __tablename__ = 'follows'
 
-    if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+#     if environment == "production":
+#         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True)
-    following = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    user_is = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+#     id = db.Column(db.Integer, primary_key=True)
+#     following = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+#     user_is = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
     # def__repr__
 
@@ -64,15 +64,11 @@ class User(db.Model, UserMixin):
     products = db.relationship('Product', back_populates='user') # double check
     posts = db.relationship('Post', back_populates='user')
     comments = db.relationship('Comment', back_populates='user')
-    followers = db.relationship('User', secondary='follows',
-                                primaryjoin=Follow.following == id,
-                                secondaryjoin=Follow.user_is == id,
-                                backref='following')
-    # check this
-    follows = db.relationship('User', secondary='follows',
-                                primaryjoin=Follow.following == id,
-                                secondaryjoin=Follow.user_is == id,
-                                backref='following')
+    # followers = db.relationship('User', secondary='follows',
+    #                             primaryjoin=Follow.following == id,
+    #                             secondaryjoin=Follow.user_is == id,
+    #                             backref='following')
+
     @property
     def password(self):
         return self.hashed_password
