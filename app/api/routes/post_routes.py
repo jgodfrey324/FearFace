@@ -84,6 +84,7 @@ def all_comments(id):
 
     return res
 
+#re run for David..
 @posts.route("", methods=["POST"])
 @login_required
 def create_posts():

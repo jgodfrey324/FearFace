@@ -2,6 +2,7 @@
 const LOAD_POST_COMMENTS = 'comments/LOAD_POST_COMMENTS';
 const LOAD_USER_COMMENTS = 'comments/LOAD_USER_COMMENTS';
 const DELETE_COMMENT = 'comments/DELETE_COMMENT'
+// const POST_COMMENT = 'comments/POST_COMMENT'
 
 // action creators -->
 const loadPostComments = (comments) => {
@@ -24,6 +25,13 @@ const removeComment = (commentId) => {
         commentId
     }
 }
+
+// const createComment = (comment) => {
+//     return {
+//         type: POST_COMMENT,
+//         comment
+//     }
+// }
 
 // thunk action creators -->
 export const getPostComments = (postId) => async (dispatch) => {
@@ -64,6 +72,17 @@ export const deleteComment = (commentId) => async (dispatch) => {
         dispatch(removeComment(commentId))
     }
 }
+
+// export const postComment = (comment) => async (dispatch) => {
+//     const response = await(`/api/comments/posts`, {
+//         method: 'POST',
+//         body: comment
+//     })
+
+//     if (response.ok) {
+
+//     }
+// }
 
 const initialState = { post: {}, user: {} }
 // reducer

@@ -66,7 +66,7 @@ def sign_up():
     # print('request ==========================================================>', request.__dict__)
 
     #This shit is janky, fix later...
-
+    #Rename to the same naming convention...from front end
     if form.validate_on_submit():
         print("hello from validate ======================================")
         user = User(
