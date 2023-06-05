@@ -3,6 +3,7 @@ const LOAD_POSTS = 'posts/LOAD_POSTS';
 const ADD_POST = "posts/ADD_POST"
 const EDIT_POST = "posts/EDIT_POST"
 const DELETE_POST = "posts/DELETE_POST"
+
 //action creators -->
 const loadPosts = (posts) => {
     return {
@@ -108,11 +109,10 @@ const postsReducer = (state = initialState, action) => {
             newState = { ...state };
             newState[action.post.id] = action.post
             return newState;
-        case DELETE_POST: {
+        case DELETE_POST:
             newState = { ...state };
             delete newState[action.postId]
             return newState
-        }
         default:
             return state;
     }

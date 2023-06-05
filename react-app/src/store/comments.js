@@ -2,7 +2,7 @@
 const LOAD_POST_COMMENTS = 'comments/LOAD_POST_COMMENTS';
 const LOAD_USER_COMMENTS = 'comments/LOAD_USER_COMMENTS';
 const DELETE_COMMENT = 'comments/DELETE_COMMENT'
-// const POST_COMMENT = 'comments/POST_COMMENT'
+const POST_COMMENT = 'comments/POST_COMMENT'
 
 // action creators -->
 const loadPostComments = (comments) => {
@@ -26,12 +26,12 @@ const removeComment = (commentId) => {
     }
 }
 
-// const createComment = (comment) => {
-//     return {
-//         type: POST_COMMENT,
-//         comment
-//     }
-// }
+const createComment = (comment) => {
+    return {
+        type: POST_COMMENT,
+        comment
+    }
+}
 
 // thunk action creators -->
 export const getPostComments = (postId) => async (dispatch) => {
@@ -73,16 +73,23 @@ export const deleteComment = (commentId) => async (dispatch) => {
     }
 }
 
-// export const postComment = (comment) => async (dispatch) => {
-//     const response = await(`/api/comments/posts`, {
-//         method: 'POST',
-//         body: comment
-//     })
+export const postComment = (postId,comment) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${postId}/comments`, {
+        method: 'POST',
+        body: comment
+    })
 
-//     if (response.ok) {
+    if (response.ok) {
+        const { resComment } = await response.json();
+        dispatch(createComment(resComment))
+    } else {
+        const data = await response.json();
+        if (data.errors) {
+            return data.errors
+        }
+    }
 
-//     }
-// }
+}
 
 const initialState = { post: {}, user: {} }
 // reducer
@@ -97,12 +104,15 @@ const commentReducer
             case LOAD_USER_COMMENTS:
                 newState = { ...state };
                 newState.user = { ...action.comments };
-                return newState
-            case DELETE_COMMENT: {
-                newState = { ...state }
-                delete newState[action.commentId]
-                return newState
-            }
+                return newState;
+            case DELETE_COMMENT:
+                newState = { ...state };
+                delete newState[action.commentId];
+                return newState;
+            case POST_COMMENT:
+                newState = { ...state };
+                newState.post[action.comment.id] = action.comment;
+                return newState;
             default:
                 return state;
         }

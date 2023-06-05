@@ -6,6 +6,7 @@ import UpdatePostModal from "../UpdatePostModal";
 import DeletePostModal from "../UpdatePostModal/DeletePostModal";
 import DeleteCommentModal from "./DeleteCommentModal"
 import { getPostComments } from '../../store/comments';
+import { postComment } from '../../store/comments';
 import OpenModalButton from '../OpenModalButton';
 import "./PostDetailModal.css";
 
@@ -13,6 +14,9 @@ import "./PostDetailModal.css";
 function PostDetailModal({ postId }) {
     const dispatch = useDispatch();
     // const { closeModal } = useModal();
+    const [submitted, setSubmitted] = useState(false);
+    const [text, setText] = useState('')
+    const [errors, setErrors] = useState('');
 
     const post = useSelector(state => state.posts[postId])
     const commentObj = useSelector(state => state.comments.post);
@@ -22,12 +26,44 @@ function PostDetailModal({ postId }) {
 
     const isPostOwner = post.user.id === user.id
 
+
+
+
     useEffect(() => {
         dispatch(getPostComments(postId));
+
+        return (() => null)
     }, [dispatch])
 
 
+
+
+
+    const submitForm = async (e) => {
+        e.preventDefault()
+        setSubmitted(true)
+        const formData = new FormData()
+        formData.append('text', text)
+        const data = await dispatch(postComment(post.id, formData));
+
+        if(data){
+            return setErrors(data[0])
+        }
+
+        if (submitted && errors) {
+            console.log('errors was reset!')
+            setErrors('');
+        }
+
+        setText('')
+        setSubmitted(false)
+    }
+
+
+
+
     if (!comments) return null;
+
 
 
     return (
@@ -55,6 +91,24 @@ function PostDetailModal({ postId }) {
             <div className='post-modal-text-house'>
                 <p>{post.text}</p>
             </div>
+            <form onSubmit={submitForm}>
+                <div className='new-comment-house'>
+                    <ul>
+                        {errors && (
+                            <p style={{ color: "red" }}>{errors}</p>
+                        )}
+                    </ul>
+                    <textarea
+                        value={text}
+                        placeholder='Write a comment....'
+                        required
+                        onChange={(e) => setText(e.target.value)}
+                        minLength={5}
+                        maxLength={5000}
+                    />
+                    <button>Post</button>
+                </div>
+            </form >
             <div>
                 {comments.toReversed().map(comment => {
                     let isCommentOwner = comment.user.id === user.id
