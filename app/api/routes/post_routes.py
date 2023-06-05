@@ -1,4 +1,4 @@
-from flask import Blueprint, flash,render_template,request
+from flask import Blueprint, flash,request
 from flask_login import login_required, current_user
 from datetime import date
 from ...models.db import db
@@ -68,8 +68,21 @@ def all_posts():
     return res
 
 
+# get all comments for one post
+@posts.route("/<int:id>/comments")
+@login_required
+def all_comments(id):
+    post = Post.query.get(id)
+    comments = post.comments
+    new_lst = [comment.to_dict() for comment in comments]
 
+    res = {}
 
+    for comment in new_lst:
+        comment_id = comment['id']
+        res[comment_id] = comment
+
+    return res
 
 @posts.route("", methods=["POST"])
 @login_required

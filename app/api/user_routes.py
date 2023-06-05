@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
 from app.models import User
+from app.models import Comment
 
 user_routes = Blueprint('users', __name__)
 
@@ -23,3 +24,10 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/<int:id>/comments')
+@login_required
+def all_comments_user(id):
+    user_comments = Comment.query.all()
+    comments = [comment.to_dict() for comment in user_comments if comment.user.id == id]
+    return comments

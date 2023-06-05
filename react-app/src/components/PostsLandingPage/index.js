@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts, createPost } from '../../store/posts';
+import { getPostComments } from '../../store/comments';
 import { Redirect } from "react-router-dom";
 import OpenModalButton from '../OpenModalButton';
 import UpdatePostModal from '../UpdatePostModal';
 import DeletePostModal from '../UpdatePostModal/DeletePostModal';
+import PostDetailModal from './PostDetailModal';
 import './PostsLanding.css';
 
 
@@ -12,18 +14,16 @@ const PostsLanding = () => {
     const dispatch = useDispatch()
     const posts = Object.values(useSelector(state => state.posts));
 
-    const user = useSelector(state => state.session);
+    const user = useSelector(state => state.session.user);
 
     const [text, setText] = useState('');
     const [url, setUrl] = useState('');
     const [errors, setErrors] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
-
     useEffect(() => {
         dispatch(getAllPosts());
     }, [dispatch]);
-
 
 
     const reset = () => {
@@ -58,7 +58,7 @@ const PostsLanding = () => {
 
 
     // if user isn't logged in then redirect to log in form
-    if (!user.user) {
+    if (!user) {
         return <Redirect to="/login" />
     }
     // wait for posts to load
@@ -89,8 +89,7 @@ const PostsLanding = () => {
                 </div>
             </form >
             {posts.toReversed().map(post => {
-                let isCurrentUsers = post.user.id === user.user.id;
-                const comments = Object.values(post.comments)
+                const isCurrentUsers = post.user.id === user.id;
                 return (
                     <div key={post.id} className='post-house'>
                         <div className='post-top-bar'>
@@ -117,7 +116,7 @@ const PostsLanding = () => {
                             <p>{post.text}</p>
                         </div>
                         <div>
-                            {comments.toReversed().map(comment => {
+                            {/* {comments.toReversed().map(comment => {
                                 return (
                                     <div key={comment.id} className='post-comment-house'>
                                         <div className='comment-top-bar'>
@@ -129,10 +128,19 @@ const PostsLanding = () => {
                                         </div>
                                     </div>
                                 )
-                            })}
+                            })} */}
+                            <OpenModalButton
+                                buttonText="Comments"
+                                modalComponent={<PostDetailModal postId={post.id} />}
+                            />
+                            {Object.values(post.comments).length > 0 && (
+                                <span> {Object.values(post.comments).length}</span>
+                            )}
+
                         </div>
                     </div>
-                )})
+                )
+            })
             }
         </div>
     )
