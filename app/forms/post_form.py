@@ -19,3 +19,8 @@ class PostImageForm(FlaskForm):
     url = StringField("ImageURL", validators=[Length(min=0,max=2000)],nullable=False)
     # post_id = IntegerField("Post",nullable=False)
     submit = SubmitField("Submit")
+
+class CommentForm(FlaskForm):
+    text = StringField("Text")
+    created_at = DateField("Date")
+    submit = SubmitField("Submit")

@@ -69,7 +69,12 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (username, email, password, firstName, lastName) => async (dispatch) => {
+
+	console.log('firstName from thunk', firstName)
+	console.log('lastName from thunk', lastName)
+
+
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		headers: {
@@ -79,8 +84,12 @@ export const signUp = (username, email, password) => async (dispatch) => {
 			username,
 			email,
 			password,
+			firstName,
+			lastName
 		}),
+		// body: JSON.stringify(payload)
 	});
+
 
 	if (response.ok) {
 		const data = await response.json();
