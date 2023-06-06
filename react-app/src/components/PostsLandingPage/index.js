@@ -18,6 +18,9 @@ const PostsLanding = () => {
     const user_details = useSelector(state => state.session.user_details);
 
 
+    console.log('current user from session state on landing page ================> ', user);
+
+
     const [text, setText] = useState('');
     const [url, setUrl] = useState('');
     const [errors, setErrors] = useState('');
@@ -70,7 +73,10 @@ const PostsLanding = () => {
     // wait for user details
     if (!user_details) return null;
     // make friends object
-    const friends = user_details['is_following']
+    const friends = user_details[user.id]['is_following']
+    console.log('friends on landing page ============================> ', friends);
+
+
 
     return (
         <div className='landing-house'>
