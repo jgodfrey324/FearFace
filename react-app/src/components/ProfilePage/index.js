@@ -1,25 +1,59 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPosts, createPost } from '../../store/posts';
-import { getPostComments } from '../../store/comments';
-import { Redirect, NavLink } from "react-router-dom";
+import { Redirect, NavLink,useParams } from "react-router-dom";
+import { getAllUserThunk,getUserDetail } from '../../store/session';
+import { createPost, getAllPosts } from '../../store/posts';
 import OpenModalButton from '../OpenModalButton';
-import UpdatePostModal from '../UpdatePostModal';
 import DeletePostModal from '../UpdatePostModal/DeletePostModal';
-import PostDetailModal from './PostDetailModal';
-import './PostsLanding.css';
+import UpdatePostModal from '../UpdatePostModal';
+import PostDetailModal from '../PostsLandingPage/PostDetailModal';
 
 
-const PostsLanding = () => {
+
+
+const ProfilePage = () => {
+    const { userId } = useParams()
+    console.log('user id from params -----> ', userId);
     const dispatch = useDispatch()
+    const userDetails = useSelector(state => state.session.user_details)
+
+    console.log('use details from store ======================> ', userDetails)
+    // if (users isnt around) {
+        //     return daddy just chill
+        // I got legs day today Raoul
+        //I willnap
+    // lets trade life. I can nap very well
+        // }
+
+    const current_user = useSelector(state => state.session.user);
     const posts = Object.values(useSelector(state => state.posts));
 
-    const user = useSelector(state => state.session.user);
+    const user_posts = []
+
+    // for (const post of posts) {
+    //     if (post.user.id === user?.id) {
+    //         user_posts.push(post)
+    //     }
+    // }
+
+
     const [friends, setFriends] = useState({})
+    const [text, setText] = useState('');
+    const [url, setUrl] = useState('');
+    const [errors, setErrors] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+
+
+    useEffect(() => {
+        dispatch(getAllPosts());
+        dispatch(getAllUserThunk());
+        dispatch(getUserDetail(userId));
+        // return (() => null)
+    }, [dispatch])
 
 
     useEffect(async () => {
-        const res = await fetch(`/api/users/${user.id}/friends`)
+        const res = await fetch(`/api/users/${userId}/friends`)
         const data = await res.json()
 
         setFriends({ ...data })
@@ -27,27 +61,12 @@ const PostsLanding = () => {
     }, [])
 
 
-    // console.log('friends .........', Object.values(friends)[0].first_name);
-
-
-    const [text, setText] = useState('');
-    const [url, setUrl] = useState('');
-    const [errors, setErrors] = useState('');
-    const [submitted, setSubmitted] = useState(false);
-
-
-
-    useEffect(() => {
-        dispatch(getAllPosts());
-    }, [dispatch]);
-
-
-
     const reset = () => {
         setText('');
         setUrl('');
         setSubmitted(false);
     }
+
 
 
     const submitForm = async (e) => {
@@ -75,26 +94,23 @@ const PostsLanding = () => {
 
 
     // if user isn't logged in then redirect to log in form
-    if (!user) {
+    if (!current_user) {
         return <Redirect to="/login" />
     }
     // wait for posts to load
     if (!posts) return null;
 
 
-
     return (
-        <div className='landing-house'>
-            <h1>FearFace landing page...</h1>
-            <div>
-                {Object.values(friends).map((friend) => {
-                    return (
-                        <div style={{border: '1px solid black'}}>
-                            <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
-                        </div>
-                    )
-                })}
-            </div>
+        <div>
+            {/* <h1>This is {user?.first_name} {user?.last_name} profile</h1> */}
+            {Object.values(friends).map((friend) => {
+                return (
+                    <div key={friend.id}>
+                        <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
+                    </div>
+                )
+            })}
             <form onSubmit={submitForm}>
                 <div className='new-post-house'>
                     <h2>Make a new post!</h2>
@@ -114,8 +130,8 @@ const PostsLanding = () => {
                     <button>Post</button>
                 </div>
             </form >
-            {posts.toReversed().map(post => {
-                const isCurrentUsers = post.user.id === user.id;
+            {/* {user_posts.toReversed().map(post => {
+                const isCurrentUsers = post.user?.id === user?.id;
                 return (
                     <div key={post.id} className='post-house'>
                         <div className='post-top-bar'>
@@ -142,19 +158,6 @@ const PostsLanding = () => {
                             <p>{post.text}</p>
                         </div>
                         <div>
-                            {/* {comments.toReversed().map(comment => {
-                                return (
-                                    <div key={comment.id} className='post-comment-house'>
-                                        <div className='comment-top-bar'>
-                                            <span>{comment.user.first_name} </span>
-                                            <span>{comment.user.last_name}</span>
-                                        </div>
-                                        <div className='comment-text-house'>
-                                            <p>{comment.text}</p>
-                                        </div>
-                                    </div>
-                                )
-                            })} */}
                             <OpenModalButton
                                 buttonText="Comments"
                                 modalComponent={<PostDetailModal postId={post.id} />}
@@ -162,15 +165,23 @@ const PostsLanding = () => {
                             {Object.values(post.comments).length > 0 && (
                                 <span> {Object.values(post.comments).length}</span>
                             )}
-
                         </div>
-                    </div>
-                )
+                    </div> */}
+                {/* )
             })
-            }
+            } */}
+
+
+
+
         </div>
     )
+
+
+
 }
 
 
-export default PostsLanding;
+
+
+export default ProfilePage

@@ -1,6 +1,8 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const ALL_USER = "session/ALL_USER"
+const USER_DETAILS = 'session/USER_DETAILS';
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -11,7 +13,43 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
-const initialState = { user: null };
+const getAllUser = (users) => ({
+	type: ALL_USER,
+	users
+})
+
+const userDetail = (userDetail) => ({
+	type: USER_DETAILS,
+	userDetail
+
+})
+
+export const getAllUserThunk = () => async (dispatch) => {
+	const response = await fetch("/api/users/");
+	if (response.ok) {
+		const data = await response.json()
+		dispatch(getAllUser(data))
+		return data
+	} else {
+		const data = await response.json()
+		if (data.errors) {
+			return data.errors
+		}
+	}
+}
+
+
+export const getUserDetail = (userId) => async (dispatch) => {
+	const res = await fetch(`/api/users/${userId}/all`)
+	if (res.ok) {
+		const data = await res.json()
+		// console.log('data from user detail ============================> ', data)
+		dispatch(userDetail(data))
+		return data
+	}
+}
+
+
 
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
@@ -105,12 +143,23 @@ export const signUp = (username, email, password, first_name, last_name) => asyn
 	}
 };
 
+const initialState = { user: null, all_users: {}, user_details: {} };
+
 export default function reducer(state = initialState, action) {
+	let newState;
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case ALL_USER:
+			newState = { ...state }
+			newState.all_users = {...action.users}
+			return newState
+		case USER_DETAILS:
+			newState = { ...state }
+			newState.user_details = { ...action.userDetail }
+			return newState
 		default:
 			return state;
 	}

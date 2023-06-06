@@ -3,46 +3,21 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 
-# class User(db.Model, UserMixin):
-#     __tablename__ = 'users'
 
-#     if environment == "production":
-#         __table_args__ = {'schema': SCHEMA}
 
-#     id = db.Column(db.Integer, primary_key=True)
-#     username = db.Column(db.String(40), nullable=False, unique=True)
-#     email = db.Column(db.String(255), nullable=False, unique=True)
-#     hashed_password = db.Column(db.String(255), nullable=False)
+follows = db.Table(
+    'follows',
+    db.Model.metadata,
+    db.Column('id', db.Integer, primary_key=True),
+    db.Column('user_is', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'))),
+    db.Column('following', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'))),
 
-#     @property
-#     def password(self):
-#         return self.hashed_password
+    db.UniqueConstraint('user_is', 'following')
+)
+if environment == "production":
+    follows.schema = SCHEMA
 
-#     @password.setter
-#     def password(self, password):
-#         self.hashed_password = generate_password_hash(password)
 
-#     def check_password(self, password):
-#         return check_password_hash(self.password, password)
-
-#     def to_dict(self):
-#         return {
-#             'id': self.id,
-#             'username': self.username,
-#             'email': self.email
-#         }
-
-# class Follow(db.Model):
-#     __tablename__ = 'follows'
-
-#     if environment == "production":
-#         __table_args__ = {'schema': SCHEMA}
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     following = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-#     user_is = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-
-    # def__repr__
 
 
 
@@ -64,10 +39,21 @@ class User(db.Model, UserMixin):
     products = db.relationship('Product', back_populates='user') # double check
     posts = db.relationship('Post', back_populates='user')
     comments = db.relationship('Comment', back_populates='user')
-    # followers = db.relationship('User', secondary='follows',
-    #                             primaryjoin=Follow.following == id,
-    #                             secondaryjoin=Follow.user_is == id,
-    #                             backref='following')
+
+
+
+    # user_a = db.relationship("User", back_populates="user_is")
+    # user_b = db.relationship("User", back_populates="following")
+
+
+
+    following = db.relationship('User', secondary='follows',
+                                primaryjoin=follows.c.user_is == id,
+                                secondaryjoin=follows.c.following == id,
+                                backref='friends')
+
+
+
 
     @property
     def password(self):
@@ -90,8 +76,54 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'first_name': self.first_name,
             'last_name': self.last_name,
-            'email': self.email
+            'email': self.email,
+            'is_following': {}
         }
+
+
+
+# class Follow(db.Model):
+#     __tablename__ = 'follows'
+
+#     if environment == "production":
+#         __table_args__ = {'schema': SCHEMA}
+
+#     id = db.Column(db.Integer, primary_key=True)
+#     user_is = db.Column('user_is', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+#     following = db.Column('following', db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+
+#     db.UniqueConstraint('user_is', 'following')
+
+#     user_is = db.relationship("User", back_populates="user_a")
+#     following = db.relationship("User", back_populates="user_b")
+
+
+
+#     def __repr__(self):
+#         return f'< User {self.user_is} is now following User {self.following}!  >'
+
+
+#     def to_dict(self):
+#         return {
+#             'user_is':{
+#                 'id': self.user_is.id,
+#                 'first_name': self.user_is.first_name,
+#                 'last_name': self.user_is.last_name,
+#                 'username': self.user_is.username
+#             },
+#             'following': {
+#                 'id': self.following.id,
+#                 'first_name': self.following.first_name,
+#                 'last_name': self.following.last_name,
+#                 'username': self.following.username
+#             }
+#         }
+
+
+
+
+
+
 
 
 # nice
