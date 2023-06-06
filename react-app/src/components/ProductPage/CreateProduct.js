@@ -19,10 +19,6 @@ const CreateProduct = () => {
 
     const user = useSelector(state => state.session.user)
 
-    if (!user) {
-        return history.push("/")
-    }
-
     useEffect(() => {
         const error = {}
         if (!name) error.name = "Name is required"
@@ -36,6 +32,7 @@ const CreateProduct = () => {
     }, [name, city, state, price, description])
 
     const submitForm = async (e) => {
+        console.log("is this submitting =====================================================")
         e.preventDefault()
 
         setSubmitted(true)
@@ -47,8 +44,10 @@ const CreateProduct = () => {
         formData.append("price", price)
         formData.append("description", description)
 
-        const data = await dispatch(createProductThunk(formData))
-        if (data) {
+        let data;
+
+        if (!Object.values(errors).length) {
+            data = await dispatch(createProductThunk(formData))
             history.push("/marketplace")
         }
 
@@ -58,23 +57,26 @@ const CreateProduct = () => {
         setDescription("")
         setPrice(0)
         setSubmitted(false)
+    }
 
-
-
+    if (!user) {
+        return <Redirect to="/login" />
     }
 
     return (
         <div className='form-container'>
             <form className="prod-form" onSubmit={submitForm}>
                 <div className="new-prod-house">
-                    <ul>
-                        {errors && (
+                    {/* <ul>
+                        {Object.keys(errors).length && (
                             <p style={{ color: "red" }}>{errors}</p>
                         )}
-                    </ul>
+                    </ul> */}
                     <label>
                         <div>Name</div>
+                        {errors.name && submitted && < p style={{ color: "red" }}>{errors.name}</p>}
                         <input
+                            required
                             id="p-name"
                             placeholder="Name..."
                             type="text"
@@ -84,6 +86,7 @@ const CreateProduct = () => {
                     </label>
                     <label>
                         <div>City</div>
+                        {errors.city && submitted && < p style={{ color: "red" }}>{errors.city}</p>}
                         <input
                             id="p-city"
                             placeholder="City..."
@@ -95,6 +98,7 @@ const CreateProduct = () => {
 
                     <label>
                         <div>State</div>
+                        {errors.state && submitted && < p style={{ color: "red" }}>{errors.state}</p>}
                         <input
                             id="p-state"
                             placeholder="State..."
@@ -105,6 +109,7 @@ const CreateProduct = () => {
                     </label>
                     <label>
                         <div>Description</div>
+                        {errors.description && submitted && < p style={{ color: "red" }}>{errors.description}</p>}
                         <textarea
                             id="p-descrip"
                             placeholder="Write a description..."
@@ -115,6 +120,7 @@ const CreateProduct = () => {
                     </label>
                     <label>
                         <div>Price</div>
+                        {errors.price && submitted && < p style={{ color: "red" }}>{errors.price}</p>}
                         <input
                             id="p-price"
                             placeholder="$"
@@ -124,8 +130,8 @@ const CreateProduct = () => {
                         ></input>
                     </label>
                 </div>
+                <button type="submit">Submit</button>
             </form >
-            <button type="submit">Submit</button>
         </div >
     )
 }

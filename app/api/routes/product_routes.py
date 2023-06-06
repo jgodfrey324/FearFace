@@ -53,7 +53,8 @@ def create_product():
             location_state = form.data["location_state"],
             description = form.data["description"],
             price = form.data["price"],
-            user = selected_user
+            user = selected_user,
+            created_at = date.today()
         )
         db.session.add(res)
         db.session.commit()
