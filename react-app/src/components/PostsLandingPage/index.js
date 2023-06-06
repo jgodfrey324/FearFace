@@ -93,6 +93,9 @@ const PostsLanding = () => {
                     )
                 })}
             </div>
+            <div>
+                <h3>Check out the <NavLink to='/marketplace'>Marketplace!</NavLink></h3>
+            </div>
             <form id="lp-form"onSubmit={submitForm}>
                 <div className='new-post-house'>
                     <img id="make-post" src="https://i.imgur.com/ERn5sIv.png" alt='post form title'></img>

@@ -19,13 +19,21 @@ const CreateProduct = () => {
 
     const user = useSelector(state => state.session.user)
 
+    const reset = () => {
+        setName("")
+        setCity("")
+        setState("")
+        setDescription("")
+        setPrice(0)
+    }
+
     useEffect(() => {
         const error = {}
         if (!name) error.name = "Name is required"
         if (!city) error.city = "City is required"
         if (!state) error.state = "State is required"
         if (!price) error.price = "Price is required"
-        if (+price < 0) error.price = "Price must be greater than 0"
+        if (+price <= 0) error.price = "Price must be greater than 0"
         if (!(+price)) error.price = 'Price must be valid number'
         if (!description) error.description = "description is required"
         setErrors(error)
@@ -49,15 +57,12 @@ const CreateProduct = () => {
         if (!Object.values(errors).length) {
             data = await dispatch(createProductThunk(formData))
             history.push("/marketplace")
+            reset()
         }
-
-        setName("")
-        setCity("")
-        setState("")
-        setDescription("")
-        setPrice(0)
-        setSubmitted(false)
     }
+
+    // console.log("this is error==================>", errors)
+    // console.log("this is submit ================",submitted)
 
     if (!user) {
         return <Redirect to="/login" />
@@ -65,7 +70,7 @@ const CreateProduct = () => {
 
     return (
         <div className='form-container'>
-            <form className="prod-form" onSubmit={submitForm}>
+            <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}}>
                 <div className="new-prod-house">
                     {/* <ul>
                         {Object.keys(errors).length && (
@@ -76,7 +81,7 @@ const CreateProduct = () => {
                         <div>Name</div>
                         {errors.name && submitted && < p style={{ color: "red" }}>{errors.name}</p>}
                         <input
-                            required
+                            // required
                             id="p-name"
                             placeholder="Name..."
                             type="text"
