@@ -13,10 +13,6 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
-const getAllUser = (users) => ({
-	type: ALL_USER,
-	users
-})
 
 const userDetail = (userDetail) => ({
 	type: USER_DETAILS,
@@ -24,26 +20,11 @@ const userDetail = (userDetail) => ({
 
 })
 
-export const getAllUserThunk = () => async (dispatch) => {
-	const response = await fetch("/api/users/");
-	if (response.ok) {
-		const data = await response.json()
-		dispatch(getAllUser(data))
-		return data
-	} else {
-		const data = await response.json()
-		if (data.errors) {
-			return data.errors
-		}
-	}
-}
-
 
 export const getUserDetail = (userId) => async (dispatch) => {
 	const res = await fetch(`/api/users/${userId}/all`)
 	if (res.ok) {
 		const data = await res.json()
-		// console.log('data from user detail ============================> ', data)
 		dispatch(userDetail(data))
 		return data
 	}
@@ -124,8 +105,7 @@ export const signUp = (username, email, password, first_name, last_name) => asyn
 			password,
 			first_name,
 			last_name
-		}),
-		// body: JSON.stringify(payload)
+		})
 	});
 
 

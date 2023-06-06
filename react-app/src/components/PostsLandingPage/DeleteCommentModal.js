@@ -1,5 +1,4 @@
 import React from "react";
-import { removePost } from "../../store/posts";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 // import "./LoginForm.css";

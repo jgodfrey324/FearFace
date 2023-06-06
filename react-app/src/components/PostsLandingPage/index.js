@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts, createPost } from '../../store/posts';
-import { getPostComments } from '../../store/comments';
 import { Redirect, NavLink } from "react-router-dom";
 import OpenModalButton from '../OpenModalButton';
 import UpdatePostModal from '../UpdatePostModal';
 import DeletePostModal from '../UpdatePostModal/DeletePostModal';
 import PostDetailModal from './PostDetailModal';
 import './PostsLanding.css';
+import { getUserDetail } from '../../store/session';
 
 
 const PostsLanding = () => {
@@ -15,19 +15,7 @@ const PostsLanding = () => {
     const posts = Object.values(useSelector(state => state.posts));
 
     const user = useSelector(state => state.session.user);
-    const [friends, setFriends] = useState({})
-
-
-    useEffect(async () => {
-        const res = await fetch(`/api/users/${user.id}/friends`)
-        const data = await res.json()
-
-        setFriends({ ...data })
-
-    }, [])
-
-
-    // console.log('friends .........', Object.values(friends)[0].first_name);
+    const user_details = useSelector(state => state.session.user_details);
 
 
     const [text, setText] = useState('');
@@ -39,7 +27,8 @@ const PostsLanding = () => {
 
     useEffect(() => {
         dispatch(getAllPosts());
-    }, [dispatch]);
+        dispatch(getUserDetail(user.id))
+    }, [dispatch, user.id]);
 
 
 
@@ -80,6 +69,10 @@ const PostsLanding = () => {
     }
     // wait for posts to load
     if (!posts) return null;
+    // wait for user details
+    if (!user_details) return null;
+    // make friends object
+    const friends = user_details['is_following']
 
 
 
@@ -89,7 +82,7 @@ const PostsLanding = () => {
             <div>
                 {Object.values(friends).map((friend) => {
                     return (
-                        <div style={{border: '1px solid black'}}>
+                        <div key={friend.id} style={{border: '1px solid black'}}>
                             <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
                         </div>
                     )
@@ -142,19 +135,6 @@ const PostsLanding = () => {
                             <p>{post.text}</p>
                         </div>
                         <div>
-                            {/* {comments.toReversed().map(comment => {
-                                return (
-                                    <div key={comment.id} className='post-comment-house'>
-                                        <div className='comment-top-bar'>
-                                            <span>{comment.user.first_name} </span>
-                                            <span>{comment.user.last_name}</span>
-                                        </div>
-                                        <div className='comment-text-house'>
-                                            <p>{comment.text}</p>
-                                        </div>
-                                    </div>
-                                )
-                            })} */}
                             <OpenModalButton
                                 buttonText="Comments"
                                 modalComponent={<PostDetailModal postId={post.id} />}
