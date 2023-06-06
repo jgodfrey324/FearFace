@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, NavLink,useParams } from "react-router-dom";
+import { Redirect, NavLink,useParams, useHistory } from "react-router-dom";
 import { getUserDetail } from '../../store/session';
 import { createPost, getAllPosts } from '../../store/posts';
 import OpenModalButton from '../OpenModalButton';
@@ -16,6 +16,7 @@ const ProfilePage = () => {
     const dispatch = useDispatch()
     const userDetails = useSelector(state => state.session.user_details)
     const current_user = useSelector(state => state.session.user);
+    const history = useHistory()
 
     const [text, setText] = useState('');
     const [url, setUrl] = useState('');
@@ -111,10 +112,6 @@ const ProfilePage = () => {
     const visiting_profile_friends = Object.values(userDetails[userId]['is_following']);
     const current_user_friends = Object.values(userDetails[current_user.id]['is_following']);
 
-    console.log('friends of visiting profile =============================> ', visiting_profile_friends);
-    console.log('friends of current user -----------------------------> ', current_user_friends);
-
-
     const user_posts = Object.values(userDetails[userId]['posts']);
     const user = user_posts[0]['user']
 
@@ -137,6 +134,9 @@ const ProfilePage = () => {
                     </div>
                 )
             })}
+            {current_user.id === parseInt(userId) && (
+                <button onClick={() => history.push(`/users/${userId}/products`) } style={{color: 'whitesmoke'}}>My Products</button>
+            )}
             {current_user.id === parseInt(userId) && (
                 <form onSubmit={submitForm}>
                     <div className='new-post-house'>

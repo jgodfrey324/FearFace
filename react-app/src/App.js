@@ -10,6 +10,7 @@ import ProfilePage from "./components/ProfilePage";
 import "./components/PostsLandingPage/PostsLanding.css"
 import ProductsLanding from "./components/ProductPage";
 import CreateProduct from "./components/ProductPage/CreateProduct";
+import MyProducts from "./components/MyProductsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ function App() {
           </Route>
           <Route path="/marketplace">
             <ProductsLanding />
+          </Route>
+          <Route path='/users/:userId/products'>
+            <MyProducts />
           </Route>
           <Route path='/users/:userId'>
             <ProfilePage />

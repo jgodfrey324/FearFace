@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts, createPost } from '../../store/posts';
-import { Redirect, NavLink } from "react-router-dom";
+import { Redirect, NavLink, useHistory } from "react-router-dom";
 import OpenModalButton from '../OpenModalButton';
 import UpdatePostModal from '../UpdatePostModal';
 import DeletePostModal from '../UpdatePostModal/DeletePostModal';
@@ -12,6 +12,7 @@ import { getUserDetail } from '../../store/session';
 
 const PostsLanding = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
     const posts = Object.values(useSelector(state => state.posts));
 
     const user = useSelector(state => state.session.user);
@@ -94,6 +95,7 @@ const PostsLanding = () => {
                 })}
             </div>
             <div>
+                <button onClick={() => history.push(`/users/${user.id}`)}>My Profile</button>
                 <h3>Check out the <NavLink to='/marketplace'>Marketplace!</NavLink></h3>
             </div>
             <form id="lp-form"onSubmit={submitForm}>

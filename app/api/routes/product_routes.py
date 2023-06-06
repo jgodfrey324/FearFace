@@ -21,6 +21,10 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{error}')
     return errorMessages
 
+
+
+
+
 #get all products
 @products.route("")
 def all_products():
@@ -36,6 +40,10 @@ def all_products():
 
     # print("this is our products ============================",res)
     return res
+
+
+
+
 
 #create product
 @products.route("",methods=['POST'])
@@ -61,3 +69,49 @@ def create_product():
         return {"resProduct":res.to_dict()}
     if form.errors:
         return {'error':validation_errors_to_error_messages(form.errors)},400
+
+
+
+
+
+
+#update product
+@products.route("/<int:id>/update", methods=["PUT"])
+@login_required
+def update_product(id):
+
+    form = ProductForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        selected_user = User.query.get(current_user.id)
+
+        prod = Product.query.get(id)
+        prod.name = form.data['name']
+        prod.location_city = form.data['location_city']
+        prod.location_state = form.data['location_state']
+        prod.description = form.data['description']
+        prod.price = form.data['price']
+        prod.user = selected_user
+        prod.created_at = date.today()
+
+        db.session.commit()
+        return {"resProduct": prod.to_dict()}
+
+    if form.errors:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+
+
+
+
+
+
+@products.route("/<int:id>/delete",methods=["DELETE"])
+@login_required
+def delete_product(id):
+    product_to_delete = Product.query.get(id)
+    db.session.delete(product_to_delete)
+    db.session.commit()
+    return {"res":"Successfully deleted"}
