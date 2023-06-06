@@ -5,7 +5,7 @@ import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 
 
-function DeletePostModal({ postId }) {
+function DeletePostModal({ postId, setter }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
@@ -13,6 +13,8 @@ function DeletePostModal({ postId }) {
 
     const deleteButton = async (e) => {
         e.preventDefault();
+
+        setter(true);
 
         await dispatch(removePost(postId));
         closeModal();

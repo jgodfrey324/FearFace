@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import postsReducer from './posts';
 import commentReducer from './comments'
+import productsReducer from './product';
 
 const rootReducer = combineReducers({
   session,
   posts: postsReducer,
-  comments: commentReducer
+  comments: commentReducer,
+  products: productsReducer
 });
 
 

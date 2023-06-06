@@ -23,7 +23,7 @@ function LoginFormPage() {
 
   return (
     <div className="login-house">
-      <img id="logo" src="https://i.imgur.com/rwR3GBq.png"></img>
+      <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt='page logo'></img>
       <p>Don't have an account? Sign up <NavLink to='/signup'>here.</NavLink></p>
       <form onSubmit={handleSubmit}>
         <ul>

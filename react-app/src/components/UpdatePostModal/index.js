@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 
-function UpdatePostModal({ postId }) {
+function UpdatePostModal({ postId, setter }) {
   const current_post = useSelector(state => state.posts[postId])
 
   const { closeModal } = useModal();
@@ -20,6 +20,7 @@ function UpdatePostModal({ postId }) {
     e.preventDefault();
 
     setSubmitted(true);
+    setter(true);
 
     const formData = new FormData()
     formData.append("text", text)

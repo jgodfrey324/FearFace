@@ -33,7 +33,7 @@ function SignupFormPage() {
 
   return (
     <div className="signup-house">
-      <img id="logo" src="https://i.imgur.com/rwR3GBq.png"></img>
+      <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt='page logo' ></img>
       <p>Already have an account? Log in <NavLink to='/login'>here.</NavLink></p>
       <form onSubmit={handleSubmit}>
         <ul>
