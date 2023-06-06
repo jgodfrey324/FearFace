@@ -32,22 +32,8 @@ def all_posts():
     #get all posts
     posts = Post.query.order_by(Post.created_at.desc()).all()
 
-
     post_ids = [post.id for post in posts]
 
-    # get current user
-    user = User.query.get(current_user.id)
-    # # list of people the user is following
-    # user_friends = user.following
-    # # grabbing ids of everyone user is following
-    # following_ids = [following.id for following in user_friends]
-    # # add current user id to list
-    # following_ids.append(user.id)
-
-    # # get list of posts based on followers
-    # follower_posts =[post for post in posts if post.user_id in following_ids]
-    # # get list of ids of posts for querying for comments
-    # follower_post_ids =[post.id for post in follower_posts]
     # get all comments of the posts being returned
     post_comments = Comment.query.filter(Comment.post_id.in_(post_ids)).all()
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, NavLink,useParams } from "react-router-dom";
-import { getAllUserThunk,getUserDetail } from '../../store/session';
+import { getUserDetail } from '../../store/session';
 import { createPost, getAllPosts } from '../../store/posts';
 import OpenModalButton from '../OpenModalButton';
 import DeletePostModal from '../UpdatePostModal/DeletePostModal';
@@ -13,11 +13,16 @@ import PostDetailModal from '../PostsLandingPage/PostDetailModal';
 
 const ProfilePage = () => {
     const { userId } = useParams()
-    console.log('user id from params -----> ', userId);
     const dispatch = useDispatch()
     const userDetails = useSelector(state => state.session.user_details)
+    const current_user = useSelector(state => state.session.user);
 
-    console.log('use details from store ======================> ', userDetails)
+    const [text, setText] = useState('');
+    const [url, setUrl] = useState('');
+    const [errors, setErrors] = useState('');
+    const [submitted, setSubmitted] = useState(false);
+
+
     // if (users isnt around) {
         //     return daddy just chill
         // I got legs day today Raoul
@@ -25,40 +30,13 @@ const ProfilePage = () => {
     // lets trade life. I can nap very well
         // }
 
-    const current_user = useSelector(state => state.session.user);
-    const posts = Object.values(useSelector(state => state.posts));
-
-    const user_posts = []
-
-    // for (const post of posts) {
-    //     if (post.user.id === user?.id) {
-    //         user_posts.push(post)
-    //     }
-    // }
-
-
-    const [friends, setFriends] = useState({})
-    const [text, setText] = useState('');
-    const [url, setUrl] = useState('');
-    const [errors, setErrors] = useState('');
-    const [submitted, setSubmitted] = useState(false);
 
 
     useEffect(() => {
         dispatch(getAllPosts());
-        dispatch(getAllUserThunk());
         dispatch(getUserDetail(userId));
-        // return (() => null)
-    }, [dispatch])
+    }, [dispatch, userId])
 
-
-    useEffect(async () => {
-        const res = await fetch(`/api/users/${userId}/friends`)
-        const data = await res.json()
-
-        setFriends({ ...data })
-
-    }, [])
 
 
     const reset = () => {
@@ -98,12 +76,17 @@ const ProfilePage = () => {
         return <Redirect to="/login" />
     }
     // wait for posts to load
-    if (!posts) return null;
+    if (!userDetails) return null;
+
+    const friends = userDetails['is_following'];
+    const user_posts = Object.values(userDetails['posts']);
+    const user = user_posts[0]['user']
+
 
 
     return (
         <div>
-            {/* <h1>This is {user?.first_name} {user?.last_name} profile</h1> */}
+            <h1>This is {user.first_name} {user.last_name} profile</h1>
             {Object.values(friends).map((friend) => {
                 return (
                     <div key={friend.id}>
@@ -130,8 +113,9 @@ const ProfilePage = () => {
                     <button>Post</button>
                 </div>
             </form >
-            {/* {user_posts.toReversed().map(post => {
-                const isCurrentUsers = post.user?.id === user?.id;
+            {user_posts.toReversed().map(post => {
+                const isCurrentUsers = post.user.id === current_user.id;
+
                 return (
                     <div key={post.id} className='post-house'>
                         <div className='post-top-bar'>
@@ -166,19 +150,11 @@ const ProfilePage = () => {
                                 <span> {Object.values(post.comments).length}</span>
                             )}
                         </div>
-                    </div> */}
-                {/* )
-            })
-            } */}
-
-
-
-
+                    </div>
+                )
+            })}
         </div>
     )
-
-
-
 }
 
 

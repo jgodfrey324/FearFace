@@ -53,27 +53,6 @@ def all_comments_user(id):
 
 
 
-@user_routes.route("/<int:id>/friends")
-@login_required
-def user_friends(id):
-    user = User.query.get(id)
-    user_follows = user.following
-
-    user_dict = user.to_dict()
-
-    user_dict['is_following']
-    # new_dict = {}
-    for user in user_follows:
-        user_id = user.id
-        user_dict['is_following'][user_id] = user.to_dict()
-
-    # print("this is USER FOLLOWS =============>",user_follows)
-
-    return user_dict['is_following']
-
-
-
-
 
 @user_routes.route("/<int:id>/all")
 @login_required

@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import { removePost } from "../../store/posts";
 import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../../context/Modal";
 import UpdatePostModal from "../UpdatePostModal";
 import DeletePostModal from "../UpdatePostModal/DeletePostModal";
 import DeleteCommentModal from "./DeleteCommentModal"
@@ -24,16 +22,13 @@ function PostDetailModal({ postId }) {
     const user = useSelector(state => state.session.user)
 
 
-    const isPostOwner = post.user.id === user.id
-
-
 
 
     useEffect(() => {
         dispatch(getPostComments(postId));
 
         return (() => null)
-    }, [dispatch])
+    }, [dispatch, postId])
 
 
 
@@ -61,9 +56,12 @@ function PostDetailModal({ postId }) {
 
 
 
-
     if (!comments) return null;
 
+    if (!post) return null;
+
+
+    const isPostOwner = post.user.id === user.id
 
 
     return (
@@ -72,8 +70,8 @@ function PostDetailModal({ postId }) {
                 <div className='post-modal-menu-buttons'>
                     {isPostOwner && (
                         <OpenModalButton
-                            buttonText="Edit"
-                            modalComponent={<UpdatePostModal postId={postId} />}
+                        buttonText="Edit"
+                        modalComponent={<UpdatePostModal postId={postId} />}
                         />
                     )}
                     {isPostOwner && (
