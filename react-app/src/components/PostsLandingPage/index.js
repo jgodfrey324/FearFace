@@ -18,7 +18,7 @@ const PostsLanding = () => {
     const user_details = useSelector(state => state.session.user_details);
 
 
-    console.log('current user from session state on landing page ================> ', user);
+    // console.log('current user from session state on landing page ================> ', user);
 
 
     const [text, setText] = useState('');
@@ -74,15 +74,16 @@ const PostsLanding = () => {
     if (!user_details) return null;
     // make friends object
     const friends = user_details[user.id]['is_following']
-    console.log('friends on landing page ============================> ', friends);
+    // console.log('friends on landing page ============================> ', friends);
 
 
 
     return (
         <div className='landing-house'>
             <div className="logo-container">
-            <img id="logo" src="https://i.imgur.com/rwR3GBq.png"></img>
+            <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt='page logo'></img>
             </div>
+            <h3>My friends: </h3>
             <div>
                 {Object.values(friends).map((friend) => {
                     return (
@@ -94,7 +95,7 @@ const PostsLanding = () => {
             </div>
             <form id="lp-form"onSubmit={submitForm}>
                 <div className='new-post-house'>
-                    <img id="make-post" src="https://i.imgur.com/ERn5sIv.png"></img>
+                    <img id="make-post" src="https://i.imgur.com/ERn5sIv.png" alt='post form title'></img>
                     <ul>
                         {errors && (
                             <p style={{ color: "red" }}>{errors}</p>
