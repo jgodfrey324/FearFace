@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import PostsLanding from "./components/PostsLandingPage";
 import ProfilePage from "./components/ProfilePage";
+import "./components/PostsLandingPage/PostsLanding.css"
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,13 @@ function App() {
           </Route>
           <Route exact path='/'>
             <PostsLanding />
+          </Route>
+          <Route>
+          <h1 id="wrong">Turn around...</h1>
+          <div className="frame-container">
+          <img id="tv" src="https://i.imgur.com/PIS3I3P.png"></img>
+          <iframe src="https://giphy.com/embed/r4OLGW3irym6k" width="480" height="309" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+          </div>
           </Route>
         </Switch>
       )}

@@ -23,7 +23,7 @@ function LoginFormPage() {
 
   return (
     <div className="login-house">
-      <h1>FearFace Login</h1>
+      <img id="logo" src="https://i.imgur.com/rwR3GBq.png"></img>
       <p>Don't have an account? Sign up <NavLink to='/signup'>here.</NavLink></p>
       <form onSubmit={handleSubmit}>
         <ul>
