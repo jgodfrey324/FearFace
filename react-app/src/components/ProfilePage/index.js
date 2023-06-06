@@ -23,6 +23,8 @@ const ProfilePage = () => {
     const [submitted, setSubmitted] = useState(false);
 
 
+
+    console.log('current user from state ===========================> ', current_user);
     // if (users isnt around) {
         //     return daddy just chill
         // I got legs day today Raoul
@@ -35,7 +37,8 @@ const ProfilePage = () => {
     useEffect(() => {
         dispatch(getAllPosts());
         dispatch(getUserDetail(userId));
-    }, [dispatch, userId])
+        dispatch(getUserDetail(current_user.id))
+    }, [dispatch, userId, current_user.id])
 
 
 
@@ -78,8 +81,14 @@ const ProfilePage = () => {
     // wait for posts to load
     if (!userDetails) return null;
 
-    const friends = userDetails['is_following'];
-    const user_posts = Object.values(userDetails['posts']);
+    if (!userDetails[userId]) return null;
+
+    const friends = userDetails[userId]['is_following'];
+
+
+    console.log('friends from user details =============================> ', friends);
+
+    const user_posts = Object.values(userDetails[userId]['posts']);
     const user = user_posts[0]['user']
 
 

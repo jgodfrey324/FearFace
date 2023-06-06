@@ -107,7 +107,8 @@ const commentReducer
                 return newState;
             case DELETE_COMMENT:
                 newState = { ...state };
-                delete newState[action.commentId];
+                delete newState.post[action.commentId];
+                delete newState.user[action.commentId];
                 return newState;
             case POST_COMMENT:
                 newState = { ...state };

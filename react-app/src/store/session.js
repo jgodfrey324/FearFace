@@ -22,7 +22,7 @@ const userDetail = (userDetail) => ({
 
 
 export const getUserDetail = (userId) => async (dispatch) => {
-	const res = await fetch(`/api/users/${userId}/all`)
+	const res = await fetch(`/api/users/${userId}`)
 	if (res.ok) {
 		const data = await res.json()
 		dispatch(userDetail(data))
@@ -123,7 +123,7 @@ export const signUp = (username, email, password, first_name, last_name) => asyn
 	}
 };
 
-const initialState = { user: null, all_users: {}, user_details: {} };
+const initialState = { user: null, user_details: {} };
 
 export default function reducer(state = initialState, action) {
 	let newState;
@@ -138,7 +138,9 @@ export default function reducer(state = initialState, action) {
 			return newState
 		case USER_DETAILS:
 			newState = { ...state }
-			newState.user_details = { ...action.userDetail }
+			newState.user_details = { ...state.user_details, ...action.userDetail }
+
+			console.log('new state from reducer ----------------------------------> ', newState)
 			return newState
 		default:
 			return state;
