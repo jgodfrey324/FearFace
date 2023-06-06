@@ -21,10 +21,11 @@ const ProfilePage = () => {
     const [url, setUrl] = useState('');
     const [errors, setErrors] = useState('');
     const [submitted, setSubmitted] = useState(false);
+    const [postsChanged, setPostsChanged] = useState(false);
 
 
 
-    console.log('current user from state ===========================> ', current_user);
+    // console.log('current user from state ===========================> ', current_user);
     // if (users isnt around) {
         //     return daddy just chill
         // I got legs day today Raoul
@@ -37,8 +38,14 @@ const ProfilePage = () => {
     useEffect(() => {
         dispatch(getAllPosts());
         dispatch(getUserDetail(userId));
-        dispatch(getUserDetail(current_user.id))
-    }, [dispatch, userId, current_user.id])
+    }, [dispatch, userId])
+
+
+
+    useEffect(() => {
+        dispatch(getUserDetail(current_user.id));
+        setPostsChanged(false);
+    }, [dispatch, current_user.id, postsChanged])
 
 
 
@@ -49,11 +56,27 @@ const ProfilePage = () => {
     }
 
 
+    const handleFollow = async (e) => {
+        const res = await fetch(`/api/users/${userId}/friends`, {
+            method: "POST"
+        });
+        await res.json();
+    }
+
+
+    const handleUnfollow = async (e) => {
+        const res = await fetch(`/api/users/${userId}/friends`, {
+            method: "DELETE"
+        });
+        await res.json();
+    }
+
 
     const submitForm = async (e) => {
         e.preventDefault();
 
         setSubmitted(true);
+        setPostsChanged(true);
 
         const formData = new FormData();
         formData.append("text", text);
@@ -83,10 +106,14 @@ const ProfilePage = () => {
 
     if (!userDetails[userId]) return null;
 
-    const friends = userDetails[userId]['is_following'];
+    if (!userDetails[current_user.id]) return null;
 
+    const visiting_profile_friends = Object.values(userDetails[userId]['is_following']);
+    const current_user_friends = Object.values(userDetails[current_user.id]['is_following']);
 
-    console.log('friends from user details =============================> ', friends);
+    console.log('friends of visiting profile =============================> ', visiting_profile_friends);
+    console.log('friends of current user -----------------------------> ', current_user_friends);
+
 
     const user_posts = Object.values(userDetails[userId]['posts']);
     const user = user_posts[0]['user']
@@ -95,33 +122,42 @@ const ProfilePage = () => {
 
     return (
         <div>
-            <h1>This is {user.first_name} {user.last_name} profile</h1>
-            {Object.values(friends).map((friend) => {
+            <h1 style={{color: 'whitesmoke'}}>This is {user.first_name} {user.last_name} profile</h1>
+            {current_user_friends.find((user) => user.id !== parseInt(userId)) && current_user.id !== parseInt(userId) && (
+                <button onClick={handleFollow} style={{backgroundColor: 'white'}}>Follow</button>
+            )}
+            {current_user_friends.find((user) => user.id === parseInt(userId)) && current_user.id !== parseInt(userId) && (
+                <button onClick={handleUnfollow} style={{backgroundColor: 'white'}}>Unfollow</button>
+            )}
+            <h3 style={{color: 'whitesmoke'}}>{user.first_name}'s friends: </h3>
+            {visiting_profile_friends.map((friend) => {
                 return (
                     <div key={friend.id}>
                         <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
                     </div>
                 )
             })}
-            <form onSubmit={submitForm}>
-                <div className='new-post-house'>
-                    <h2>Make a new post!</h2>
-                    <ul>
-                        {errors && (
-                            <p style={{ color: "red" }}>{errors}</p>
-                        )}
-                    </ul>
-                    <textarea
-                        value={text}
-                        placeholder='Write your status here....'
-                        required
-                        onChange={(e) => setText(e.target.value)}
-                        minLength={5}
-                        maxLength={5000}
-                    />
-                    <button>Post</button>
-                </div>
-            </form >
+            {current_user.id === parseInt(userId) && (
+                <form onSubmit={submitForm}>
+                    <div className='new-post-house'>
+                        <h2>Make a new post!</h2>
+                        <ul>
+                            {errors && (
+                                <p style={{ color: "red" }}>{errors}</p>
+                            )}
+                        </ul>
+                        <textarea
+                            value={text}
+                            placeholder='Write your status here....'
+                            required
+                            onChange={(e) => setText(e.target.value)}
+                            minLength={5}
+                            maxLength={5000}
+                        />
+                        <button>Post</button>
+                    </div>
+                </form >
+            )}
             {user_posts.toReversed().map(post => {
                 const isCurrentUsers = post.user.id === current_user.id;
 
@@ -132,13 +168,13 @@ const ProfilePage = () => {
                                 {isCurrentUsers && (
                                     <OpenModalButton
                                         buttonText="Edit"
-                                        modalComponent={<UpdatePostModal postId={post.id} />}
+                                        modalComponent={<UpdatePostModal postId={post.id} setter={setPostsChanged} />}
                                     />
                                 )}
                                 {isCurrentUsers && (
                                     <OpenModalButton
                                         buttonText="Delete"
-                                        modalComponent={<DeletePostModal postId={post.id} />}
+                                        modalComponent={<DeletePostModal postId={post.id} setter={setPostsChanged} />}
                                     />
                                 )}
                             </div>

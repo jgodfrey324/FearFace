@@ -18,7 +18,8 @@ const userDetail = (userDetail) => ({
 	type: USER_DETAILS,
 	userDetail
 
-})
+});
+
 
 
 export const getUserDetail = (userId) => async (dispatch) => {
@@ -139,8 +140,6 @@ export default function reducer(state = initialState, action) {
 		case USER_DETAILS:
 			newState = { ...state }
 			newState.user_details = { ...state.user_details, ...action.userDetail }
-
-			console.log('new state from reducer ----------------------------------> ', newState)
 			return newState
 		default:
 			return state;
