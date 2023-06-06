@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #151616;
+    font-family: 'Roboto', sans-serif;
+    /* color: rgb(212, 190, 190); */
+}
+
+button {
+    cursor: pointer;
+}
+/* button:hover{
+    box-shadow: 2px 2px 2px rgb(12, 11, 11)
+} */
+
 .landing-house {
     /* border: 1px solid red; */
     width: -webkit-fill-available;
@@ -5,21 +26,53 @@
     flex-direction: column;
     align-items: center;
     margin: 20px;
+    color: rgb(212, 190, 190);
 }
 
 .new-post-house {
-    border: 1px solid red;
+    /* border: 2px solid rgb(71, 70, 70); */
+    /* border: 1px solid pink; */
+    background-color: #2F2E30;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     padding: 20px;
-    width: 500px;
+    /* width: 1000px; */
     align-items: center;
     margin-bottom: 30px;
 }
 
+.new-post-house > button {
+    /* color: white; */
+    width: 25%;
+    padding: 10px;
+    font-size: 17px;
+    /* border-style: none; */
+    border-radius: 5px;
+}
+
+.offbtn {
+    cursor: not-allowed;
+    border-style: none;
+    background-color:#464646;
+    color:#797373
+}
+
+.onbtn {
+    color:rgb(0, 0, 0);
+    border: 1px solid black;
+    color: #d4bebe;
+    background-color: rgb(80, 76, 76);
+    font-weight: bolder;
+}
+
 .new-post-house > h2 {
     margin: 0;
+    background-color: #2F2E30;
+    font-family: 'Nosifer', cursive;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    -webkit-text-stroke: 1px rgb(146, 40, 40)
 }
 
 .new-post-house > textarea {
@@ -29,12 +82,15 @@
     width: -webkit-fill-available;
 }
 
-.new-post-house > button {
-    width: 50%;
+#lp-form {
+    width: 75%;
 }
 
 .post-house {
-    border: 1px solid pink;
+
+    /* border: 1px solid rgb(0, 0, 0); */
+    /* border: 1px solid blue; */
+    background-color: #2F2E30;
     width: 75%;
     margin-bottom: 20px;
     padding: 10px;
@@ -42,24 +98,45 @@
 }
 
 .post-top-bar {
-    /* border: 2px solid orange; */
+    background-color: #2F2E30;
+    /* border: 1px solid yellow; */
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
 }
 
+.user-name, span{
+    background-color: #2F2E30;
+}
+
 .post-text-house {
-    border: 1px solid orange;
+    padding: 15px 15px;
+    height: auto;
+    border-radius: 5px;
+    overflow-wrap: break-word;
+}
+
+.post-text-house, p {
+    background-color: #3e3d3f;
     margin: 10px;
-    padding: 0 10px;
+    /* padding: 0 50px; */
 }
 
 .post-comment-house {
-    border: 1px solid pink;
+    /* border: 1px solid pink; */
     width: 85%;
     margin: 0 20px;
     margin-bottom: 5px;
     padding: 10px;
+}
+
+.comment-count {
+    background-color: #2F2E30;
+}
+
+.comment-count > button {
+    background-color: #2F2E30;
+    color: rgb(212, 190, 190);
 }
 
 .comment-top-bar {
@@ -68,8 +145,85 @@
 }
 
 .comment-text-house {
-    border: 1px solid orange;
+    /* border: 1px solid orange; */
     margin: 10px;
     padding: 0 10px;
     font-size: 13px;
+}
+
+.post-menu-buttons > button {
+    color: rgb(212, 190, 190);
+}
+
+.logo-container {
+    display: flex;
+    box-shadow: 5px 5px 10px black;
+    border-radius: 150px;
+}
+
+#logo {
+    background-color: #2F2E30;
+    border-radius: 150px;
+    height: 100px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.lp-comments > button {
+    background-color: transparent;
+    border-style: none;
+    color: rgb(212, 190, 190);
+    padding: 10px;
+}
+
+.lp-comments > button:hover {
+    background-color: rgb(68, 67, 67);
+    border-radius: 5px;
+}
+
+.lp-comments {
+    background-color: #2F2E30;
+}
+
+#make-post {
+    height: 80px;
+    background-color: #2F2E30;
+}
+
+.frame-container {
+    display: flex;
+    align-items:center;
+    position: absolute;
+    /* border: 5px solid red; */
+    top: 150px;
+}
+
+.giphy-embed {
+    height: 450px;
+    width: 600px;
+    z-index: 200;
+    position: fixed;
+    top: 275px;
+    left: 568px;
+}
+
+.giphy-embed:hover {
+    pointer-events: none;
+}
+
+#wrong {
+    color: white;
+    /* margin-top: 120px; */
+}
+
+#tv {
+    top: 200px;
+    left: 500px;
+    height: 600px;
+    border-radius: 10px;
+    position: fixed;
+}
+
+iframe {
+    border-radius: 60px;
 }

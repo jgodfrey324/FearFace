@@ -23,12 +23,10 @@ const PostsLanding = () => {
     const [errors, setErrors] = useState('');
     const [submitted, setSubmitted] = useState(false);
 
-
-
     useEffect(() => {
         dispatch(getAllPosts());
-        dispatch(getUserDetail(user.id))
-    }, [dispatch, user.id]);
+        dispatch(getUserDetail(user?.id))
+    }, [dispatch, user?.id]);
 
 
 
@@ -74,11 +72,11 @@ const PostsLanding = () => {
     // make friends object
     const friends = user_details['is_following']
 
-
-
     return (
         <div className='landing-house'>
-            <h1>FearFace landing page...</h1>
+            <div className="logo-container">
+            <img id="logo" src="https://i.imgur.com/rwR3GBq.png"></img>
+            </div>
             <div>
                 {Object.values(friends).map((friend) => {
                     return (
@@ -88,15 +86,16 @@ const PostsLanding = () => {
                     )
                 })}
             </div>
-            <form onSubmit={submitForm}>
+            <form id="lp-form"onSubmit={submitForm}>
                 <div className='new-post-house'>
-                    <h2>Make a new post!</h2>
+                    <img id="make-post" src="https://i.imgur.com/ERn5sIv.png"></img>
                     <ul>
                         {errors && (
                             <p style={{ color: "red" }}>{errors}</p>
                         )}
                     </ul>
                     <textarea
+                        style={{color: '#d4bebe'}}
                         value={text}
                         placeholder='Write your status here....'
                         required
@@ -104,7 +103,7 @@ const PostsLanding = () => {
                         minLength={5}
                         maxLength={5000}
                     />
-                    <button>Post</button>
+                    <button disabled={text.length < 5} className={text.length < 5 ? 'offbtn' : 'onbtn'}>P o s t</button>
                 </div>
             </form >
             {posts.toReversed().map(post => {
@@ -134,7 +133,7 @@ const PostsLanding = () => {
                         <div className='post-text-house'>
                             <p>{post.text}</p>
                         </div>
-                        <div>
+                        <div className="lp-comments">
                             <OpenModalButton
                                 buttonText="Comments"
                                 modalComponent={<PostDetailModal postId={post.id} />}
