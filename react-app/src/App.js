@@ -53,7 +53,7 @@ function App() {
             <h1 id="wrong">Turn around...</h1>
             <div className="frame-container">
               <img id="tv" src="https://i.imgur.com/PIS3I3P.png"></img>
-              <iframe src="https://giphy.com/embed/r4OLGW3irym6k" width="480" height="309" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <iframe src="https://giphy.com/embed/r4OLGW3irym6k" width="480" height="309" frameBorder="0" className="giphy-embed" allowFullScreen></iframe>
             </div>
           </Route>
         </Switch>

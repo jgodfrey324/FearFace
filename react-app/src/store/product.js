@@ -104,16 +104,17 @@ const productsReducer = (state = initialState, action) => {
             newState = { ...action.products }
             return newState
         case ADD_PRODUCT:
-            newState = { ...newState }
+            newState = { ...state }
             newState[action.product.id] = action.product
             return newState
         case EDIT_PRODUCT:
-            newState = { ...newState }
+            newState = { ...state }
             newState[action.product.id] = action.product
+            return newState
         case DELETE_PRODUCT:
-                newState = { ...state };
-                delete newState[action.productId]
-                return newState
+            newState = { ...state };
+            delete newState[action.productId]
+            return newState
         default:
             return state;
     }

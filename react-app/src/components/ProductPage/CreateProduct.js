@@ -12,7 +12,7 @@ const CreateProduct = () => {
     const [name, setName] = useState('')
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
-    const [price, setPrice] = useState(0)
+    const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
     const [errors, setErrors] = useState({})
     const [submitted, setSubmitted] = useState(false);
@@ -24,7 +24,7 @@ const CreateProduct = () => {
         setCity("")
         setState("")
         setDescription("")
-        setPrice(0)
+        setPrice("")
     }
 
     useEffect(() => {
@@ -40,7 +40,7 @@ const CreateProduct = () => {
     }, [name, city, state, price, description])
 
     const submitForm = async (e) => {
-        console.log("is this submitting =====================================================")
+        // console.log("is this submitting =====================================================")
         e.preventDefault()
 
         setSubmitted(true)
@@ -70,6 +70,9 @@ const CreateProduct = () => {
 
     return (
         <div className='form-container'>
+            <h1 style={{color: 'whitesmoke'}}>Create a new product!</h1>
+            <button onClick={() => history.push('/marketplace')}
+                style={{backgroundColor: 'whitesmoke'}}>Marketplace</button>
             <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}}>
                 <div className="new-prod-house">
                     <label>
@@ -77,6 +80,7 @@ const CreateProduct = () => {
                         {errors.name && submitted && < p style={{ color: "red" }}>{errors.name}</p>}
                         <input
                             // required
+                            style={{color: 'whitesmoke'}}
                             id="p-name"
                             placeholder="Name..."
                             type="text"
@@ -88,6 +92,7 @@ const CreateProduct = () => {
                         <div>City</div>
                         {errors.city && submitted && < p style={{ color: "red" }}>{errors.city}</p>}
                         <input
+                            style={{color: 'whitesmoke'}}
                             id="p-city"
                             placeholder="City..."
                             type="text"
@@ -100,6 +105,7 @@ const CreateProduct = () => {
                         <div>State</div>
                         {errors.state && submitted && < p style={{ color: "red" }}>{errors.state}</p>}
                         <input
+                            style={{color: 'whitesmoke'}}
                             id="p-state"
                             placeholder="State..."
                             type="text"
@@ -111,6 +117,7 @@ const CreateProduct = () => {
                         <div>Description</div>
                         {errors.description && submitted && < p style={{ color: "red" }}>{errors.description}</p>}
                         <textarea
+                            style={{color: 'whitesmoke'}}
                             id="p-descrip"
                             placeholder="Write a description..."
                             type="text"
@@ -122,6 +129,7 @@ const CreateProduct = () => {
                         <div>Price</div>
                         {errors.price && submitted && < p style={{ color: "red" }}>{errors.price}</p>}
                         <input
+                            style={{color: 'whitesmoke'}}
                             id="p-price"
                             placeholder="$"
                             type="text"

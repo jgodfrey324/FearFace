@@ -110,6 +110,7 @@ function PostDetailModal({ postId }) {
                         )}
                     </ul>
                     <textarea
+                        style={{color: 'whitesmoke'}}
                         value={text}
                         placeholder='Write a comment....'
                         required

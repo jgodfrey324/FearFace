@@ -1,6 +1,5 @@
 // action -->
 const LOAD_COMMENTS = 'comments/LOAD_COMMENTS';
-// const LOAD_USER_COMMENTS = 'comments/LOAD_USER_COMMENTS';
 const DELETE_COMMENT = 'comments/DELETE_COMMENT'
 const POST_COMMENT = 'comments/POST_COMMENT'
 
@@ -12,12 +11,6 @@ const loadComments = (comments) => {
     }
 }
 
-// const loadUserComments = (comments) => {
-//     return {
-//         type: LOAD_USER_COMMENTS,
-//         comments
-//     }
-// }
 
 const removeComment = (commentId) => {
     return {
@@ -49,23 +42,9 @@ export const getComments = () => async (dispatch) => {
     }
 }
 
-// export const getUserComments = (userId) => async (dispatch) => {
-//     const res = await fetch(`/api/users/${userId}/comments`);
-
-//     if (res.ok) {
-//         const data = await res.json();
-//         dispatch(loadUserComments(data));
-//         return data;
-//     } else {
-//         const data = await res.json();
-//         if (data.errors) {
-//             return data.errors;
-//         }
-//     }
-// }
 
 export const deleteComment = (commentId) => async (dispatch) => {
-    const res = await fetch(`api/comments/${commentId}/delete`, {
+    const res = await fetch(`/api/comments/${commentId}/delete`, {
         method: "DELETE"
     })
     if (res.ok) {
@@ -100,14 +79,9 @@ const commentReducer
             case LOAD_COMMENTS:
                 newState = { ...action.comments };
                 return newState;
-            // case LOAD_USER_COMMENTS:
-            //     newState = { ...state };
-            //     newState.user = { ...action.comments };
-            //     return newState;
             case DELETE_COMMENT:
                 newState = { ...state };
                 delete newState[action.commentId];
-                // delete newState.user[action.commentId];
                 return newState;
             case POST_COMMENT:
                 newState = { ...state };
