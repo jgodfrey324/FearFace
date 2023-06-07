@@ -55,6 +55,7 @@ const ProductsLanding = () => {
                                     onClick={() => setSelectedProduct(product)}>
                                     <div  style={{ color: "white", border: "1px solid white" }}>
                                         <h3>{product.name}</h3>
+                                        <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
                                         <span>{product.location_city}, {product.location_state}</span>
                                         <div style={{height: '250px', border: '2px solid pink', margin: '10px 0px'}}>
                                             <p>Preview image will go here!</p>
