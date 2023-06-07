@@ -118,7 +118,7 @@ function PostDetailModal({ postId }) {
                         minLength={5}
                         maxLength={5000}
                     />
-                    <button>Post</button>
+                    <button style={{color:"whitesmoke"}}>Post</button>
                 </div>
             </form >
             <div>

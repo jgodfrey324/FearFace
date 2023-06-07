@@ -104,9 +104,6 @@ const PostsLanding = () => {
 
     return (
         <div className='landing-house'>
-            <div className="logo-container">
-                <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt='page logo'></img>
-            </div>
             <h3>My friends: </h3>
             <div>
                 {Object.values(friends).map((friend) => {
@@ -118,7 +115,7 @@ const PostsLanding = () => {
                 })}
             </div>
             <div>
-                <button onClick={() => history.push(`/users/${user.id}`)}>My Profile</button>
+                <button onClick={() => history.push(`/users/${user.id}`)} style={{color: 'whitesmoke'}}>My Profile</button>
                 <h3>Check out the <NavLink to='/marketplace'>Marketplace!</NavLink></h3>
             </div>
             <form id="lp-form" onSubmit={submitForm}>

@@ -24,9 +24,9 @@ function DeleteProductModal({ productId }) {
 
     return (
         <>
-            <h1>Are you sure you want to delete your product?</h1>
-            <button onClick={deleteButton}>Yes (delete this product)</button>
-            <button onClick={() => closeModal()}>No (don't delete)</button>
+            <h1 style={{ color: 'whitesmoke' }}>Are you sure you want to delete your product?</h1>
+            <button onClick={deleteButton} style={{ color: 'whitesmoke' }}>Yes (delete this product)</button>
+            <button style={{ color: 'whitesmoke' }} onClick={() => closeModal()}>No (don't delete)</button>
         </>
     );
 }

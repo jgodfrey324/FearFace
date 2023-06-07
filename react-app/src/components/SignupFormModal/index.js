@@ -41,6 +41,7 @@ function SignupFormModal() {
 				<label>
 					Email
 					<input
+						style={{ color: 'whitesmoke' }}
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
@@ -50,6 +51,7 @@ function SignupFormModal() {
 				<label>
 					Username
 					<input
+						style={{ color: 'whitesmoke' }}
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -59,6 +61,7 @@ function SignupFormModal() {
 				<label>
 					Password
 					<input
+						style={{ color: 'whitesmoke' }}
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
@@ -68,6 +71,7 @@ function SignupFormModal() {
 				<label>
 					Confirm Password
 					<input
+						style={{ color: 'whitesmoke' }}
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
