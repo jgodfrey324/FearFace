@@ -1,68 +1,151 @@
-import React, { useState } from "react";
-import { updatePost } from "../../store/posts";
-import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../../context/Modal";
-import "./LoginForm.css";
-
-function UpdateProductModal({ postId, setter }) {
-  const current_post = useSelector(state => state.posts[postId])
-
-  const { closeModal } = useModal();
-  const dispatch = useDispatch();
-  // fill state with old post text
-  const [text, setText] = useState(current_post?.text);
-  const [submitted, setSubmitted] = useState(false);
-  const [errors, setErrors] = useState('');
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllPosts, createPost } from '../../store/posts';
+import { Redirect, NavLink, useHistory,useParams } from "react-router-dom";
+import { updateProduct } from '../../store/product';
+import OpenModalButton from '../OpenModalButton';
+import { getAllProducts } from '../../store/product';
 
 
+const UpdateProduct = ({productId}) => {
+    // const {productId} = useParams()
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const user = useSelector(state=> state.session.user)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    setSubmitted(true);
-    setter(true);
+    const productObj = useSelector(state => state.products)
 
-    const formData = new FormData()
-    formData.append("text", text)
+    const products = Object.values(productObj)
+    // const currentProduct = products.filter(product => product.user.id === user.id)
+    // const userProduct = products.find(product => product.id === productId)
 
-    const data = await dispatch(updatePost(postId, formData));
-    if (data) {
-      return setErrors(data);
-    }
-    if (submitted && errors) {
-      setErrors('');
-    }
-
-    return closeModal()
-  };
+    const [name, setName] = useState(currentProduct.name)
+    const [city, setCity] = useState(currentProduct.location_city)
+    const [state, setState] = useState(currentProduct.location_state)
+    const [price, setPrice] = useState(currentProduct.price)
+    const [description, setDescription] = useState(currentProduct.description)
+    const [errors, setErrors] = useState({})
+    const [submitted, setSubmitted] = useState(false);
 
 
 
+    console.log("these are my products ===============================", currentProduct)
 
-  return (
-    <>
-      <h1>Update Post</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors && (
-            <p style={{ color: "red" }}>{errors}</p>
-          )}
-        </ul>
-        <label>
-          Write your post here...
-          <textarea
-            placeholder={current_post?.text}
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            required
-            minLength={5}
-            maxLength={5000}
-          />
-        </label>
-        <button type="submit">Update</button>
-      </form>
-    </>
-  );
+    const reset = () => {
+      setName("")
+      setCity("")
+      setState("")
+      setDescription("")
+      setPrice(0)
+  }
+
+
+    useEffect(() => {
+        dispatch(getAllProducts())
+        const error = {}
+        if (!name) error.name = "Name is required"
+        if (!city) error.city = "City is required"
+        if (!state) error.state = "State is required"
+        if (!price) error.price = "Price is required"
+        if (+price <= 0) error.price = "Price must be greater than 0"
+        if (!(+price)) error.price = 'Price must be valid number'
+        if (!description) error.description = "description is required"
+        setErrors(error)
+    }, [name, city, state, price, description])
+
+    const submitForm = async (e) => {
+
+      e.preventDefault()
+
+      setSubmitted(true)
+
+      const formData = new FormData()
+      formData.append("name", name)
+      formData.append("location_city", city)
+      formData.append("location_state", state)
+      formData.append("price", price)
+      formData.append("description", description)
+
+      let data;
+
+      if (!Object.values(errors).length) {
+          data = await dispatch(updateProduct(formData))
+          history.push("/marketplace")
+          reset()
+      }
+  }
+
+
+
+    return (
+        <div className='update-form-container'>
+            <h2>Update Product</h2>
+            <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}}>
+                <div className="new-prod-house">
+                    <label>
+                        <div>Name</div>
+                        {errors.name && submitted && < p style={{ color: "red" }}>{errors.name}</p>}
+                        <input
+                            // required
+                            id="p-name"
+                            placeholder="Name..."
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        ></input>
+                    </label>
+                    <label>
+                        <div>City</div>
+                        {errors.city && submitted && < p style={{ color: "red" }}>{errors.city}</p>}
+                        <input
+                            id="p-city"
+                            placeholder="City..."
+                            type="text"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                        ></input>
+                    </label>
+
+                    <label>
+                        <div>State</div>
+                        {errors.state && submitted && < p style={{ color: "red" }}>{errors.state}</p>}
+                        <input
+                            id="p-state"
+                            placeholder="State..."
+                            type="text"
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                        ></input>
+                    </label>
+                    <label>
+                        <div>Description</div>
+                        {errors.description && submitted && < p style={{ color: "red" }}>{errors.description}</p>}
+                        <textarea
+                            id="p-descrip"
+                            placeholder="Write a description..."
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        <div>Price</div>
+                        {errors.price && submitted && < p style={{ color: "red" }}>{errors.price}</p>}
+                        <input
+                            id="p-price"
+                            placeholder="$"
+                            type="text"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                        ></input>
+                    </label>
+                </div>
+                <button type="submit">Submit</button>
+            </form >
+        </div>
+)
+
 }
 
-export default UpdatePostModal;
+export default UpdateProduct

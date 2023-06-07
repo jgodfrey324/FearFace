@@ -72,11 +72,6 @@ const CreateProduct = () => {
         <div className='form-container'>
             <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}}>
                 <div className="new-prod-house">
-                    {/* <ul>
-                        {Object.keys(errors).length && (
-                            <p style={{ color: "red" }}>{errors}</p>
-                        )}
-                    </ul> */}
                     <label>
                         <div>Name</div>
                         {errors.name && submitted && < p style={{ color: "red" }}>{errors.name}</p>}

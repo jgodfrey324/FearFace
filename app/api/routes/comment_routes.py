@@ -23,6 +23,23 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
+
+
+@comments.route('')
+@login_required
+def get_comments():
+    comments = Comment.query.all()
+
+    res = {}
+
+    for comment in comments:
+        comment_obj = comment.to_dict()
+        res[comment_obj['id']] = comment_obj
+
+    return res
+
+
+
 @comments.route("/<int:id>/delete", methods=["DELETE"])
 @login_required
 def delete_comment(id):

@@ -8,6 +8,7 @@ import DeletePostModal from '../UpdatePostModal/DeletePostModal';
 import PostDetailModal from './PostDetailModal';
 import './PostsLanding.css';
 import { getUserDetail } from '../../store/session';
+import { getComments } from '../../store/comments';
 
 
 const PostsLanding = () => {
@@ -17,9 +18,11 @@ const PostsLanding = () => {
 
     const user = useSelector(state => state.session.user);
     const user_details = useSelector(state => state.session.user_details);
+    const comments = Object.values(useSelector(state => state.comments));
 
+    // try adding dispatch for get all comments here
+    // make count obj that counts all comments per post and use that count for display
 
-    // console.log('current user from session state on landing page ================> ', user);
 
 
     const [text, setText] = useState('');
@@ -29,6 +32,7 @@ const PostsLanding = () => {
 
     useEffect(() => {
         dispatch(getAllPosts());
+        dispatch(getComments());
         dispatch(getUserDetail(user?.id))
     }, [dispatch, user?.id]);
 
@@ -73,6 +77,25 @@ const PostsLanding = () => {
     if (!posts) return null;
     // wait for user details
     if (!user_details) return null;
+
+    if (!comments) return null;
+
+    const commentsCount = {}
+
+    for (const post of posts) {
+        for (const comment of comments) {
+            if (comment.post_id === post.id) {
+                if (commentsCount[post.id]) {
+                    commentsCount[post.id] += 1
+                } else {
+                    commentsCount[post.id] = 1
+                }
+            }
+        }
+    }
+
+    // console.log(commentsCount, 'comments count obj ....................................');
+
     // make friends object
     const friends = user_details[user.id]['is_following']
     // console.log('friends on landing page ============================> ', friends);
@@ -150,8 +173,8 @@ const PostsLanding = () => {
                                 buttonText="Comments"
                                 modalComponent={<PostDetailModal postId={post.id} />}
                             />
-                            {Object.values(post.comments).length > 0 && (
-                                <span> {Object.values(post.comments).length}</span>
+                            {commentsCount[post.id] > 0 && (
+                                <span> {commentsCount[post.id]}</span>
                             )}
 
                         </div>

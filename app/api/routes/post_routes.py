@@ -61,21 +61,21 @@ def all_posts():
 
 
 
-# get all comments for one post
-@posts.route("/<int:id>/comments")
-@login_required
-def all_comments(id):
-    post = Post.query.get(id)
-    comments = post.comments
-    new_lst = [comment.to_dict() for comment in comments]
+# # get all comments for one post
+# @posts.route("/<int:id>/comments")
+# @login_required
+# def all_comments(id):
+#     post = Post.query.get(id)
+#     comments = post.comments
+#     new_lst = [comment.to_dict() for comment in comments]
 
-    res = {}
+#     res = {}
 
-    for comment in new_lst:
-        comment_id = comment['id']
-        res[comment_id] = comment
+#     for comment in new_lst:
+#         comment_id = comment['id']
+#         res[comment_id] = comment
 
-    return res
+#     return res
 
 
 

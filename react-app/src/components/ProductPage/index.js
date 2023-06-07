@@ -17,6 +17,7 @@ const ProductsLanding = () => {
     // console.log("this is our products slice ===================", productObj)
     // console.log("this is our user slice ===================", user)
 
+
     useEffect(() => {
         dispatch(getAllProducts());
 
@@ -31,18 +32,24 @@ const ProductsLanding = () => {
                 {products.map(product => {
                     const isCurrentUsers = product.user.id === user.id;
                     return (
-                        <>
-                        <div key={product.id} style={{ color: "white", border: "1px solid red" }}>
-                            {product.name}, {product.location_city}, {product.location_state}, {product.description}, ${parseFloat(product.price).toFixed(2)}
-                        </div>
+                        <div>
+                            <div key={product.id} style={{ color: "white", border: "1px solid white" }}>
+                                <h3>{product.name}</h3>
+                                <span>{product.location_city}, {product.location_state}</span>
+                                <div style={{height: '250px', border: '2px solid pink', margin: '10px 0px'}}>
+                                    <p>Preview image will go here!</p>
+                                </div>
+                                <p style={{margin: '15px 0px'}}>{product.description}</p>
+                                <p style={{fontWeight: 'bold'}}>${parseFloat(product.price).toFixed(2)}</p>
+                            </div>
 
-                        {isCurrentUsers && (
-                                <OpenModalButton
-                                    buttonText="Delete"
-                                    modalComponent={<DeleteProductModal productId={product.id}/>}
-                                />
-                         )}
-                        </>
+                            {isCurrentUsers && (
+                                    <OpenModalButton
+                                        buttonText="Delete"
+                                        modalComponent={<DeleteProductModal productId={product.id}/>}
+                                    />
+                            )}
+                        </div>
                     )
                 })}
             </div>
