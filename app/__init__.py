@@ -12,7 +12,7 @@ from .api.routes.comment_routes import comments
 from .api.routes.product_routes import products
 from .seeds import seed_commands
 from .config import Config
-from .socket import socketio
+# from .socket import socketio
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -41,13 +41,10 @@ app.register_blueprint(products, url_prefix='/api/products')
 
 db.init_app(app)
 Migrate(app, db)
-socketio.init_app(app)
+# socketio.init_app(app)
 
 # Application Security
 CORS(app)
-
-if __name__ == '__main__':
-    socketio.run(app)
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.
@@ -105,3 +102,7 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+
+# if __name__ == '__main__':
+#     socketio.run(app)
