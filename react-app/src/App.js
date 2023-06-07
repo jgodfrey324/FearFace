@@ -12,6 +12,7 @@ import ProductsLanding from "./components/ProductPage";
 import CreateProduct from "./components/ProductPage/CreateProduct";
 import MyProducts from "./components/MyProductsPage";
 import UpdateProduct from "./components/ProductPage/UpdateProduct";
+import Chat from "./components/Chat";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,7 +39,10 @@ function App() {
             <CreateProduct />
           </Route>
           <Route path="/marketplace/update">
-            <UpdateProduct/>
+            <UpdateProduct />
+          </Route>
+          <Route path="/chat">
+            <Chat />
           </Route>
           <Route path="/marketplace">
             <ProductsLanding />
