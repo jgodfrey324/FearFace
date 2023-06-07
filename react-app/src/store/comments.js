@@ -1,23 +1,23 @@
 // action -->
-const LOAD_POST_COMMENTS = 'comments/LOAD_POST_COMMENTS';
-const LOAD_USER_COMMENTS = 'comments/LOAD_USER_COMMENTS';
+const LOAD_COMMENTS = 'comments/LOAD_COMMENTS';
+// const LOAD_USER_COMMENTS = 'comments/LOAD_USER_COMMENTS';
 const DELETE_COMMENT = 'comments/DELETE_COMMENT'
 const POST_COMMENT = 'comments/POST_COMMENT'
 
 // action creators -->
-const loadPostComments = (comments) => {
+const loadComments = (comments) => {
     return {
-        type: LOAD_POST_COMMENTS,
+        type: LOAD_COMMENTS,
         comments
     }
 }
 
-const loadUserComments = (comments) => {
-    return {
-        type: LOAD_USER_COMMENTS,
-        comments
-    }
-}
+// const loadUserComments = (comments) => {
+//     return {
+//         type: LOAD_USER_COMMENTS,
+//         comments
+//     }
+// }
 
 const removeComment = (commentId) => {
     return {
@@ -34,12 +34,12 @@ const createComment = (comment) => {
 }
 
 // thunk action creators -->
-export const getPostComments = (postId) => async (dispatch) => {
-    const res = await fetch(`/api/posts/${postId}/comments`);
+export const getComments = () => async (dispatch) => {
+    const res = await fetch(`/api/comments`);
 
     if (res.ok) {
         const data = await res.json();
-        dispatch(loadPostComments(data));
+        dispatch(loadComments(data));
         return data;
     } else {
         const data = await res.json();
@@ -49,20 +49,20 @@ export const getPostComments = (postId) => async (dispatch) => {
     }
 }
 
-export const getUserComments = (userId) => async (dispatch) => {
-    const res = await fetch(`/api/users/${userId}/comments`);
+// export const getUserComments = (userId) => async (dispatch) => {
+//     const res = await fetch(`/api/users/${userId}/comments`);
 
-    if (res.ok) {
-        const data = await res.json();
-        dispatch(loadUserComments(data));
-        return data;
-    } else {
-        const data = await res.json();
-        if (data.errors) {
-            return data.errors;
-        }
-    }
-}
+//     if (res.ok) {
+//         const data = await res.json();
+//         dispatch(loadUserComments(data));
+//         return data;
+//     } else {
+//         const data = await res.json();
+//         if (data.errors) {
+//             return data.errors;
+//         }
+//     }
+// }
 
 export const deleteComment = (commentId) => async (dispatch) => {
     const res = await fetch(`api/comments/${commentId}/delete`, {
@@ -91,28 +91,27 @@ export const postComment = (postId,comment) => async (dispatch) => {
 
 }
 
-const initialState = { post: {}, user: {} }
+const initialState = {}
 // reducer
 const commentReducer
     = (state = initialState, action) => {
         let newState;
         switch (action.type) {
-            case LOAD_POST_COMMENTS:
-                newState = { ...state };
-                newState.post = { ...action.comments };
+            case LOAD_COMMENTS:
+                newState = { ...action.comments };
                 return newState;
-            case LOAD_USER_COMMENTS:
-                newState = { ...state };
-                newState.user = { ...action.comments };
-                return newState;
+            // case LOAD_USER_COMMENTS:
+            //     newState = { ...state };
+            //     newState.user = { ...action.comments };
+            //     return newState;
             case DELETE_COMMENT:
                 newState = { ...state };
-                delete newState.post[action.commentId];
-                delete newState.user[action.commentId];
+                delete newState[action.commentId];
+                // delete newState.user[action.commentId];
                 return newState;
             case POST_COMMENT:
                 newState = { ...state };
-                newState.post[action.comment.id] = action.comment;
+                newState[action.comment.id] = action.comment;
                 return newState;
             default:
                 return state;

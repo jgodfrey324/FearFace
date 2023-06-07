@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import UpdatePostModal from "../UpdatePostModal";
 import DeletePostModal from "../UpdatePostModal/DeletePostModal";
 import DeleteCommentModal from "./DeleteCommentModal"
-import { getPostComments } from '../../store/comments';
+import { getComments } from '../../store/comments';
 import { postComment } from '../../store/comments';
 import OpenModalButton from '../OpenModalButton';
 import "./PostDetailModal.css";
@@ -17,18 +17,21 @@ function PostDetailModal({ postId }) {
     const [errors, setErrors] = useState('');
 
     const post = useSelector(state => state.posts[postId])
-    const commentObj = useSelector(state => state.comments.post);
-    const comments = Object.values(commentObj)
+    const comments = Object.values(useSelector(state => state.comments));
+    // const comments = Object.values(commentObj)
     const user = useSelector(state => state.session.user)
 
 
 
+    //filter comments for just the post with postId
+
+
 
     useEffect(() => {
-        dispatch(getPostComments(postId));
+        dispatch(getComments());
 
-        return (() => null)
-    }, [dispatch, postId])
+        // return (() => null)
+    }, [dispatch])
 
 
 
@@ -56,9 +59,19 @@ function PostDetailModal({ postId }) {
 
 
 
-    if (!comments) return null;
+    // if (!comments) return null;
 
     if (!post) return null;
+
+    if (!comments) return null;
+
+    const postComments = []
+
+    for (const comment of comments) {
+        if (comment.post_id === postId) {
+            postComments.push(comment)
+        }
+    }
 
 
     const isPostOwner = post.user.id === user.id
@@ -108,7 +121,7 @@ function PostDetailModal({ postId }) {
                 </div>
             </form >
             <div>
-                {comments.toReversed().map(comment => {
+                {postComments.toReversed().map(comment => {
                     let isCommentOwner = comment.user.id === user.id
                     return (
                         <div key={comment.id} className='post-modal-comment-house'>

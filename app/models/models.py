@@ -86,7 +86,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     created_at = db.Column(db.Date(), nullable=False) # somehow get timestamp..
 
-    comments = db.relationship('Comment', back_populates='post') # double check
+    comments = db.relationship('Comment', back_populates='post', cascade="all, delete-orphan") # double check
     post_images = db.relationship('PostImage', back_populates='post')
     user = db.relationship('User', back_populates='posts')
 

@@ -61,21 +61,21 @@ def all_posts():
 
 
 
-# get all comments for one post
-@posts.route("/<int:id>/comments")
-@login_required
-def all_comments(id):
-    post = Post.query.get(id)
-    comments = post.comments
-    new_lst = [comment.to_dict() for comment in comments]
+# # get all comments for one post
+# @posts.route("/<int:id>/comments")
+# @login_required
+# def all_comments(id):
+#     post = Post.query.get(id)
+#     comments = post.comments
+#     new_lst = [comment.to_dict() for comment in comments]
 
-    res = {}
+#     res = {}
 
-    for comment in new_lst:
-        comment_id = comment['id']
-        res[comment_id] = comment
+#     for comment in new_lst:
+#         comment_id = comment['id']
+#         res[comment_id] = comment
 
-    return res
+#     return res
 
 
 
@@ -145,7 +145,7 @@ def create_image(id):
         return {"resImage": result.to_dict()}
 
     if form.errors:
-        print("this is image error =====>",form.errors)
+        # print("this is image error =====>",form.errors)
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
@@ -175,6 +175,7 @@ def update_post(id):
 
 
 @posts.route("/<int:id>/delete", methods=["DELETE"])
+@login_required
 def delete(id):
     post_to_delete = Post.query.get(id)
     db.session.delete(post_to_delete)

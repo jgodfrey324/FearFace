@@ -1,33 +1,48 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts, createPost } from '../../store/posts';
-import { Redirect, NavLink, useHistory } from "react-router-dom";
-import { createProductThunk } from '../../store/product';
+import { Redirect, NavLink, useHistory,useParams } from "react-router-dom";
+import { updateProduct } from '../../store/product';
+import OpenModalButton from '../OpenModalButton';
+import { getAllProducts } from '../../store/product';
 
 
-const CreateProduct = () => {
+const UpdateProduct = ({productId}) => {
+    // const {productId} = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
+    const user = useSelector(state=> state.session.user)
 
-    const [name, setName] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [price, setPrice] = useState(0)
-    const [description, setDescription] = useState("")
+
+    const productObj = useSelector(state => state.products)
+
+    const products = Object.values(productObj)
+    // const currentProduct = products.filter(product => product.user.id === user.id)
+    // const userProduct = products.find(product => product.id === productId)
+
+    const [name, setName] = useState(currentProduct.name)
+    const [city, setCity] = useState(currentProduct.location_city)
+    const [state, setState] = useState(currentProduct.location_state)
+    const [price, setPrice] = useState(currentProduct.price)
+    const [description, setDescription] = useState(currentProduct.description)
     const [errors, setErrors] = useState({})
     const [submitted, setSubmitted] = useState(false);
 
-    const user = useSelector(state => state.session.user)
+
+
+    console.log("these are my products ===============================", currentProduct)
 
     const reset = () => {
-        setName("")
-        setCity("")
-        setState("")
-        setDescription("")
-        setPrice(0)
-    }
+      setName("")
+      setCity("")
+      setState("")
+      setDescription("")
+      setPrice(0)
+  }
+
 
     useEffect(() => {
+        dispatch(getAllProducts())
         const error = {}
         if (!name) error.name = "Name is required"
         if (!city) error.city = "City is required"
@@ -40,36 +55,32 @@ const CreateProduct = () => {
     }, [name, city, state, price, description])
 
     const submitForm = async (e) => {
-        console.log("is this submitting =====================================================")
-        e.preventDefault()
 
-        setSubmitted(true)
+      e.preventDefault()
 
-        const formData = new FormData()
-        formData.append("name", name)
-        formData.append("location_city", city)
-        formData.append("location_state", state)
-        formData.append("price", price)
-        formData.append("description", description)
+      setSubmitted(true)
 
-        let data;
+      const formData = new FormData()
+      formData.append("name", name)
+      formData.append("location_city", city)
+      formData.append("location_state", state)
+      formData.append("price", price)
+      formData.append("description", description)
 
-        if (!Object.values(errors).length) {
-            data = await dispatch(createProductThunk(formData))
-            history.push("/marketplace")
-            reset()
-        }
-    }
+      let data;
 
-    // console.log("this is error==================>", errors)
-    // console.log("this is submit ================",submitted)
+      if (!Object.values(errors).length) {
+          data = await dispatch(updateProduct(formData))
+          history.push("/marketplace")
+          reset()
+      }
+  }
 
-    if (!user) {
-        return <Redirect to="/login" />
-    }
+
 
     return (
-        <div className='form-container'>
+        <div className='update-form-container'>
+            <h2>Update Product</h2>
             <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}}>
                 <div className="new-prod-house">
                     <label>
@@ -132,8 +143,9 @@ const CreateProduct = () => {
                 </div>
                 <button type="submit">Submit</button>
             </form >
-        </div >
-    )
+        </div>
+)
+
 }
 
-export default CreateProduct
+export default UpdateProduct

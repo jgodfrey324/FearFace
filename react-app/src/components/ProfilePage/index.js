@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, NavLink,useParams } from "react-router-dom";
+import { Redirect, NavLink,useParams, useHistory } from "react-router-dom";
 import { getUserDetail } from '../../store/session';
 import { createPost, getAllPosts } from '../../store/posts';
+import { getComments } from '../../store/comments';
 import OpenModalButton from '../OpenModalButton';
 import DeletePostModal from '../UpdatePostModal/DeletePostModal';
 import UpdatePostModal from '../UpdatePostModal';
@@ -13,15 +14,26 @@ import PostDetailModal from '../PostsLandingPage/PostDetailModal';
 
 const ProfilePage = () => {
     const { userId } = useParams()
+    const history = useHistory()
     const dispatch = useDispatch()
     const userDetails = useSelector(state => state.session.user_details)
     const current_user = useSelector(state => state.session.user);
+    const comments = Object.values(useSelector(state => state.comments))
+    const posts = Object.values(useSelector(state => state.posts))
 
     const [text, setText] = useState('');
     const [url, setUrl] = useState('');
     const [errors, setErrors] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [postsChanged, setPostsChanged] = useState(false);
+    const [user, setUser] = useState({})
+
+
+
+    // trying dispatching all comments,
+    // then making an object with a count for comments per post,
+    // then using that count for display
+
 
 
 
@@ -37,6 +49,7 @@ const ProfilePage = () => {
 
     useEffect(() => {
         dispatch(getAllPosts());
+        dispatch(getComments())
         dispatch(getUserDetail(userId));
     }, [dispatch, userId])
 
@@ -47,6 +60,20 @@ const ProfilePage = () => {
         setPostsChanged(false);
     }, [dispatch, current_user.id, postsChanged])
 
+
+    useEffect(() => {
+       async function fetchData() {
+            const res = await fetch('/api/users');
+            const data = await res.json();
+
+            const user_fetch = data[userId]
+
+            setUser(user_fetch)
+        }
+
+        fetchData();
+
+    }, [dispatch, userId])
 
 
     const reset = () => {
@@ -95,6 +122,7 @@ const ProfilePage = () => {
         // reset fields
         reset()
     }
+// console.log(userDetails[userId])
 
 
     // if user isn't logged in then redirect to log in form
@@ -108,15 +136,42 @@ const ProfilePage = () => {
 
     if (!userDetails[current_user.id]) return null;
 
+    if (!comments) return null;
+
+
+
+
+    const commentsCount = {}
+
+    for (const post of posts) {
+        for (const comment of comments) {
+            if (comment.post_id === post.id) {
+                if (commentsCount[post.id]) {
+                    commentsCount[post.id] += 1
+                } else {
+                    commentsCount[post.id] = 1
+                }
+            }
+        }
+    }
+
+
+
+    const userPosts = []
+
+    for (const post of posts) {
+        if (post.user.id === parseInt(userId)) {
+            userPosts.push(post)
+        }
+    }
+
+
+
     const visiting_profile_friends = Object.values(userDetails[userId]['is_following']);
     const current_user_friends = Object.values(userDetails[current_user.id]['is_following']);
 
-    console.log('friends of visiting profile =============================> ', visiting_profile_friends);
-    console.log('friends of current user -----------------------------> ', current_user_friends);
-
-
-    const user_posts = Object.values(userDetails[userId]['posts']);
-    const user = user_posts[0]['user']
+    // const user_posts = Object.values(userDetails[userId]['posts']);
+    // const user = userPosts[0]['user']
 
 
 
@@ -138,6 +193,9 @@ const ProfilePage = () => {
                 )
             })}
             {current_user.id === parseInt(userId) && (
+                <button onClick={() => history.push(`/users/${userId}/products`) } style={{color: 'whitesmoke'}}>My Products</button>
+            )}
+            {current_user.id === parseInt(userId) && (
                 <form onSubmit={submitForm}>
                     <div className='new-post-house'>
                         <h2>Make a new post!</h2>
@@ -158,7 +216,7 @@ const ProfilePage = () => {
                     </div>
                 </form >
             )}
-            {user_posts.toReversed().map(post => {
+            {userPosts.toReversed().map(post => {
                 const isCurrentUsers = post.user.id === current_user.id;
 
                 return (
@@ -191,8 +249,8 @@ const ProfilePage = () => {
                                 buttonText="Comments"
                                 modalComponent={<PostDetailModal postId={post.id} />}
                             />
-                            {Object.values(post.comments).length > 0 && (
-                                <span> {Object.values(post.comments).length}</span>
+                            {commentsCount[post.id] > 0 && (
+                                <span> {commentsCount[post.id]}</span>
                             )}
                         </div>
                     </div>

@@ -1,6 +1,8 @@
 //actions -->
 const LOAD_PRODUCTS = "products/LOAD_PRODUCTS"
 const ADD_PRODUCT = "products/ADD_PRODUCT"
+const EDIT_PRODUCT = "products/EDIT_PRODUCT"
+const DELETE_PRODUCT = "products/DELETE_PRODUCT"
 
 
 
@@ -17,6 +19,20 @@ const addProduct = (product) => {
     return {
         type: ADD_PRODUCT,
         product
+    }
+}
+
+const editProduct = (product) => {
+    return {
+        type: EDIT_PRODUCT,
+        product
+    }
+}
+
+const deleteProd = (productId) => {
+    return {
+        type: DELETE_PRODUCT,
+        productId
     }
 }
 
@@ -53,6 +69,31 @@ export const createProductThunk = (product) => async (dispatch) => {
     }
 }
 
+export const updateProduct = (productId, product) => async (dispatch) => {
+    const res = await fetch(`/api/products/${productId}/update`, {
+        method: 'PUT',
+        body: product
+    })
+    if (res.ok) {
+        const { resProduct } = await res.json();
+        dispatch(editProduct(resProduct))
+    } else {
+        const data = await res.json()
+        if (data.errors) {
+            return data.errors
+        }
+    }
+}
+
+export const deleteProduct = (productId) => async (dispatch) => {
+    const res = await fetch(`/api/products/${productId}/delete`, {
+        method:"DELETE"
+    })
+    if(res.ok){
+        dispatch(deleteProd(productId))
+    }
+}
+
 //set initial state on load
 const initialState = {};
 //reducer -->
@@ -66,6 +107,13 @@ const productsReducer = (state = initialState, action) => {
             newState = { ...newState }
             newState[action.product.id] = action.product
             return newState
+        case EDIT_PRODUCT:
+            newState = { ...newState }
+            newState[action.product.id] = action.product
+        case DELETE_PRODUCT:
+                newState = { ...state };
+                delete newState[action.productId]
+                return newState
         default:
             return state;
     }
