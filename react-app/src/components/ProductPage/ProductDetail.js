@@ -35,24 +35,24 @@ function ProductDetails({ productId, visible, currentUserId}) {
 
   return (
     <div className="product-details">
-      <h3 className="product-info">{product.name}</h3>
-      <p className="product-price">{product.price}</p>
-      <span className="product-city">{product.location_city} </span>
-      <span className="product-state">{product.location_state}</span>
+      <h3 style={{color:"whitesmoke"}} className="product-info">{product.name}</h3>
+      <p style={{color:"whitesmoke"}} className="product-price">{product.price}</p>
+      <span style={{color:"whitesmoke"}} className="product-city">{product.location_city} </span>
+      <span style={{color:"whitesmoke"}} className="product-state">{product.location_state}</span>
           <p>Details</p>
-          <div className="product-description">
-      <p>{product.description}</p>
+      <div className="product-description">
+        <p>{product.description}</p>
       </div>
       <div>
         {(currentUserId === product.user?.id) &&
 
-          <div>
-          <OpenModalButton
+          <div classname="product-detail-buttons">
+          <OpenModalButton style={{color: 'whitesmoke'}}
               buttonText="Update"
               modalComponent={<UpdateProductModal productId={product.id} />}
           />
 
-            <OpenModalButton
+            <OpenModalButton style={{color: 'whitesmoke'}}
                 buttonText="Delete"
                 modalComponent={<DeleteProductModal productId={product.id} />
                 }/>

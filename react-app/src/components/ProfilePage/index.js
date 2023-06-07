@@ -8,6 +8,7 @@ import OpenModalButton from '../OpenModalButton';
 import DeletePostModal from '../UpdatePostModal/DeletePostModal';
 import UpdatePostModal from '../UpdatePostModal';
 import PostDetailModal from '../PostsLandingPage/PostDetailModal';
+import './ProfilePage.css'
 
 
 
@@ -220,13 +221,14 @@ const ProfilePage = () => {
             {current_user.id === parseInt(userId) && (
                 <form onSubmit={submitForm}>
                     <div className='new-post-house'>
-                        <h2>Make a new post!</h2>
+                        <h2 style={{color:"whitesmoke"}}>Make a new post!</h2>
                         <ul>
                             {errors && (
                                 <p style={{ color: "red" }}>{errors}</p>
                             )}
                         </ul>
                         <textarea
+                        style={{color:"whitesmoke"}}
                             value={text}
                             placeholder='Write your status here....'
                             required
@@ -234,7 +236,7 @@ const ProfilePage = () => {
                             minLength={5}
                             maxLength={5000}
                         />
-                        <button>Post</button>
+                        <button style={{color:"whitesmoke"}}>Post</button>
                     </div>
                 </form >
             )}
@@ -259,20 +261,20 @@ const ProfilePage = () => {
                                 )}
                             </div>
                             <div className='user-name'>
-                                <span>{post.user.first_name} </span>
-                                <span>{post.user.last_name}...</span>
+                                <span style={{color: 'whitesmoke'}}>{post.user.first_name} </span>
+                                <span style={{color: 'whitesmoke'}}>{post.user.last_name}...</span>
                             </div>
                         </div>
                         <div className='post-text-house'>
-                            <p>{post.text}</p>
+                            <p style={{color: 'whitesmoke'}}>{post.text}</p>
                         </div>
-                        <div>
-                            <OpenModalButton
+                        <div className="p-page-comments">
+                            <OpenModalButton style={{color: 'whitesmoke'}}
                                 buttonText="Comments"
                                 modalComponent={<PostDetailModal postId={post.id} />}
                             />
                             {commentsCount[post.id] > 0 && (
-                                <span> {commentsCount[post.id]}</span>
+                                <span style={{color: 'whitesmoke'}}> {commentsCount[post.id]}</span>
                             )}
                         </div>
                     </div>

@@ -89,7 +89,7 @@ const CreateProduct = () => {
                         ></input>
                     </label>
                     <label>
-                        <div>City</div>
+                        <div style={{ color: 'whitesmoke' }}>City</div>
                         {errors.city && submitted && < p style={{ color: "red" }}>{errors.city}</p>}
                         <input
                             style={{color: 'whitesmoke'}}
@@ -102,7 +102,7 @@ const CreateProduct = () => {
                     </label>
 
                     <label>
-                        <div>State</div>
+                        <div style={{ color: 'whitesmoke' }}>State</div>
                         {errors.state && submitted && < p style={{ color: "red" }}>{errors.state}</p>}
                         <input
                             style={{color: 'whitesmoke'}}
@@ -114,7 +114,7 @@ const CreateProduct = () => {
                         ></input>
                     </label>
                     <label>
-                        <div>Description</div>
+                        <div style={{ color: 'whitesmoke' }}>Description</div>
                         {errors.description && submitted && < p style={{ color: "red" }}>{errors.description}</p>}
                         <textarea
                             style={{color: 'whitesmoke'}}
@@ -126,7 +126,7 @@ const CreateProduct = () => {
                         />
                     </label>
                     <label>
-                        <div>Price</div>
+                        <div style={{ color: 'whitesmoke' }}>Price</div>
                         {errors.price && submitted && < p style={{ color: "red" }}>{errors.price}</p>}
                         <input
                             style={{color: 'whitesmoke'}}
@@ -138,7 +138,7 @@ const CreateProduct = () => {
                         ></input>
                     </label>
                 </div>
-                <button type="submit">Submit</button>
+                <button style={{ color: 'whitesmoke' }} type="submit">Submit</button>
             </form >
         </div >
     )

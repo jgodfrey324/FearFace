@@ -161,13 +161,7 @@ button {
     border-radius: 150px;
 }
 
-#logo {
-    background-color: #2F2E30;
-    border-radius: 150px;
-    height: 100px;
-    width: 100%;
-    cursor: pointer;
-}
+
 
 .lp-comments > button {
     background-color: transparent;
@@ -226,4 +220,8 @@ button {
 
 iframe {
     border-radius: 60px;
+}
+
+.post-modal-menu-buttons > button{
+    color: whitesmoke
 }

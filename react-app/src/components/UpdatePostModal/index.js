@@ -41,7 +41,7 @@ function UpdatePostModal({ postId }) {
 
   return (
     <>
-      <h1>Update Post</h1>
+      <h1 style={{color: 'whitesmoke'}}>Update Post</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors && (
@@ -51,6 +51,7 @@ function UpdatePostModal({ postId }) {
         <label>
           Write your post here...
           <textarea
+            style={{color: 'whitesmoke'}}
             placeholder={current_post?.text}
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -59,7 +60,7 @@ function UpdatePostModal({ postId }) {
             maxLength={5000}
           />
         </label>
-        <button type="submit">Update</button>
+        <button type="submit" style={{color: 'whitesmoke'}}>Update</button>
       </form>
     </>
   );
