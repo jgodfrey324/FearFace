@@ -39,6 +39,10 @@ const ProductsLanding = () => {
         dispatch(getAllProducts());
     }, [dispatch])
 
+    if (!user) {
+        return <Redirect to="/login"/>
+    }
+
 
     return (
         <div className='product-page-container'>
@@ -75,7 +79,7 @@ const ProductsLanding = () => {
                         {sideOpen ? '>' : '<'}
                     </div>
                 </div>
-                <ProductDetails visible={sideOpen} productId={selectedProduct.id} currentUserId={user.id} />
+                <ProductDetails visible={sideOpen} productId={selectedProduct.id} currentUserId={user?.id} />
             </div>
         </div>
     )

@@ -73,9 +73,9 @@ const ProfilePage = () => {
 
 
     useEffect(() => {
-        dispatch(getUserDetail(current_user.id));
+        dispatch(getUserDetail(current_user?.id));
         setPostsChanged(false);
-    }, [dispatch, current_user.id, postsChanged])
+    }, [dispatch, current_user?.id, postsChanged])
 
 
     useEffect(() => {
