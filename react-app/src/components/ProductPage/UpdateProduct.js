@@ -1,24 +1,27 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPosts, createPost } from '../../store/posts';
 import { Redirect, NavLink, useHistory,useParams } from "react-router-dom";
 import { updateProduct } from '../../store/product';
-import OpenModalButton from '../OpenModalButton';
 import { getAllProducts } from '../../store/product';
+import { useModal } from "../../context/Modal";
 
 
-const UpdateProduct = ({productId}) => {
+
+const UpdateProductModal = ({productId}) => {
     // const {productId} = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
+    const { closeModal } = useModal();
     const user = useSelector(state=> state.session.user)
 
 
     const productObj = useSelector(state => state.products)
 
     const products = Object.values(productObj)
+    const currentProduct = products.find(product => product.id === productId)
     // const currentProduct = products.filter(product => product.user.id === user.id)
     // const userProduct = products.find(product => product.id === productId)
+    // console.log("these are my products ===============================", currentProduct)
 
     const [name, setName] = useState(currentProduct.name)
     const [city, setCity] = useState(currentProduct.location_city)
@@ -30,19 +33,11 @@ const UpdateProduct = ({productId}) => {
 
 
 
-    console.log("these are my products ===============================", currentProduct)
 
-    const reset = () => {
-      setName("")
-      setCity("")
-      setState("")
-      setDescription("")
-      setPrice(0)
-  }
 
 
     useEffect(() => {
-        dispatch(getAllProducts())
+        // dispatch(getAllProducts())
         const error = {}
         if (!name) error.name = "Name is required"
         if (!city) error.city = "City is required"
@@ -70,10 +65,10 @@ const UpdateProduct = ({productId}) => {
       let data;
 
       if (!Object.values(errors).length) {
-          data = await dispatch(updateProduct(formData))
-          history.push("/marketplace")
-          reset()
-      }
+          data = await dispatch(updateProduct(productId,formData)).then(()=> dispatch(getAllProducts()))
+          closeModal()
+        }
+
   }
 
 
@@ -88,6 +83,7 @@ const UpdateProduct = ({productId}) => {
                         {errors.name && submitted && < p style={{ color: "red" }}>{errors.name}</p>}
                         <input
                             // required
+                            style={{color: 'whitesmoke'}}
                             id="p-name"
                             placeholder="Name..."
                             type="text"
@@ -99,6 +95,7 @@ const UpdateProduct = ({productId}) => {
                         <div>City</div>
                         {errors.city && submitted && < p style={{ color: "red" }}>{errors.city}</p>}
                         <input
+                            style={{color: 'whitesmoke'}}
                             id="p-city"
                             placeholder="City..."
                             type="text"
@@ -111,6 +108,7 @@ const UpdateProduct = ({productId}) => {
                         <div>State</div>
                         {errors.state && submitted && < p style={{ color: "red" }}>{errors.state}</p>}
                         <input
+                            style={{color: 'whitesmoke'}}
                             id="p-state"
                             placeholder="State..."
                             type="text"
@@ -122,6 +120,7 @@ const UpdateProduct = ({productId}) => {
                         <div>Description</div>
                         {errors.description && submitted && < p style={{ color: "red" }}>{errors.description}</p>}
                         <textarea
+                            style={{color: 'whitesmoke'}}
                             id="p-descrip"
                             placeholder="Write a description..."
                             type="text"
@@ -133,6 +132,7 @@ const UpdateProduct = ({productId}) => {
                         <div>Price</div>
                         {errors.price && submitted && < p style={{ color: "red" }}>{errors.price}</p>}
                         <input
+                            style={{color: 'whitesmoke'}}
                             id="p-price"
                             placeholder="$"
                             type="text"
@@ -148,4 +148,4 @@ const UpdateProduct = ({productId}) => {
 
 }
 
-export default UpdateProduct
+export default UpdateProductModal

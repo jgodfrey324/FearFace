@@ -2,7 +2,8 @@ import { useParams, useHistory } from "react-router-dom"
 import { useEffect, useState } from 'react'
 import{ useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from "../../store/product"
-
+import OpenModalButton from '../OpenModalButton';
+import DeleteProductModal from "../ProductPage/DeleteProductModal.js";
 
 
 
@@ -42,13 +43,19 @@ const MyProducts = () => {
                 </span>
             </div>
 
-            {myProducts.map((product) => {
+            {myProducts.toReversed().map((product) => {
                 return (
-                    <div style={{border: '1px solid white'}}>
-                        <h3>{product.name}</h3>
-                        <span>{product.location_city}</span>
-                        <span>{product.location_state}</span>
-                        <p>{product.price}</p>
+                    <div>
+                        <OpenModalButton
+                            buttonText="Delete"
+                            modalComponent={<DeleteProductModal productId={product.id} />
+                        }/>
+                        <div style={{border: '1px solid white'}}>
+                            <h3>{product.name}</h3>
+                            <span>{product.location_city}</span>
+                            <span>{product.location_state}</span>
+                            <p>{product.price}</p>
+                        </div>
                     </div>
                 )
             })}
