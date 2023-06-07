@@ -49,7 +49,7 @@ const ProductsLanding = () => {
             <div className='trouble-makers'>
                 <div className="marketplace-and-button">
                     <h2 style={{ color: "white" }}>MarketPlace...</h2>
-                    <button style={{backgroundColor: 'whitesmoke'}} onClick={() => history.push('/marketplace/create')}>Create a new Product</button>
+                    <button onClick={() => history.push('/marketplace/create')}>Create a new Product</button>
                 </div>
                 <div className='product-view'>
                     <div className='all-products-detail'>
