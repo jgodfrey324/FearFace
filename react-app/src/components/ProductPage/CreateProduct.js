@@ -71,8 +71,7 @@ const CreateProduct = () => {
     return (
         <div className='form-container'>
             <h1 style={{color: 'whitesmoke'}}>Create a new product!</h1>
-            <button onClick={() => history.push('/marketplace')}
-                style={{backgroundColor: 'whitesmoke'}}>Marketplace</button>
+            <button onClick={() => history.push('/marketplace')}>Marketplace</button>
             <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}}>
                 <div className="new-prod-house">
                     <label>
