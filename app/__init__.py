@@ -46,9 +46,6 @@ socketio.init_app(app)
 # Application Security
 CORS(app)
 
-if __name__ == '__main__':
-    socketio.run(app)
-
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.
 # Therefore, we need to make sure that in production any
@@ -105,3 +102,7 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+
+if __name__ == '__main__':
+    socketio.run(app)
