@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, NavLink,useParams, useHistory } from "react-router-dom";
+import { Redirect, NavLink, useParams, useHistory } from "react-router-dom";
 import { getUserDetail } from '../../store/session';
 import { createPost, getAllPosts } from '../../store/posts';
 import { getComments } from '../../store/comments';
@@ -39,11 +39,11 @@ const ProfilePage = () => {
 
     // console.log('current user from state ===========================> ', current_user);
     // if (users isnt around) {
-        //     return daddy just chill
-        // I got legs day today Raoul
-        //I willnap
+    //     return daddy just chill
+    // I got legs day today Raoul
+    //I willnap
     // lets trade life. I can nap very well
-        // }
+    // }
 
 
 
@@ -62,7 +62,7 @@ const ProfilePage = () => {
 
 
     useEffect(() => {
-       async function fetchData() {
+        async function fetchData() {
             const res = await fetch('/api/users');
             const data = await res.json();
 
@@ -88,6 +88,7 @@ const ProfilePage = () => {
             method: "POST"
         });
         await res.json();
+        setPostsChanged(true)
     }
 
 
@@ -96,6 +97,7 @@ const ProfilePage = () => {
             method: "DELETE"
         });
         await res.json();
+        setPostsChanged(true)
     }
 
 
@@ -122,7 +124,7 @@ const ProfilePage = () => {
         // reset fields
         reset()
     }
-// console.log(userDetails[userId])
+    // console.log(userDetails[userId])
 
 
     // if user isn't logged in then redirect to log in form
@@ -170,21 +172,23 @@ const ProfilePage = () => {
     const visiting_profile_friends = Object.values(userDetails[userId]['is_following']);
     const current_user_friends = Object.values(userDetails[current_user.id]['is_following']);
 
-    // const user_posts = Object.values(userDetails[userId]['posts']);
-    // const user = userPosts[0]['user']
+    const friendId = []
+    for (const user of current_user_friends) {
+        friendId.push(user.id)
+    }
 
 
 
     return (
         <div>
-            <h1 style={{color: 'whitesmoke'}}>This is {user.first_name} {user.last_name} profile</h1>
-            {current_user_friends.find((user) => user.id !== parseInt(userId)) && current_user.id !== parseInt(userId) && (
-                <button onClick={handleFollow} style={{backgroundColor: 'white'}}>Follow</button>
+            <h1 style={{ color: 'whitesmoke' }}>This is {user.first_name} {user.last_name} profile</h1>
+            {!friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
+                <button onClick={handleFollow} style={{ backgroundColor: 'white' }}>Follow</button>
             )}
-            {current_user_friends.find((user) => user.id === parseInt(userId)) && current_user.id !== parseInt(userId) && (
-                <button onClick={handleUnfollow} style={{backgroundColor: 'white'}}>Unfollow</button>
+            {friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
+                <button onClick={handleUnfollow} style={{ backgroundColor: 'white' }}>Unfollow</button>
             )}
-            <h3 style={{color: 'whitesmoke'}}>{user.first_name}'s friends: </h3>
+            <h3 style={{ color: 'whitesmoke' }}>{user.first_name}'s friends: </h3>
             {visiting_profile_friends.map((friend) => {
                 return (
                     <div key={friend.id}>
@@ -193,7 +197,7 @@ const ProfilePage = () => {
                 )
             })}
             {current_user.id === parseInt(userId) && (
-                <button onClick={() => history.push(`/users/${userId}/products`) } style={{color: 'whitesmoke'}}>My Products</button>
+                <button onClick={() => history.push(`/users/${userId}/products`)} style={{ color: 'whitesmoke' }}>My Products</button>
             )}
             {current_user.id === parseInt(userId) && (
                 <form onSubmit={submitForm}>

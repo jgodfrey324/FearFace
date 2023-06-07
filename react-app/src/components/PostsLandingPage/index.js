@@ -105,13 +105,13 @@ const PostsLanding = () => {
     return (
         <div className='landing-house'>
             <div className="logo-container">
-            <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt='page logo'></img>
+                <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt='page logo'></img>
             </div>
             <h3>My friends: </h3>
             <div>
                 {Object.values(friends).map((friend) => {
                     return (
-                        <div key={friend.id} style={{border: '1px solid black'}}>
+                        <div key={friend.id} style={{ border: '1px solid black' }}>
                             <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
                         </div>
                     )
@@ -121,7 +121,7 @@ const PostsLanding = () => {
                 <button onClick={() => history.push(`/users/${user.id}`)}>My Profile</button>
                 <h3>Check out the <NavLink to='/marketplace'>Marketplace!</NavLink></h3>
             </div>
-            <form id="lp-form"onSubmit={submitForm}>
+            <form id="lp-form" onSubmit={submitForm}>
                 <div className='new-post-house'>
                     <img id="make-post" src="https://i.imgur.com/ERn5sIv.png" alt='post form title'></img>
                     <ul>
@@ -130,7 +130,7 @@ const PostsLanding = () => {
                         )}
                     </ul>
                     <textarea
-                        style={{color: '#d4bebe'}}
+                        style={{ color: '#d4bebe' }}
                         value={text}
                         placeholder='Write your status here....'
                         required
