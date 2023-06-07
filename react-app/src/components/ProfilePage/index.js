@@ -50,7 +50,24 @@ const ProfilePage = () => {
     useEffect(() => {
         dispatch(getAllPosts());
         dispatch(getComments())
-        dispatch(getUserDetail(userId));
+        const timeout = setTimeout(() => {
+            async function data() {
+                const ress = await dispatch(getUserDetail(userId));
+                if (!ress) {
+                    console.log("im  inside something")
+                    return <h1 style={{ color: "white" }}>LOADING....</h1>
+                }
+
+            }
+            data()
+            // dispatch(getUserDetail(userId));
+
+
+        }, 500)
+        return (() => {
+            clearTimeout(timeout)
+        })
+
     }, [dispatch, userId])
 
 
@@ -74,6 +91,7 @@ const ProfilePage = () => {
         fetchData();
 
     }, [dispatch, userId])
+
 
 
     const reset = () => {
