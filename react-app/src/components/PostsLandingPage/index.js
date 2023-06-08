@@ -203,11 +203,11 @@ const PostsLanding = () => {
             }
             </div>
             <div className="lp-friends">
-            <h3>My friends </h3>
+            <h3>my friends  </h3>
                 {Object.values(friends).map((friend) => {
                     return (
-                        <div key={friend.id} style={{ border: '1px solid black' }}>
-                            <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
+                        <div key={friend.id} >🟢
+                            <NavLink id="friend-name" to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
                         </div>
                     )
                 })}

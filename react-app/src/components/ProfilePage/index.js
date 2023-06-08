@@ -180,8 +180,9 @@ const ProfilePage = () => {
     return (
         <div className='profile-house'>
             <div className='profile-intro-house'>
+                <div style={{color:'white'}}>IMAGE</div>
                 <div className='intro-house-text'>
-                    {current_user.id === parseInt(userId) ? <h1>My Profile</h1> : <h1>{user.first_name} {user.last_name}</h1>}
+                    <h1>{user.first_name} {user.last_name}</h1>
                 </div>
                 <div className='intro-house-button'>
                     {!friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
@@ -195,34 +196,42 @@ const ProfilePage = () => {
                 </div>
             </div>
             <div className='my-profile-side-bar'>
-                <div className='user-following-house'>
-                    <h3>Following:</h3>
+                <div className="user-about" style={{color:'white'}}>
+                    <h3>intro</h3>
                     {visiting_profile_friends.map((friend) => {
                         return (
-                            <div key={friend.id} className='following-house-user-link'>
+                            <div>inside intro</div>
+                        )
+                    })}
+                </div>
+                <div className='user-following-house'>
+                    <h3>following</h3>
+                    {visiting_profile_friends.map((friend) => {
+                        return (
+                            <div key={friend.id} className='following-house-user-link'><div>pic</div>
                                 <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
                             </div>
                         )
                     })}
-                </div>
+                {/* </div>
                 <div className='marketplace-button'>
                     <button onClick={() => history.push('/marketplace')}>MarketPlace</button>
                 </div>
                     {current_user.id !== parseInt(userId) ? <button onClick={() => history.push(`/users/${current_user.id}`)}>My Profile</button> : null}
-                <div>
+                <div> */}
 
                 </div>
             </div>
             <div className='my-products-button'>
-                {current_user.id === parseInt(userId) && (
+                {/* {current_user.id === parseInt(userId) && (
                     <button onClick={() => history.push(`/users/${userId}/products`)}>My Products</button>
-                )}
+                )} */}
             </div>
             <div className='profile-content-house'>
                 {current_user.id === parseInt(userId) && (
                     <form onSubmit={submitForm} id='profile-form'>
                         <div className='new-post-house'>
-                            <h2 style={{ color: "whitesmoke" }}>Make a new post!</h2>
+                        <img id="make-post" src="https://i.imgur.com/ERn5sIv.png" alt='post form title'></img>
                             <ul>
                                 {errors && (
                                     <p style={{ color: "red" }}>{errors}</p>
@@ -231,7 +240,8 @@ const ProfilePage = () => {
                             <textarea
                                 style={{ color: "whitesmoke" }}
                                 value={text}
-                                placeholder='Write your status here....'
+                                placeholder=
+                                {`What's on your mind, ${user.first_name}?`}
                                 required
                                 onChange={(e) => setText(e.target.value)}
                                 minLength={5}
@@ -261,9 +271,9 @@ const ProfilePage = () => {
                                         />
                                     )}
                                 </div>
-                                <div className='user-name'>
+                                {/* <div className='user-name'>fuck
                                     <NavLink to={`/users/${post.user.id}`}></NavLink>
-                                </div>
+                                </div> */}
                             </div>
                             <div className='post-text-house'>
                                 <p style={{ color: 'whitesmoke' }}>{post.text}</p>
