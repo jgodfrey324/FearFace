@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts, createPost } from '../../store/posts';
 import { Redirect, NavLink, useHistory } from "react-router-dom";
 import { createProductThunk } from '../../store/product';
+import { createProdImage } from '../../store/product_images';
+// import { FileInput, FileField } from 'react-admin'
 
 
 const CreateProduct = () => {
@@ -16,6 +18,8 @@ const CreateProduct = () => {
     const [description, setDescription] = useState("")
     const [errors, setErrors] = useState({})
     const [submitted, setSubmitted] = useState(false);
+    const [imageLoading, setImageLoading] = useState(false);
+    const [image, setImage] = useState(null);
 
     const user = useSelector(state => state.session.user)
 
@@ -39,11 +43,14 @@ const CreateProduct = () => {
         setErrors(error)
     }, [name, city, state, price, description])
 
+
+
     const submitForm = async (e) => {
         // console.log("is this submitting =====================================================")
         e.preventDefault()
 
-        setSubmitted(true)
+        setSubmitted(true);
+        setImageLoading(true);
 
         const formData = new FormData()
         formData.append("name", name)
@@ -51,29 +58,47 @@ const CreateProduct = () => {
         formData.append("location_state", state)
         formData.append("price", price)
         formData.append("description", description)
+        // formData.append("preview_image", prevImage)
 
-        let data;
+        const formImageData = new FormData()
+        formImageData.append("file", image);
+
+
 
         if (!Object.values(errors).length) {
-            data = await dispatch(createProductThunk(formData))
-            history.push("/marketplace")
+            const data = await dispatch(createProductThunk(formData))
+
+            if (image) {
+                dispatch(createProdImage(data.id, formImageData))
+            }
+
+            history.push('/marketplace')
             reset()
         }
+
+
     }
 
-    // console.log("this is error==================>", errors)
-    // console.log("this is submit ================",submitted)
+
+
 
     if (!user) {
         return <Redirect to="/login" />
     }
+
+
+    if(imageLoading) {
+        return <h1>...Loading</h1>
+    }
+
+
 
     return (
         <div className='form-container'>
             <h1 style={{color: 'whitesmoke'}}>Create a new product!</h1>
             <button onClick={() => history.push('/marketplace')}
                 style={{backgroundColor: 'whitesmoke'}}>Marketplace</button>
-            <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}}>
+            <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}} encType="multipart/form-data">
                 <div className="new-prod-house">
                     <label>
                         <div>Name</div>
@@ -135,6 +160,14 @@ const CreateProduct = () => {
                             type="text"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
+                        ></input>
+                    </label>
+                    <label>
+                        <div>Add Image</div>
+                        <input
+                            type='file'
+                            accept='image/*'
+                            onChange={(e) => setImage(e.target.files[0])}
                         ></input>
                     </label>
                 </div>
