@@ -75,11 +75,11 @@ const UpdateProductModal = ({productId}) => {
 
     return (
         <div className='update-form-container'>
-            <h2>Update Product</h2>
+            <h2 style={{color: 'whitesmoke'}}>Update Product</h2>
             <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}}>
                 <div className="new-prod-house">
                     <label>
-                        <div>Name</div>
+                        <div style={{color: 'whitesmoke'}}>Name</div>
                         {errors.name && submitted && < p style={{ color: "red" }}>{errors.name}</p>}
                         <input
                             // required
@@ -92,7 +92,7 @@ const UpdateProductModal = ({productId}) => {
                         ></input>
                     </label>
                     <label>
-                        <div>City</div>
+                        <div style={{color: 'whitesmoke'}}>City</div>
                         {errors.city && submitted && < p style={{ color: "red" }}>{errors.city}</p>}
                         <input
                             style={{color: 'whitesmoke'}}
@@ -105,7 +105,7 @@ const UpdateProductModal = ({productId}) => {
                     </label>
 
                     <label>
-                        <div>State</div>
+                        <div style={{color: 'whitesmoke'}}>State</div>
                         {errors.state && submitted && < p style={{ color: "red" }}>{errors.state}</p>}
                         <input
                             style={{color: 'whitesmoke'}}
@@ -117,7 +117,7 @@ const UpdateProductModal = ({productId}) => {
                         ></input>
                     </label>
                     <label>
-                        <div>Description</div>
+                        <div style={{color: 'whitesmoke'}}>Description</div>
                         {errors.description && submitted && < p style={{ color: "red" }}>{errors.description}</p>}
                         <textarea
                             style={{color: 'whitesmoke'}}
@@ -129,7 +129,7 @@ const UpdateProductModal = ({productId}) => {
                         />
                     </label>
                     <label>
-                        <div>Price</div>
+                        <div style={{color: 'whitesmoke'}}>Price</div>
                         {errors.price && submitted && < p style={{ color: "red" }}>{errors.price}</p>}
                         <input
                             style={{color: 'whitesmoke'}}
@@ -141,7 +141,7 @@ const UpdateProductModal = ({productId}) => {
                         ></input>
                     </label>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" style={{color: 'whitesmoke'}}>Submit</button>
             </form >
         </div>
 )

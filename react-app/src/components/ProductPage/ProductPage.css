@@ -20,6 +20,7 @@
     flex-wrap: wrap;
     column-gap: 20px;
     row-gap: 20px;
+    /* position: fixed; */
   }
 
   .product-preview-tile-house {
@@ -35,6 +36,7 @@
     flex: 1 1 auto;
     display: flex;
     flex-wrap: wrap;
+
   }
 
   .product-detail-sidebar-panel {
@@ -70,6 +72,7 @@
     top: 10px;
     width: 0;
     height: 0;
+    z-index: 50;
   }
 
   /* LIST */
@@ -106,8 +109,9 @@
 
   .product-details {
     padding: 10px;
-    width: 280px;
+    width: 500px;
     overflow: scroll;
+    /* z-index: 50; */
   }
 
   .product-info {
@@ -136,3 +140,7 @@
     margin-bottom: 8px;
     list-style-type: square;
   } */
+
+ button {
+    color: whitesmoke
+  }

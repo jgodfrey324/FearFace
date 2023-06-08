@@ -24,14 +24,18 @@ const ProductsLanding = () => {
 
 
     useEffect(() => {
+        // setSideOpen(true)
+        if (sideOpen === false && selectedProduct){
         setSideOpen(true)
+        }
+        console.log("hellooooooooooooooooooooooooooooooo")
     }, [selectedProduct]);
 
 
 
-    useEffect(() => {
-        if (sideOpen === false) setSelectedProduct({})
-    }, [sideOpen])
+    // useEffect(() => {
+    //     if (sideOpen === false) setSelectedProduct({})
+    // }, [sideOpen])
 
 
 
@@ -39,6 +43,10 @@ const ProductsLanding = () => {
         dispatch(getAllProducts());
         dispatch(getAllProdImages());
     }, [dispatch])
+
+    if (!user) {
+        return <Redirect to="/login"/>
+    }
 
 
 
@@ -55,14 +63,16 @@ const ProductsLanding = () => {
             <div className='trouble-makers'>
                 <div className="marketplace-and-button">
                     <h2 style={{ color: "white" }}>MarketPlace...</h2>
-                    <button style={{backgroundColor: 'whitesmoke'}} onClick={() => history.push('/marketplace/create')}>Create a new Product</button>
+                    <button onClick={() => history.push('/marketplace/create')}>Create a new Product</button>
                 </div>
                 <div className='product-view'>
                     <div className='all-products-detail'>
                         {products.toReversed().map(product => {
                             return (
                                 <div key={product.id} className='product-preview-tile-house'
-                                    onClick={() => setSelectedProduct(product)}>
+                                    onClick={() => setSelectedProduct(product)}
+                                    >
+                                        {console.log("look==================================================",(product))}
                                     <div  style={{ color: "white", border: "1px solid white" }}>
                                         <h3>{product.name}</h3>
                                         <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
@@ -88,10 +98,11 @@ const ProductsLanding = () => {
                 <div className="product-detail-sidebar-toggle-house">
                     <div className="product-side-panel-toggle"
                         onClick={() => setSideOpen(!sideOpen)}>
+                        {console.log("after click==========================================", sideOpen)}
                         {sideOpen ? '>' : '<'}
                     </div>
                 </div>
-                <ProductDetails visible={sideOpen} productId={selectedProduct.id} currentUserId={user.id} />
+                <ProductDetails visible={sideOpen} productId={selectedProduct.id} currentUserId={user?.id} />
             </div>
         </div>
     )

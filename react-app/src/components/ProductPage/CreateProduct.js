@@ -96,9 +96,14 @@ const CreateProduct = () => {
     return (
         <div className='form-container'>
             <h1 style={{color: 'whitesmoke'}}>Create a new product!</h1>
+<<<<<<< HEAD
             <button onClick={() => history.push('/marketplace')}
                 style={{backgroundColor: 'whitesmoke'}}>Marketplace</button>
             <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}} encType="multipart/form-data">
+=======
+            <button onClick={() => history.push('/marketplace')}>Marketplace</button>
+            <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}}>
+>>>>>>> 1b9c3f42d2a546412b98f719d8a2c201a46a21a3
                 <div className="new-prod-house">
                     <label>
                         <div>Name</div>
@@ -114,7 +119,7 @@ const CreateProduct = () => {
                         ></input>
                     </label>
                     <label>
-                        <div>City</div>
+                        <div style={{ color: 'whitesmoke' }}>City</div>
                         {errors.city && submitted && < p style={{ color: "red" }}>{errors.city}</p>}
                         <input
                             style={{color: 'whitesmoke'}}
@@ -127,7 +132,7 @@ const CreateProduct = () => {
                     </label>
 
                     <label>
-                        <div>State</div>
+                        <div style={{ color: 'whitesmoke' }}>State</div>
                         {errors.state && submitted && < p style={{ color: "red" }}>{errors.state}</p>}
                         <input
                             style={{color: 'whitesmoke'}}
@@ -139,7 +144,7 @@ const CreateProduct = () => {
                         ></input>
                     </label>
                     <label>
-                        <div>Description</div>
+                        <div style={{ color: 'whitesmoke' }}>Description</div>
                         {errors.description && submitted && < p style={{ color: "red" }}>{errors.description}</p>}
                         <textarea
                             style={{color: 'whitesmoke'}}
@@ -151,7 +156,7 @@ const CreateProduct = () => {
                         />
                     </label>
                     <label>
-                        <div>Price</div>
+                        <div style={{ color: 'whitesmoke' }}>Price</div>
                         {errors.price && submitted && < p style={{ color: "red" }}>{errors.price}</p>}
                         <input
                             style={{color: 'whitesmoke'}}
@@ -171,7 +176,7 @@ const CreateProduct = () => {
                         ></input>
                     </label>
                 </div>
-                <button type="submit">Submit</button>
+                <button style={{ color: 'whitesmoke' }} type="submit">Submit</button>
             </form >
         </div >
     )

@@ -34,6 +34,7 @@ function LoginFormPage() {
         <label>
           Email
           <input
+            style={{ color: 'whitesmoke' }}
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -43,13 +44,14 @@ function LoginFormPage() {
         <label>
           Password
           <input
+            style={{ color: 'whitesmoke' }}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button type="submit" style={{color: 'whitesmoke'}}>Log In</button>
       </form>
     </div>
   );

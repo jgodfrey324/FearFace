@@ -1,4 +1,4 @@
-import { useParams, useHistory } from "react-router-dom"
+import { useParams, useHistory, Redirect } from "react-router-dom"
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from "../../store/product"
@@ -14,13 +14,16 @@ const MyProducts = () => {
     const history = useHistory()
     const products = Object.values(useSelector(state => state.products))
     const myProducts = []
-
+    const user = useSelector(state => state.session.user)
 
     useEffect(() => {
         dispatch(getAllProducts())
     }, [dispatch])
 
 
+    if (!user) {
+        return <Redirect to="/login"/>
+    }
 
     if (!products) return null;
 

@@ -1,7 +1,81 @@
+#root{
+display:flex;
+flex-direction: column;
+}
+
 .profile-dropdown {
   position: absolute;
 }
 
 .hidden {
   display: none;
+}
+
+.top-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #484a4d;;
+  align-items: center;
+  padding: 10px;
+  position: sticky;
+  top: 0px;
+  background-color: #151616;
+  z-index: 20;
+  /* border: 1px red solid; */
+}
+
+#fearfaceimage {
+  background-color: #2F2E30;
+  border-radius: 150px;
+  height: 60px;
+  width: 100%;
+  cursor: pointer
+}
+
+.topright-nav {
+  display: flex;
+  align-items: center;
+}
+
+
+.logo-and-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-menu {
+  position: absolute;
+  /* top: 54px;
+  right: 0px; */
+  width: 160px;
+  transform: translateX(-15%);
+  background-color: white;
+  border: 1px solid rgb(199, 192, 192);
+  box-shadow: 1px 1px 2px grey;
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  overflow: hidden;
+  transition: height var(--speed) ease;
+}
+
+.user-menu-content {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  grid-gap: 5px;
+  gap: 5px;
+  font-size: 90%;
+  text-align: center;
+  position: relative;
+  right: 80px;
+  top: 60px;
+}
+
+.topright-nav > button > i {
+  /* height: 50px;
+  width: 80px; */
+  font-size: 20px;
 }

@@ -34,7 +34,7 @@ function SignupFormPage() {
   return (
     <div className="signup-house">
       <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt='page logo' ></img>
-      <p>Already have an account? Log in <NavLink to='/login'>here.</NavLink></p>
+      <p style={{color: 'whitesmoke'}}>Already have an account? Log in <NavLink to='/login'>here.</NavLink></p>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -42,6 +42,7 @@ function SignupFormPage() {
         <label>
           Email
           <input
+            style={{color: 'whitesmoke'}}
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -51,6 +52,7 @@ function SignupFormPage() {
         <label>
           Username
           <input
+            style={{color: 'whitesmoke'}}
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -60,6 +62,7 @@ function SignupFormPage() {
         <label>
           First Name
           <input
+            style={{color: 'whitesmoke'}}
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
@@ -69,6 +72,7 @@ function SignupFormPage() {
         <label>
           Last Name
           <input
+            style={{color: 'whitesmoke'}}
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
@@ -78,6 +82,7 @@ function SignupFormPage() {
         <label>
           Password
           <input
+            style={{color: 'whitesmoke'}}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -87,13 +92,14 @@ function SignupFormPage() {
         <label>
           Confirm Password
           <input
+            style={{color: 'whitesmoke'}}
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Sign Up</button>
+        <button type="submit" style={{color: 'whitesmoke'}}>Sign Up</button>
       </form>
     </div>
   );

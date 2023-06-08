@@ -10,16 +10,18 @@ function Navigation({ isLoaded }) {
 	if (!sessionUser) return null;
 
 	return (
-		<ul>
-			<li>
-				<NavLink exact to="/">Home</NavLink>
-			</li>
+		<div className='top-container'>
+			<div className='logo-and-name' >
+				<div className='fearface-logo'>
+				<NavLink style={{color:"whitesmoke"}} exact to="/"><img id="fearfaceimage" src="https://i.imgur.com/rwR3GBq.png" alt='page logo'></img></NavLink>
+				</div>
+			</div>
 			{isLoaded && (
-				<li>
+				<div className='topright-nav'>
 					<ProfileButton user={sessionUser} />
-				</li>
+				</div>
 			)}
-		</ul>
+		</div>
 	);
 }
 
