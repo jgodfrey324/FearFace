@@ -200,7 +200,7 @@ const ProfilePage = () => {
 
     return (
         <div>
-            <h1 style={{ color: 'whitesmoke' }}>This is {user.first_name} {user.last_name} profile</h1>
+            <h1 id="user-profile-h1">This is <span id="user-name">{user.first_name} {user.last_name}</span> profile</h1>
             {!friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
                 <button onClick={handleFollow} style={{ backgroundColor: 'white' }}>Follow</button>
             )}
@@ -221,14 +221,14 @@ const ProfilePage = () => {
             {current_user.id === parseInt(userId) && (
                 <form onSubmit={submitForm}>
                     <div className='new-post-house'>
-                        <h2 style={{color:"whitesmoke"}}>Make a new post!</h2>
+                        <h2 style={{ color: "whitesmoke" }}>Make a new post!</h2>
                         <ul>
                             {errors && (
                                 <p style={{ color: "red" }}>{errors}</p>
                             )}
                         </ul>
                         <textarea
-                        style={{color:"whitesmoke"}}
+                            style={{ color: "whitesmoke" }}
                             value={text}
                             placeholder='Write your status here....'
                             required
@@ -236,7 +236,7 @@ const ProfilePage = () => {
                             minLength={5}
                             maxLength={5000}
                         />
-                        <button style={{color:"whitesmoke"}}>Post</button>
+                        <button style={{ color: "whitesmoke" }}>Post</button>
                     </div>
                 </form >
             )}
@@ -261,20 +261,20 @@ const ProfilePage = () => {
                                 )}
                             </div>
                             <div className='user-name'>
-                                <span style={{color: 'whitesmoke'}}>{post.user.first_name} </span>
-                                <span style={{color: 'whitesmoke'}}>{post.user.last_name}...</span>
+                                <span style={{ color: 'whitesmoke' }}>{post.user.first_name} </span>
+                                <span style={{ color: 'whitesmoke' }}>{post.user.last_name}...</span>
                             </div>
                         </div>
                         <div className='post-text-house'>
-                            <p style={{color: 'whitesmoke'}}>{post.text}</p>
+                            <p style={{ color: 'whitesmoke' }}>{post.text}</p>
                         </div>
                         <div className="p-page-comments">
-                            <OpenModalButton style={{color: 'whitesmoke'}}
+                            <OpenModalButton style={{ color: 'whitesmoke' }}
                                 buttonText="Comments"
                                 modalComponent={<PostDetailModal postId={post.id} />}
                             />
                             {commentsCount[post.id] > 0 && (
-                                <span style={{color: 'whitesmoke'}}> {commentsCount[post.id]}</span>
+                                <span style={{ color: 'whitesmoke' }}> {commentsCount[post.id]}</span>
                             )}
                         </div>
                     </div>

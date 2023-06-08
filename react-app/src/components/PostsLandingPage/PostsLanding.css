@@ -15,6 +15,7 @@
 button {
     cursor: pointer;
 }
+
 /* button:hover{
     box-shadow: 2px 2px 2px rgb(12, 11, 11)
 } */
@@ -42,7 +43,7 @@ button {
     margin-bottom: 30px;
 }
 
-.new-post-house > button {
+.new-post-house>button {
     /* color: white; */
     width: 25%;
     padding: 10px;
@@ -54,19 +55,19 @@ button {
 .offbtn {
     cursor: not-allowed;
     border-style: none;
-    background-color:#464646;
-    color:#797373
+    background-color: #464646;
+    color: #797373
 }
 
 .onbtn {
-    color:rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
     border: 1px solid black;
     color: #d4bebe;
     background-color: rgb(80, 76, 76);
     font-weight: bolder;
 }
 
-.new-post-house > h2 {
+.new-post-house>h2 {
     margin: 0;
     background-color: #2F2E30;
     font-family: 'Nosifer', cursive;
@@ -75,7 +76,7 @@ button {
     -webkit-text-stroke: 1px rgb(146, 40, 40)
 }
 
-.new-post-house > textarea {
+.new-post-house>textarea {
     margin-bottom: 20px;
     /* border: 3px solid blue; */
     height: 100px;
@@ -105,7 +106,8 @@ button {
     justify-content: space-between;
 }
 
-.user-name, span{
+.user-name,
+span {
     background-color: #2F2E30;
 }
 
@@ -116,7 +118,8 @@ button {
     overflow-wrap: break-word;
 }
 
-.post-text-house, p {
+.post-text-house,
+p {
     background-color: #3e3d3f;
     margin: 10px;
     /* padding: 0 50px; */
@@ -134,7 +137,7 @@ button {
     background-color: #2F2E30;
 }
 
-.comment-count > button {
+.comment-count>button {
     background-color: #2F2E30;
     color: rgb(212, 190, 190);
 }
@@ -151,7 +154,7 @@ button {
     font-size: 13px;
 }
 
-.post-menu-buttons > button {
+.post-menu-buttons>button {
     color: rgb(212, 190, 190);
 }
 
@@ -163,14 +166,14 @@ button {
 
 
 
-.lp-comments > button {
+.lp-comments>button {
     background-color: transparent;
     border-style: none;
     color: rgb(212, 190, 190);
     padding: 10px;
 }
 
-.lp-comments > button:hover {
+.lp-comments>button:hover {
     background-color: rgb(68, 67, 67);
     border-radius: 5px;
 }
@@ -186,7 +189,7 @@ button {
 
 .frame-container {
     display: flex;
-    align-items:center;
+    align-items: center;
     position: absolute;
     /* border: 5px solid red; */
     top: 150px;
@@ -222,6 +225,240 @@ iframe {
     border-radius: 60px;
 }
 
-.post-modal-menu-buttons > button{
+.post-modal-menu-buttons>button {
     color: whitesmoke
+}
+
+
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+:root {
+    --glow-color: hsl(3, 91%, 62%);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+.glowing-btn {
+    position: relative;
+    color: var(--glow-color);
+    cursor: pointer;
+    padding: 0.35em 1em;
+    border: 0.15em solid var(--glow-color);
+    border-radius: 0.45em;
+    background: none;
+    perspective: 2em;
+    font-family: "Raleway", sans-serif;
+    font-size: 2em;
+    font-weight: 900;
+    /* letter-spacing: 1em; */
+
+
+    -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+    -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+    box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+        0px 0px 0.5em 0px var(--glow-color);
+    animation: border-flicker 2s linear infinite;
+}
+
+.glowing-txt {
+    float: left;
+    margin-right: -0.8em;
+    -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color);
+    -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+        0 0 0.45em var(--glow-color);
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+    animation: text-flicker 3s linear infinite;
+    width: 100%;
+    text-align: center;
+}
+
+/* .glowing-txt:hover {
+    color: rgb(244, 224, 224)
+} */
+
+.faulty-letter {
+    opacity: 0.5;
+    animation: faulty-flicker 2s linear infinite;
+}
+
+.glowing-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.7;
+    filter: blur(1em);
+    /* transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+    background: var(--glow-color); */
+}
+
+.glowing-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: -1;
+    box-shadow: 0 0 2em 0.2em var(--glow-color);
+    transition: opacity 100ms linear;
+}
+
+.glowing-btn:hover {
+    /* color: rgba(0, 0, 0, 0.8); */
+    color: rgb(255, 255, 255);
+    text-shadow: none;
+    animation: none;
+}
+
+.glowing-btn:hover .glowing-txt {
+    animation: none;
+}
+
+.glowing-btn:hover .faulty-letter {
+    animation: none;
+    text-shadow: none;
+    opacity: 1;
+}
+
+.glowing-btn:hover:before {
+    filter: blur(1.5em);
+    opacity: 1;
+}
+
+.glowing-btn:hover:after {
+    opacity: 1;
+}
+
+@keyframes faulty-flicker {
+    0% {
+        opacity: 0.1;
+    }
+
+    2% {
+        opacity: 0.1;
+    }
+
+    4% {
+        opacity: 0.5;
+    }
+
+    19% {
+        opacity: 0.5;
+    }
+
+    21% {
+        opacity: 0.1;
+    }
+
+    23% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    83% {
+        opacity: 0.4;
+    }
+
+    87% {
+        opacity: 1;
+    }
+}
+
+@keyframes text-flicker {
+    0% {
+        opacity: 0.1;
+    }
+
+    2% {
+        opacity: 1;
+    }
+
+    8% {
+        opacity: 0.1;
+    }
+
+    9% {
+        opacity: 1;
+    }
+
+    12% {
+        opacity: 0.1;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0.3;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0.7;
+    }
+
+    72% {
+        opacity: 0.2;
+    }
+
+    77% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 0.9;
+    }
+}
+
+@keyframes border-flicker {
+    0% {
+        opacity: 0.1;
+    }
+
+    2% {
+        opacity: 1;
+    }
+
+    4% {
+        opacity: 0.1;
+    }
+
+    8% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .glowing-btn {
+        font-size: 1em;
+        letter-spacing: 1em;
+
+    }
 }

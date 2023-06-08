@@ -44,29 +44,28 @@ function ProfileButton({ user }) {
       <button onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
-      <div className="user-menu" className={ulClassName} ref={ulRef}>
+      <div className={ulClassName} ref={ulRef}>
         {user && (
           <div className="user-menu-content">
-            <span style={{color:"whitesmoke"}}>{user.username}</span>
-            <span style={{color:"whitesmoke"}}>{user.email}</span>
-            <span>
-              <button style={{color:"whitesmoke"}} onClick={handleLogout}>Log Out</button>
-            </span>
-          </div>
-        // ) : (
-        //   <>
-        //     <OpenModalButton
-        //       buttonText="Log In"
-        //       onItemClick={closeMenu}
-        //       modalComponent={<LoginFormModal />}
-        //     />
+            <span style={{ color: "whitesmoke" }}>{user.username}</span>
+            <span style={{ color: "whitesmoke" }}>{user.email}</span>
+            <button className="logout-button" style={{ color: "whitesmoke" }} onClick={handleLogout}>Log Out</button>
 
-        //     <OpenModalButton
-        //       buttonText="Sign Up"
-        //       onItemClick={closeMenu}
-        //       modalComponent={<SignupFormModal />}
-        //     />
-        //   </>
+          </div>
+          // ) : (
+          //   <>
+          //     <OpenModalButton
+          //       buttonText="Log In"
+          //       onItemClick={closeMenu}
+          //       modalComponent={<LoginFormModal />}
+          //     />
+
+          //     <OpenModalButton
+          //       buttonText="Sign Up"
+          //       onItemClick={closeMenu}
+          //       modalComponent={<SignupFormModal />}
+          //     />
+          //   </>
         )}
       </div>
     </>

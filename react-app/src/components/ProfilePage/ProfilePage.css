@@ -1,3 +1,11 @@
-.p-page-comments > button{
+.p-page-comments>button {
     color: whitesmoke
 }
+
+#user-profile-h1 {
+    color: whitesmoke
+}
+
+/* #user-name {
+    color: red
+} */

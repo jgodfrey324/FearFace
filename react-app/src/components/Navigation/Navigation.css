@@ -1,6 +1,6 @@
-#root{
-display:flex;
-flex-direction: column;
+#root {
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-dropdown {
@@ -15,7 +15,8 @@ flex-direction: column;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 1px solid #484a4d;;
+  border-bottom: 1px solid #484a4d;
+  ;
   align-items: center;
   padding: 10px;
   position: sticky;
@@ -23,6 +24,7 @@ flex-direction: column;
   background-color: #151616;
   z-index: 20;
   /* border: 1px red solid; */
+
 }
 
 #fearfaceimage {
@@ -30,7 +32,20 @@ flex-direction: column;
   border-radius: 150px;
   height: 60px;
   width: 100%;
-  cursor: pointer
+  cursor: pointer;
+  /* filter: blur(1em); */
+  /* transform: translateY(0%) scale(1, 1); */
+  background: hsl(3, 61%, 36%);
+  /* z-index: 20; */
+  -box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  animation: border-flicker 2s linear infinite;
+  box-shadow: 2px 2px 20px rgb(223, 55, 17);
+
 }
 
 .topright-nav {
@@ -50,6 +65,7 @@ flex-direction: column;
   position: absolute;
   /* top: 54px;
   right: 0px; */
+  /* border: 1px solid red; */
   width: 160px;
   transform: translateX(-15%);
   background-color: white;
@@ -62,6 +78,7 @@ flex-direction: column;
 }
 
 .user-menu-content {
+  /* border: 1px solid red; */
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -71,11 +88,41 @@ flex-direction: column;
   text-align: center;
   position: relative;
   right: 80px;
-  top: 60px;
+  top: 83px;
+  width: 112px;
 }
 
-.topright-nav > button > i {
-  /* height: 50px;
-  width: 80px; */
+
+.user-menu-content>span {
+  /* border: 1px solid blue; */
+  border-radius: 5px;
+  width: 100%;
+  margin: 1px 0px;
+  cursor: pointer;
+}
+
+.user-menu-content>span:hover {
+  box-shadow: 1px 1px 2px rgb(74, 72, 72);
+  transition: all .4s ease;
+}
+
+.logout-button {
+  background: transparent;
+  cursor: pointer;
+  /* background-color: white; */
+  /* border: 1px solid rgb(199, 192, 192); */
+  border-radius: 5px;
+  padding: 5px 5px 5px 5px;
+  transition: all 0.3 ease 0s;
+  display: flex;
+  align-items: center;
+}
+
+.logout-button:hover {
+  box-shadow: 1px 1px 2px rgb(74, 72, 72);
+  transition: all .4s ease;
+}
+
+.topright-nav>button>i {
   font-size: 20px;
 }

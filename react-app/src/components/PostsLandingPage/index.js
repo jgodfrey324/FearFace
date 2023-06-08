@@ -115,7 +115,7 @@ const PostsLanding = () => {
                 })}
             </div>
             <div>
-                <button onClick={() => history.push(`/users/${user.id}`)} style={{color: 'whitesmoke'}}>My Profile</button>
+                <button onClick={() => history.push(`/users/${user.id}`)} style={{ color: 'whitesmoke' }}>My Profile</button>
                 <h3>Check out the <NavLink to='/marketplace'>Marketplace!</NavLink></h3>
             </div>
             <form id="lp-form" onSubmit={submitForm}>
@@ -135,7 +135,8 @@ const PostsLanding = () => {
                         minLength={5}
                         maxLength={5000}
                     />
-                    <button disabled={text.length < 5} className={text.length < 5 ? 'offbtn' : 'onbtn'}>P o s t</button>
+                    {/* <button disabled={text.length < 5} className={text.length < 5 ? 'offbtn' : 'onbtn'}>P o s t</button> */}
+                    <button disabled={text.length < 5} class='glowing-btn'><span class='glowing-txt'>P <span class='faulty-letter'>O</span> S T</span></button>
                 </div>
             </form >
             {posts.toReversed().map(post => {
