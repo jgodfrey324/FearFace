@@ -34,6 +34,8 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(80), unique=True, nullable=False)
+    bio = db.Column(db.String(2000))
+    profile_pic = db.Column(db.String(2000))
     hashed_password = db.Column(db.String(255), nullable=False)
 
     products = db.relationship('Product', back_populates='user') # double check
@@ -77,6 +79,8 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,
+            'bio': self.bio,
+            'profile_pic': self.profile_pic,
             'is_following': {}
         }
 
