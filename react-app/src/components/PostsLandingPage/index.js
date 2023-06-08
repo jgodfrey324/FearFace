@@ -148,7 +148,6 @@ const PostsLanding = () => {
                         maxLength={5000}
                     />
                     {/* <button disabled={text.length < 5} className={text.length < 5 ? 'offbtn' : 'onbtn'}>P o s t</button> */}
-                    <button disabled={text.length < 5} class='glowing-btn'><span class='glowing-txt'>P <span class='faulty-letter'>O</span> S T</span></button>
                     <label>
                         <div>Add an Image</div>
                         <input
@@ -157,7 +156,8 @@ const PostsLanding = () => {
                             onChange={(e) => setImage(e.target.files[0])}
                         ></input>
                     </label>
-                    <button disabled={text.length < 5} className={text.length < 5 ? 'offbtn' : 'onbtn'}>P o s t</button>
+                    <button disabled={text.length < 5} class='glowing-btn'><span class='glowing-txt'>P <span class='faulty-letter'>O</span> S T</span></button>
+
                 </div>
             </form >
             {posts.toReversed().map(post => {
@@ -188,7 +188,7 @@ const PostsLanding = () => {
                             if (image.post_id === post.id) {
                                 return (
                                     <div key={image.id} >
-                                        <img style={{height: '100px', width: '100px'}}src={`${image.url}`} alt='post image'></img>
+                                        <img style={{ height: '100px', width: '100px' }} src={`${image.url}`} alt='post image'></img>
                                     </div>
                                 )
                             }

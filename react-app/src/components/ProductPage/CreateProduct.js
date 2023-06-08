@@ -87,7 +87,7 @@ const CreateProduct = () => {
     }
 
 
-    if(imageLoading) {
+    if (imageLoading) {
         return <h1>...Loading</h1>
     }
 
@@ -95,22 +95,20 @@ const CreateProduct = () => {
 
     return (
         <div className='form-container'>
-            <h1 style={{color: 'whitesmoke'}}>Create a new product!</h1>
-<<<<<<< HEAD
+            <h1 style={{ color: 'whitesmoke' }}>Create a new product!</h1>
             <button onClick={() => history.push('/marketplace')}
-                style={{backgroundColor: 'whitesmoke'}}>Marketplace</button>
-            <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}} encType="multipart/form-data">
-=======
+                style={{ backgroundColor: 'whitesmoke' }}>Marketplace</button>
+
+            <form className="prod-form" onSubmit={submitForm} style={{ color: 'white' }} encType="multipart/form-data" />
             <button onClick={() => history.push('/marketplace')}>Marketplace</button>
-            <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}}>
->>>>>>> 1b9c3f42d2a546412b98f719d8a2c201a46a21a3
+            <form className="prod-form" onSubmit={submitForm} style={{ color: 'white' }}>
                 <div className="new-prod-house">
                     <label>
                         <div>Name</div>
                         {errors.name && submitted && < p style={{ color: "red" }}>{errors.name}</p>}
                         <input
                             // required
-                            style={{color: 'whitesmoke'}}
+                            style={{ color: 'whitesmoke' }}
                             id="p-name"
                             placeholder="Name..."
                             type="text"
@@ -122,7 +120,7 @@ const CreateProduct = () => {
                         <div style={{ color: 'whitesmoke' }}>City</div>
                         {errors.city && submitted && < p style={{ color: "red" }}>{errors.city}</p>}
                         <input
-                            style={{color: 'whitesmoke'}}
+                            style={{ color: 'whitesmoke' }}
                             id="p-city"
                             placeholder="City..."
                             type="text"
@@ -135,7 +133,7 @@ const CreateProduct = () => {
                         <div style={{ color: 'whitesmoke' }}>State</div>
                         {errors.state && submitted && < p style={{ color: "red" }}>{errors.state}</p>}
                         <input
-                            style={{color: 'whitesmoke'}}
+                            style={{ color: 'whitesmoke' }}
                             id="p-state"
                             placeholder="State..."
                             type="text"
@@ -147,7 +145,7 @@ const CreateProduct = () => {
                         <div style={{ color: 'whitesmoke' }}>Description</div>
                         {errors.description && submitted && < p style={{ color: "red" }}>{errors.description}</p>}
                         <textarea
-                            style={{color: 'whitesmoke'}}
+                            style={{ color: 'whitesmoke' }}
                             id="p-descrip"
                             placeholder="Write a description..."
                             type="text"
@@ -159,7 +157,7 @@ const CreateProduct = () => {
                         <div style={{ color: 'whitesmoke' }}>Price</div>
                         {errors.price && submitted && < p style={{ color: "red" }}>{errors.price}</p>}
                         <input
-                            style={{color: 'whitesmoke'}}
+                            style={{ color: 'whitesmoke' }}
                             id="p-price"
                             placeholder="$"
                             type="text"
