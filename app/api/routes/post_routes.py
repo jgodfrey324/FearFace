@@ -5,8 +5,17 @@ from ...models.db import db
 from ...models.models import Post, PostImage, Comment
 from ...models.user import User
 # removed follow import
-from ...forms.post_form import PostForm,PostImageForm
+from ...forms.post_form import PostForm
 from ...forms.post_form import CommentForm
+
+
+
+import os
+import cloudinary
+import cloudinary.uploader
+# from flask.json import jsonify
+
+
 
 
 
@@ -58,24 +67,6 @@ def all_posts():
     # return as DICT
     return res
 
-
-
-
-# # get all comments for one post
-# @posts.route("/<int:id>/comments")
-# @login_required
-# def all_comments(id):
-#     post = Post.query.get(id)
-#     comments = post.comments
-#     new_lst = [comment.to_dict() for comment in comments]
-
-#     res = {}
-
-#     for comment in new_lst:
-#         comment_id = comment['id']
-#         res[comment_id] = comment
-
-#     return res
 
 
 
@@ -132,21 +123,45 @@ def create_posts():
 @posts.route("/<int:id>/images", methods=["POST"])
 @login_required
 def create_image(id):
-    form = PostImageForm()
-    form["csrf_token"].data = request.cookies["csrf_token"]
-    if form.validate_on_submit():
+
+    cloudinary.config(cloud_name = os.getenv('CLOUD_NAME'), api_key=os.getenv('API_KEY'),
+    api_secret=os.getenv('API_SECRET'))
+
+    upload_result = None
+
+    if request.method == 'POST':
+        file_to_upload = request.files['file']
+
+    if file_to_upload:
+        upload_result = cloudinary.uploader.upload(file_to_upload)
+
+        # print('upload_result url ---------------------------------> ', upload_result['url'])
         result = PostImage(
-            image = form.data["url"],
+            url = upload_result['url'],
             post_id = id
         )
-        print(result)
+
         db.session.add(result)
         db.session.commit()
-        return {"resImage": result.to_dict()}
 
-    if form.errors:
-        # print("this is image error =====>",form.errors)
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+        # return {'post_id': f'{id}', 'image_url': jsonify(upload_result['url'])}
+        return result.to_dict()
+
+
+
+
+@posts.route('/images')
+@login_required
+def get_post_images():
+    images = PostImage.query.all();
+
+    res = {}
+
+    for image in images:
+        image_obj = image.to_dict()
+        res[image_obj['id']] = image_obj
+
+    return res
 
 
 

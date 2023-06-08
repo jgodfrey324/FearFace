@@ -26,6 +26,12 @@ sqlalchemy = "==1.4.46"
 werkzeug = "==2.2.2"
 wtforms = "==3.0.1"
 faker = "*"
+<<<<<<< HEAD
+flask-socketio = "*"
+eventlet = "==0.30.2"
+cloudinary = "*"
+=======
+>>>>>>> 1b9c3f42d2a546412b98f719d8a2c201a46a21a3
 
 [dev-packages]
 

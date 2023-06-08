@@ -51,9 +51,23 @@ function LoginFormPage() {
             required
           />
         </label>
-        <button type="submit" style={{color: 'whitesmoke'}}>Log In</button>
+        <button type="submit" style={{ color: 'whitesmoke' }}>Log In</button>
       </form>
+
+      <div class="candle">
+        <div class="flame">
+          <div class="shadows"></div>
+          <div class="top"></div>
+          <div class="middle"></div>
+          <div class="bottom"></div>
+        </div>
+        <div class="wick"></div>
+        <div class="wax"></div>
+      </div>
+
     </div>
+
+
   );
 }
 

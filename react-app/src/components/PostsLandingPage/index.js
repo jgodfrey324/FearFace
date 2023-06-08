@@ -9,6 +9,8 @@ import PostDetailModal from './PostDetailModal';
 import './PostsLanding.css';
 import { getUserDetail } from '../../store/session';
 import { getComments } from '../../store/comments';
+import { getAllPostImages } from '../../store/post_images';
+import { createPostImage } from '../../store/post_images';
 
 
 const PostsLanding = () => {
@@ -19,21 +21,20 @@ const PostsLanding = () => {
     const user = useSelector(state => state.session.user);
     const user_details = useSelector(state => state.session.user_details);
     const comments = Object.values(useSelector(state => state.comments));
-
-    // try adding dispatch for get all comments here
-    // make count obj that counts all comments per post and use that count for display
-
+    const postImages = Object.values(useSelector(state => state.postImages))
 
 
     const [text, setText] = useState('');
     const [url, setUrl] = useState('');
     const [errors, setErrors] = useState('');
     const [submitted, setSubmitted] = useState(false);
+    const [image, setImage] = useState(null);
 
     useEffect(() => {
         dispatch(getAllPosts());
         dispatch(getComments());
         dispatch(getUserDetail(user?.id))
+        dispatch(getAllPostImages())
     }, [dispatch, user?.id]);
 
 
@@ -53,16 +54,24 @@ const PostsLanding = () => {
         const formData = new FormData();
         formData.append("text", text);
 
+        const formImgData = new FormData();
+        formImgData.append('file', image)
+
         const data = await dispatch(createPost(formData));
         // if data is sent back set errors to the data
         if (data) {
             // return out and display errors on form
+            if (image) {
+                dispatch(createPostImage(data.id, formImgData))
+            }
             return setErrors(data[0]);
         }
+
         if (submitted && errors) {
             console.log('errors was reset!')
             setErrors('');
         }
+
 
         // reset fields
         reset()
@@ -79,6 +88,9 @@ const PostsLanding = () => {
     if (!user_details) return null;
 
     if (!comments) return null;
+
+    if (!postImages) return null;
+
 
     const commentsCount = {}
 
@@ -115,10 +127,10 @@ const PostsLanding = () => {
                 })}
             </div>
             <div>
-                <button onClick={() => history.push(`/users/${user.id}`)} style={{color: 'whitesmoke'}}>My Profile</button>
+                <button onClick={() => history.push(`/users/${user.id}`)} style={{ color: 'whitesmoke' }}>My Profile</button>
                 <h3>Check out the <NavLink to='/marketplace'>Marketplace!</NavLink></h3>
             </div>
-            <form id="lp-form" onSubmit={submitForm}>
+            <form id="lp-form" onSubmit={submitForm} encType="multipart/form-data">
                 <div className='new-post-house'>
                     <img id="make-post" src="https://i.imgur.com/ERn5sIv.png" alt='post form title'></img>
                     <ul>
@@ -135,6 +147,16 @@ const PostsLanding = () => {
                         minLength={5}
                         maxLength={5000}
                     />
+                    {/* <button disabled={text.length < 5} className={text.length < 5 ? 'offbtn' : 'onbtn'}>P o s t</button> */}
+                    <button disabled={text.length < 5} class='glowing-btn'><span class='glowing-txt'>P <span class='faulty-letter'>O</span> S T</span></button>
+                    <label>
+                        <div>Add an Image</div>
+                        <input
+                            type='file'
+                            accept='image/*'
+                            onChange={(e) => setImage(e.target.files[0])}
+                        ></input>
+                    </label>
                     <button disabled={text.length < 5} className={text.length < 5 ? 'offbtn' : 'onbtn'}>P o s t</button>
                 </div>
             </form >
@@ -162,6 +184,15 @@ const PostsLanding = () => {
                                 <span>{post.user.last_name}...</span>
                             </div>
                         </div>
+                        {postImages.map(image => {
+                            if (image.post_id === post.id) {
+                                return (
+                                    <div key={image.id} >
+                                        <img style={{height: '100px', width: '100px'}}src={`${image.url}`} alt='post image'></img>
+                                    </div>
+                                )
+                            }
+                        })}
                         <div className='post-text-house'>
                             <p>{post.text}</p>
                         </div>

@@ -15,10 +15,10 @@ class PostForm(FlaskForm):
     submit = SubmitField("Submit")
 
 
-class PostImageForm(FlaskForm):
-    url = StringField("ImageURL", validators=[Length(min=0,max=2000)],nullable=False)
-    # post_id = IntegerField("Post",nullable=False)
-    submit = SubmitField("Submit")
+# class PostImageForm(FlaskForm):
+#     url = StringField("ImageURL", validators=[Length(min=0,max=2000)],nullable=False)
+#     # post_id = IntegerField("Post",nullable=False)
+#     submit = SubmitField("Submit")
 
 class CommentForm(FlaskForm):
     text = StringField("Text", validators=[DataRequired(), text_length])

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPosts, createPost } from '../../store/posts';
 import { Redirect, NavLink, useHistory} from "react-router-dom";
 import OpenModalButton from '../OpenModalButton';
 import { getAllProducts } from '../../store/product';
 import DeleteProductModal from './DeleteProductModal';
 import ProductDetails from './ProductDetail'
 import './ProductPage.css'
+import { getAllProdImages } from '../../store/product_images';
 
 
 const ProductsLanding = () => {
@@ -14,7 +14,7 @@ const ProductsLanding = () => {
     const history = useHistory()
     const productObj = useSelector(state => state.products)
     const user = useSelector(state => state.session.user)
-    const products = Object.values(productObj)
+    const prodImages = Object.values(useSelector(state => state.productImages))
 
     const [sideOpen, setSideOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState({});
@@ -41,11 +41,21 @@ const ProductsLanding = () => {
 
     useEffect(() => {
         dispatch(getAllProducts());
+        dispatch(getAllProdImages());
     }, [dispatch])
 
     if (!user) {
         return <Redirect to="/login"/>
     }
+
+
+
+    if (!productObj) return null;
+
+    if (!prodImages) return null;
+
+    const products = Object.values(productObj)
+
 
 
     return (
@@ -67,9 +77,15 @@ const ProductsLanding = () => {
                                         <h3>{product.name}</h3>
                                         <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
                                         <span>{product.location_city}, {product.location_state}</span>
-                                        <div style={{height: '250px', border: '2px solid pink', margin: '10px 0px'}}>
-                                            <p>Preview image will go here!</p>
-                                        </div>
+                                        {prodImages.map(image => {
+                                            if (image.product_id === product.id) {
+                                                return (
+                                                    <div key={image.id} >
+                                                        <img style={{height: '100px', width: '100px'}}src={`${image.url}`} alt='product image'></img>
+                                                    </div>
+                                                )
+                                            }
+                                        })}
                                         <p style={{fontWeight: 'bold'}}>${parseFloat(product.price).toFixed(2)}</p>
                                     </div>
                                 </div>

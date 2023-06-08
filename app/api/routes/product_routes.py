@@ -2,14 +2,24 @@ from flask import Blueprint, flash,request
 from flask_login import login_required, current_user
 from datetime import date
 from ...models.db import db
-from ...models.models import Post, PostImage, Comment,Product
+from ...models.models import Product, ProductImage
 from ...models.user import User
 from ...forms.product_form import ProductForm
 
 
 
+import os
+import cloudinary
+import cloudinary.uploader
+# from flask.json import jsonify
+
+
+
 
 products = Blueprint("products", __name__)
+
+
+
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -106,8 +116,6 @@ def update_product(id):
 
 
 
-
-
 @products.route("/<int:id>/delete",methods=["DELETE"])
 @login_required
 def delete_product(id):
@@ -115,3 +123,53 @@ def delete_product(id):
     db.session.delete(product_to_delete)
     db.session.commit()
     return {"res":"Successfully deleted"}
+
+
+
+
+
+
+
+@products.route("/<int:id>/images", methods=["POST"])
+@login_required
+def create_image(id):
+
+    cloudinary.config(cloud_name = os.getenv('CLOUD_NAME'), api_key=os.getenv('API_KEY'),
+    api_secret=os.getenv('API_SECRET'))
+
+    upload_result = None
+
+    if request.method == 'POST':
+        file_to_upload = request.files['file']
+
+    if file_to_upload:
+        upload_result = cloudinary.uploader.upload(file_to_upload)
+
+        # print('upload_result url ---------------------------------> ', upload_result['url'])
+        result = ProductImage(
+            url = upload_result['url'],
+            product_id = id
+        )
+
+        db.session.add(result)
+        db.session.commit()
+
+        # return {'post_id': f'{id}', 'image_url': jsonify(upload_result['url'])}
+        return result.to_dict()
+
+
+
+
+
+@products.route('/images')
+@login_required
+def get_prod_images():
+    images = ProductImage.query.all();
+
+    res = {}
+
+    for image in images:
+        image_obj = image.to_dict()
+        res[image_obj['id']] = image_obj
+
+    return res
