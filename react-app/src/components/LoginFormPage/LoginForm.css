@@ -1,13 +1,13 @@
 .login-house {
     border-radius: 20px;
-    /* border: 1px solid #e853622c; */
-    box-shadow: 2px 2px 7px #e853622c;
+    /* border: 1px solid white; */
+    /* box-shadow: 2px 2px 7px #e853622c; */
     display: flex;
     flex-direction: column;
     margin: 30px;
     align-items: center;
     padding: 50px 100px;
-    background-color: #e853621c;
+    /* background-color: #e853621c; */
 }
 
 .login-house>form {
@@ -24,7 +24,7 @@
 
 .login-house>p {
     /* border: 2px solid pink; */
-    margin: 0;
+    margin-top: 10px;
     font-size: 14px;
     color: #B00B1B;
     background-color: #151616;
@@ -32,7 +32,7 @@
 }
 
 #error-li {
-    color: #B00B1B;
+    color: white;
     list-style-type: none;
     padding: 5px 0px;
 }
@@ -87,7 +87,9 @@
     box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
         0px 0px 0.5em 0px var(--glow-color);
     box-shadow: -0px 0px 5px rgb(121, 43, 43);
+    animation: border-flicker 3s linear infinite;
     border-radius: 5px;
+    background: #312624;
 
 }
 
