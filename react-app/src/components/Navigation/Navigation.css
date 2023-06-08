@@ -88,8 +88,8 @@
   text-align: center;
   position: relative;
   right: 80px;
-  top: 83px;
-  width: 112px;
+  top: 92px;
+  width: 130px;
 }
 
 
@@ -99,6 +99,7 @@
   width: 100%;
   margin: 1px 0px;
   cursor: pointer;
+  padding: 6px 0px;
 }
 
 .user-menu-content>span:hover {
@@ -114,8 +115,8 @@
   border-radius: 5px;
   padding: 5px 5px 5px 5px;
   transition: all 0.3 ease 0s;
-  display: flex;
-  align-items: center;
+  width: 100%;
+  text-align: center;
 }
 
 .logout-button:hover {
@@ -125,4 +126,23 @@
 
 .topright-nav>button>i {
   font-size: 20px;
+}
+
+#profile-icon {
+  /* border: 1px red solid; */
+  margin-right: 10px;
+  padding: 5px 5px;
+  border-radius: 20px;
+}
+
+#profile-icon:hover {
+  -box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  animation: border-flicker 3s linear infinite;
+  box-shadow: 2px 2px 20px rgb(236, 56, 56);
+
 }
