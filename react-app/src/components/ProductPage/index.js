@@ -12,7 +12,7 @@ const ProductsLanding = () => {
     const history = useHistory()
     const productObj = useSelector(state => state.products)
     const user = useSelector(state => state.session.user)
-    const prodImages = Object.values(useSelector(state => state.productImages))
+    // const prodImages = Object.values(useSelector(state => state.productImages))
 
     const [sideOpen, setSideOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState({});
@@ -36,7 +36,7 @@ const ProductsLanding = () => {
 
     useEffect(() => {
         dispatch(getAllProducts());
-        dispatch(getAllProdImages());
+        // dispatch(getAllProdImages());
     }, [dispatch])
 
     if (!user) {
@@ -47,7 +47,7 @@ const ProductsLanding = () => {
 
     if (!productObj) return null;
 
-    if (!prodImages) return null;
+    // if (!prodImages) return null;
 
     const products = Object.values(productObj)
 
@@ -71,7 +71,7 @@ const ProductsLanding = () => {
                                         <h3>{product.name}</h3>
                                         <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
                                         <span>{product.location_city}, {product.location_state}</span>
-                                        {prodImages.map(image => {
+                                        {/* {prodImages.map(image => {
                                             if (image.product_id === product.id) {
                                                 return (
                                                     <div key={image.id} >
@@ -79,7 +79,7 @@ const ProductsLanding = () => {
                                                     </div>
                                                 )
                                             }
-                                        })}
+                                        })} */}
                                         <p style={{fontWeight: 'bold'}}>$ {parseFloat(product.price).toFixed(2)}</p>
                                     </div>
                                 </div>
@@ -92,7 +92,6 @@ const ProductsLanding = () => {
                 <div className="product-detail-sidebar-toggle-house">
                     <div className="product-side-panel-toggle"
                         onClick={() => setSideOpen(!sideOpen)}>
-                        {console.log("after click==========================================", sideOpen)}
                         {sideOpen ? '>' : '<'}
                     </div>
                 </div>
