@@ -1,5 +1,5 @@
 import { useParams, useHistory, Redirect } from "react-router-dom"
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from "../../store/product"
 import { getAllProdImages } from '../../store/product_images';
@@ -57,7 +57,7 @@ const MyProducts = () => {
             <div className="all-products-house">
                 {myProducts.toReversed().map((product) => {
                     return (
-                        <div className="product-house" onClick={() => history.push(`/marketplace`)}>
+                        <div key={product.id} className="product-house" onClick={() => history.push(`/marketplace`)}>
                             <div className="my-product-top-bar">
                                 <div className="product-buttons-house">
                                     <OpenModalButton
@@ -76,7 +76,7 @@ const MyProducts = () => {
                                     {prodImages.map(image => {
                                         if (image.product_id === product.id) {
                                             return (
-                                            <img key={image.id} src={`${image.url}`} alt='product image'></img>
+                                            <img key={image.id} src={`${image.url}`} alt='product'></img>
                                             )
                                         }
                                     })}

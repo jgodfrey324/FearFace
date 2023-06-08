@@ -23,7 +23,7 @@ const ProfilePage = () => {
     const posts = Object.values(useSelector(state => state.posts))
 
     const [text, setText] = useState('');
-    const [url, setUrl] = useState('');
+    // const [url, setUrl] = useState('');
     const [errors, setErrors] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [postsChanged, setPostsChanged] = useState(false);
@@ -77,7 +77,7 @@ const ProfilePage = () => {
 
     const reset = () => {
         setText('');
-        setUrl('');
+        // setUrl('');
         setSubmitted(false);
     }
 
@@ -208,6 +208,10 @@ const ProfilePage = () => {
                 <div className='marketplace-button'>
                     <button onClick={() => history.push('/marketplace')}>MarketPlace</button>
                 </div>
+                    {current_user.id !== parseInt(userId) ? <button onClick={() => history.push(`/users/${current_user.id}`)}>My Profile</button> : null}
+                <div>
+
+                </div>
             </div>
             <div className='my-products-button'>
                 {current_user.id === parseInt(userId) && (
@@ -258,8 +262,7 @@ const ProfilePage = () => {
                                     )}
                                 </div>
                                 <div className='user-name'>
-                                    <span style={{ color: 'whitesmoke' }}>{post.user.first_name} </span>
-                                    <span style={{ color: 'whitesmoke' }}>{post.user.last_name}...</span>
+                                    <NavLink to={`/users/${post.user.id}`}></NavLink>
                                 </div>
                             </div>
                             <div className='post-text-house'>
