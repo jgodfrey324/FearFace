@@ -10,11 +10,15 @@ from .api.auth_routes import auth_routes
 from .api.routes.post_routes import posts
 from .api.routes.comment_routes import comments
 from .api.routes.product_routes import products
+# from .api.routes.images_routes import post_images
 from .seeds import seed_commands
 from .config import Config
 # from .socket import socketio
 
+
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
+
+
 
 # Setup login manager
 login = LoginManager(app)
@@ -72,6 +76,61 @@ def inject_csrf_token(response):
             'FLASK_ENV') == 'production' else None,
         httponly=True)
     return response
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#cloudinary is configured with app
+# import cloudinary
+# import cloudinary.uploader
+# from flask.json import jsonify
+
+
+
+
+# @app.route("/upload", methods=['POST'])
+# def upload_file():
+# #   app.logger.info('in upload route')
+
+#   cloudinary.config(cloud_name = os.getenv('CLOUD_NAME'), api_key=os.getenv('API_KEY'),
+#     api_secret=os.getenv('API_SECRET'))
+
+#   upload_result = None
+
+#   if request.method == 'POST':
+#     file_to_upload = request.files['file']
+#     # app.logger.info('%s file_to_upload', file_to_upload)
+
+#     if file_to_upload:
+#       upload_result = cloudinary.uploader.upload(file_to_upload)
+#     #   app.logger.info(upload_result)
+
+#       return jsonify(upload_result['url'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @app.route("/api/docs")

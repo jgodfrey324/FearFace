@@ -4,12 +4,16 @@ import session from './session';
 import postsReducer from './posts';
 import commentReducer from './comments'
 import productsReducer from './product';
+import productImagesReducer from './product_images';
+import postImagesReducer from './post_images';
 
 const rootReducer = combineReducers({
   session,
   posts: postsReducer,
   comments: commentReducer,
-  products: productsReducer
+  products: productsReducer,
+  productImages: productImagesReducer,
+  postImages: postImagesReducer
 });
 
 

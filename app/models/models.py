@@ -24,7 +24,7 @@ class Product(db.Model):
     created_at = db.Column(db.Date(), nullable=False)
 
     user = db.relationship('User', back_populates='products')  # double check
-    product_images = db.relationship('ProductImage', back_populates='product')
+    product_images = db.relationship('ProductImage', back_populates='product', cascade="all, delete-orphan")
 
     def __repr__(self):
         return f'<User {self.user_id}, {self.user.username}, posted a new product! {self.name}, Product #{self.id}>'
@@ -89,7 +89,7 @@ class Post(db.Model):
 
     comments = db.relationship(
         'Comment', back_populates='post', cascade="all, delete-orphan")  # double check
-    post_images = db.relationship('PostImage', back_populates='post')
+    post_images = db.relationship('PostImage', back_populates='post', cascade="all, delete-orphan")
     user = db.relationship('User', back_populates='posts')
 
     def __repr__(self):
