@@ -25,7 +25,6 @@
 }
 
 .intro-house-button {
-    border: 1px solid blue;
     margin-left: 20px;
 }
 
@@ -57,16 +56,26 @@
 
 .user-following-house > h3 {
     color: whitesmoke;
-    border-bottom: 1px solid whitesmoke;
+    /* border-bottom: 1px solid whitesmoke; */
     margin-bottom: 10px;
     padding-bottom: 5px;
 }
 
 .following-house-user-link {
-    border: 1px solid purple;
     /* style: none; */
+    display: flex;
     padding: 5px;
     margin: 20px 0;
+}
+
+.following-house-user-link > a {
+    text-decoration: none;
+    color: #d4bebe
+}
+
+.following-house-user-link > a:hover {
+    text-decoration: none;
+    color: white
 }
 
 form > .new-post-house {

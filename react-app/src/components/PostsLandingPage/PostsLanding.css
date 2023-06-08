@@ -12,13 +12,29 @@
     /* color: rgb(212, 190, 190); */
 }
 
+
+
 .lp-friends {
     /* border: 1px solid red; */
     display:flex;
-    align-items: center;
+    /* align-items: center; */
     flex-direction: column;
-    width: 25%;
+    width: 15%;
+    gap: 10px;
+
 }
+
+#friend-name {
+    text-decoration: none;
+    color: #d4bebe;
+}
+
+#friend-name:hover {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
 
 .lp-posts {
     display: flex;
@@ -45,7 +61,7 @@ button {
     width: -webkit-fill-available;
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    gap: 60px;
     /* justify-content: space-around; */
     /* margin: 20px; */
     color: rgb(212, 190, 190);
@@ -126,6 +142,18 @@ button {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
+}
+
+
+.user-name > a{
+    color: #d4bebe;
+    text-decoration: none;
+    background-color: transparent;
+}
+.user-name > a:hover{
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
 }
 
 .user-name,
