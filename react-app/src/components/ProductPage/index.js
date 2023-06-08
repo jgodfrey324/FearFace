@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, NavLink, useHistory} from "react-router-dom";
-import OpenModalButton from '../OpenModalButton';
 import { getAllProducts } from '../../store/product';
-import DeleteProductModal from './DeleteProductModal';
+import { getAllProdImages } from '../../store/product_images';
 import ProductDetails from './ProductDetail'
 import './ProductPage.css'
-import { getAllProdImages } from '../../store/product_images';
 
 
 const ProductsLanding = () => {
@@ -19,8 +17,6 @@ const ProductsLanding = () => {
     const [sideOpen, setSideOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState({});
 
-    // console.log("this is our products slice ===================", productObj)
-    // console.log("this is our user slice ===================", user)
 
 
     useEffect(() => {
@@ -28,8 +24,7 @@ const ProductsLanding = () => {
         if (sideOpen === false && selectedProduct){
         setSideOpen(true)
         }
-        console.log("hellooooooooooooooooooooooooooooooo")
-    }, [selectedProduct]);
+    }, [selectedProduct, sideOpen]);
 
 
 
@@ -80,7 +75,7 @@ const ProductsLanding = () => {
                                             if (image.product_id === product.id) {
                                                 return (
                                                     <div key={image.id} >
-                                                        <img style={{height: '100px', width: '100px'}}src={`${image.url}`} alt='product image'></img>
+                                                        <img style={{height: '100px', width: '100px'}}src={`${image.url}`} alt='product'></img>
                                                     </div>
                                                 )
                                             }

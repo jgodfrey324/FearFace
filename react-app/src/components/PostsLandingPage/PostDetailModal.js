@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from 'react-router-dom';
 import UpdatePostModal from "../UpdatePostModal";
 import DeletePostModal from "../UpdatePostModal/DeletePostModal";
 import DeleteCommentModal from "./DeleteCommentModal"
 import { getComments } from '../../store/comments';
 import { postComment } from '../../store/comments';
 import OpenModalButton from '../OpenModalButton';
+import { getAllPostImages } from '../../store/post_images';
 import "./PostDetailModal.css";
 
 
@@ -20,16 +22,13 @@ function PostDetailModal({ postId }) {
     const comments = Object.values(useSelector(state => state.comments));
     // const comments = Object.values(commentObj)
     const user = useSelector(state => state.session.user)
-
-
-
-    //filter comments for just the post with postId
+    const postImages = Object.values(useSelector(state => state.postImages))
 
 
 
     useEffect(() => {
         dispatch(getComments());
-
+        dispatch(getAllPostImages())
         // return (() => null)
     }, [dispatch])
 
@@ -65,6 +64,10 @@ function PostDetailModal({ postId }) {
 
     if (!comments) return null;
 
+    if (!postImages) return null;
+
+    const postImage = postImages[post.user.id]
+
     const postComments = []
 
     for (const comment of comments) {
@@ -95,9 +98,11 @@ function PostDetailModal({ postId }) {
                     )}
                 </div>
                 <div className='user-name'>
-                    <span>{post.user.first_name} </span>
-                    <span>{post.user.last_name}...</span>
+                    <NavLink to={`/users/${post.user.id}`}>{post.user.first_name} {post.user.last_name}</NavLink>
                 </div>
+            </div>
+            <div>
+                <img src={postImage.url} alt="post" style={{height: '200px', widht: '150px', objectFit: 'cover'}}></img>
             </div>
             <div className='post-modal-text-house'>
                 <p>{post.text}</p>
@@ -127,8 +132,7 @@ function PostDetailModal({ postId }) {
                     return (
                         <div key={comment.id} className='post-modal-comment-house'>
                             <div className='modal-comment-top-bar'>
-                                <span>{comment.user.first_name} </span>
-                                <span>{comment.user.last_name}</span>
+                                <NavLink to={`/user/${comment.user.id}`}>{comment.user.first_name} {comment.user.last_name}</NavLink>
                             </div>
                             <div className='modal-comment-menu-buttons'>
                                 {(isPostOwner || isCommentOwner) && (

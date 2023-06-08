@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, NavLink, useHistory,useParams } from "react-router-dom";
 import { updateProduct } from '../../store/product';
 import { getAllProducts } from '../../store/product';
 import { useModal } from "../../context/Modal";
@@ -8,20 +7,16 @@ import { useModal } from "../../context/Modal";
 
 
 const UpdateProductModal = ({productId}) => {
-    // const {productId} = useParams()
     const dispatch = useDispatch()
-    const history = useHistory()
     const { closeModal } = useModal();
-    const user = useSelector(state=> state.session.user)
+    // const user = useSelector(state=> state.session.user)
 
 
     const productObj = useSelector(state => state.products)
 
     const products = Object.values(productObj)
     const currentProduct = products.find(product => product.id === productId)
-    // const currentProduct = products.filter(product => product.user.id === user.id)
-    // const userProduct = products.find(product => product.id === productId)
-    // console.log("these are my products ===============================", currentProduct)
+
 
     const [name, setName] = useState(currentProduct.name)
     const [city, setCity] = useState(currentProduct.location_city)
@@ -62,10 +57,9 @@ const UpdateProductModal = ({productId}) => {
       formData.append("price", price)
       formData.append("description", description)
 
-      let data;
 
       if (!Object.values(errors).length) {
-          data = await dispatch(updateProduct(productId,formData)).then(()=> dispatch(getAllProducts()))
+          await dispatch(updateProduct(productId,formData)).then(()=> dispatch(getAllProducts()))
           closeModal()
         }
 

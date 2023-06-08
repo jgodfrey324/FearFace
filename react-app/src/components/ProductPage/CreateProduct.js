@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPosts, createPost } from '../../store/posts';
-import { Redirect, NavLink, useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { createProductThunk } from '../../store/product';
 import { createProdImage } from '../../store/product_images';
 // import { FileInput, FileField } from 'react-admin'

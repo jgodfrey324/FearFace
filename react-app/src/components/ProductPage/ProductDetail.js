@@ -1,13 +1,13 @@
 import React from 'react'
-import "./ProductPage.css"
-import OpenModalButton from '../OpenModalButton';
-import UpdateProductModal from './UpdateProduct';
-import DeleteProductModal from './DeleteProductModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
+import OpenModalButton from '../OpenModalButton';
+import UpdateProductModal from './UpdateProduct';
+import DeleteProductModal from './DeleteProductModal';
 import {getAllProducts} from '../../store/product.js'
 import { getAllProdImages } from '../../store/product_images';
+import "./ProductPage.css"
 
 
 
@@ -52,7 +52,7 @@ function ProductDetails({ productId, visible, currentUserId}) {
         if (image.product_id === product.id) {
           return (
             <div key={image.id} >
-                      <img style={{height: '400px', width: '350px', objectFit:'cover'}}src={`${image.url}`} alt='product image'></img>
+                      <img style={{height: '400px', width: '350px', objectFit:'cover'}}src={`${image.url}`} alt='product'></img>
                   </div>
               )
             }

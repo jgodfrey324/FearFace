@@ -6,11 +6,11 @@ import OpenModalButton from '../OpenModalButton';
 import UpdatePostModal from '../UpdatePostModal';
 import DeletePostModal from '../UpdatePostModal/DeletePostModal';
 import PostDetailModal from './PostDetailModal';
-import './PostsLanding.css';
 import { getUserDetail } from '../../store/session';
 import { getComments } from '../../store/comments';
 import { getAllPostImages } from '../../store/post_images';
 import { createPostImage } from '../../store/post_images';
+import './PostsLanding.css';
 
 
 const PostsLanding = () => {
@@ -25,7 +25,7 @@ const PostsLanding = () => {
 
 
     const [text, setText] = useState('');
-    const [url, setUrl] = useState('');
+    // const [url, setUrl] = useState('');
     const [errors, setErrors] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [image, setImage] = useState(null);
@@ -41,7 +41,7 @@ const PostsLanding = () => {
 
     const reset = () => {
         setText('');
-        setUrl('');
+        // setUrl('');
         setSubmitted(false);
     }
 
@@ -156,7 +156,7 @@ const PostsLanding = () => {
                             onChange={(e) => setImage(e.target.files[0])}
                         ></input>
                     </label>
-                    <button disabled={text.length < 5} class='glowing-btn'><span class='glowing-txt'>P <span class='faulty-letter'>O</span> S T</span></button>
+                    <button disabled={text.length < 5} className='glowing-btn'><span className='glowing-txt'>P <span class='faulty-letter'>O</span> S T</span></button>
 
                 </div>
             </form >
@@ -188,7 +188,7 @@ const PostsLanding = () => {
                             if (image.post_id === post.id) {
                                 return (
                                     <div key={image.id} >
-                                        <img style={{ height: '100px', width: '100px' }} src={`${image.url}`} alt='post image'></img>
+                                        <img style={{ height: '100px', width: '100px' }} src={`${image.url}`} alt='post'></img>
                                     </div>
                                 )
                             }
