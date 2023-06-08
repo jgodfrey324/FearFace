@@ -31,23 +31,6 @@ const ProfilePage = () => {
 
 
 
-    // trying dispatching all comments,
-    // then making an object with a count for comments per post,
-    // then using that count for display
-
-
-
-
-    // console.log('current user from state ===========================> ', current_user);
-    // if (users isnt around) {
-    //     return daddy just chill
-    // I got legs day today Raoul
-    //I willnap
-    // lets trade life. I can nap very well
-    // }
-
-
-
     useEffect(() => {
         dispatch(getAllPosts());
         dispatch(getComments())
@@ -61,9 +44,6 @@ const ProfilePage = () => {
 
             }
             data()
-            // dispatch(getUserDetail(userId));
-
-
         }, 500)
         return (() => {
             clearTimeout(timeout)
@@ -143,7 +123,6 @@ const ProfilePage = () => {
         // reset fields
         reset()
     }
-    // console.log(userDetails[userId])
 
 
     // if user isn't logged in then redirect to log in form
@@ -199,87 +178,107 @@ const ProfilePage = () => {
 
 
     return (
-        <div>
-            <h1 id="user-profile-h1">This is <span id="user-name">{user.first_name} {user.last_name}</span> profile</h1>
-            {!friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
-                <button onClick={handleFollow} style={{ backgroundColor: 'white' }}>Follow</button>
-            )}
-            {friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
-                <button onClick={handleUnfollow} style={{ backgroundColor: 'white' }}>Unfollow</button>
-            )}
-            <h3 style={{ color: 'whitesmoke' }}>{user.first_name}'s friends: </h3>
-            {visiting_profile_friends.map((friend) => {
-                return (
-                    <div key={friend.id}>
-                        <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
-                    </div>
-                )
-            })}
-            {current_user.id === parseInt(userId) && (
-                <button onClick={() => history.push(`/users/${userId}/products`)} style={{ color: 'whitesmoke' }}>My Products</button>
-            )}
-            {current_user.id === parseInt(userId) && (
-                <form onSubmit={submitForm}>
-                    <div className='new-post-house'>
-                        <h2 style={{ color: "whitesmoke" }}>Make a new post!</h2>
-                        <ul>
-                            {errors && (
-                                <p style={{ color: "red" }}>{errors}</p>
-                            )}
-                        </ul>
-                        <textarea
-                            style={{ color: "whitesmoke" }}
-                            value={text}
-                            placeholder='Write your status here....'
-                            required
-                            onChange={(e) => setText(e.target.value)}
-                            minLength={5}
-                            maxLength={5000}
-                        />
-                        <button style={{ color: "whitesmoke" }}>Post</button>
-                    </div>
-                </form >
-            )}
-            {userPosts.toReversed().map(post => {
-                const isCurrentUsers = post.user.id === current_user.id;
-
-                return (
-                    <div key={post.id} className='post-house'>
-                        <div className='post-top-bar'>
-                            <div className='post-menu-buttons'>
-                                {isCurrentUsers && (
-                                    <OpenModalButton
-                                        buttonText="Edit"
-                                        modalComponent={<UpdatePostModal postId={post.id} setter={setPostsChanged} />}
-                                    />
-                                )}
-                                {isCurrentUsers && (
-                                    <OpenModalButton
-                                        buttonText="Delete"
-                                        modalComponent={<DeletePostModal postId={post.id} setter={setPostsChanged} />}
-                                    />
-                                )}
+        <div className='profile-house'>
+            <div className='profile-intro-house'>
+                <div className='intro-house-text'>
+                    {current_user.id === parseInt(userId) ? <h1>My Profile</h1> : <h1>{user.first_name} {user.last_name}</h1>}
+                </div>
+                <div className='intro-house-button'>
+                    {!friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
+                    <button onClick={handleFollow}>Follow</button>
+                    )}
+                </div>
+                <div className='intro-house-button'>
+                    {friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
+                    <button onClick={handleUnfollow}>Unfollow</button>
+                    )}
+                </div>
+            </div>
+            <div className='my-profile-side-bar'>
+                <div className='user-following-house'>
+                    <h3>Following:</h3>
+                    {visiting_profile_friends.map((friend) => {
+                        return (
+                            <div key={friend.id} className='following-house-user-link'>
+                                <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
                             </div>
-                            <div className='user-name'>
-                                <span style={{ color: 'whitesmoke' }}>{post.user.first_name} </span>
-                                <span style={{ color: 'whitesmoke' }}>{post.user.last_name}...</span>
-                            </div>
-                        </div>
-                        <div className='post-text-house'>
-                            <p style={{ color: 'whitesmoke' }}>{post.text}</p>
-                        </div>
-                        <div className="p-page-comments">
-                            <OpenModalButton style={{ color: 'whitesmoke' }}
-                                buttonText="Comments"
-                                modalComponent={<PostDetailModal postId={post.id} />}
+                        )
+                    })}
+                </div>
+                <div className='marketplace-button'>
+                    <button onClick={() => history.push('/marketplace')}>MarketPlace</button>
+                </div>
+            </div>
+            <div className='my-products-button'>
+                {current_user.id === parseInt(userId) && (
+                    <button onClick={() => history.push(`/users/${userId}/products`)}>My Products</button>
+                )}
+            </div>
+            <div className='profile-content-house'>
+                {current_user.id === parseInt(userId) && (
+                    <form onSubmit={submitForm} id='profile-form'>
+                        <div className='new-post-house'>
+                            <h2 style={{ color: "whitesmoke" }}>Make a new post!</h2>
+                            <ul>
+                                {errors && (
+                                    <p style={{ color: "red" }}>{errors}</p>
+                                )}
+                            </ul>
+                            <textarea
+                                style={{ color: "whitesmoke" }}
+                                value={text}
+                                placeholder='Write your status here....'
+                                required
+                                onChange={(e) => setText(e.target.value)}
+                                minLength={5}
+                                maxLength={5000}
                             />
-                            {commentsCount[post.id] > 0 && (
-                                <span style={{ color: 'whitesmoke' }}> {commentsCount[post.id]}</span>
-                            )}
+                            <button style={{ color: "whitesmoke" }}>Post</button>
                         </div>
-                    </div>
-                )
-            })}
+                    </form >
+                )}
+                {userPosts.toReversed().map(post => {
+                    const isCurrentUsers = post.user.id === current_user.id;
+
+                    return (
+                        <div key={post.id} className='post-house'>
+                            <div className='post-top-bar'>
+                                <div className='post-menu-buttons'>
+                                    {isCurrentUsers && (
+                                        <OpenModalButton
+                                            buttonText="Edit"
+                                            modalComponent={<UpdatePostModal postId={post.id} setter={setPostsChanged} />}
+                                        />
+                                    )}
+                                    {isCurrentUsers && (
+                                        <OpenModalButton
+                                            buttonText="Delete"
+                                            modalComponent={<DeletePostModal postId={post.id} setter={setPostsChanged} />}
+                                        />
+                                    )}
+                                </div>
+                                <div className='user-name'>
+                                    <span style={{ color: 'whitesmoke' }}>{post.user.first_name} </span>
+                                    <span style={{ color: 'whitesmoke' }}>{post.user.last_name}...</span>
+                                </div>
+                            </div>
+                            <div className='post-text-house'>
+                                <p style={{ color: 'whitesmoke' }}>{post.text}</p>
+                            </div>
+                            <div className="p-page-comments">
+                                <OpenModalButton style={{ color: 'whitesmoke' }}
+                                    buttonText="Comments"
+                                    modalComponent={<PostDetailModal postId={post.id} />}
+                                />
+                                {commentsCount[post.id] > 0 && (
+                                    <span style={{ color: 'whitesmoke' }}> {commentsCount[post.id]}</span>
+                                )}
+                            </div>
+                        </div>
+                    )
+                })}
+
+            </div>
         </div>
     )
 }

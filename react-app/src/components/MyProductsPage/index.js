@@ -2,9 +2,11 @@ import { useParams, useHistory, Redirect } from "react-router-dom"
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from "../../store/product"
+import { getAllProdImages } from '../../store/product_images';
 import OpenModalButton from '../OpenModalButton';
 import DeleteProductModal from "../ProductPage/DeleteProductModal.js";
 import UpdateProductModal from "../ProductPage/UpdateProduct";
+import './MyProduct.css'
 
 
 
@@ -15,9 +17,12 @@ const MyProducts = () => {
     const products = Object.values(useSelector(state => state.products))
     const myProducts = []
     const user = useSelector(state => state.session.user)
+    const prodImages = Object.values(useSelector(state => state.productImages))
+
 
     useEffect(() => {
-        dispatch(getAllProducts())
+        dispatch(getAllProducts());
+        dispatch(getAllProdImages());
     }, [dispatch])
 
 
@@ -27,6 +32,10 @@ const MyProducts = () => {
 
     if (!products) return null;
 
+    if (!prodImages) return null;
+
+
+
     for (const product of products) {
         if (product.user.id === parseInt(userId)) {
             myProducts.push(product)
@@ -34,41 +43,52 @@ const MyProducts = () => {
     }
 
 
-    return (
-        <div>
-            <h1>This is my products!</h1>
-            <button onClick={() => history.push(`/users/${userId}`)} style={{ color: 'whitesmoke' }}>My Profile</button>
-            <div>
-                <span>
-                    <button onClick={() => history.push('/marketplace')} style={{ color: 'whitesmoke' }}>Marketplace</button>
-                </span>
-                <span>
-                    <button onClick={() => history.push('/marketplace/create')} style={{ color: 'whitesmoke' }}>Create Product</button>
-                </span>
-            </div>
 
-            {myProducts.toReversed().map((product) => {
-                return (
-                    <div>
-                        <OpenModalButton
-                            style={{ color: "whitesmoke" }}
-                            buttonText="Delete"
-                            modalComponent={<DeleteProductModal productId={product.id} />
-                            } />
-                        <OpenModalButton
-                            style={{ color: "whitesmoke" }}
-                            buttonText="Update"
-                            modalComponent={<UpdateProductModal productId={product.id} />}
-                        />
-                        <div style={{ border: '1px solid white' }}>
-                            <h3>{product.name}</h3>
-                            <span>{product.location_city}</span>
-                            <span>{product.location_state}</span>
-                            <p>{product.price.toFixed(2)}</p>
+    return (
+        <div className="my-products-house">
+            <h1>Products:</h1>
+            <div className="create-button">
+                <button onClick={() => history.push('/marketplace/create')}>Create Product</button>
+            </div>
+            <div className="side-bar-buttons">
+                <button onClick={() => history.push(`/users/${userId}`)}>My Profile</button>
+                <button onClick={() => history.push('/marketplace')}>Marketplace</button>
+            </div>
+            <div className="all-products-house">
+                {myProducts.toReversed().map((product) => {
+                    return (
+                        <div className="product-house" onClick={() => history.push(`/marketplace`)}>
+                            <div className="my-product-top-bar">
+                                <div className="product-buttons-house">
+                                    <OpenModalButton
+                                        buttonText="Delete"
+                                        modalComponent={<DeleteProductModal productId={product.id} />
+                                        } />
+                                    <OpenModalButton
+                                        buttonText="Update"
+                                        modalComponent={<UpdateProductModal productId={product.id} />}
+                                    />
+                                </div>
+                                <h3>{product.name}</h3>
+                            </div>
+                                <p>{product.location_city}, {product.location_state}</p>
+                                <div className="my-product-image">
+                                    {prodImages.map(image => {
+                                        if (image.product_id === product.id) {
+                                            return (
+                                            <img key={image.id} src={`${image.url}`} alt='product image'></img>
+                                            )
+                                        }
+                                    })}
+                                </div>
+                                <div className="my-product-description">
+                                    <p>{product.description}</p>
+                                </div>
+                                <p className="my-product-price">$ {product.price.toFixed(2)}</p>
                         </div>
-                    </div>
-                )
-            })}
+                    )
+                })}
+            </div>
         </div>
     )
 }

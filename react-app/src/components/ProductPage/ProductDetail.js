@@ -4,21 +4,30 @@ import OpenModalButton from '../OpenModalButton';
 import UpdateProductModal from './UpdateProduct';
 import DeleteProductModal from './DeleteProductModal';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import {getAllProducts} from '../../store/product.js'
+import { getAllProdImages } from '../../store/product_images';
+
 
 
 function ProductDetails({ productId, visible, currentUserId}) {
   const dispatch=useDispatch()
   const products = useSelector(state => state.products);
+  const prodImages = Object.values(useSelector(state => state.productImages))
+
 
 
   useEffect(()=>{
-    dispatch(getAllProducts())
+    dispatch(getAllProducts());
+    dispatch(getAllProdImages());
   },[dispatch])
 
 
   if (!visible) return null
+
+  if (!prodImages) return null;
+
 
   const product = products[productId]
 
@@ -36,13 +45,23 @@ function ProductDetails({ productId, visible, currentUserId}) {
   return (
     <div className="product-details">
       <h3 style={{color:"whitesmoke"}} className="product-info">{product.name}</h3>
-      <p style={{color:"whitesmoke"}} className="product-price">{product.price}</p>
+      <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
       <span style={{color:"whitesmoke"}} className="product-city">{product.location_city} </span>
       <span style={{color:"whitesmoke"}} className="product-state">{product.location_state}</span>
+      {prodImages.map(image => {
+        if (image.product_id === product.id) {
+          return (
+            <div key={image.id} >
+                      <img style={{height: '400px', width: '350px', objectFit:'cover'}}src={`${image.url}`} alt='product image'></img>
+                  </div>
+              )
+            }
+          })}
           <p>Details</p>
       <div className="product-description">
         <p>{product.description}</p>
       </div>
+      <p style={{color:"whitesmoke"}} className="product-price">$ {product.price}</p>
       <div>
         {(currentUserId === product.user?.id) &&
 
