@@ -1,19 +1,16 @@
 """empty message
 
-Revision ID: 66596cb5959f
-Revises:
-Create Date: 2023-06-07 13:50:32.762734
+Revision ID: 8022596072e6
+Revises: 
+Create Date: 2023-06-08 14:20:32.009975
 
 """
 from alembic import op
 import sqlalchemy as sa
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '66596cb5959f'
+revision = '8022596072e6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,15 +24,13 @@ def upgrade():
     sa.Column('first_name', sa.String(length=50), nullable=False),
     sa.Column('last_name', sa.String(length=50), nullable=False),
     sa.Column('email', sa.String(length=80), nullable=False),
+    sa.Column('bio', sa.String(length=2000), nullable=True),
+    sa.Column('profile_pic', sa.String(length=2000), nullable=True),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
     op.create_table('follows',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_is', sa.Integer(), nullable=True),
@@ -45,10 +40,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('user_is', 'following')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE follows SET SCHEMA {SCHEMA};")
-
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('text', sa.String(length=5000), nullable=False),
@@ -57,10 +48,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
-
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
@@ -73,10 +60,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
-
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('text', sa.String(length=2000), nullable=False),
@@ -87,10 +70,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
-
     op.create_table('post_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('url', sa.String(length=2000), nullable=False),
@@ -98,10 +77,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['post_id'], ['posts.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE post_images SET SCHEMA {SCHEMA};")
-
     op.create_table('product_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('url', sa.String(length=2000), nullable=False),
@@ -109,9 +84,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE product_images SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
