@@ -22,13 +22,13 @@ function PostDetailModal({ postId }) {
     const comments = Object.values(useSelector(state => state.comments));
     // const comments = Object.values(commentObj)
     const user = useSelector(state => state.session.user)
-    const postImages = Object.values(useSelector(state => state.postImages))
+    // const postImages = Object.values(useSelector(state => state.postImages))
 
 
 
     useEffect(() => {
         dispatch(getComments());
-        dispatch(getAllPostImages())
+        // dispatch(getAllPostImages())
         // return (() => null)
     }, [dispatch])
 
@@ -64,11 +64,11 @@ function PostDetailModal({ postId }) {
 
     if (!comments) return null;
 
-    if (!postImages) return null;
+    // if (!postImages) return null;
 
-    const postImage = postImages[post.user.id]
+    // const postImage = postImages[post.id]
 
-    if (!postImage) return null;
+    // if (!postImage) return null;
 
     const postComments = []
 
@@ -103,9 +103,11 @@ function PostDetailModal({ postId }) {
                     <NavLink to={`/users/${post.user.id}`}>{post.user.first_name} {post.user.last_name}</NavLink>
                 </div>
             </div>
-            <div>
-                <img src={postImage.url} alt="post" style={{height: '200px', widht: '150px', objectFit: 'cover'}}></img>
-            </div>
+            {/* {postImage && (
+                <div>
+                    <img src={postImage.url} alt="post" style={{height: '200px', widht: '150px', objectFit: 'cover'}}></img>
+                </div>
+            )} */}
             <div className='post-modal-text-house'>
                 <p>{post.text}</p>
             </div>
