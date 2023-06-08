@@ -61,6 +61,24 @@
   gap: 0.5rem;
 }
 
+#store-button {
+  margin-right: 10px;
+  padding: 8px;
+  border-radius: 20px;
+}
+
+#store-button:hover {
+  -box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  animation: border-flicker 3s linear infinite;
+  box-shadow: 2px 2px 20px rgb(255, 255, 255);
+
+}
+
 .user-menu {
   position: absolute;
   /* top: 54px;
@@ -87,8 +105,8 @@
   font-size: 90%;
   text-align: center;
   position: relative;
-  right: 80px;
-  top: 92px;
+  right: 43px;
+  top: 111px;
   width: 130px;
 }
 

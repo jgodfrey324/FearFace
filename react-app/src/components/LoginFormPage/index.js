@@ -19,7 +19,13 @@ function LoginFormPage() {
     if (data) {
       setErrors(data);
     }
+
   };
+
+  const demoUser = (e) => {
+    e.preventDefault()
+    return dispatch(login("demo@aa.io", "password"))
+  }
 
   return (
     <div className="login-house">
@@ -51,6 +57,7 @@ function LoginFormPage() {
             required
           />
         </label>
+        <button style={{ color: 'whitesmoke' }} onClick={demoUser} className="normal-demo-button">Demo User</button>
         <button type="submit" style={{ color: 'whitesmoke' }}>Log In</button>
       </form>
 

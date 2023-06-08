@@ -116,20 +116,11 @@ const PostsLanding = () => {
 
     return (
         <div className='landing-house'>
-            <h3>My friends: </h3>
-            <div>
-                {Object.values(friends).map((friend) => {
-                    return (
-                        <div key={friend.id} style={{ border: '1px solid black' }}>
-                            <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
-                        </div>
-                    )
-                })}
-            </div>
-            <div>
+            {/* <div>
                 <button onClick={() => history.push(`/users/${user.id}`)} style={{ color: 'whitesmoke' }}>My Profile</button>
                 <h3>Check out the <NavLink to='/marketplace'>Marketplace!</NavLink></h3>
-            </div>
+            </div> */}
+            <div className="lp-posts">
             <form id="lp-form" onSubmit={submitForm} encType="multipart/form-data">
                 <div className='new-post-house'>
                     <img id="make-post" src="https://i.imgur.com/ERn5sIv.png" alt='post form title'></img>
@@ -148,15 +139,16 @@ const PostsLanding = () => {
                         maxLength={5000}
                     />
                     {/* <button disabled={text.length < 5} className={text.length < 5 ? 'offbtn' : 'onbtn'}>P o s t</button> */}
-                    <label>
+                    {/* <label>
                         <div>Add an Image</div>
                         <input
                             type='file'
                             accept='image/*'
                             onChange={(e) => setImage(e.target.files[0])}
                         ></input>
-                    </label>
-                    <button disabled={text.length < 5} className='glowing-btn'><span className='glowing-txt'>P <span class='faulty-letter'>O</span> S T</span></button>
+                    </label> */}
+                    {/* <button disabled={text.length < 5} className='glowing-btn'><span className='glowing-txt'>P <span class='faulty-letter'>O</span> S T</span></button> */}
+                    <button disabled={text.length < 5} className='glowing-btn'>POST</button>
 
                 </div>
             </form >
@@ -209,6 +201,17 @@ const PostsLanding = () => {
                 )
             })
             }
+            </div>
+            <div className="lp-friends">
+            <h3>My friends </h3>
+                {Object.values(friends).map((friend) => {
+                    return (
+                        <div key={friend.id} style={{ border: '1px solid black' }}>
+                            <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     )
 }
