@@ -68,6 +68,8 @@ function PostDetailModal({ postId }) {
 
     const postImage = postImages[post.user.id]
 
+    if (!postImage) return null;
+
     const postComments = []
 
     for (const comment of comments) {
