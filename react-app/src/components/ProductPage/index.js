@@ -24,7 +24,7 @@ const ProductsLanding = () => {
         if (sideOpen === false && selectedProduct){
         setSideOpen(true)
         }
-    }, [selectedProduct, sideOpen]);
+    }, [selectedProduct]);
 
 
 

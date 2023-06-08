@@ -180,8 +180,7 @@ const PostsLanding = () => {
                                 )}
                             </div>
                             <div className='user-name'>
-                                <span>{post.user.first_name} </span>
-                                <span>{post.user.last_name}...</span>
+                                <NavLink to={`/users/${post.user.id}`}>{post.user.first_name} {post.user.last_name}</NavLink>
                             </div>
                         </div>
                         {postImages.map(image => {
