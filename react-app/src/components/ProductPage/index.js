@@ -24,14 +24,18 @@ const ProductsLanding = () => {
 
 
     useEffect(() => {
+        // setSideOpen(true)
+        if (sideOpen === false && selectedProduct){
         setSideOpen(true)
+        }
+        console.log("hellooooooooooooooooooooooooooooooo")
     }, [selectedProduct]);
 
 
 
-    useEffect(() => {
-        if (sideOpen === false) setSelectedProduct({})
-    }, [sideOpen])
+    // useEffect(() => {
+    //     if (sideOpen === false) setSelectedProduct({})
+    // }, [sideOpen])
 
 
 
@@ -56,7 +60,9 @@ const ProductsLanding = () => {
                         {products.toReversed().map(product => {
                             return (
                                 <div key={product.id} className='product-preview-tile-house'
-                                    onClick={() => setSelectedProduct(product)}>
+                                    onClick={() => setSelectedProduct(product)}
+                                    >
+                                        {console.log("look==================================================",(product))}
                                     <div  style={{ color: "white", border: "1px solid white" }}>
                                         <h3>{product.name}</h3>
                                         <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
@@ -76,6 +82,7 @@ const ProductsLanding = () => {
                 <div className="product-detail-sidebar-toggle-house">
                     <div className="product-side-panel-toggle"
                         onClick={() => setSideOpen(!sideOpen)}>
+                        {console.log("after click==========================================", sideOpen)}
                         {sideOpen ? '>' : '<'}
                     </div>
                 </div>
