@@ -72,7 +72,6 @@ const ProductsLanding = () => {
                                 <div key={product.id} className='product-preview-tile-house'
                                     onClick={() => setSelectedProduct(product)}
                                     >
-                                        {console.log("look==================================================",(product))}
                                     <div  style={{ color: "white", border: "1px solid white" }}>
                                         <h3>{product.name}</h3>
                                         <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
@@ -86,7 +85,7 @@ const ProductsLanding = () => {
                                                 )
                                             }
                                         })}
-                                        <p style={{fontWeight: 'bold'}}>${parseFloat(product.price).toFixed(2)}</p>
+                                        <p style={{fontWeight: 'bold'}}>$ {parseFloat(product.price).toFixed(2)}</p>
                                     </div>
                                 </div>
                             )
