@@ -25,8 +25,9 @@
     /* border: 2px solid green; */
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 20px;
-    margin-left: 200px;
+    margin-left: 11%;
     margin-top: 20px;
 }
 
@@ -42,7 +43,13 @@
 .intro-house-text {
     /* border: 1px solid orange; */
     color: whitesmoke;
-    margin: 10px 0;
+    /* margin: 10px 0; */
+    width: 40%;
+}
+
+.intro-house-text > p {
+    font-size: 12px;
+    margin-top: 20px;
 }
 
 .my-profile-side-bar {
@@ -65,7 +72,12 @@
     /* border-bottom: 1px solid whitesmoke; */
     margin-bottom: 10px;
     padding-bottom: 5px;
-    margin-left: 10px;
+    /* margin-left: 10px; */
+
+    font-size: 21px;
+    /* padding-bottom: 5px; */
+    border-bottom: 0.5px solid rgb(212, 190, 190);
+    margin-bottom: 5px;
 }
 
 .user-following-house {
@@ -73,11 +85,11 @@
 }
 
 .following-house-user-link {
-    /* style: none; */
-    display: flex;
     padding: 5px;
     margin: 20px 0;
-    gap: 5px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
 }
 
 #profile-pic-main {
@@ -85,6 +97,7 @@
     width: 150px;
     border-radius: 100px;
     object-fit: cover;
+    border: 3px solid black;
 }
 
 #profile-side-pic {
@@ -96,7 +109,9 @@
 
 .following-house-user-link>a {
     text-decoration: none;
-    color: #d4bebe
+    color: #d4bebe;
+    /* border: 1px solid red; */
+    font-size: 15px;
 }
 
 .following-house-user-link>a:hover {
@@ -120,18 +135,18 @@ form>.new-post-house {
 
 #profile-form {
     /* border: 2px solid pink; */
-    width: 100%;
+    width: 80%;
 }
 
-.intro-house-text {
-    margin-top: 50px;
+/* .intro-house-text {
+
     overflow: break-word;
-}
+} */
 
-.intro-house-text>p {
+/* .intro-house-text>p {
     margin-right: 160px;
     background-color: transparent;
-}
+} */
 
 .post-text-house>p {
     color: rgb(212, 190, 190)
