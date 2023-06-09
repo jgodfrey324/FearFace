@@ -87,8 +87,8 @@ def seed_posts():
         text='How can you tell a dream from reality?', user_id=14, created_at=fake.date_between(start_date='-5y', end_date='today'))
     post39 = Post(
         text='Here\'s Johnny!', user_id=14, created_at=fake.date_between(start_date='-5y', end_date='today'))
-    # post40 = Post(
-    #     text='How can you tell a dream from reality?', user_id=15, created_at=fake.date_between(start_date='-5y', end_date='today'))
+    post40 = Post(
+        text='Love how these pics turned out 😈 😘  Comment for more', user_id=5, created_at=fake.date_between(start_date='-5y', end_date='today'))
     # post41 = Post(
     #     text='How can you tell a dream from reality?', user_id=14, created_at=fake.date_between(start_date='-5y', end_date='today'))
     # post42 = Post(
