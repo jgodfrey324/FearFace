@@ -6,85 +6,86 @@
     align-items: stretch;
   } */
 
-  .product-page-container {
-    display: flex;
-    justify-content: space-between;
-    width: -webkit-fill-available;
-  }
+.product-page-container {
+  display: flex;
+  justify-content: space-between;
+  width: -webkit-fill-available;
+}
 
-  .all-products-detail {
-    border: 2px solid orange;
-    width: -webkit-fill-available;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    column-gap: 20px;
-    row-gap: 20px;
-    /* position: fixed; */
-  }
+.all-products-detail {
+  border: 2px solid orange;
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 20px;
+  /* position: fixed; */
+}
 
-  .product-preview-tile-house {
-    cursor: pointer;
-  }
+.product-preview-tile-house {
+  cursor: pointer;
+}
 
-  /* .product-house {
+/* .product-house {
     color: transparent;
   } */
 
-  .trouble-makers {
-    display: flex;
-    flex-direction: column;
-  }
+.trouble-makers {
+  display: flex;
+  flex-direction: column;
+}
 
-  .product-view {
-    flex: 1 1 auto;
-    display: flex;
-    flex-wrap: wrap;
-  }
+.product-view {
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
 
-  .product-view * {
+.product-view * {
   background-color: transparent;
-  }
+}
 
-  .product-detail-sidebar-panel {
-    border-left: solid black 0px;
-    background-color: lightcoral;
-    flex: 0 0 fit-content;
-    -webkit-box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
-    box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
-  }
+.product-detail-sidebar-panel {
+  border-left: solid black 0px;
+  background-color: lightcoral;
+  flex: 0 0 fit-content;
+  -webkit-box-shadow: -5px 1px 4px 1px rgba(0, 0, 0, 0.45);
+  box-shadow: -5px 1px 4px 1px rgba(0, 0, 0, 0.45);
+}
 
-  .product-side-panel-toggle {
-    /*border: solid black 1px;*/
-    border-right-width: 0;
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
-    -webkit-box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
-    box-shadow: -5px 1px 4px 1px rgba(0,0,0,0.45);
-    background-color: lightcoral;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 45px;
-  }
+.product-side-panel-toggle {
+  /*border: solid black 1px;*/
+  border-right-width: 0;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  -webkit-box-shadow: -5px 1px 4px 1px rgba(0, 0, 0, 0.45);
+  box-shadow: -5px 1px 4px 1px rgba(0, 0, 0, 0.45);
+  background-color: lightcoral;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 45px;
 
-  /* NOTE: Special handing to put the toggle OUTSIDE the details panel so it does
+}
+
+/* NOTE: Special handing to put the toggle OUTSIDE the details panel so it does
      not affect the layout (content offset, still showing background when closed)
   */
-  .product-detail-sidebar-toggle-house {
-    overflow: visible;
-    position: relative;
-    left: -20px;
-    top: 10px;
-    width: 0;
-    height: 0;
-    z-index: 50;
-  }
+.product-detail-sidebar-toggle-house {
+  overflow: visible;
+  position: relative;
+  left: -20px;
+  top: 10px;
+  width: 0;
+  height: 0;
+  z-index: 50;
+}
 
-  /* LIST */
+/* LIST */
 
-  /* .product-list {
+/* .product-list {
     padding: 25px;
     background-color: white;
     border-radius: 1rem;
@@ -112,42 +113,45 @@
     margin-bottom: 12px;
   } */
 
-  /* DETAILS */
+/* DETAILS */
 
-  .product-details {
-    padding: 10px;
-    width: 500px;
-    overflow: scroll;
-    /* z-index: 50; */
-  }
+.product-details {
+  padding: 10px;
+  width: 500px;
+  overflow: scroll;
+  /* z-index: 50; */
+}
 
-  .product-info {
-    font-weight: bold;
-  }
+.product-info {
+  font-weight: bold;
+}
 
-  .product-price {
-    font-weight: bold;
-    font-size: x-large;
-  }
-  .product-city {
-    font-weight: bold;
-    font-size: x-large;
-  }
-  .product-state {
-    font-weight: bold;
-    font-size: x-large;
-  }
-  .product-description {
-    font-weight: bold;
-    color: rgb(67, 57, 211);
-    font-size: x-large;
-  }
+.product-price {
+  font-weight: bold;
+  font-size: x-large;
+}
 
-  /* li.product-details-list-item {
+.product-city {
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.product-state {
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.product-description {
+  font-weight: bold;
+  color: rgb(67, 57, 211);
+  font-size: x-large;
+}
+
+/* li.product-details-list-item {
     margin-bottom: 8px;
     list-style-type: square;
   } */
 
- button {
-    color: whitesmoke
-  }
+/* button {
+  color: whitesmoke
+} */

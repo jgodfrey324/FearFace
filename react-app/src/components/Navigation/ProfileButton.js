@@ -54,7 +54,7 @@ function ProfileButton({ user }) {
             }}
               style={{ color: 'whitesmoke' }}>My Profile</span>
             <span onClick={() => {
-              history.push(`/marketplace`)
+              history.push(`/users/${user.id}/products`)
               closeMenu()
             }}
               style={{ color: 'whitesmoke' }}>My Products</span>

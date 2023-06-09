@@ -43,7 +43,7 @@ function PostDetailModal({ postId }) {
         formData.append('text', text)
         const data = await dispatch(postComment(post.id, formData));
 
-        if(data){
+        if (data) {
             return setErrors(data[0])
         }
 
@@ -88,8 +88,8 @@ function PostDetailModal({ postId }) {
                 <div className='post-modal-menu-buttons'>
                     {isPostOwner && (
                         <OpenModalButton
-                        buttonText="Edit"
-                        modalComponent={<UpdatePostModal postId={postId} />}
+                            buttonText="Edit"
+                            modalComponent={<UpdatePostModal postId={postId} />}
                         />
                     )}
                     {isPostOwner && (
@@ -118,16 +118,23 @@ function PostDetailModal({ postId }) {
                             <p style={{ color: "red" }}>{errors}</p>
                         )}
                     </ul>
-                    <textarea
-                        style={{color: 'whitesmoke'}}
-                        value={text}
-                        placeholder='Write a comment....'
-                        required
-                        onChange={(e) => setText(e.target.value)}
-                        minLength={5}
-                        maxLength={5000}
-                    />
-                    <button style={{color:"whitesmoke"}}>Post</button>
+                    <div id="update-comment-textarea">
+                        <div id="comment-area">
+                            <textarea
+                                style={{ color: 'whitesmoke' }}
+                                value={text}
+                                placeholder='Write a comment....'
+                                required
+                                onChange={(e) => setText(e.target.value)}
+                                minLength={5}
+                                maxLength={5000}
+                                rows={5}
+                            />
+                        </div>
+                        <div id="comment-button">
+                            <button style={{ color: "whitesmoke" }}>Post</button>
+                        </div>
+                    </div>
                 </div>
             </form >
             <div>
