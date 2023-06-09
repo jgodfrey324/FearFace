@@ -161,7 +161,10 @@ const CreateProduct = () => {
                     <label>
                         <div>Add Image</div>
                         <button className='choose-file-btn'
-                            onClick={() => window.alert("Feature coming soon...")}
+                            onClick={(e) => {
+                                e.preventDefault()
+                                window.alert("Feature coming soon...")
+                            }}
                         >Choose File</button>
                     </label>
                 </div>

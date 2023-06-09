@@ -260,6 +260,12 @@ const ProfilePage = () => {
                                         />
                                     )} */}
                                 </div>
+                                {current_user.id !== userId && (
+                                    <div className='user-name'>
+                                        <img src={post.user.profile_pic} alt='user'></img>
+                                        <NavLink to={`/users/${post.user.id}`}>{post.user.first_name} {post.user.last_name}</NavLink>
+                                    </div>
+                                )}
                             </div>
                             {postImages.map(image => {
                                 if (image.post_id === post.id) {
