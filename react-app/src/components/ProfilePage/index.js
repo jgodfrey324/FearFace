@@ -185,28 +185,26 @@ const ProfilePage = () => {
             <div className='profile-intro-house'>
                 <img id="profile-pic-main" src={user.profile_pic}></img>
                 <div className='intro-house-text'>
-                    <h1>{user.first_name} {user.last_name}</h1>
+                    <div className='profile-name-button'>
+                        <h1>{user.first_name} {user.last_name}</h1>
+                        <div className='intro-house-button'>
+                            {!friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
+                                <button onClick={handleFollow}>Follow</button>
+                            )}
+                            {friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
+                                <button onClick={handleUnfollow}>Unfollow</button>
+                            )}
+                        </div>
+                    </div>
                     <p>{user.bio}</p>
                 </div>
-                <div className='intro-house-button'>
-                    {!friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
-                        <button onClick={handleFollow}>Follow</button>
-                    )}
-                </div>
-                <div className='intro-house-button'>
+                {/* <div className='intro-house-button'>
                     {friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
                         <button onClick={handleUnfollow}>Unfollow</button>
                     )}
-                </div>
+                </div> */}
             </div>
             <div className='my-profile-side-bar'>
-                <div className="user-about" style={{ color: 'white' }}>
-                    {visiting_profile_friends.map((friend) => {
-                        return (
-                            <div></div>
-                        )
-                    })}
-                </div>
                 <div className='user-following-house'>
                     <h3>following</h3>
                     {visiting_profile_friends.map((friend) => {
@@ -216,19 +214,7 @@ const ProfilePage = () => {
                             </div>
                         )
                     })}
-                    {/* </div>
-                <div className='marketplace-button'>
-                    <button onClick={() => history.push('/marketplace')}>MarketPlace</button>
                 </div>
-                    {current_user.id !== parseInt(userId) ? <button onClick={() => history.push(`/users/${current_user.id}`)}>My Profile</button> : null}
-                <div> */}
-
-                </div>
-            </div>
-            <div className='my-products-button'>
-                {/* {current_user.id === parseInt(userId) && (
-                    <button onClick={() => history.push(`/users/${userId}/products`)}>My Products</button>
-                )} */}
             </div>
             <div className='profile-content-house'>
                 {current_user.id === parseInt(userId) && (
@@ -272,16 +258,16 @@ const ProfilePage = () => {
                                         />
                                     )} */}
                                 </div>
-                                {postImages.map(image => {
-                                    if (image.post_id === post.id) {
-                                        return (
-                                            <div key={image.id} >
-                                                <img style={{ height: '500px', width: '500px', objectFit: 'cover' }} src={`${image.url}`} alt='post'></img>
-                                            </div>
-                                        )
-                                    }
-                                })}
                             </div>
+                            {postImages.map(image => {
+                                if (image.post_id === post.id) {
+                                    return (
+                                        <div key={image.id} class='post-image-house'>
+                                            <img src={`${image.url}`} alt='post'></img>
+                                        </div>
+                                    )
+                                }
+                            })}
                             <div className='post-text-house'>
                                 <p>{post.text}</p>
                             </div>

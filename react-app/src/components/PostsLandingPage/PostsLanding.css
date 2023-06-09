@@ -111,6 +111,8 @@ button {
     width: fit-content;
     align-items: center;
     margin-bottom: 30px;
+    box-shadow: -1px 3px 10px black;
+
 
 }
 
@@ -200,13 +202,12 @@ textarea:focus {
 }
 
 .post-house {
-    /* border: 1px solid rgb(0, 0, 0); */
-    /* border: 1px solid blue; */
     background-color: #2F2E30;
     width: 80%;
     margin-bottom: 20px;
     padding: 10px;
     border-radius: 5px;
+    box-shadow: -1px 3px 10px black;
 }
 
 .post-top-bar {
@@ -378,6 +379,7 @@ p {
 .lp-comments>button:hover {
     background-color: rgb(68, 67, 67);
     border-radius: 5px;
+    box-shadow: none;
 }
 
 .lp-comments {
