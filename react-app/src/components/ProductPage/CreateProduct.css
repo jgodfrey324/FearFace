@@ -6,18 +6,65 @@
     margin: 20px;
 
 }
-.update-form-container *{
-    border-radius: 25px;
-    background-color: #2F2E30;
 
+.update-form-container {
+    border-radius: 25px;
+}
+
+.prod-form > h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.prod-form > i {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+
+
+}
+.fa-solid:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.update-prod-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.update-prod-btn {
+    width: 200px;
+    height: 45px;
+    color: #d4bebe;
+    font-size: 15px;
+}
+.update-prod-btn:hover {
+    background-color: #8f8989;
+    border: none;
+
+}
+
+#p-descrip {
+    width: 250px;
+}
+#create-p-descrip {
+    width: 500px;
 }
 
 .prod-form {
     border-radius: 25px;
+    background-color: transparent;
+    border-radius: 25px;
 }
 
 .prod-form-bg  *{
-    padding: 10px;
+    padding: 12px;
     background-color: #2F2E30;
     border-radius: 25px;
 }
@@ -32,27 +79,49 @@
 }
 
 .new-prod-house > label > input {
-    width: 250px;
-    height: 25px;
+    width: 500px;
+    height: 35px;
     color: #d4bebe;
 }
 
 .update-prod-house > label > input {
     width: 250px;
-    height: 25px;
+    height: 30px;
     color: #d4bebe;
+    box-shadow: none;
+
+
+}
+.update-prod-house > label > *  {
+    padding: 12px;
+
+
+}
+.update-prod-house {
+    padding-bottom: 25px;
+    padding-top: 0px;
 }
 
 .new-prod-house > label {
     color: #d4bebe;
 }
 
+.market-btn-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .market-btn {
-    width: 100px;
-    height: 25px;
+    width: 125px;
+    height: 45px;
+    color: #d4bebe;
+    font-size: 15px;
     border-radius: 25px;
     background-color: #2F2E30;
 
+}
+.market-btn:hover {
+    background-color: #8f8989;
 }
 
 button {
@@ -62,4 +131,9 @@ button {
 #modal {
     border-radius: 25px;
 
+}
+
+.choose-file-btn {
+    background-color: #d4bebe;
+    color: black;
 }
