@@ -44,7 +44,7 @@ function PostDetailModal({ postId }) {
         const data = await dispatch(postComment(post.id, formData));
 
         if (data.errors) {
-            return setErrors(data[0])
+            return setErrors(data.errors[0])
         }
 
         if (submitted && errors) {

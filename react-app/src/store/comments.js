@@ -65,7 +65,7 @@ export const postComment = (postId,comment) => async (dispatch) => {
     } else {
         const data = await response.json();
         if (data.errors) {
-            return data.errors
+            return data
         }
     }
 
