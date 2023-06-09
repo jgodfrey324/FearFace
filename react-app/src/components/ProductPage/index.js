@@ -67,10 +67,7 @@ const ProductsLanding = () => {
                                 <div key={product.id} className='product-preview-tile-house'
                                     onClick={() => setSelectedProduct(product)}
                                     >
-                                    <div  style={{ color: "white", border: "1px solid white" }}>
-                                        <h3>{product.name}</h3>
-                                        <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
-                                        <span>{product.location_city}, {product.location_state}</span>
+                                    <div style={{ color: "white", border: "1px solid white" }}>
                                         {/* {prodImages.map(image => {
                                             if (image.product_id === product.id) {
                                                 return (
@@ -80,6 +77,10 @@ const ProductsLanding = () => {
                                                 )
                                             }
                                         })} */}
+                                        IMAGE
+                                        <h3>{product.name}</h3>
+                                        <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
+                                        <span>{product.location_city}, {product.location_state}</span>
                                         <p style={{fontWeight: 'bold'}}>$ {parseFloat(product.price).toFixed(2)}</p>
                                     </div>
                                 </div>

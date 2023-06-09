@@ -23,7 +23,7 @@ const PostsLanding = () => {
     const comments = Object.values(useSelector(state => state.comments));
     const postImages = Object.values(useSelector(state => state.postImages))
 
-
+    console.log("post images ===========================", postImages)
     const [text, setText] = useState('');
     // const [url, setUrl] = useState('');
     const [errors, setErrors] = useState('');
@@ -89,7 +89,7 @@ const PostsLanding = () => {
 
     if (!comments) return null;
 
-    if (!postImages) return null;
+    // if (!postImages.length) return null;
 
 
     const commentsCount = {}
@@ -111,6 +111,9 @@ const PostsLanding = () => {
     // make friends object
     const friends = user_details[user.id]['is_following']
     // console.log('friends on landing page ============================> ', friends);
+
+    //so what we have is a post image array
+    //every post image has a post id
 
 
 

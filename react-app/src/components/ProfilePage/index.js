@@ -180,9 +180,10 @@ const ProfilePage = () => {
     return (
         <div className='profile-house'>
             <div className='profile-intro-house'>
-                <div style={{color:'white'}}>IMAGE</div>
+                <img id="profile-pic-main" src={user.profile_pic}></img>
                 <div className='intro-house-text'>
                     <h1>{user.first_name} {user.last_name}</h1>
+                    <p>{user.bio}</p>
                 </div>
                 <div className='intro-house-button'>
                     {!friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
@@ -197,10 +198,9 @@ const ProfilePage = () => {
             </div>
             <div className='my-profile-side-bar'>
                 <div className="user-about" style={{color:'white'}}>
-                    <h3>intro</h3>
                     {visiting_profile_friends.map((friend) => {
                         return (
-                            <div>inside intro</div>
+                            <div></div>
                         )
                     })}
                 </div>
@@ -208,7 +208,7 @@ const ProfilePage = () => {
                     <h3>following</h3>
                     {visiting_profile_friends.map((friend) => {
                         return (
-                            <div key={friend.id} className='following-house-user-link'><div>pic</div>
+                            <div key={friend.id} className='following-house-user-link'><img id="profile-side-pic" src={friend.profile_pic}></img>
                                 <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
                             </div>
                         )
@@ -247,7 +247,7 @@ const ProfilePage = () => {
                                 minLength={5}
                                 maxLength={5000}
                             />
-                            <button style={{ color: "whitesmoke" }}>Post</button>
+                            <button className='glowing-btn glowing-txt' style={{ color: "whitesmoke" }}>Post</button>
                         </div>
                     </form >
                 )}
@@ -276,15 +276,15 @@ const ProfilePage = () => {
                                 </div> */}
                             </div>
                             <div className='post-text-house'>
-                                <p style={{ color: 'whitesmoke' }}>{post.text}</p>
+                                <p>{post.text}</p>
                             </div>
-                            <div className="p-page-comments">
+                            <div className="lp-comments">
                                 <OpenModalButton style={{ color: 'whitesmoke' }}
                                     buttonText="Comments"
                                     modalComponent={<PostDetailModal postId={post.id} />}
                                 />
                                 {commentsCount[post.id] > 0 && (
-                                    <span style={{ color: 'whitesmoke' }}> {commentsCount[post.id]}</span>
+                                    <span> {commentsCount[post.id]}</span>
                                 )}
                             </div>
                         </div>

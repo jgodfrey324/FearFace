@@ -27,6 +27,10 @@
     cursor: pointer;
   }
 
+  /* .product-house {
+    color: transparent;
+  } */
+
   .trouble-makers {
     display: flex;
     flex-direction: column;
@@ -36,7 +40,10 @@
     flex: 1 1 auto;
     display: flex;
     flex-wrap: wrap;
+  }
 
+  .product-view * {
+  background-color: transparent;
   }
 
   .product-detail-sidebar-panel {
