@@ -378,7 +378,7 @@ iframe {
     animation: none;
 }
 
-.glowing-btn:hover .faulty-letter {
+ .glowing-btn:hover .faulty-letter {
     animation: none;
     text-shadow: none;
     opacity: 1;

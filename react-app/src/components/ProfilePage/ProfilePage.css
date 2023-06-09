@@ -1,3 +1,7 @@
+* {
+    color: rgb(212, 190, 190)
+}
+
 .p-page-comments>button {
     color: whitesmoke
 }
@@ -21,7 +25,9 @@
     /* border: 2px solid green; */
     display: flex;
     align-items: center;
-    margin-left: 40px;
+    gap: 20px;
+    margin-left: 200px;
+    margin-top: 20px;
 }
 
 .intro-house-button {
@@ -55,10 +61,15 @@
 }
 
 .user-following-house > h3 {
-    color: whitesmoke;
+    color: rgb(212, 190, 190);
     /* border-bottom: 1px solid whitesmoke; */
     margin-bottom: 10px;
     padding-bottom: 5px;
+    margin-left: 10px;
+}
+
+.user-following-house {
+    gap: 3px;
 }
 
 .following-house-user-link {
@@ -66,6 +77,21 @@
     display: flex;
     padding: 5px;
     margin: 20px 0;
+    gap: 5px;
+}
+
+#profile-pic-main {
+    height: 150px;
+    width: 150px;
+    border-radius: 100px;
+    object-fit: cover;
+}
+
+#profile-side-pic {
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+    object-fit: cover;
 }
 
 .following-house-user-link > a {
@@ -80,11 +106,12 @@
 
 form > .new-post-house {
     width: stretch;
+    padding: 30px;
 }
 
 .profile-content-house {
     /* border: 1px solid lightblue; */
-    width: 70%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -93,7 +120,21 @@ form > .new-post-house {
 
 #profile-form {
     /* border: 2px solid pink; */
-    width: 75%;
+    width: 100%;
+}
+
+.intro-house-text  {
+    margin-top: 50px;
+    overflow: break-word;
+}
+
+.intro-house-text > p {
+    margin-right: 160px;
+    background-color: transparent;
+}
+
+.post-text-house > p {
+    color: rgb(212, 190, 190)
 }
 
 /* #root {
