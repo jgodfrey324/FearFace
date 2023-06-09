@@ -183,7 +183,9 @@ const ProfilePage = () => {
     return (
         <div className='profile-house'>
             <div className='profile-intro-house'>
-                <img id="profile-pic-main" src={user.profile_pic}></img>
+                <div className='profile-pic'>
+                    <img id="profile-pic-main" src={user.profile_pic}></img>
+                </div>
                 <div className='intro-house-text'>
                     <div className='profile-name-button'>
                         <h1>{user.first_name} {user.last_name}</h1>

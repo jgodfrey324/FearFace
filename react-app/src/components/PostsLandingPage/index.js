@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts, createPost } from '../../store/posts';
 import { Redirect, NavLink, useHistory } from "react-router-dom";
 import OpenModalButton from '../OpenModalButton';
-import UpdatePostModal from '../UpdatePostModal';
-import DeletePostModal from '../UpdatePostModal/DeletePostModal';
+import { useModal } from "../../context/Modal";
 import PostDetailModal from './PostDetailModal';
 import { getUserDetail } from '../../store/session';
 import { getComments } from '../../store/comments';
@@ -17,8 +16,8 @@ import './PostsLanding.css';
 const PostsLanding = () => {
     const dispatch = useDispatch()
     const history = useHistory()
+    const { closeModal } = useModal();
     const posts = Object.values(useSelector(state => state.posts));
-
     const user = useSelector(state => state.session.user);
     const user_details = useSelector(state => state.session.user_details);
     const comments = Object.values(useSelector(state => state.comments));
@@ -156,7 +155,7 @@ const PostsLanding = () => {
                                         />
                                     )} */}
                                 </div>
-                                <div className='user-name'>
+                                <div className='user-name' onClick={() => closeModal()}>
                                     <img src={post.user.profile_pic} alt='user'></img>
                                     <NavLink to={`/users/${post.user.id}`}>{post.user.first_name} {post.user.last_name}</NavLink>
                                 </div>
