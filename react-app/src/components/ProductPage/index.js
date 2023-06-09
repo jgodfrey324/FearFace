@@ -57,8 +57,8 @@ const ProductsLanding = () => {
         <div className='product-page-container'>
             <div className='trouble-makers'>
                 <div className="marketplace-and-button">
-                    <h2 style={{ color: "white" }}>MarketPlace...</h2>
-                    <button onClick={() => history.push('/marketplace/create')}>Create a new Product</button>
+                    <img id="mplace-logo"src="https://i.imgur.com/7xrEmmi.png"></img>
+                    <button onClick={() => history.push('/marketplace/create')}>Create new listing</button>
                 </div>
                 <div className='product-view'>
                     <div className='all-products-detail'>
@@ -67,7 +67,7 @@ const ProductsLanding = () => {
                                 <div key={product.id} className='product-preview-tile-house'
                                     onClick={() => setSelectedProduct(product)}
                                     >
-                                    <div style={{ color: "white", border: "1px solid white" }}>
+                                    <div className="product-tile">
                                         {/* {prodImages.map(image => {
                                             if (image.product_id === product.id) {
                                                 return (

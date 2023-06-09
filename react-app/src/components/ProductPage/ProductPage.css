@@ -1,34 +1,30 @@
-/* .product-view {
-    min-height: 100vh;
-    background-color: lightsalmon;
+  .product-page-container {
     display: flex;
-    justify-content: stretch;
-    align-items: stretch;
-  } */
+    justify-content: space-between;
+    width: -webkit-fill-available;
+  }
 
-.product-page-container {
-  display: flex;
-  justify-content: space-between;
-  width: -webkit-fill-available;
-}
-
-.all-products-detail {
-  border: 2px solid orange;
-  width: -webkit-fill-available;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  column-gap: 20px;
-  row-gap: 20px;
-  /* position: fixed; */
-}
+  .all-products-detail {
+    /* border: 2px solid orange; */
+    width: -webkit-fill-available;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 20px;
+    margin-top: 10px;
+  }
 
 .product-preview-tile-house {
   cursor: pointer;
 }
 
-/* .product-house {
-    color: transparent;
+  .product-tile {
+    background-color: rgb(80, 76, 76)
+  }
+
+  /* .product-tile > h3, p, a, span {
+    background-color: rgb(80, 76, 76)
   } */
 
 .trouble-makers {
@@ -42,9 +38,15 @@
   flex-wrap: wrap;
 }
 
+<<<<<<< HEAD
 .product-view * {
   background-color: transparent;
 }
+=======
+  /* .product-view * {
+  background-color: transparent;
+  } */
+>>>>>>> raoul-branch
 
 .product-detail-sidebar-panel {
   border-left: solid black 0px;
@@ -68,6 +70,7 @@
   width: 20px;
   height: 45px;
 
+<<<<<<< HEAD
 }
 
 /* NOTE: Special handing to put the toggle OUTSIDE the details panel so it does
@@ -121,6 +124,23 @@
   overflow: scroll;
   /* z-index: 50; */
 }
+=======
+  .product-detail-sidebar-toggle-house {
+    overflow: visible;
+    position: relative;
+    left: -20px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    z-index: 50;
+  }
+
+  .product-details {
+    padding: 10px;
+    width: 500px;
+    overflow: scroll;
+  }
+>>>>>>> raoul-branch
 
 .product-info {
   font-weight: bold;
@@ -131,6 +151,7 @@
   font-size: x-large;
 }
 
+<<<<<<< HEAD
 .product-city {
   font-weight: bold;
   font-size: x-large;
@@ -155,3 +176,24 @@
 /* button {
   color: whitesmoke
 } */
+=======
+ button {
+    color: whitesmoke
+  }
+
+  .marketplace-and-button {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #mplace-logo {
+    height: 75px;
+    width: 300px;
+  }
+
+  .marketplace-and-button > button {
+    width: 200px;
+    color: rgb(212, 190, 190)
+  }
+>>>>>>> raoul-branch
