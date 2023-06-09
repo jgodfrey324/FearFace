@@ -38,15 +38,9 @@
   flex-wrap: wrap;
 }
 
-<<<<<<< HEAD
-.product-view * {
-  background-color: transparent;
-}
-=======
   /* .product-view * {
   background-color: transparent;
   } */
->>>>>>> raoul-branch
 
 .product-detail-sidebar-panel {
   border-left: solid black 0px;
@@ -69,62 +63,8 @@
   justify-content: center;
   width: 20px;
   height: 45px;
-
-<<<<<<< HEAD
 }
 
-/* NOTE: Special handing to put the toggle OUTSIDE the details panel so it does
-     not affect the layout (content offset, still showing background when closed)
-  */
-.product-detail-sidebar-toggle-house {
-  overflow: visible;
-  position: relative;
-  left: -20px;
-  top: 10px;
-  width: 0;
-  height: 0;
-  z-index: 50;
-}
-
-/* LIST */
-
-/* .product-list {
-    padding: 25px;
-    background-color: white;
-    border-radius: 1rem;
-  }
-
-  .product-list-item {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    border: solid black 2px;
-    border-radius: 1rem;
-    padding: 20px;
-    margin: 25px 10px;
-    width: 150px;
-    height: 150px;
-    overflow: visible;
-  }
-  .product-list-item.selected {
-    background-color: lightcoral;
-  }
-
-  .product-list-item-photo {
-    width: 150px;
-    height: 116px;
-    margin-bottom: 12px;
-  } */
-
-/* DETAILS */
-
-.product-details {
-  padding: 10px;
-  width: 500px;
-  overflow: scroll;
-  /* z-index: 50; */
-}
-=======
   .product-detail-sidebar-toggle-house {
     overflow: visible;
     position: relative;
@@ -140,7 +80,6 @@
     width: 500px;
     overflow: scroll;
   }
->>>>>>> raoul-branch
 
 .product-info {
   font-weight: bold;
@@ -151,32 +90,6 @@
   font-size: x-large;
 }
 
-<<<<<<< HEAD
-.product-city {
-  font-weight: bold;
-  font-size: x-large;
-}
-
-.product-state {
-  font-weight: bold;
-  font-size: x-large;
-}
-
-.product-description {
-  font-weight: bold;
-  color: rgb(67, 57, 211);
-  font-size: x-large;
-}
-
-/* li.product-details-list-item {
-    margin-bottom: 8px;
-    list-style-type: square;
-  } */
-
-/* button {
-  color: whitesmoke
-} */
-=======
  button {
     color: whitesmoke
   }
@@ -196,4 +109,3 @@
     width: 200px;
     color: rgb(212, 190, 190)
   }
->>>>>>> raoul-branch
