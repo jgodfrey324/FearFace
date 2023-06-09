@@ -72,17 +72,16 @@ const ProductsLanding = () => {
                                         {prodImages.map(image => {
                                             if (image.product_id === product.id) {
                                                 return (
-                                                    <div key={image.id} >
-                                                        <img style={{height: '100px', width: '100px'}}src={`${image.url}`} alt='product'></img>
+                                                    <div className="pr-image" key={image.id} >
+                                                        <img src={`${image.url}`} alt='product'></img>
                                                     </div>
                                                 )
                                             }
                                         })}
-                                        IMAGE
-                                        <h3>{product.name}</h3>
-                                        <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
-                                        <span>{product.location_city}, {product.location_state}</span>
-                                        <p style={{fontWeight: 'bold'}}>$ {parseFloat(product.price).toFixed(2)}</p>
+                                        <h3 className="inner-prod">{product.name}</h3>
+                                        <p className="inner-prod" id="owner">From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
+                                        <span className="inner-prod">{product.location_city}, {product.location_state}</span>
+                                        <p className="inner-prod" style={{fontWeight: 'bold'}}>$ {parseFloat(product.price).toFixed(2)}</p>
                                     </div>
                                 </div>
                             )

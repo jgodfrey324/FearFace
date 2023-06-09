@@ -101,12 +101,13 @@ function PostDetailModal({ postId }) {
                     )}
                 </div>
                 <div className='user-name'>
+                    <img src={post.user.profile_pic} alt='user'></img>
                     <NavLink to={`/users/${post.user.id}`}>{post.user.first_name} {post.user.last_name}</NavLink>
                 </div>
             </div>
             {/* {console.log('right above image map ===============> ')} */}
             {postImages.map(image => {
-                console.log(typeof postId, '---------------------------------')
+                // console.log(typeof postId, '---------------------------------')
                 // console.log(image.post_id, '---------------------------------------')
                 if (image.post_id === postId) {
                     return (
@@ -119,7 +120,7 @@ function PostDetailModal({ postId }) {
             <div className='post-modal-text-house'>
                 <p>{post.text}</p>
             </div>
-            <form onSubmit={submitForm}>
+            {/* <form onSubmit={submitForm}>
                 <div className='new-comment-house'>
                     <ul>
                         {errors && (
@@ -135,18 +136,18 @@ function PostDetailModal({ postId }) {
                                 required
                                 onChange={(e) => setText(e.target.value)}
                                 minLength={5}
-                                maxLength={5000}
+                                // maxLength={5000}
                                 rows={5}
                             />
                         </div>
                         <div id="comment-button">
-                            <button style={{ color: "whitesmoke" }}>Post</button>
+                            <button style={{ color: "whitesmoke" }}><i class="fa-solid fa-skull"></i></button>
                         </div>
                     </div>
                 </div>
-            </form >
+            </form > */}
             <div className='comment-box'>
-                {postComments.toReversed().map(comment => {
+                {postComments.map(comment => {
                     let isCommentOwner = comment.user.id === user.id
                     return (
                         <div key={comment.id} className='post-modal-comment-house'>
@@ -171,6 +172,32 @@ function PostDetailModal({ postId }) {
                 })
                 }
             </div>
+            <form onSubmit={submitForm}>
+                <div className='new-comment-house'>
+                    <ul>
+                        {errors && (
+                            <p style={{ color: "red" }}>{errors}</p>
+                        )}
+                    </ul>
+                    <div id="update-comment-textarea">
+                        <div id="comment-area">
+                            <textarea
+                                style={{ color: 'whitesmoke' }}
+                                value={text}
+                                placeholder='Write a comment....'
+                                required
+                                onChange={(e) => setText(e.target.value)}
+                                minLength={5}
+                                maxLength={5000}
+                                rows={5}
+                            />
+                        </div>
+                        <div id="comment-button">
+                            <button style={{ color: "whitesmoke" }}><i class="fa-solid fa-skull"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </form >
         </div>
 
 
