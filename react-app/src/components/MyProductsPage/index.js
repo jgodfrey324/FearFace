@@ -46,9 +46,9 @@ const MyProducts = () => {
 
     return (
         <div className="my-products-house">
-            <h1>Products:</h1>
+            <img id="my-m-logo" src="https://i.imgur.com/1fIXctG.png"></img>
             <div className="create-button">
-                <button onClick={() => history.push('/marketplace/create')}>Create Product</button>
+                <button onClick={() => history.push('/marketplace/create')}>Create new listing</button>
             </div>
             {/* <div className="side-bar-buttons">
                 <button onClick={() => history.push(`/users/${userId}`)}>My Profile</button>
@@ -69,7 +69,7 @@ const MyProducts = () => {
                                         modalComponent={<UpdateProductModal productId={product.id} />}
                                     />
                                 </div >
-                                <h3 onClick={() => history.push(`/marketplace`)} >{product.name}</h3>
+                                <h3 className="my-prod-name" onClick={() => history.push(`/marketplace`)} >{product.name}</h3>
                             </div>
                             <p>{product.location_city}, {product.location_state}</p>
                             <div className="my-product-image">
