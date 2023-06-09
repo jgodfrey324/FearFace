@@ -27,7 +27,7 @@ const MyProducts = () => {
 
 
     if (!user) {
-        return <Redirect to="/login"/>
+        return <Redirect to="/login" />
     }
 
     if (!products) return null;
@@ -50,14 +50,14 @@ const MyProducts = () => {
             <div className="create-button">
                 <button onClick={() => history.push('/marketplace/create')}>Create Product</button>
             </div>
-            <div className="side-bar-buttons">
+            {/* <div className="side-bar-buttons">
                 <button onClick={() => history.push(`/users/${userId}`)}>My Profile</button>
                 <button onClick={() => history.push('/marketplace')}>Marketplace</button>
-            </div>
+            </div> */}
             <div className="all-products-house">
                 {myProducts.toReversed().map((product) => {
                     return (
-                        <div key={product.id} className="product-house" onClick={() => history.push(`/marketplace`)}>
+                        <div key={product.id} className="product-house" >
                             <div className="my-product-top-bar">
                                 <div className="product-buttons-house">
                                     <OpenModalButton
@@ -68,23 +68,23 @@ const MyProducts = () => {
                                         buttonText="Update"
                                         modalComponent={<UpdateProductModal productId={product.id} />}
                                     />
-                                </div>
-                                <h3>{product.name}</h3>
+                                </div >
+                                <h3 onClick={() => history.push(`/marketplace`)} >{product.name}</h3>
                             </div>
-                                <p>{product.location_city}, {product.location_state}</p>
-                                <div className="my-product-image">
-                                    {prodImages.map(image => {
-                                        if (image.product_id === product.id) {
-                                            return (
+                            <p>{product.location_city}, {product.location_state}</p>
+                            <div className="my-product-image">
+                                {prodImages.map(image => {
+                                    if (image.product_id === product.id) {
+                                        return (
                                             <img key={image.id} src={`${image.url}`} alt='product'></img>
-                                            )
-                                        }
-                                    })}
-                                </div>
-                                <div className="my-product-description">
-                                    <p>{product.description}</p>
-                                </div>
-                                <p className="my-product-price">$ {product.price.toFixed(2)}</p>
+                                        )
+                                    }
+                                })}
+                            </div>
+                            <div className="my-product-description">
+                                <p>{product.description}</p>
+                            </div>
+                            <p className="my-product-price">$ {product.price.toFixed(2)}</p>
                         </div>
                     )
                 })}

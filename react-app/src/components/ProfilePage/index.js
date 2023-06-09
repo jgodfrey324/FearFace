@@ -9,6 +9,7 @@ import DeletePostModal from '../UpdatePostModal/DeletePostModal';
 import UpdatePostModal from '../UpdatePostModal';
 import PostDetailModal from '../PostsLandingPage/PostDetailModal';
 import { getAllPostImages } from '../../store/post_images';
+import EditDeleteDrop from '../PostsLandingPage/EditDeleteDrop';
 import './ProfilePage.css'
 
 
@@ -142,7 +143,7 @@ const ProfilePage = () => {
     if (!comments) return null;
 
 
-    console.log(postImages, 'fuuuuuuuuuuuuuuuuuuuuuuuuuuck')
+    // console.log(postImages, 'fuuuuuuuuuuuuuuuuuuuuuuuuuuck')
 
     const commentsCount = {}
 
@@ -190,17 +191,17 @@ const ProfilePage = () => {
                 </div>
                 <div className='intro-house-button'>
                     {!friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
-                    <button onClick={handleFollow}>Follow</button>
+                        <button onClick={handleFollow}>Follow</button>
                     )}
                 </div>
                 <div className='intro-house-button'>
                     {friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
-                    <button onClick={handleUnfollow}>Unfollow</button>
+                        <button onClick={handleUnfollow}>Unfollow</button>
                     )}
                 </div>
             </div>
             <div className='my-profile-side-bar'>
-                <div className="user-about" style={{color:'white'}}>
+                <div className="user-about" style={{ color: 'white' }}>
                     {visiting_profile_friends.map((friend) => {
                         return (
                             <div></div>
@@ -216,7 +217,7 @@ const ProfilePage = () => {
                             </div>
                         )
                     })}
-                {/* </div>
+                    {/* </div>
                 <div className='marketplace-button'>
                     <button onClick={() => history.push('/marketplace')}>MarketPlace</button>
                 </div>
@@ -234,7 +235,7 @@ const ProfilePage = () => {
                 {current_user.id === parseInt(userId) && (
                     <form onSubmit={submitForm} id='profile-form'>
                         <div className='new-post-house'>
-                        <img id="make-post" src="https://i.imgur.com/ERn5sIv.png" alt='post form title'></img>
+                            <img id="make-post" src="https://i.imgur.com/ERn5sIv.png" alt='post form title'></img>
                             <ul>
                                 {errors && (
                                     <p style={{ color: "red" }}>{errors}</p>
@@ -250,7 +251,7 @@ const ProfilePage = () => {
                                 minLength={5}
                                 maxLength={5000}
                             />
-                            <button className='glowing-btn glowing-txt' style={{ color: "whitesmoke" }}>Post</button>
+                            <button className='glowing-btn glowing-txt' style={{ color: "whitesmoke" }}>POST</button>
                         </div>
                     </form >
                 )}
@@ -262,34 +263,32 @@ const ProfilePage = () => {
                             <div className='post-top-bar'>
                                 <div className='post-menu-buttons'>
                                     {isCurrentUsers && (
-                                        <OpenModalButton
-                                            buttonText="Edit"
-                                            modalComponent={<UpdatePostModal postId={post.id} setter={setPostsChanged} />}
+                                        <EditDeleteDrop user={user} postId={post.id}
                                         />
                                     )}
-                                    {isCurrentUsers && (
+                                    {/* {isCurrentUsers && (
                                         <OpenModalButton
                                             buttonText="Delete"
                                             modalComponent={<DeletePostModal postId={post.id} setter={setPostsChanged} />}
                                         />
-                                    )}
+                                    )} */}
                                 </div>
                                 {postImages.map(image => {
-                            if (image.post_id === post.id) {
-                                return (
-                                    <div key={image.id} >
-                                        <img style={{ height: '500px', width: '500px', objectFit:'cover'}} src={`${image.url}`} alt='post'></img>
-                                    </div>
-                                )
-                            }
-                        })}
+                                    if (image.post_id === post.id) {
+                                        return (
+                                            <div key={image.id} >
+                                                <img style={{ height: '500px', width: '500px', objectFit: 'cover' }} src={`${image.url}`} alt='post'></img>
+                                            </div>
+                                        )
+                                    }
+                                })}
                             </div>
                             <div className='post-text-house'>
                                 <p>{post.text}</p>
                             </div>
                             <div className="lp-comments">
                                 <OpenModalButton style={{ color: 'whitesmoke' }}
-                                    buttonText="Comments"
+                                    buttonText={<i id="comment-icon" class="fa-regular fa-comment-dots"></i>}
                                     modalComponent={<PostDetailModal postId={post.id} />}
                                 />
                                 {commentsCount[post.id] > 0 && (

@@ -1,26 +1,124 @@
 .post-modal-house {
     border: 1px;
     width: 85vh;
-    height: 90vh;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
     border-radius: 20px;
+    border: 1px solid red;
+}
+
+#update-comment-textarea {
+    /* border: 1px solid red; */
+    display: flex;
+    position: relative;
+
+}
+
+
+
+#comment-button {
+    position: absolute;
+    left: 78%;
+    top: 70%;
 }
 
 #modal-content {
-    /* border: 5px solid blue; */
+    /* border: 1px solid blue; */
     border-radius: 20px;
+    position: absolute;
+    background-color: transparent;
+
+    /* display: flex;
+    flex-direction: column; */
 }
 
-/* .post-modal-house {
-    border: 1px solid pink;
-    width: 75%;
-    margin-bottom: 20px;
-    padding: 10px;
+#modal-content>button {
+    padding: 5px 5px;
+    margin: 5px 0px;
+    box-shadow: 1px 2px 2px;
+    color: #d4bebe;
+    /* border: 1px solid red; */
+    margin: 6px 3px;
+}
+
+#delete-post-yes {
     border-radius: 5px;
-} */
+}
+
+#delete-post-no {
+    border-radius: 5px;
+}
+
+#delete-post-yes:hover {
+    box-shadow: 1px 1px 2px #d4bebe;
+    transition: all 0.3 ease 0s;
+}
+
+#delete-post-no:hover {
+    box-shadow: 1px 1px 2px #d4bebe;
+    transition: all 0.3 ease 0s;
+}
+
+.update-post-modal-container {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid purple; */
+    width: 500px;
+}
+
+.update-post-content {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    gap: 7px;
+}
+
+#update-label {
+    /* border: 1px solid blue; */
+    margin-top: 5px;
+}
+
+
+#update-textarea>textarea {
+    width: 100%;
+
+}
+
+#update-modal-button {
+    padding: 5px 5px;
+    margin: 5px 0px;
+    box-shadow: 1px 2px 2px;
+    color: #d4bebe;
+}
+
+#update-modal-button:hover {
+    box-shadow: 1px 1px 2px #d4bebe;
+    transition: all 0.3 ease 0s;
+}
+
+.modal-button {
+    background: transparent;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 2px 5px;
+    align-items: center;
+    color: #d4bebe;
+    text-align: center;
+
+}
+
+.modal-button:hover {
+    box-shadow: 1px 1px 2px grey;
+    transition: all 0.4 ease;
+}
+
+
+
 
 .post-modal-top-bar {
     /* border: 2px solid orange; */
@@ -33,6 +131,7 @@
     border: 1px solid orange;
     margin: 10px;
     padding: 0 10px;
+    overflow-wrap: break-word;
 }
 
 .post-modal-comment-house {
@@ -53,4 +152,5 @@
     margin: 10px;
     padding: 0 10px;
     font-size: 13px;
+    overflow-wrap: break-word;
 }

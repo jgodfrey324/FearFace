@@ -23,9 +23,9 @@ function DeletePostModal({ postId }) {
 
     return (
         <>
-            <h1 style={{color: 'whitesmoke'}}>Are you sure you want to delete your post?</h1>
-            <button onClick={deleteButton} style={{color: 'whitesmoke'}}>Yes (delete this post)</button>
-            <button onClick={() => closeModal()} style={{color: 'whitesmoke'}}>No (don't delete)</button>
+            <h1 style={{ color: "#d4bebe" }}>Are you sure you want to delete your post?</h1>
+            <button id="delete-post-yes" onClick={deleteButton} style={{ color: "#d4bebe" }}>Yes (delete this post)</button>
+            <button id="delete-post-no" onClick={() => closeModal()} style={{ color: "#d4bebe" }}>No (don't delete)</button>
         </>
     );
 }

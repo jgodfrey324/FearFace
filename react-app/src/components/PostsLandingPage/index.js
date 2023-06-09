@@ -10,6 +10,7 @@ import { getUserDetail } from '../../store/session';
 import { getComments } from '../../store/comments';
 import { getAllPostImages } from '../../store/post_images';
 import { createPostImage } from '../../store/post_images';
+import EditDeleteDrop from './EditDeleteDrop';
 import './PostsLanding.css';
 
 
@@ -124,25 +125,25 @@ const PostsLanding = () => {
                 <h3>Check out the <NavLink to='/marketplace'>Marketplace!</NavLink></h3>
             </div> */}
             <div className="lp-posts">
-            <form id="lp-form" onSubmit={submitForm} encType="multipart/form-data">
-                <div className='new-post-house'>
-                    <img id="make-post" src="https://i.imgur.com/ERn5sIv.png" alt='post form title'></img>
-                    <ul>
-                        {errors && (
-                            <p style={{ color: "red" }}>{errors}</p>
-                        )}
-                    </ul>
-                    <textarea
-                        style={{ color: '#d4bebe' }}
-                        value={text}
-                        placeholder='Write your status here....'
-                        required
-                        onChange={(e) => setText(e.target.value)}
-                        minLength={5}
-                        maxLength={5000}
-                    />
-                    {/* <button disabled={text.length < 5} className={text.length < 5 ? 'offbtn' : 'onbtn'}>P o s t</button> */}
-                    {/* <label>
+                <form id="lp-form" onSubmit={submitForm} encType="multipart/form-data">
+                    <div className='new-post-house'>
+                        <img id="make-post" src="https://i.imgur.com/ERn5sIv.png" alt='post form title'></img>
+                        <ul>
+                            {errors && (
+                                <p style={{ color: "red" }}>{errors}</p>
+                            )}
+                        </ul>
+                        <textarea
+                            style={{ color: '#d4bebe' }}
+                            value={text}
+                            placeholder='Write your status here....'
+                            required
+                            onChange={(e) => setText(e.target.value)}
+                            minLength={5}
+                            maxLength={5000}
+                        />
+                        {/* <button disabled={text.length < 5} className={text.length < 5 ? 'offbtn' : 'onbtn'}>P o s t</button> */}
+                        {/* <label>
                         <div>Add an Image</div>
                         <input
                             type='file'
@@ -150,63 +151,61 @@ const PostsLanding = () => {
                             onChange={(e) => setImage(e.target.files[0])}
                         ></input>
                     </label> */}
-                    {/* <button disabled={text.length < 5} className='glowing-btn'><span className='glowing-txt'>P <span class='faulty-letter'>O</span> S T</span></button> */}
-                    <button disabled={text.length < 5} className='glowing-btn'>POST</button>
+                        {/* <button disabled={text.length < 5} className='glowing-btn'><span className='glowing-txt'>P <span class='faulty-letter'>O</span> S T</span></button> */}
+                        <button disabled={text.length < 5} className='glowing-btn'>POST</button>
 
-                </div>
-            </form >
-            {posts.toReversed().map(post => {
-                const isCurrentUsers = post.user.id === user.id;
-                return (
-                    <div key={post.id} className='post-house'>
-                        <div className='post-top-bar'>
-                            <div className='post-menu-buttons'>
-                                {isCurrentUsers && (
-                                    <OpenModalButton
-                                        buttonText="Edit"
-                                        modalComponent={<UpdatePostModal postId={post.id} />}
-                                    />
-                                )}
-                                {isCurrentUsers && (
-                                    <OpenModalButton
-                                        buttonText="Delete"
-                                        modalComponent={<DeletePostModal postId={post.id} />}
-                                    />
-                                )}
-                            </div>
-                            <div className='user-name'>
-                                <NavLink to={`/users/${post.user.id}`}>{post.user.first_name} {post.user.last_name}</NavLink>
-                            </div>
-                        </div>
-                        {postImages.map(image => {
-                            if (image.post_id === post.id) {
-                                return (
-                                    <div key={image.id} >
-                                        <img style={{ height: '500px', width: '500px', objectFit:'cover'}} src={`${image.url}`} alt='post'></img>
-                                    </div>
-                                )
-                            }
-                        })}
-                        <div className='post-text-house'>
-                            <p>{post.text}</p>
-                        </div>
-                        <div className="lp-comments">
-                            <OpenModalButton
-                                buttonText="Comments"
-                                modalComponent={<PostDetailModal postId={post.id} />}
-                            />
-                            {commentsCount[post.id] > 0 && (
-                                <span> {commentsCount[post.id]}</span>
-                            )}
-
-                        </div>
                     </div>
-                )
-            })
-            }
+                </form >
+                {posts.toReversed().map(post => {
+                    const isCurrentUsers = post.user.id === user.id;
+                    return (
+                        <div key={post.id} className='post-house'>
+                            <div className='post-top-bar'>
+                                <div className='post-menu-buttons'>
+                                    {isCurrentUsers && (
+                                        <EditDeleteDrop user={user} postId={post.id}
+                                        />
+                                    )}
+                                    {/* {isCurrentUsers && (
+                                        <OpenModalButton
+                                            buttonText="Delete"
+                                            modalComponent={<DeletePostModal postId={post.id} />}
+                                        />
+                                    )} */}
+                                </div>
+                                <div className='user-name'>
+                                    <NavLink to={`/users/${post.user.id}`}>{post.user.first_name} {post.user.last_name}</NavLink>
+                                </div>
+                            </div>
+                            {postImages.map(image => {
+                                if (image.post_id === post.id) {
+                                    return (
+                                        <div key={image.id} >
+                                            <img style={{ height: '500px', width: '500px', objectFit: 'cover' }} src={`${image.url}`} alt='post'></img>
+                                        </div>
+                                    )
+                                }
+                            })}
+                            <div className='post-text-house'>
+                                <p>{post.text}</p>
+                            </div>
+                            <div className="lp-comments">
+                                <OpenModalButton
+                                    buttonText={<i id="comment-icon" class="fa-regular fa-comment-dots"></i>}
+                                    modalComponent={<PostDetailModal postId={post.id} />}
+                                />
+                                {commentsCount[post.id] > 0 && (
+                                    <span> {commentsCount[post.id]}</span>
+                                )}
+
+                            </div>
+                        </div>
+                    )
+                })
+                }
             </div>
             <div className="lp-friends">
-            <h3>my friends  </h3>
+                <h3>my friends  </h3>
                 {Object.values(friends).map((friend) => {
                     return (
                         <div key={friend.id} >🟢

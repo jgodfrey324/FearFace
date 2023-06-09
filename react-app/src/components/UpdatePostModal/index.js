@@ -40,29 +40,36 @@ function UpdatePostModal({ postId }) {
 
 
   return (
-    <>
-      <h1 style={{color: 'whitesmoke'}}>Update Post</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors && (
-            <p style={{ color: "red" }}>{errors}</p>
-          )}
-        </ul>
-        <label>
-          Write your post here...
-          <textarea
-            style={{color: 'whitesmoke'}}
-            placeholder={current_post?.text}
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            required
-            minLength={5}
-            maxLength={5000}
-          />
-        </label>
-        <button type="submit" style={{color: 'whitesmoke'}}>Update</button>
-      </form>
-    </>
+    <div className="update-post-modal-container">
+      <h1 style={{ color: '#d4bebe' }}>Update Post</h1>
+      <div className="update-post-modal-form">
+        <form onSubmit={handleSubmit}>
+          <ul>
+            {errors && (
+              <p style={{ color: "red" }}>{errors}</p>
+            )}
+          </ul>
+          <div className="update-post-content">
+            <div id="update-label">
+              Write your post here...
+            </div>
+            <div id="update-textarea">
+              <textarea
+                style={{ color: 'whitesmoke' }}
+                placeholder={current_post?.text}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                required
+                minLength={5}
+                maxLength={5000}
+                rows={5}
+              />
+            </div>
+          </div>
+          <button type="submit" id="update-modal-button" style={{ color: '#d4bebe' }}>Update</button>
+        </form>
+      </div>
+    </div >
   );
 }
 
