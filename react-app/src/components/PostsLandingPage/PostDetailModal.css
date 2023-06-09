@@ -7,16 +7,26 @@
     align-items: center;
     padding: 20px;
     border-radius: 20px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 #update-comment-textarea {
-    /* border: 1px solid red; */
+    border: 1px solid red;
     display: flex;
     position: relative;
+    width: 200%;
 
 }
 
+#comment-area {
+    width: 200px;
+}
+
+
+/* #update-comment-textarea>textarea {
+    border: 1px solid blue;
+    width: 100px;
+} */
 
 
 #comment-button {
@@ -128,18 +138,31 @@
 }
 
 .post-modal-text-house {
-    border: 1px solid orange;
+    /* border: 1px solid orange; */
     margin: 10px;
-    padding: 0 10px;
+    padding: 30px 10px;
     overflow-wrap: break-word;
+    width: 100%;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+}
+
+#comment-name-delete {
+    display: flex;
+    justify-content: space-between;
 }
 
 .post-modal-comment-house {
-    border: 1px solid pink;
-    width: 85%;
-    margin: 0 20px;
-    margin-bottom: 5px;
+    /* border: 1px solid pink; */
+    width: 100%;
+    /* margin: 0 20px; */
+    /* margin-bottom: 5px; */
     padding: 10px;
+}
+
+.comment-box {
+    /* border: 1px solid green; */
+    width: 100%;
 }
 
 .modal-comment-top-bar {
@@ -147,10 +170,16 @@
     font-size: 14px;
 }
 
+.modal-comment-top-bar>a {
+    text-decoration: none;
+}
+
 .modal-comment-text-house {
-    border: 1px solid orange;
+    border: 1px solid transparent;
     margin: 10px;
     padding: 0 10px;
     font-size: 13px;
     overflow-wrap: break-word;
+    border-radius: 10px;
+    background-color: rgb(68, 67, 67);
 }
