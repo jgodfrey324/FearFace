@@ -8,7 +8,7 @@ def seed_post_images():
         url='https://helterskelliter.files.wordpress.com/2020/06/halloween-1978-movie-still.jpg', post_id=2
         )
     image2 = PostImage(
-        url='https://images2.minutemediacdn.com/image/upload/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/shape/cover/sport/halloween-hed-b9eb72a987a0c9740d68fbb35af90a6b.jpg', post_id=4
+        url='https://images2.minutemediacdn.com/image/upload/c_fill,w_720,ar_16:9,f_auto,q_auto,g_auto/shape/cover/sport/halloween-hed-b9eb72a987a0c9740d68fbb35af90a6b.jpg', post_id=40
         )
     image3 = PostImage(
         url='https://i.pinimg.com/736x/64/12/29/641229483b303144f1ce8ee4947491d6--red-lipsticks-story-board.jpg', post_id=11
