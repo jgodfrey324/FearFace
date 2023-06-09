@@ -40,6 +40,8 @@ function EditDeleteDrop({ user, postId }) {
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
     const closeMenu = () => setShowMenu(false);
 
+
+
     return (
         <div className="caret-icon">
             <button onClick={openMenu}>
@@ -49,8 +51,8 @@ function EditDeleteDrop({ user, postId }) {
                 {user && (
                     <div className="edit-delete-post">
                         <div className="edit-drop">
+                            {console.log("I am in here")}
                             <OpenModalButton
-
                                 buttonText="Edit"
                                 modalComponent={<UpdatePostModal postId={postId} />}
                             />

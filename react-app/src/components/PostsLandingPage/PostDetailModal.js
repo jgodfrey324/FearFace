@@ -8,6 +8,7 @@ import { getComments } from '../../store/comments';
 import { postComment } from '../../store/comments';
 import OpenModalButton from '../OpenModalButton';
 import { getAllPostImages } from '../../store/post_images';
+import EditDeleteDrop from './EditDeleteDrop';
 import "./PostDetailModal.css";
 import { useModal } from '../../context/Modal';
 
@@ -90,6 +91,9 @@ function PostDetailModal({ postId }) {
                 <div className='post-modal-menu-buttons'>
             <i onClick={() => closeModal()} class="fa-solid fa-skull-crossbones"></i>
                     {isPostOwner && (
+                        // <EditDeleteDrop user={user} postId={post.id}
+                        // />
+
                         <OpenModalButton
                             buttonText="Edit"
                             modalComponent={<UpdatePostModal postId={postId} />}
