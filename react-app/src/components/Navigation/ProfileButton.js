@@ -47,7 +47,6 @@ function ProfileButton({ user }) {
         {user && (
           <div className="user-menu-content">
             <span style={{ color: "whitesmoke" }}>{user.username}</span>
-            <span style={{ color: "whitesmoke" }}>{user.email}</span>
             <span onClick={() => {
               history.push(`/users/${user.id}`)
               closeMenu()

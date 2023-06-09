@@ -55,6 +55,9 @@ const MyProducts = () => {
                 <button onClick={() => history.push('/marketplace')}>Marketplace</button>
             </div> */}
             <div className="all-products-house">
+                {!myProducts.length && (
+                    <p>No products in marketplace. Create a new listing now!</p>
+                )}
                 {myProducts.toReversed().map((product) => {
                     return (
                         <div key={product.id} className="product-house" >

@@ -106,7 +106,7 @@ function PostDetailModal({ postId }) {
                         />
                     )}
                 </div>
-                <div className='user-name'>
+                <div className='user-name' onClick={() => closeModal()}>
                     <img src={post.user.profile_pic} alt='user'></img>
                     <NavLink to={`/users/${post.user.id}`}>{post.user.first_name} {post.user.last_name}</NavLink>
                 </div>
@@ -196,7 +196,7 @@ function PostDetailModal({ postId }) {
                                 required
                                 onChange={(e) => setText(e.target.value)}
                                 minLength={5}
-                                maxLength={5000}
+                                // maxLength={5000}
                                 rows={5}
                             />
                         </div>

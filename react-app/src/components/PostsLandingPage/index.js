@@ -155,7 +155,7 @@ const PostsLanding = () => {
                                         />
                                     )} */}
                                 </div>
-                                <div className='user-name' onClick={() => closeModal()}>
+                                <div className='user-name'>
                                     <img src={post.user.profile_pic} alt='user'></img>
                                     <NavLink to={`/users/${post.user.id}`}>{post.user.first_name} {post.user.last_name}</NavLink>
                                 </div>
