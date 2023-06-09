@@ -17,6 +17,7 @@ const ProductsLanding = () => {
     const [sideOpen, setSideOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState({});
 
+    const prodImages = Object.values(useSelector(state => state.productImages))
 
 
     useEffect(() => {
@@ -36,7 +37,7 @@ const ProductsLanding = () => {
 
     useEffect(() => {
         dispatch(getAllProducts());
-        // dispatch(getAllProdImages());
+        dispatch(getAllProdImages())
     }, [dispatch])
 
     if (!user) {
@@ -57,8 +58,8 @@ const ProductsLanding = () => {
         <div className='product-page-container'>
             <div className='trouble-makers'>
                 <div className="marketplace-and-button">
-                    <h2 style={{ color: "white" }}>MarketPlace...</h2>
-                    <button onClick={() => history.push('/marketplace/create')}>Create a new Product</button>
+                    <img id="mplace-logo"src="https://i.imgur.com/7xrEmmi.png"></img>
+                    <button onClick={() => history.push('/marketplace/create')}>Create new listing</button>
                 </div>
                 <div className='product-view'>
                     <div className='all-products-detail'>
@@ -67,8 +68,8 @@ const ProductsLanding = () => {
                                 <div key={product.id} className='product-preview-tile-house'
                                     onClick={() => setSelectedProduct(product)}
                                     >
-                                    <div style={{ color: "white", border: "1px solid white" }}>
-                                        {/* {prodImages.map(image => {
+                                    <div className="product-tile">
+                                        {prodImages.map(image => {
                                             if (image.product_id === product.id) {
                                                 return (
                                                     <div key={image.id} >
@@ -76,7 +77,7 @@ const ProductsLanding = () => {
                                                     </div>
                                                 )
                                             }
-                                        })} */}
+                                        })}
                                         IMAGE
                                         <h3>{product.name}</h3>
                                         <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>

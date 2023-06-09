@@ -161,7 +161,7 @@ const CreateProduct = () => {
                         <input
                             type='file'
                             accept='image/*'
-                            onChange={(e) => setImage(e.target.files[0])}
+                            onClick={() => window.alert("Feature coming soon...")}
                         ></input>
                     </label>
                 </div>

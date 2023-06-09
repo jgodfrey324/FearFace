@@ -34,7 +34,7 @@
     margin-left: 20px;
 }
 
-.intro-house-button > button {
+.intro-house-button>button {
     padding: 5px;
     border-style: none;
 }
@@ -56,11 +56,11 @@
     margin-top: 65px;
 }
 
-.marketplace-button > button {
+.marketplace-button>button {
     padding: 8px;
 }
 
-.user-following-house > h3 {
+.user-following-house>h3 {
     color: rgb(212, 190, 190);
     /* border-bottom: 1px solid whitesmoke; */
     margin-bottom: 10px;
@@ -94,17 +94,17 @@
     object-fit: cover;
 }
 
-.following-house-user-link > a {
+.following-house-user-link>a {
     text-decoration: none;
     color: #d4bebe
 }
 
-.following-house-user-link > a:hover {
+.following-house-user-link>a:hover {
     text-decoration: none;
     color: white
 }
 
-form > .new-post-house {
+form>.new-post-house {
     width: stretch;
     padding: 30px;
 }
@@ -123,17 +123,17 @@ form > .new-post-house {
     width: 100%;
 }
 
-.intro-house-text  {
+.intro-house-text {
     margin-top: 50px;
     overflow: break-word;
 }
 
-.intro-house-text > p {
+.intro-house-text>p {
     margin-right: 160px;
     background-color: transparent;
 }
 
-.post-text-house > p {
+.post-text-house>p {
     color: rgb(212, 190, 190)
 }
 

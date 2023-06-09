@@ -14,19 +14,19 @@ import "./ProductPage.css"
 function ProductDetails({ productId, visible, currentUserId }) {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products);
-  // const prodImages = Object.values(useSelector(state => state.productImages))
+  const prodImages = Object.values(useSelector(state => state.productImages))
 
 
 
   useEffect(() => {
     dispatch(getAllProducts());
-    // dispatch(getAllProdImages());
+    dispatch(getAllProdImages());
   }, [dispatch])
 
 
   if (!visible) return null
 
-  // if (!prodImages) return null;
+  if (!prodImages) return null;
 
 
   const product = products[productId]
@@ -48,7 +48,7 @@ function ProductDetails({ productId, visible, currentUserId }) {
       <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
       <span style={{ color: "whitesmoke" }} className="product-city">{product.location_city} </span>
       <span style={{ color: "whitesmoke" }} className="product-state">{product.location_state}</span>
-      {/* {prodImages.map(image => {
+      {prodImages.map(image => {
         if (image.product_id === product.id) {
           return (
             <div key={image.id} >
@@ -56,7 +56,7 @@ function ProductDetails({ productId, visible, currentUserId }) {
                   </div>
               )
             }
-          })} */}
+          })}
       <p>Details</p>
       <div className="product-description">
         <p>{product.description}</p>
