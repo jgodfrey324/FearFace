@@ -9,17 +9,6 @@
     margin-left: 100px;
 }
 
-.create-button {
-    /* border: 1px solid pink; */
-    width: 12%;
-    margin-left: 100px;
-}
-
-.create-button>button {
-    padding: 5px;
-    width: -webkit-fill-available;
-}
-
 .side-bar-buttons {
     /* border: 1px solid purple; */
     display: flex;
@@ -37,25 +26,44 @@
     overflow: break-word;
 }
 
+.product-house *{
+    background-color:transparent;
+}
+
 .product-house {
-    border: 1px solid orange;
+    /* border: 1px solid orange; */
     width: 400px;
-    height: 800px;
+    height: 650px;
     cursor: pointer;
+}
+
+.product-house:hover{
+    border: transparent;
+    background-color: #2F2E30;
+    box-shadow: 3px 3px 3px black;
+    border-radius: 7px;
+    transition: all .4s ease
+}
+
+.product-house > p{
+    font-weight: 200;
+    font-size: 16px
 }
 
 .product-buttons-house {
     /* border: 1px dashed blue; */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-end;
     row-gap: 2px;
     width: 20%;
+    margin-right: 20px;
 }
 
 .my-product-top-bar>h3 {
-    color: whitesmoke;
-    font-size: 20px;
+    color: #d4bebe;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .my-product-top-bar {
@@ -75,7 +83,7 @@
     /* border: 1px solid lightblue; */
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 50px;
     margin-top: 20px;
     justify-content: center;
 }
@@ -90,14 +98,52 @@
     height: -webkit-fill-available;
     object-fit: cover;
     margin: 10px;
+    border-radius: 7px;
 }
 
 .my-product-description {
-    border: 1px solid blue;
-    height: 250px;
+    /* border: 1px solid blue; */
+    height: 100px;
     overflow-wrap: break-word;
 }
 
+.my-product-description > p{
+    font-weight: 200;
+    font-size: 18px;
+}
+
+.product-house > .my-product-price {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
 .my-product-price {
     margin-top: 30px;
+}
+
+#my-m-logo {
+    width: 300px;
+    height: 75px;
+    margin-left: 25px;
+    margin-top: 15px;
+}
+
+.create-button > button {
+    border: 1px solid red;
+    width: fit-content;
+    color: rgb(212, 190, 190);
+    margin-left: 30px;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.create-button > button:hover {
+    border: none;
+    width: fit-content;
+    background-color: #2F2E30
+}
+.my-prod-name{
+    color: #d4bebe;
 }
