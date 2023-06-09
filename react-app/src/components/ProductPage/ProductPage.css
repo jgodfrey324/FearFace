@@ -1,11 +1,3 @@
-/* .product-view {
-    min-height: 100vh;
-    background-color: lightsalmon;
-    display: flex;
-    justify-content: stretch;
-    align-items: stretch;
-  } */
-
   .product-page-container {
     display: flex;
     justify-content: space-between;
@@ -13,22 +5,26 @@
   }
 
   .all-products-detail {
-    border: 2px solid orange;
+    /* border: 2px solid orange; */
     width: -webkit-fill-available;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     column-gap: 20px;
     row-gap: 20px;
-    /* position: fixed; */
+    margin-top: 10px;
   }
 
   .product-preview-tile-house {
     cursor: pointer;
   }
 
-  /* .product-house {
-    color: transparent;
+  .product-tile {
+    background-color: rgb(80, 76, 76)
+  }
+
+  /* .product-tile > h3, p, a, span {
+    background-color: rgb(80, 76, 76)
   } */
 
   .trouble-makers {
@@ -42,9 +38,9 @@
     flex-wrap: wrap;
   }
 
-  .product-view * {
+  /* .product-view * {
   background-color: transparent;
-  }
+  } */
 
   .product-detail-sidebar-panel {
     border-left: solid black 0px;
@@ -69,9 +65,6 @@
     height: 45px;
   }
 
-  /* NOTE: Special handing to put the toggle OUTSIDE the details panel so it does
-     not affect the layout (content offset, still showing background when closed)
-  */
   .product-detail-sidebar-toggle-house {
     overflow: visible;
     position: relative;
@@ -82,43 +75,10 @@
     z-index: 50;
   }
 
-  /* LIST */
-
-  /* .product-list {
-    padding: 25px;
-    background-color: white;
-    border-radius: 1rem;
-  }
-
-  .product-list-item {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    border: solid black 2px;
-    border-radius: 1rem;
-    padding: 20px;
-    margin: 25px 10px;
-    width: 150px;
-    height: 150px;
-    overflow: visible;
-  }
-  .product-list-item.selected {
-    background-color: lightcoral;
-  }
-
-  .product-list-item-photo {
-    width: 150px;
-    height: 116px;
-    margin-bottom: 12px;
-  } */
-
-  /* DETAILS */
-
   .product-details {
     padding: 10px;
     width: 500px;
     overflow: scroll;
-    /* z-index: 50; */
   }
 
   .product-info {
@@ -143,11 +103,22 @@
     font-size: x-large;
   }
 
-  /* li.product-details-list-item {
-    margin-bottom: 8px;
-    list-style-type: square;
-  } */
-
  button {
     color: whitesmoke
+  }
+
+  .marketplace-and-button {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #mplace-logo {
+    height: 75px;
+    width: 300px;
+  }
+
+  .marketplace-and-button > button {
+    width: 200px;
+    color: rgb(212, 190, 190)
   }
