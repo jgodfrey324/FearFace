@@ -63,7 +63,7 @@
 }
 
 .intro-house-text > p {
-    font-size: 12px;
+    font-size: 13px;
     margin-top: 20px;
 }
 
@@ -108,11 +108,20 @@
 }
 
 #profile-pic-main {
-    height: 150px;
-    width: 150px;
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
     border-radius: 100px;
     object-fit: cover;
     border: 3px solid black;
+    height: 125px;
+    width: 125px;
+}
+
+.profile-pic {
+    height: 125px;
+    width: 125px;
+    /* border-radius: 100px; */
+
 }
 
 #profile-side-pic {
