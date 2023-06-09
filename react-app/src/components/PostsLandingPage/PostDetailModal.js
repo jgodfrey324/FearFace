@@ -119,7 +119,7 @@ function PostDetailModal({ postId }) {
             <div className='post-modal-text-house'>
                 <p>{post.text}</p>
             </div>
-            <form onSubmit={submitForm}>
+            {/* <form onSubmit={submitForm}>
                 <div className='new-comment-house'>
                     <ul>
                         {errors && (
@@ -140,13 +140,13 @@ function PostDetailModal({ postId }) {
                             />
                         </div>
                         <div id="comment-button">
-                            <button style={{ color: "whitesmoke" }}>Post</button>
+                            <button style={{ color: "whitesmoke" }}><i class="fa-solid fa-skull"></i></button>
                         </div>
                     </div>
                 </div>
-            </form >
+            </form > */}
             <div className='comment-box'>
-                {postComments.toReversed().map(comment => {
+                {postComments.map(comment => {
                     let isCommentOwner = comment.user.id === user.id
                     return (
                         <div key={comment.id} className='post-modal-comment-house'>
@@ -171,6 +171,32 @@ function PostDetailModal({ postId }) {
                 })
                 }
             </div>
+            <form onSubmit={submitForm}>
+                <div className='new-comment-house'>
+                    <ul>
+                        {errors && (
+                            <p style={{ color: "red" }}>{errors}</p>
+                        )}
+                    </ul>
+                    <div id="update-comment-textarea">
+                        <div id="comment-area">
+                            <textarea
+                                style={{ color: 'whitesmoke' }}
+                                value={text}
+                                placeholder='Write a comment....'
+                                required
+                                onChange={(e) => setText(e.target.value)}
+                                minLength={5}
+                                maxLength={5000}
+                                rows={5}
+                            />
+                        </div>
+                        <div id="comment-button">
+                            <button style={{ color: "whitesmoke" }}><i class="fa-solid fa-skull"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </form >
         </div>
 
 
