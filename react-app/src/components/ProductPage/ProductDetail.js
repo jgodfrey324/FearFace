@@ -44,15 +44,15 @@ function ProductDetails({ productId, visible, currentUserId }) {
 
   return (
     <div className="product-details">
-      <h3 style={{ color: "whitesmoke" }} className="product-info">{product.name}</h3>
+      <h3 className="product-info">{product.name}</h3>
       <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
-      <span style={{ color: "whitesmoke" }} className="product-city">{product.location_city} </span>
-      <span style={{ color: "whitesmoke" }} className="product-state">{product.location_state}</span>
+      <span className="product-city">{product.location_city}, </span>
+      <span className="product-state">{product.location_state}</span>
       {prodImages.map(image => {
         if (image.product_id === product.id) {
           return (
-            <div key={image.id} >
-                      <img style={{height: '400px', width: '350px', objectFit:'cover'}}src={`${image.url}`} alt='product'></img>
+            <div className="sb-img-room" key={image.id} >
+                      <img id="sb-img" style={{height: '400px', width: '350px', objectFit:'cover'}}src={`${image.url}`} alt='product'></img>
                   </div>
               )
             }
@@ -61,7 +61,7 @@ function ProductDetails({ productId, visible, currentUserId }) {
       <div className="product-description">
         <p>{product.description}</p>
       </div>
-      <p style={{ color: "whitesmoke" }} className="product-price">$ {product.price}</p>
+      <p className="product-price">$ {product.price.toFixed(2)}</p>
       <div>
         {(currentUserId === product.user?.id) &&
           < div classname="product-detail-buttons">
