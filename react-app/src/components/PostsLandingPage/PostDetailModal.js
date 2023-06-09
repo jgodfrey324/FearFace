@@ -110,8 +110,8 @@ function PostDetailModal({ postId }) {
                 // console.log(image.post_id, '---------------------------------------')
                 if (image.post_id === postId) {
                     return (
-                        <div key={image.id} >
-                            <img style={{ height: '300px', width: '300px', objectFit: 'cover' }} src={`${image.url}`} alt='post'></img>
+                        <div key={image.id} className='detail-image-house'>
+                            <img src={`${image.url}`} alt='post'></img>
                         </div>
                     )
                 }

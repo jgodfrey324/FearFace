@@ -157,14 +157,15 @@ const PostsLanding = () => {
                                     )} */}
                                 </div>
                                 <div className='user-name'>
+                                    <img src={post.user.profile_pic} alt='user'></img>
                                     <NavLink to={`/users/${post.user.id}`}>{post.user.first_name} {post.user.last_name}</NavLink>
                                 </div>
                             </div>
                             {postImages.map(image => {
                                 if (image.post_id === post.id) {
                                     return (
-                                        <div key={image.id} >
-                                            <img style={{ height: '500px', width: '500px', objectFit: 'cover' }} src={`${image.url}`} alt='post'></img>
+                                        <div key={image.id} className='post-image-house'>
+                                            <img src={`${image.url}`} alt='post'></img>
                                         </div>
                                     )
                                 }
@@ -191,7 +192,8 @@ const PostsLanding = () => {
                 <h3>my friends  </h3>
                 {Object.values(friends).map((friend) => {
                     return (
-                        <div key={friend.id} >🟢
+                        <div key={friend.id} className='lp-friends-tag'>
+                            <span>🟢</span>
                             <NavLink id="friend-name" to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
                         </div>
                     )
