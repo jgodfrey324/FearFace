@@ -64,10 +64,14 @@
 .login-house>form>label>input {
     /* border: 1px solid green; */
     width: 100%;
-    padding: 0;
+    padding: 5px;
     border: 1px solid #63242A;
     height: 20px;
     border-radius: 5px;
+}
+
+.login-house>form>label>input:focus {
+    outline: none;
 }
 
 .login-house>p>a:hover {

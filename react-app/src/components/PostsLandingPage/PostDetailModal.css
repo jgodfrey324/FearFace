@@ -8,8 +8,7 @@
     padding: 20px;
     border-radius: 20px;
     position: relative;
-    /* top: 100px;
-    right: 150px; */
+    background-color: #2F2E30;
 }
 
 /* #root {
@@ -17,15 +16,21 @@
 } */
 
 #update-comment-textarea {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
     position: relative;
-    width: 200%;
+    width: 100%;
 
 }
 
 #comment-area {
-    width: 200px;
+    width: 100%;
+    background-color: #2F2E30;
+}
+
+#comment-area>textarea {
+    width: 500px;
+    border-radius: 5px;
 }
 
 .detail-image-house {
@@ -35,9 +40,10 @@
     display: flex;
     justify-content: center;
     background-color: pink;
+    background-color: #151515;
 }
 
-.detail-image-house > img {
+.detail-image-house>img {
     object-fit: cover;
     width: 80%;
     /* border: 2px solid blue; */
@@ -56,8 +62,19 @@
 
 #comment-button {
     position: absolute;
-    left: 78%;
+    left: 92.3%;
     top: 70%;
+
+}
+
+#comment-button>button {
+    padding: 0px 10px;
+    border-radius: 5px;
+}
+
+#comment-button>button:hover {
+    box-shadow: 1px 1px 2px #d4bebe;
+    transition: all 0.3 ease 0s;
 }
 
 #modal-content {
@@ -161,6 +178,9 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
+    width: -webkit-fill-available;
+    background-color: #2F2E30;
+
 }
 
 .post-modal-text-house {
@@ -169,8 +189,9 @@
     padding: 30px 10px;
     overflow-wrap: break-word;
     width: 100%;
-    border-bottom: 1px solid;
-    border-top: 1px solid;
+    border-bottom: 0.5px solid rgb(212, 190, 190);
+    border-top: 0.5px solid rgb(212, 190, 190);
+    background-color: #2F2E30;
 }
 
 /* .post-modal-text-house > p {
@@ -181,28 +202,41 @@
 #comment-name-delete {
     display: flex;
     justify-content: space-between;
+    background-color: #2F2E30;
 }
 
 .post-modal-comment-house {
     /* border: 1px solid pink; */
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+    width: 75%;
     /* margin: 0 20px; */
     /* margin-bottom: 5px; */
     padding: 10px;
+    background-color: #2F2E30;
+    margin-left: 87px;
 }
+
+
 
 .comment-box {
     /* border: 1px solid green; */
     width: 100%;
+    background-color: #2F2E30;
 }
 
 .modal-comment-top-bar {
     /* border: 1px solid blue; */
     font-size: 14px;
+    background-color: #2F2E30;
 }
 
 .modal-comment-top-bar>a {
     text-decoration: none;
+    background-color: #2F2E30;
+
 }
 
 .modal-comment-text-house {
