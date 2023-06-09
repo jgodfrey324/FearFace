@@ -27,24 +27,39 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    margin-left: 11%;
+    /* margin-left: 11%; */
     margin-top: 20px;
+    width: 50%;
 }
 
 .intro-house-button {
-    margin-left: 20px;
+    /* margin-left: 20px; */
+    /* border: 1px solid purple; */
+    display: flex;
+}
+
+.profile-name-button {
+    display: flex;
+    justify-content: space-between;
 }
 
 .intro-house-button>button {
     padding: 5px;
     border-style: none;
+    color:rgb(212, 190, 190);
+    border-radius: 5px;
+}
+
+.intro-house-button>button:hover {
+    color: white;
+    background-color: #2F2E30;
 }
 
 .intro-house-text {
-    /* border: 1px solid orange; */
+    /* border: 1px solid orange;  */
     color: whitesmoke;
     /* margin: 10px 0; */
-    width: 40%;
+    width: -webkit-fill-available;
 }
 
 .intro-house-text > p {
