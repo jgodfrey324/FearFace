@@ -153,7 +153,7 @@ def create_image(id):
 @posts.route('/images')
 @login_required
 def get_post_images():
-    images = PostImage.query.all();
+    images = PostImage.query.all()
 
     res = {}
 

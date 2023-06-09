@@ -8,6 +8,7 @@ import OpenModalButton from '../OpenModalButton';
 import DeletePostModal from '../UpdatePostModal/DeletePostModal';
 import UpdatePostModal from '../UpdatePostModal';
 import PostDetailModal from '../PostsLandingPage/PostDetailModal';
+import { getAllPostImages } from '../../store/post_images';
 import './ProfilePage.css'
 
 
@@ -21,6 +22,7 @@ const ProfilePage = () => {
     const current_user = useSelector(state => state.session.user);
     const comments = Object.values(useSelector(state => state.comments))
     const posts = Object.values(useSelector(state => state.posts))
+    const postImages = Object.values(useSelector(state => state.postImages))
 
     const [text, setText] = useState('');
     // const [url, setUrl] = useState('');
@@ -34,6 +36,7 @@ const ProfilePage = () => {
     useEffect(() => {
         dispatch(getAllPosts());
         dispatch(getComments())
+        dispatch(getAllPostImages())
         const timeout = setTimeout(() => {
             async function data() {
                 const ress = await dispatch(getUserDetail(userId));
@@ -139,7 +142,7 @@ const ProfilePage = () => {
     if (!comments) return null;
 
 
-
+    console.log(postImages, 'fuuuuuuuuuuuuuuuuuuuuuuuuuuck')
 
     const commentsCount = {}
 
@@ -180,8 +183,10 @@ const ProfilePage = () => {
     return (
         <div className='profile-house'>
             <div className='profile-intro-house'>
+                <img id="profile-pic-main" src={user.profile_pic}></img>
                 <div className='intro-house-text'>
-                    {current_user.id === parseInt(userId) ? <h1>My Profile</h1> : <h1>{user.first_name} {user.last_name}</h1>}
+                    <h1>{user.first_name} {user.last_name}</h1>
+                    <p>{user.bio}</p>
                 </div>
                 <div className='intro-house-button'>
                     {!friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
@@ -195,34 +200,41 @@ const ProfilePage = () => {
                 </div>
             </div>
             <div className='my-profile-side-bar'>
-                <div className='user-following-house'>
-                    <h3>Following:</h3>
+                <div className="user-about" style={{color:'white'}}>
                     {visiting_profile_friends.map((friend) => {
                         return (
-                            <div key={friend.id} className='following-house-user-link'>
+                            <div></div>
+                        )
+                    })}
+                </div>
+                <div className='user-following-house'>
+                    <h3>following</h3>
+                    {visiting_profile_friends.map((friend) => {
+                        return (
+                            <div key={friend.id} className='following-house-user-link'><img id="profile-side-pic" src={friend.profile_pic}></img>
                                 <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
                             </div>
                         )
                     })}
-                </div>
+                {/* </div>
                 <div className='marketplace-button'>
                     <button onClick={() => history.push('/marketplace')}>MarketPlace</button>
                 </div>
                     {current_user.id !== parseInt(userId) ? <button onClick={() => history.push(`/users/${current_user.id}`)}>My Profile</button> : null}
-                <div>
+                <div> */}
 
                 </div>
             </div>
             <div className='my-products-button'>
-                {current_user.id === parseInt(userId) && (
+                {/* {current_user.id === parseInt(userId) && (
                     <button onClick={() => history.push(`/users/${userId}/products`)}>My Products</button>
-                )}
+                )} */}
             </div>
             <div className='profile-content-house'>
                 {current_user.id === parseInt(userId) && (
                     <form onSubmit={submitForm} id='profile-form'>
                         <div className='new-post-house'>
-                            <h2 style={{ color: "whitesmoke" }}>Make a new post!</h2>
+                        <img id="make-post" src="https://i.imgur.com/ERn5sIv.png" alt='post form title'></img>
                             <ul>
                                 {errors && (
                                     <p style={{ color: "red" }}>{errors}</p>
@@ -231,13 +243,14 @@ const ProfilePage = () => {
                             <textarea
                                 style={{ color: "whitesmoke" }}
                                 value={text}
-                                placeholder='Write your status here....'
+                                placeholder=
+                                {`What's on your mind, ${user.first_name}?`}
                                 required
                                 onChange={(e) => setText(e.target.value)}
                                 minLength={5}
                                 maxLength={5000}
                             />
-                            <button style={{ color: "whitesmoke" }}>Post</button>
+                            <button className='glowing-btn glowing-txt' style={{ color: "whitesmoke" }}>Post</button>
                         </div>
                     </form >
                 )}
@@ -261,20 +274,26 @@ const ProfilePage = () => {
                                         />
                                     )}
                                 </div>
-                                <div className='user-name'>
-                                    <NavLink to={`/users/${post.user.id}`}></NavLink>
-                                </div>
+                                {postImages.map(image => {
+                            if (image.post_id === post.id) {
+                                return (
+                                    <div key={image.id} >
+                                        <img style={{ height: '500px', width: '500px', objectFit:'cover'}} src={`${image.url}`} alt='post'></img>
+                                    </div>
+                                )
+                            }
+                        })}
                             </div>
                             <div className='post-text-house'>
-                                <p style={{ color: 'whitesmoke' }}>{post.text}</p>
+                                <p>{post.text}</p>
                             </div>
-                            <div className="p-page-comments">
+                            <div className="lp-comments">
                                 <OpenModalButton style={{ color: 'whitesmoke' }}
                                     buttonText="Comments"
                                     modalComponent={<PostDetailModal postId={post.id} />}
                                 />
                                 {commentsCount[post.id] > 0 && (
-                                    <span style={{ color: 'whitesmoke' }}> {commentsCount[post.id]}</span>
+                                    <span> {commentsCount[post.id]}</span>
                                 )}
                             </div>
                         </div>

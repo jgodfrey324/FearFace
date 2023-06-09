@@ -13,11 +13,15 @@ function Navigation({ isLoaded }) {
 		<div className='top-container'>
 			<div className='logo-and-name' >
 				<div className='fearface-logo'>
-				<NavLink style={{color:"whitesmoke"}} exact to="/"><img id="fearfaceimage" src="https://i.imgur.com/rwR3GBq.png" alt='page logo'></img></NavLink>
+					<NavLink style={{ color: "whitesmoke" }} exact to="/"><img id="fearfaceimage" src="https://i.imgur.com/rwR3GBq.png" alt='page logo'></img></NavLink>
 				</div>
 			</div>
 			{isLoaded && (
 				<div className='topright-nav'>
+					{sessionUser &&
+						<NavLink to="/marketplace" className="topright-nav-create-text">
+							<button id="store-button" title="MarketPlace"><i class="fa-solid fa-store"></i></button>
+						</NavLink>}
 					<ProfileButton user={sessionUser} />
 				</div>
 			)}

@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { logout } from "../../store/session";
-// import OpenModalButton from "../OpenModalButton";
-// import LoginFormModal from "../LoginFormModal";
-// import SignupFormModal from "../SignupFormModal";
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -37,7 +36,7 @@ function ProfileButton({ user }) {
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  // const closeMenu = () => setShowMenu(false);
+  const closeMenu = () => setShowMenu(false);
 
   return (
     <>
@@ -49,23 +48,19 @@ function ProfileButton({ user }) {
           <div className="user-menu-content">
             <span style={{ color: "whitesmoke" }}>{user.username}</span>
             <span style={{ color: "whitesmoke" }}>{user.email}</span>
+            <span onClick={() => {
+              history.push(`/users/${user.id}`)
+              closeMenu()
+            }}
+              style={{ color: 'whitesmoke' }}>My Profile</span>
+            <span onClick={() => {
+              history.push(`/marketplace`)
+              closeMenu()
+            }}
+              style={{ color: 'whitesmoke' }}>My Products</span>
             <button className="logout-button" style={{ color: "whitesmoke" }} onClick={handleLogout}>Log Out</button>
 
           </div>
-          // ) : (
-          //   <>
-          //     <OpenModalButton
-          //       buttonText="Log In"
-          //       onItemClick={closeMenu}
-          //       modalComponent={<LoginFormModal />}
-          //     />
-
-          //     <OpenModalButton
-          //       buttonText="Sign Up"
-          //       onItemClick={closeMenu}
-          //       modalComponent={<SignupFormModal />}
-          //     />
-          //   </>
         )}
       </div>
     </>
