@@ -19,9 +19,9 @@ def seed_post_images():
     image5 = PostImage(
         url='https://cdn.mos.cms.futurecdn.net/XqPdSp5ZZcmDksZWxVYPiY-1200-80.jpg', post_id=13
         )
-    image6 = PostImage(
-        url='https://scarina.files.wordpress.com/2014/06/whitelady.jpg', post_id=14
-        )
+    # image6 = PostImage(
+    #     url='https://scarina.files.wordpress.com/2014/06/whitelady.jpg', post_id=14
+    #     )
     image7 = PostImage(
         url='https://filmschoolrejects.com/wp-content/uploads/2019/08/pennywise_student_loans.jpg', post_id=22
         )
@@ -41,7 +41,7 @@ def seed_post_images():
     #     url='https://cdn.mos.cms.futurecdn.net/XqPdSp5ZZcmDksZWxVYPiY-1200-80.jpg', post_id=13
     #     )
 
-    images = [image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11]
+    images = [image1, image2, image3, image4, image5, image7, image8, image9, image10, image11]
 
     [db.session.add(image) for image in images]
     db.session.commit()
