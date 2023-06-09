@@ -185,19 +185,24 @@ const ProfilePage = () => {
             <div className='profile-intro-house'>
                 <img id="profile-pic-main" src={user.profile_pic}></img>
                 <div className='intro-house-text'>
-                    <h1>{user.first_name} {user.last_name}</h1>
+                    <div className='profile-name-button'>
+                        <h1>{user.first_name} {user.last_name}</h1>
+                        <div className='intro-house-button'>
+                            {!friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
+                                <button onClick={handleFollow}>Follow</button>
+                            )}
+                            {friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
+                                <button onClick={handleUnfollow}>Unfollow</button>
+                            )}
+                        </div>
+                    </div>
                     <p>{user.bio}</p>
                 </div>
-                <div className='intro-house-button'>
-                    {!friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
-                        <button onClick={handleFollow}>Follow</button>
-                    )}
-                </div>
-                <div className='intro-house-button'>
+                {/* <div className='intro-house-button'>
                     {friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
                         <button onClick={handleUnfollow}>Unfollow</button>
                     )}
-                </div>
+                </div> */}
             </div>
             <div className='my-profile-side-bar'>
                 <div className='user-following-house'>

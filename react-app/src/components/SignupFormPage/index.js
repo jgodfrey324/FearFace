@@ -34,13 +34,13 @@ function SignupFormPage() {
   return (
     <div className="signup-house">
       <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt='page logo' ></img>
-      <p style={{color: 'whitesmoke'}}>Already have an account? Log in <NavLink to='/login'>here.</NavLink></p>
+      <p>Already have an account? Log in <NavLink to='/login'>here.</NavLink></p>
       <form onSubmit={handleSubmit}>
-        <ul>
-            {errors && (
-                <p style={{ color: "red", margin: '20px' }}>{errors}</p>
-            )}
-        </ul>
+      <span>
+          {errors.map((error, idx) => (
+            <li id="error-li" key={idx}>{error}</li>
+          ))}
+        </span>
         <label>
           Email
           <input
