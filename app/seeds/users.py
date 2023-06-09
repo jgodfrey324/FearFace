@@ -14,7 +14,7 @@ def seed_users():
         username='josh-lambert', first_name='Josh', last_name='Lambert', email='josh@lambert.io', bio= 'Enjoy working with psychics! Sometimes I feel like someone\'s watching me from where I can\'t see them...👹 but this person is familiar somehow... I just can\'t remember.', profile_pic='https://static1.personality-database.com/profile_images/a13104475a104f1b87d974cc5b30823a.png', password='password'
         )
     red_demon = User(
-        username='red-demon', first_name='Red', last_name='Demon', email='red@demo.io', bio= 'Live in the Further. I\'ll be there for you when you need it! Trust 🤞', profile_pic='https://cdn.vox-cdn.com/thumbor/x-Qs157Ntjycze7qGEKmELQRkQ8=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22416406/insidious.jpg', password='password'
+        username='red-demon', first_name='Red', last_name='Demon', email='red@demon.io', bio= 'Live in the Further. I\'ll be there for you when you need it! Trust 🤞', profile_pic='https://cdn.vox-cdn.com/thumbor/x-Qs157Ntjycze7qGEKmELQRkQ8=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/22416406/insidious.jpg', password='password'
     )
     woman_in_white = User(
         username='woman-in-white', first_name='Woman', last_name='In White', email='woman@white.io', bio= 'Litte stern, more bossy.. mostly a ghost 💋 Parker Crane\'s mom', profile_pic='https://genkinahito.files.wordpress.com/2013/12/insidious-2-parker-cranes-mother-danielle-bisutti.jpg', password='password'
@@ -40,8 +40,8 @@ def seed_users():
     chris = User(
          username='chris-washington', first_name='Chris', last_name='Washington', email='chris@washington.io', bio= 'Photographer 📸 Enjoying life 💜 Rosie', profile_pic='https://metadata-static.plex.tv/extras/iva/250507/502d06ec7ddddb09d97b220c86cc3869.jpg', password='password'
     )
-    dean = User(
-        username='dean-armitage', first_name='Dean', last_name='Armitage', email='dean@armitage.io', bio= '\'36 Olympics 🏃‍♂️ Live in Armitage Estate', profile_pic='https://static1.personality-database.com/profile_images/b7ba6a2cbdcf42f48608d91a00c623dd.png', password='password'
+    roman = User(
+        username='roman-armitage', first_name='Roman', last_name='Armitage', email='roman@armitage.io', bio= '\'36 Olympics 🏃‍♂️ Armitage Estate caretaker', profile_pic='https://gray-wsfa-prod.cdn.arcpublishing.com/resizer/eVKNoQLXFpjeL4czwlV5QhL8yKE=/1200x675/smart/filters:quality(85)/cloudfront-us-east-1.images.arcpublishing.com/gray/3YS2BJFRG5EPDENX2GFUSRPVM4.jpg', password='password'
     )
     jack = User(
         username='jack-torrance', first_name='Jack', last_name='Torrance', email='jack@torrance.io', bio= 'Former teacher, winter caretaker at the Overlook Hotel, author.', profile_pic='https://www.indiewire.com/wp-content/uploads/2018/03/stanley-kubricks-the-shining-at-universals-halloween-horror-nights-2017.jpg', password='password'
@@ -53,10 +53,10 @@ def seed_users():
         username='boogeyman', first_name='Boogeyman', last_name='.', email='boogey@man.io', bio= 'Boo 👻 🤣  Night owl 💤...', profile_pic='https://bloody-disgusting.com/wp-content/uploads/2023/05/boogey-3.png', password='password'
     )
     slender_man = User(
-        username='slender-man', first_name='Slender', last_name='Man', email='slender@man.io', bio= '#notastalker please believe me, it\'s a wrong place wrong time thing', profile_pic='https://parade.com/.image/t_share/MTkwNTc5MjI2MzU3NDc1MTk2/what-is-the-slender-man-ftr.jpg', password='password'
+        username='slender-man', first_name='Slender', last_name='Man', email='slender@man.io', bio= '15\'6 tall ✌️ not a stalker, please believe me, it\'s a wrong place wrong time thing', profile_pic='https://parade.com/.image/t_share/MTkwNTc5MjI2MzU3NDc1MTk2/what-is-the-slender-man-ftr.jpg', password='password'
     )
 
-    users = [mike, laurie, josh, red_demon, woman_in_white, annabelle, lorraine, ed, pennywise, georgie, bill, chris, dean, jack, freddy, boogeyman, slender_man]
+    users = [mike, laurie, josh, red_demon, woman_in_white, annabelle, lorraine, ed, pennywise, georgie, bill, chris, roman, jack, freddy, boogeyman, slender_man]
 
     [db.session.add(user) for user in users]
 
