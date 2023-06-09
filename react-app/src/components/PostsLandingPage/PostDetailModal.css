@@ -11,8 +11,18 @@
 }
 
 #update-comment-textarea {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     display: flex;
+    position: relative;
+
+}
+
+
+
+#comment-button {
+    position: absolute;
+    left: 78%;
+    top: 70%;
 }
 
 #modal-content {

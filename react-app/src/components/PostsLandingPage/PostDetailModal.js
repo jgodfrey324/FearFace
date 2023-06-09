@@ -119,17 +119,21 @@ function PostDetailModal({ postId }) {
                         )}
                     </ul>
                     <div id="update-comment-textarea">
-                        <textarea
-                            style={{ color: 'whitesmoke' }}
-                            value={text}
-                            placeholder='Write a comment....'
-                            required
-                            onChange={(e) => setText(e.target.value)}
-                            minLength={5}
-                            maxLength={5000}
-                            rows={5}
-                        />
-                        <button style={{ color: "whitesmoke" }}>Post</button>
+                        <div id="comment-area">
+                            <textarea
+                                style={{ color: 'whitesmoke' }}
+                                value={text}
+                                placeholder='Write a comment....'
+                                required
+                                onChange={(e) => setText(e.target.value)}
+                                minLength={5}
+                                maxLength={5000}
+                                rows={5}
+                            />
+                        </div>
+                        <div id="comment-button">
+                            <button style={{ color: "whitesmoke" }}>Post</button>
+                        </div>
                     </div>
                 </div>
             </form >

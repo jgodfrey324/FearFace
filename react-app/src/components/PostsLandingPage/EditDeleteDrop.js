@@ -41,9 +41,9 @@ function EditDeleteDrop({ user, postId }) {
     const closeMenu = () => setShowMenu(false);
 
     return (
-        <>
-            <button id="caret-icon" onClick={openMenu}>
-                <i id="caret-edit-delete" class="fa-solid fa-caret-down"></i>
+        <div className="caret-icon">
+            <button onClick={openMenu}>
+                <i id="caret-edit-delete" class="fa-solid fa-ellipsis"></i>
             </button>
             <div className={ulClassName} ref={ulRef}>
                 {user && (
@@ -65,7 +65,7 @@ function EditDeleteDrop({ user, postId }) {
                     </div>
                 )}
             </div>
-        </>
+        </div>
     );
 }
 
