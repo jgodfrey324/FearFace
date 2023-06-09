@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 
 
 # Adds a demo user, you can add other users here if you want
-def seed_post_images():
+def seed_product_images():
     image1 = ProductImage(
         url='https://pm1.aminoapps.com/6884/96142e33a5ebfea54a627043c9077a34daa11fe9r1-1024-989v2_uhq.jpg', product_id=1
         )
@@ -53,7 +53,7 @@ def seed_post_images():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_post_images():
+def undo_product_images():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.product_images RESTART IDENTITY CASCADE;")
     else:
