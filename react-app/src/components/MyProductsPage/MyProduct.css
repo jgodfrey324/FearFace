@@ -3,7 +3,7 @@
     margin: 20px 0;
 }
 
-.my-products-house > h1 {
+.my-products-house>h1 {
     color: whitesmoke;
     margin-bottom: 20px;
     margin-left: 100px;
@@ -15,7 +15,7 @@
     margin-left: 100px;
 }
 
-.create-button > button {
+.create-button>button {
     padding: 5px;
     width: -webkit-fill-available;
 }
@@ -31,7 +31,7 @@
 }
 
 
-.side-bar-buttons > button {
+.side-bar-buttons>button {
     margin: 10px 0;
     padding: 10px;
     overflow: break-word;
@@ -53,7 +53,7 @@
     width: 20%;
 }
 
-.my-product-top-bar > h3 {
+.my-product-top-bar>h3 {
     color: whitesmoke;
     font-size: 20px;
 }
@@ -67,7 +67,7 @@
     margin: 0 10px;
 }
 
-.product-buttons-house > button {
+.product-buttons-house>button {
     width: -webkit-fill-available;
 }
 
@@ -85,7 +85,7 @@
     height: 380px;
 }
 
-.my-product-image > img {
+.my-product-image>img {
     width: -webkit-fill-available;
     height: -webkit-fill-available;
     object-fit: cover;
@@ -95,6 +95,7 @@
 .my-product-description {
     border: 1px solid blue;
     height: 250px;
+    overflow-wrap: break-word;
 }
 
 .my-product-price {

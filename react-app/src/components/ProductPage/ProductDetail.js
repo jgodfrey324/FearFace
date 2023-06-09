@@ -5,23 +5,23 @@ import { useEffect } from 'react';
 import OpenModalButton from '../OpenModalButton';
 import UpdateProductModal from './UpdateProduct';
 import DeleteProductModal from './DeleteProductModal';
-import {getAllProducts} from '../../store/product.js'
+import { getAllProducts } from '../../store/product.js'
 import { getAllProdImages } from '../../store/product_images';
 import "./ProductPage.css"
 
 
 
-function ProductDetails({ productId, visible, currentUserId}) {
-  const dispatch=useDispatch()
+function ProductDetails({ productId, visible, currentUserId }) {
+  const dispatch = useDispatch()
   const products = useSelector(state => state.products);
   // const prodImages = Object.values(useSelector(state => state.productImages))
 
 
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getAllProducts());
     // dispatch(getAllProdImages());
-  },[dispatch])
+  }, [dispatch])
 
 
   if (!visible) return null
@@ -44,10 +44,10 @@ function ProductDetails({ productId, visible, currentUserId}) {
 
   return (
     <div className="product-details">
-      <h3 style={{color:"whitesmoke"}} className="product-info">{product.name}</h3>
+      <h3 style={{ color: "whitesmoke" }} className="product-info">{product.name}</h3>
       <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
-      <span style={{color:"whitesmoke"}} className="product-city">{product.location_city} </span>
-      <span style={{color:"whitesmoke"}} className="product-state">{product.location_state}</span>
+      <span style={{ color: "whitesmoke" }} className="product-city">{product.location_city} </span>
+      <span style={{ color: "whitesmoke" }} className="product-state">{product.location_state}</span>
       {/* {prodImages.map(image => {
         if (image.product_id === product.id) {
           return (
@@ -57,30 +57,29 @@ function ProductDetails({ productId, visible, currentUserId}) {
               )
             }
           })} */}
-          <p>Details</p>
+      <p>Details</p>
       <div className="product-description">
         <p>{product.description}</p>
       </div>
-      <p style={{color:"whitesmoke"}} className="product-price">$ {product.price}</p>
+      <p style={{ color: "whitesmoke" }} className="product-price">$ {product.price}</p>
       <div>
         {(currentUserId === product.user?.id) &&
-
-          <div classname="product-detail-buttons">
-          <OpenModalButton style={{color: 'whitesmoke'}}
+          < div classname="product-detail-buttons">
+            <OpenModalButton style={{ color: 'whitesmoke' }}
               buttonText="Update"
               modalComponent={<UpdateProductModal productId={product.id} />}
-          />
+            />
 
-            <OpenModalButton style={{color: 'whitesmoke'}}
-                buttonText="Delete"
-                modalComponent={<DeleteProductModal productId={product.id} />
-                }/>
+            <OpenModalButton style={{ color: 'whitesmoke' }}
+              buttonText="Delete"
+              modalComponent={<DeleteProductModal productId={product.id} />
+              } />
           </div>
 
-          }
+        }
 
-        </div>
-    </div>
+      </div>
+    </div >
   )
 }
 

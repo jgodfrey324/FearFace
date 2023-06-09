@@ -24,7 +24,7 @@ function LoginFormPage() {
 
   const demoUser = (e) => {
     e.preventDefault()
-    return dispatch(login("demo@aa.io", "password"))
+    return dispatch(login("annabelle@higgins.io", "password"))
   }
 
   return (
