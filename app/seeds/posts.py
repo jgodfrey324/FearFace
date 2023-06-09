@@ -94,7 +94,7 @@ def seed_posts():
     # post42 = Post(
     #     text='How can you tell a dream from reality?', user_id=14, created_at=fake.date_between(start_date='-5y', end_date='today'))
 
-    posts = [post1, post2, post3, post4, post5, post6, post7, post8, post9, post10, post11, post12, post13, post14, post15, post16, post17, post18, post19, post20, post21, post22, post23, post24, post25, post26, post27, post28, post29, post30, post31, post32, post33, post34, post35, post36, post37, post38, post39]
+    posts = [post1, post2, post3, post4, post5, post6, post7, post8, post9, post10, post11, post12, post13, post14, post15, post16, post17, post18, post19, post20, post21, post22, post23, post24, post25, post26, post27, post28, post29, post30, post31, post32, post33, post34, post35, post36, post37, post38, post39, post40]
 
     [db.session.add(post) for post in posts]
     db.session.commit()
