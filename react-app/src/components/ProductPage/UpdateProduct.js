@@ -70,9 +70,12 @@ const UpdateProductModal = ({productId}) => {
 
     return (
         <div className='update-form-container'>
-                <h2 style={{color: 'whitesmoke'}}>Update Product</h2>
             <div className='prod-form-bg'>
             <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}}>
+
+                <i onClick={() => closeModal()} class="fa-solid fa-skull-crossbones"></i>
+
+                <h2>Update Product</h2>
                 <div className="update-prod-house">
                     <label>
                         <div>Name</div>
@@ -131,7 +134,9 @@ const UpdateProductModal = ({productId}) => {
                         ></input>
                     </label>
                 </div>
-                <button type="submit" style={{color: 'whitesmoke'}}>Submit</button>
+                <div className='update-prod-btn-container'>
+                <button type="submit" className='update-prod-btn'>Submit</button>
+                </div>
             </form >
             </div>
         </div>

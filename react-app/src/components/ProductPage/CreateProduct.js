@@ -95,10 +95,12 @@ const CreateProduct = () => {
 
     return (
         <div className='product-form-container'>
-            <h1 style={{ color: 'whitesmoke' }}>Create a new product!</h1>
-            <button className='market-btn' onClick={() => history.push('/marketplace')}>Marketplace</button>
             <div className='prod-form-bg'>
-            <form className="prod-form" onSubmit={submitForm} style={{ color: 'white' }}>
+            <form className="prod-form" onSubmit={submitForm}>
+                <div className='market-btn-container'>
+            <button className='market-btn' onClick={() => history.push('/marketplace')}>Marketplace</button>
+                </div>
+            <h1>Create a new product!</h1>
                 <div className="new-prod-house">
                     <label>
                         <div>Name</div>
@@ -138,7 +140,7 @@ const CreateProduct = () => {
                         <div>Description</div>
                         {errors.description && submitted && < p style={{ color: "red" }}>{errors.description}</p>}
                         <textarea
-                            id="p-descrip"
+                            id="create-p-descrip"
                             placeholder="Write a description..."
                             type="text"
                             value={description}
@@ -158,12 +160,14 @@ const CreateProduct = () => {
                     </label>
                     <label>
                         <div>Add Image</div>
-                        <button
+                        <button className='choose-file-btn'
                             onClick={() => window.alert("Feature coming soon...")}
                         >Choose File</button>
                     </label>
                 </div>
-                <button style={{ color: 'whitesmoke' }} type="submit">Submit</button>
+                <div className='update-prod-btn-container'>
+              <button type="submit" className='update-prod-btn'>Submit</button>
+                </div>
             </form >
             </div>
         </div >
