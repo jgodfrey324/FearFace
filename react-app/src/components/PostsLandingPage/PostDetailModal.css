@@ -40,7 +40,7 @@
     border-radius: 20px;
     position: absolute;
     background-color: transparent;
-
+    overflow-y: auto;
     /* display: flex;
     flex-direction: column; */
 }
