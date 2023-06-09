@@ -115,9 +115,9 @@ const ProfilePage = () => {
 
         const data = await dispatch(createPost(formData));
         // if data is sent back set errors to the data
-        if (data) {
+        if (data.errors) {
             // return out and display errors on form
-            return setErrors(data[0]);
+            return setErrors(data.errors[0]);
         }
         if (submitted && errors) {
             console.log('errors was reset!')
@@ -143,7 +143,6 @@ const ProfilePage = () => {
     if (!comments) return null;
 
 
-    // console.log(postImages, 'fuuuuuuuuuuuuuuuuuuuuuuuuuuck')
 
     const commentsCount = {}
 

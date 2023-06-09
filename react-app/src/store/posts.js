@@ -57,12 +57,14 @@ export const createPost = (post) => async (dispatch) => {
 
     if (response.ok) {
         const { resPost } = await response.json();
+        // console.log('res ok ---------------------> ', resPost)
         dispatch(addPost(resPost))
         return resPost
     } else {
         const data = await response.json();
+        // console.log('data ------------------------------->', data.errors)
         if (data.errors) {
-            return data.errors
+            return data
         }
     }
 

@@ -23,7 +23,7 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       const data = await dispatch(signUp(username, email, password, firstName, lastName));
-      if (data) {
+      if (data.errors) {
         setErrors(data)
       }
     } else {
@@ -37,13 +37,15 @@ function SignupFormPage() {
       <p style={{color: 'whitesmoke'}}>Already have an account? Log in <NavLink to='/login'>here.</NavLink></p>
       <form onSubmit={handleSubmit}>
         <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+            {errors && (
+                <p style={{ color: "red", margin: '20px' }}>{errors}</p>
+            )}
         </ul>
         <label>
           Email
           <input
             style={{color: 'whitesmoke'}}
-            type="text"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

@@ -61,6 +61,7 @@ export const postComment = (postId,comment) => async (dispatch) => {
     if (response.ok) {
         const { resComment } = await response.json();
         dispatch(createComment(resComment))
+        return resComment
     } else {
         const data = await response.json();
         if (data.errors) {

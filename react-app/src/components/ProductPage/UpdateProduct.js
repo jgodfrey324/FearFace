@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateProduct } from '../../store/product';
 import { getAllProducts } from '../../store/product';
 import { useModal } from "../../context/Modal";
+import './CreateProduct.css'
 
 
 
@@ -69,15 +70,14 @@ const UpdateProductModal = ({productId}) => {
 
     return (
         <div className='update-form-container'>
-            <h2 style={{color: 'whitesmoke'}}>Update Product</h2>
+                <h2 style={{color: 'whitesmoke'}}>Update Product</h2>
+            <div className='prod-form-bg'>
             <form className="prod-form" onSubmit={submitForm} style={{color: 'white'}}>
-                <div className="new-prod-house">
+                <div className="update-prod-house">
                     <label>
-                        <div style={{color: 'whitesmoke'}}>Name</div>
+                        <div>Name</div>
                         {errors.name && submitted && < p style={{ color: "red" }}>{errors.name}</p>}
                         <input
-                            // required
-                            style={{color: 'whitesmoke'}}
                             id="p-name"
                             placeholder="Name..."
                             type="text"
@@ -86,10 +86,9 @@ const UpdateProductModal = ({productId}) => {
                         ></input>
                     </label>
                     <label>
-                        <div style={{color: 'whitesmoke'}}>City</div>
+                        <div>City</div>
                         {errors.city && submitted && < p style={{ color: "red" }}>{errors.city}</p>}
                         <input
-                            style={{color: 'whitesmoke'}}
                             id="p-city"
                             placeholder="City..."
                             type="text"
@@ -99,10 +98,9 @@ const UpdateProductModal = ({productId}) => {
                     </label>
 
                     <label>
-                        <div style={{color: 'whitesmoke'}}>State</div>
+                        <div>State</div>
                         {errors.state && submitted && < p style={{ color: "red" }}>{errors.state}</p>}
                         <input
-                            style={{color: 'whitesmoke'}}
                             id="p-state"
                             placeholder="State..."
                             type="text"
@@ -111,10 +109,9 @@ const UpdateProductModal = ({productId}) => {
                         ></input>
                     </label>
                     <label>
-                        <div style={{color: 'whitesmoke'}}>Description</div>
+                        <div>Description</div>
                         {errors.description && submitted && < p style={{ color: "red" }}>{errors.description}</p>}
                         <textarea
-                            style={{color: 'whitesmoke'}}
                             id="p-descrip"
                             placeholder="Write a description..."
                             type="text"
@@ -123,10 +120,9 @@ const UpdateProductModal = ({productId}) => {
                         />
                     </label>
                     <label>
-                        <div style={{color: 'whitesmoke'}}>Price</div>
+                        <div>Price</div>
                         {errors.price && submitted && < p style={{ color: "red" }}>{errors.price}</p>}
                         <input
-                            style={{color: 'whitesmoke'}}
                             id="p-price"
                             placeholder="$"
                             type="text"
@@ -137,6 +133,7 @@ const UpdateProductModal = ({productId}) => {
                 </div>
                 <button type="submit" style={{color: 'whitesmoke'}}>Submit</button>
             </form >
+            </div>
         </div>
 )
 
