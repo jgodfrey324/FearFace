@@ -151,17 +151,19 @@ function PostDetailModal({ postId }) {
                     let isCommentOwner = comment.user.id === user.id
                     return (
                         <div key={comment.id} className='post-modal-comment-house'>
-                            <div id="comment-name-delete">
-                                <div className='modal-comment-top-bar'>
-                                    <NavLink to={`/user/${comment.user.id}`}>{comment.user.first_name} {comment.user.last_name}</NavLink>
-                                </div>
-                                <div className='modal-comment-menu-buttons'>
-                                    {(isPostOwner || isCommentOwner) && (
-                                        <OpenModalButton
-                                            buttonText="Delete"
-                                            modalComponent={<DeleteCommentModal commentId={comment.id} />}
-                                        />
-                                    )}
+                            <div id="comment-div">
+                                <div id="comment-name-delete">
+                                    <div className='modal-comment-top-bar'>
+                                        <NavLink to={`/user/${comment.user.id}`}>{comment.user.first_name} {comment.user.last_name}</NavLink>
+                                    </div>
+                                    <div className='modal-comment-menu-buttons'>
+                                        {(isPostOwner || isCommentOwner) && (
+                                            <OpenModalButton
+                                                buttonText="Delete"
+                                                modalComponent={<DeleteCommentModal commentId={comment.id} />}
+                                            />
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                             <div className='modal-comment-text-house'>
@@ -198,7 +200,7 @@ function PostDetailModal({ postId }) {
                     </div>
                 </div>
             </form >
-        </div>
+        </div >
 
 
     )
