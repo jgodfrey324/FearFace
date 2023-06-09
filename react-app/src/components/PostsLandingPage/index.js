@@ -9,7 +9,7 @@ import PostDetailModal from './PostDetailModal';
 import { getUserDetail } from '../../store/session';
 import { getComments } from '../../store/comments';
 import { getAllPostImages } from '../../store/post_images';
-import { createPostImage } from '../../store/post_images';
+// import { createPostImage } from '../../store/post_images';
 import EditDeleteDrop from './EditDeleteDrop';
 import './PostsLanding.css';
 
@@ -24,12 +24,12 @@ const PostsLanding = () => {
     const comments = Object.values(useSelector(state => state.comments));
     const postImages = Object.values(useSelector(state => state.postImages))
 
-    console.log("post images ===========================", postImages)
+    // console.log("post images ===========================", postImages)
     const [text, setText] = useState('');
     // const [url, setUrl] = useState('');
     const [errors, setErrors] = useState('');
     const [submitted, setSubmitted] = useState(false);
-    const [image, setImage] = useState(null);
+    // const [image, setImage] = useState(null);
 
     useEffect(() => {
         dispatch(getAllPosts());
@@ -40,43 +40,29 @@ const PostsLanding = () => {
 
 
 
-    const reset = () => {
-        setText('');
-        // setUrl('');
-        setSubmitted(false);
-    }
-
-
     const submitForm = async (e) => {
         e.preventDefault();
-
         setSubmitted(true);
 
         const formData = new FormData();
         formData.append("text", text);
 
-        const formImgData = new FormData();
-        formImgData.append('file', image)
-
         const data = await dispatch(createPost(formData));
         // if data is sent back set errors to the data
-        if (data) {
-            // return out and display errors on form
-            if (image) {
-                dispatch(createPostImage(data.id, formImgData))
-            }
-            return setErrors(data[0]);
+        // console.log(data, 'd')
+        if (data.errors) {
+            console.log('i went in here', data.errors)
+            return setErrors(data.errors[0]);
         }
 
         if (submitted && errors) {
             console.log('errors was reset!')
             setErrors('');
         }
-
-
-        // reset fields
-        reset()
+        setText('')
+        setSubmitted(false)
     }
+
 
 
     // if user isn't logged in then redirect to log in form
@@ -89,8 +75,6 @@ const PostsLanding = () => {
     if (!user_details) return null;
 
     if (!comments) return null;
-
-    // if (!postImages.length) return null;
 
 
     const commentsCount = {}
@@ -107,7 +91,6 @@ const PostsLanding = () => {
         }
     }
 
-    // console.log(commentsCount, 'comments count obj ....................................');
 
     // make friends object
     const friends = user_details[user.id]['is_following']
@@ -152,7 +135,7 @@ const PostsLanding = () => {
                         ></input>
                     </label> */}
                         {/* <button disabled={text.length < 5} className='glowing-btn'><span className='glowing-txt'>P <span class='faulty-letter'>O</span> S T</span></button> */}
-                        <button disabled={text.length < 5} className='glowing-btn'>POST</button>
+                        <button className='glowing-btn'>POST</button>
 
                     </div>
                 </form >

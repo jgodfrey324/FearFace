@@ -23,7 +23,7 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       const data = await dispatch(signUp(username, email, password, firstName, lastName));
-      if (data) {
+      if (data.errors) {
         setErrors(data)
       }
     } else {
