@@ -172,11 +172,14 @@ button {
     justify-content: space-between;
 }
 
+.user-name {
+    background-color: transparent;
+    margin-bottom: 10px;
+}
 
 .user-name>a {
     color: #d4bebe;
     text-decoration: none;
-    background-color: transparent;
 }
 
 .user-name>a:hover {
@@ -199,7 +202,7 @@ span {
 
 .post-text-house,
 p {
-    background-color: #3e3d3f;
+    background-color: transparent;
     margin: 10px;
     /* padding: 0 50px; */
 }

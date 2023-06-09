@@ -87,9 +87,9 @@ const CreateProduct = () => {
     }
 
 
-    if (imageLoading) {
-        return <h1>...Loading</h1>
-    }
+    // if (imageLoading) {
+    //     return <h1>...Loading</h1>
+    // }
 
 
 
@@ -158,11 +158,9 @@ const CreateProduct = () => {
                     </label>
                     <label>
                         <div>Add Image</div>
-                        <input
-                            type='file'
-                            accept='image/*'
+                        <button
                             onClick={() => window.alert("Feature coming soon...")}
-                        ></input>
+                        >Choose File</button>
                     </label>
                 </div>
                 <button style={{ color: 'whitesmoke' }} type="submit">Submit</button>
