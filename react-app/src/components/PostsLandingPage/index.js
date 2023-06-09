@@ -182,7 +182,7 @@ const PostsLanding = () => {
                             if (image.post_id === post.id) {
                                 return (
                                     <div key={image.id} >
-                                        <img style={{ height: '100px', width: '100px' }} src={`${image.url}`} alt='post'></img>
+                                        <img style={{ height: '500px', width: '500px', objectFit:'cover'}} src={`${image.url}`} alt='post'></img>
                                     </div>
                                 )
                             }

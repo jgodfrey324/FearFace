@@ -8,6 +8,7 @@ import OpenModalButton from '../OpenModalButton';
 import DeletePostModal from '../UpdatePostModal/DeletePostModal';
 import UpdatePostModal from '../UpdatePostModal';
 import PostDetailModal from '../PostsLandingPage/PostDetailModal';
+import { getAllPostImages } from '../../store/post_images';
 import './ProfilePage.css'
 
 
@@ -21,6 +22,7 @@ const ProfilePage = () => {
     const current_user = useSelector(state => state.session.user);
     const comments = Object.values(useSelector(state => state.comments))
     const posts = Object.values(useSelector(state => state.posts))
+    const postImages = Object.values(useSelector(state => state.postImages))
 
     const [text, setText] = useState('');
     // const [url, setUrl] = useState('');
@@ -34,6 +36,7 @@ const ProfilePage = () => {
     useEffect(() => {
         dispatch(getAllPosts());
         dispatch(getComments())
+        dispatch(getAllPostImages())
         const timeout = setTimeout(() => {
             async function data() {
                 const ress = await dispatch(getUserDetail(userId));
@@ -139,7 +142,7 @@ const ProfilePage = () => {
     if (!comments) return null;
 
 
-
+    console.log(postImages, 'fuuuuuuuuuuuuuuuuuuuuuuuuuuck')
 
     const commentsCount = {}
 
@@ -271,9 +274,15 @@ const ProfilePage = () => {
                                         />
                                     )}
                                 </div>
-                                {/* <div className='user-name'>fuck
-                                    <NavLink to={`/users/${post.user.id}`}></NavLink>
-                                </div> */}
+                                {postImages.map(image => {
+                            if (image.post_id === post.id) {
+                                return (
+                                    <div key={image.id} >
+                                        <img style={{ height: '500px', width: '500px', objectFit:'cover'}} src={`${image.url}`} alt='post'></img>
+                                    </div>
+                                )
+                            }
+                        })}
                             </div>
                             <div className='post-text-house'>
                                 <p>{post.text}</p>
