@@ -8,6 +8,7 @@ import { getComments } from '../../store/comments';
 import { postComment } from '../../store/comments';
 import OpenModalButton from '../OpenModalButton';
 import { getAllPostImages } from '../../store/post_images';
+import EditDeleteDrop from './EditDeleteDrop';
 import "./PostDetailModal.css";
 
 
@@ -88,6 +89,9 @@ function PostDetailModal({ postId }) {
             <div className='post-modal-top-bar'>
                 <div className='post-modal-menu-buttons'>
                     {isPostOwner && (
+                        // <EditDeleteDrop user={user} postId={post.id}
+                        // />
+
                         <OpenModalButton
                             buttonText="Edit"
                             modalComponent={<UpdatePostModal postId={postId} />}

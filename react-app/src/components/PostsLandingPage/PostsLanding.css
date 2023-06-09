@@ -29,12 +29,12 @@
     /* background-color: #2F2E30; */
 }
 
-.lp-friends-tag > span {
+.lp-friends-tag>span {
     margin-right: 7px;
     font-size: 7px;
 }
 
-.lp-friends-tag > #friend-name {
+.lp-friends-tag>#friend-name {
     /* border: 1px solid red; */
     font-size: 16px;
 }
@@ -45,7 +45,7 @@
     align-items: center;
 }
 
-.lp-friends > h3 {
+.lp-friends>h3 {
     /* border: 1px solid purple; */
     font-size: 21px;
     padding-bottom: 5px;
@@ -157,6 +157,7 @@ button {
     /* border: 1px solid pink; */
     width: 100%;
     border-radius: 5px;
+    /* z-index: 20; */
 }
 
 .edit-delete-post>div>button:hover {
@@ -166,10 +167,12 @@ button {
 .edit-drop {
     /* border: 1px solid red; */
     width: 100%;
+    background-color: #2F2E30;
 }
 
 .delete-drop {
     width: 100%;
+    background-color: #2F2E30;
 }
 
 .new-post-house>h2 {
@@ -230,7 +233,7 @@ textarea:focus {
     align-items: center;
 }
 
-.user-name > img {
+.user-name>img {
     /* border: 1px solid purple; */
     height: 50px;
     width: 50px;
@@ -268,7 +271,7 @@ span {
     border-radius: 5px;
 }
 
-.post-image-house > img {
+.post-image-house>img {
     width: 75%;
     object-fit: cover;
     height: -webkit-fill-available;
@@ -430,9 +433,13 @@ iframe {
 }
 
 .post-modal-menu-buttons>button {
-    color: whitesmoke
+    color: #d4bebe;
+
 }
 
+.post-modal-menu-buttons {
+    background-color: #2F2E30;
+}
 
 
 
