@@ -248,3 +248,11 @@
     border-radius: 10px;
     background-color: rgb(68, 67, 67);
 }
+
+.post-modal-menu-buttons {
+    background-color: #2F2E30;
+}
+
+.post-modal-menu-buttons > i {
+    background-color: transparent;
+}
