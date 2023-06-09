@@ -27,7 +27,7 @@ function UpdatePostModal({ postId }) {
 
     const data = await dispatch(updatePost(postId, formData));
     if (data.errors) {
-      return setErrors(data);
+      return setErrors(data.errors[0]);
     }
     if (submitted && errors) {
       setErrors('');

@@ -81,7 +81,7 @@ export const updatePost = (postId, post) => async (dispatch) => {
     } else {
         const data = await res.json()
         if (data.errors) {
-            return data.errors
+            return data
         }
     }
 }
