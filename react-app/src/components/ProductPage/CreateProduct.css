@@ -6,6 +6,15 @@
     margin: 20px;
 
 }
+.update-form-container *{
+    border-radius: 25px;
+    background-color: #2F2E30;
+
+}
+
+.prod-form {
+    border-radius: 25px;
+}
 
 .prod-form-bg  *{
     padding: 10px;
@@ -19,9 +28,16 @@
     gap: 10px;
 
 
+
 }
 
 .new-prod-house > label > input {
+    width: 250px;
+    height: 25px;
+    color: #d4bebe;
+}
+
+.update-prod-house > label > input {
     width: 250px;
     height: 25px;
     color: #d4bebe;
@@ -34,6 +50,16 @@
 .market-btn {
     width: 100px;
     height: 25px;
+    border-radius: 25px;
+    background-color: #2F2E30;
+
+}
+
+button {
+    cursor: pointer;
+}
+
+#modal {
     border-radius: 25px;
 
 }
