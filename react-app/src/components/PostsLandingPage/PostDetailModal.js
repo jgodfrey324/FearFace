@@ -8,12 +8,14 @@ import { getComments } from '../../store/comments';
 import { postComment } from '../../store/comments';
 import OpenModalButton from '../OpenModalButton';
 import { getAllPostImages } from '../../store/post_images';
+import EditDeleteDrop from './EditDeleteDrop';
 import "./PostDetailModal.css";
+import { useModal } from '../../context/Modal';
 
 
 function PostDetailModal({ postId }) {
     const dispatch = useDispatch();
-    // const { closeModal } = useModal();
+    const { closeModal } = useModal();
     const [submitted, setSubmitted] = useState(false);
     const [text, setText] = useState('')
     const [errors, setErrors] = useState('');
@@ -87,7 +89,11 @@ function PostDetailModal({ postId }) {
             {/* {console.log('am i being pranked ????????????')} */}
             <div className='post-modal-top-bar'>
                 <div className='post-modal-menu-buttons'>
+            <i onClick={() => closeModal()} class="fa-solid fa-skull-crossbones"></i>
                     {isPostOwner && (
+                        // <EditDeleteDrop user={user} postId={post.id}
+                        // />
+
                         <OpenModalButton
                             buttonText="Edit"
                             modalComponent={<UpdatePostModal postId={postId} />}

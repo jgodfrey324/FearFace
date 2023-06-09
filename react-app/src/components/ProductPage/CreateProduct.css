@@ -51,7 +51,7 @@
 }
 
 #p-descrip {
-    width: 250px;
+    width: 350px;
 }
 #create-p-descrip {
     width: 500px;
@@ -85,7 +85,7 @@
 }
 
 .update-prod-house > label > input {
-    width: 250px;
+    width: 350px;
     height: 30px;
     color: #d4bebe;
     box-shadow: none;

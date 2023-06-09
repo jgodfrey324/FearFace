@@ -6,6 +6,7 @@
 .profile-dropdown {
   position: absolute;
   background-color: transparent;
+  /* border: 1px solid red; */
 }
 
 .hidden {
