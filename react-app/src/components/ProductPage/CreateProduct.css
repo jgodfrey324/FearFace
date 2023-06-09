@@ -1,0 +1,39 @@
+.product-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 20px;
+
+}
+
+.prod-form-bg  *{
+    padding: 10px;
+    background-color: #2F2E30;
+    border-radius: 25px;
+}
+
+.new-prod-house {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+
+}
+
+.new-prod-house > label > input {
+    width: 250px;
+    height: 25px;
+    color: #d4bebe;
+}
+
+.new-prod-house > label {
+    color: #d4bebe;
+}
+
+.market-btn {
+    width: 100px;
+    height: 25px;
+    border-radius: 25px;
+
+}

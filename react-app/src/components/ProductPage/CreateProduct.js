@@ -4,6 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { createProductThunk } from '../../store/product';
 import { createProdImage } from '../../store/product_images';
 // import { FileInput, FileField } from 'react-admin'
+import './CreateProduct.css'
 
 
 const CreateProduct = () => {
@@ -93,21 +94,16 @@ const CreateProduct = () => {
 
 
     return (
-        <div className='form-container'>
+        <div className='product-form-container'>
             <h1 style={{ color: 'whitesmoke' }}>Create a new product!</h1>
-            <button onClick={() => history.push('/marketplace')}
-                style={{ backgroundColor: 'whitesmoke' }}>Marketplace</button>
-
-            <form className="prod-form" onSubmit={submitForm} style={{ color: 'white' }} encType="multipart/form-data" />
-            <button onClick={() => history.push('/marketplace')}>Marketplace</button>
+            <button className='market-btn' onClick={() => history.push('/marketplace')}>Marketplace</button>
+            <div className='prod-form-bg'>
             <form className="prod-form" onSubmit={submitForm} style={{ color: 'white' }}>
                 <div className="new-prod-house">
                     <label>
                         <div>Name</div>
                         {errors.name && submitted && < p style={{ color: "red" }}>{errors.name}</p>}
                         <input
-                            // required
-                            style={{ color: 'whitesmoke' }}
                             id="p-name"
                             placeholder="Name..."
                             type="text"
@@ -116,10 +112,9 @@ const CreateProduct = () => {
                         ></input>
                     </label>
                     <label>
-                        <div style={{ color: 'whitesmoke' }}>City</div>
+                        <div>City</div>
                         {errors.city && submitted && < p style={{ color: "red" }}>{errors.city}</p>}
                         <input
-                            style={{ color: 'whitesmoke' }}
                             id="p-city"
                             placeholder="City..."
                             type="text"
@@ -129,10 +124,9 @@ const CreateProduct = () => {
                     </label>
 
                     <label>
-                        <div style={{ color: 'whitesmoke' }}>State</div>
+                        <div>State</div>
                         {errors.state && submitted && < p style={{ color: "red" }}>{errors.state}</p>}
                         <input
-                            style={{ color: 'whitesmoke' }}
                             id="p-state"
                             placeholder="State..."
                             type="text"
@@ -141,10 +135,9 @@ const CreateProduct = () => {
                         ></input>
                     </label>
                     <label>
-                        <div style={{ color: 'whitesmoke' }}>Description</div>
+                        <div>Description</div>
                         {errors.description && submitted && < p style={{ color: "red" }}>{errors.description}</p>}
                         <textarea
-                            style={{ color: 'whitesmoke' }}
                             id="p-descrip"
                             placeholder="Write a description..."
                             type="text"
@@ -153,10 +146,9 @@ const CreateProduct = () => {
                         />
                     </label>
                     <label>
-                        <div style={{ color: 'whitesmoke' }}>Price</div>
+                        <div>Price</div>
                         {errors.price && submitted && < p style={{ color: "red" }}>{errors.price}</p>}
                         <input
-                            style={{ color: 'whitesmoke' }}
                             id="p-price"
                             placeholder="$"
                             type="text"
@@ -169,12 +161,13 @@ const CreateProduct = () => {
                         <input
                             type='file'
                             accept='image/*'
-                            onChange={(e) => setImage(e.target.files[0])}
+                            onClick={() => window.alert("Feature coming soon...")}
                         ></input>
                     </label>
                 </div>
                 <button style={{ color: 'whitesmoke' }} type="submit">Submit</button>
             </form >
+            </div>
         </div >
     )
 }

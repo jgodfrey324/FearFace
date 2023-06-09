@@ -17,6 +17,7 @@ const ProductsLanding = () => {
     const [sideOpen, setSideOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState({});
 
+    const prodImages = Object.values(useSelector(state => state.productImages))
 
 
     useEffect(() => {
@@ -36,7 +37,7 @@ const ProductsLanding = () => {
 
     useEffect(() => {
         dispatch(getAllProducts());
-        // dispatch(getAllProdImages());
+        dispatch(getAllProdImages())
     }, [dispatch])
 
     if (!user) {
@@ -68,7 +69,7 @@ const ProductsLanding = () => {
                                     onClick={() => setSelectedProduct(product)}
                                     >
                                     <div className="product-tile">
-                                        {/* {prodImages.map(image => {
+                                        {prodImages.map(image => {
                                             if (image.product_id === product.id) {
                                                 return (
                                                     <div key={image.id} >
@@ -76,7 +77,7 @@ const ProductsLanding = () => {
                                                     </div>
                                                 )
                                             }
-                                        })} */}
+                                        })}
                                         IMAGE
                                         <h3>{product.name}</h3>
                                         <p>From <NavLink to={`/users/${product.user.id}`}>{product.user.first_name} {product.user.last_name}</NavLink></p>
