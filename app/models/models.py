@@ -105,7 +105,8 @@ class Post(db.Model):
                 'username': self.user.username,
                 'first_name': self.user.first_name,
                 'last_name': self.user.last_name,
-                'email': self.user.email
+                'email': self.user.email,
+                'profile_pic': self.user.profile_pic
             },
             'comments': {}
         }
@@ -142,7 +143,8 @@ class Comment(db.Model):
                 'username': self.user.username,
                 'first_name': self.user.first_name,
                 'last_name': self.user.last_name,
-                'email': self.user.email
+                'email': self.user.email,
+                'profile_pic': self.user.profile_pic
             }
         }
 
