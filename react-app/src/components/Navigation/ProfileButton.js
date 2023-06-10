@@ -48,6 +48,10 @@ function ProfileButton({ user }) {
           <div className="user-menu-content">
             <span style={{ color: "whitesmoke" }}>{user.username}</span>
             <span onClick={() => {
+              history.push('/about')
+              closeMenu()
+            }}style={{ color: 'whitesmoke' }}>About</span>
+            <span onClick={() => {
               history.push(`/users/${user.id}`)
               closeMenu()
             }}
