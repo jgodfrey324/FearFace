@@ -10,6 +10,43 @@
     /* background-color: #e853621c; */
 }
 
+.choose-avatar {
+    margin: 10px 0px 20px 0px;
+}
+
+.avatar-pics {
+    margin: 10px 0px;
+}
+
+.avatar-pics > label > img {
+    cursor: pointer;
+    border: 3px solid black;
+    margin-right: 5px;
+}
+
+.avatar-pics > label > img:hover {
+    box-shadow: 3px 3px 8px black;
+    border: 3px solid white;
+}
+
+.avatar-pics > input[type='radio']:checked+label > img {
+    border: 3px solid white;
+}
+
+/* input[type="radio"]:checked+label */
+
+/* .radio-toolbar input[type="radio"]:checked+label {
+    background-color: #bbb;
+  } */
+
+/* .avatar-pics > label > .selected {
+    border: 3px solid white;
+} */
+
+/* .avatar-pics > label > img:focus {
+    border: 3px solid white;
+} */
+
 .signup-house > form {
     /* border: 2px solid blue; */
     display: flex;

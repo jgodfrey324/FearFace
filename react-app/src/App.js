@@ -13,6 +13,7 @@ import CreateProduct from "./components/ProductPage/CreateProduct";
 import MyProducts from "./components/MyProductsPage";
 import UpdateProduct from "./components/ProductPage/UpdateProduct";
 import Chat from "./components/Chat";
+import AboutMe from "./components/About/"
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +53,9 @@ function App() {
           </Route>
           <Route path='/users/:userId'>
             <ProfilePage />
+          </Route>
+          <Route path="/about">
+            <AboutMe />
           </Route>
           <Route>
             <h1 id="wrong">Turn around...</h1>
