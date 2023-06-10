@@ -77,6 +77,13 @@ const MyProducts = () => {
                             <p>{product.location_city}, {product.location_state}</p>
                             <div className="my-product-image">
                                 {prodImages.map(image => {
+                                    if (!image.product_id) {
+                                        return (
+                                            <div className="pr-image" key={image.id} >
+                                                <img src={`https://media.discordapp.net/attachments/1113249761743618210/1116896594177048657/img-coming-removebg-preview.png?width=714&height=692`} alt='product'></img>
+                                            </div>
+                                        )
+                                    }
                                     if (image.product_id === product.id) {
                                         return (
                                             <img key={image.id} src={`${image.url}`} alt='product'></img>
