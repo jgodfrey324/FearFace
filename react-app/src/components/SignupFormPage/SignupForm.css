@@ -14,6 +14,11 @@
     margin: 10px 0px 20px 0px;
 }
 
+.choose-avatar > label {
+    margin-bottom: 15px;
+    color: #B00B1B;
+}
+
 .avatar-pics {
     margin: 10px 0px;
 }
