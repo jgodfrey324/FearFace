@@ -72,7 +72,8 @@ def sign_up():
             email=form.data['email'],
             password=form.data['password'],
             first_name= form.data['first_name'],
-            last_name = form.data['last_name']
+            last_name = form.data['last_name'],
+            profile_pic = "https://media.discordapp.net/attachments/1113249761743618210/1116871749980655708/image.png?width=786&height=814"
         )
         db.session.add(user)
         db.session.commit()
