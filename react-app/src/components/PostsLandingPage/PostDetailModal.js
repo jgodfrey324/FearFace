@@ -89,22 +89,22 @@ function PostDetailModal({ postId }) {
             {/* {console.log('am i being pranked ????????????')} */}
             <div className='post-modal-top-bar'>
                 <div className='post-modal-menu-buttons'>
-            <i onClick={() => closeModal()} class="fa-solid fa-skull-crossbones"></i>
                     {isPostOwner && (
                         // <EditDeleteDrop user={user} postId={post.id}
                         // />
 
                         <OpenModalButton
-                            buttonText="Edit"
+                            buttonText={<i class="fa-regular fa-pen-to-square"></i>}
                             modalComponent={<UpdatePostModal postId={postId} />}
                         />
                     )}
                     {isPostOwner && (
                         <OpenModalButton
-                            buttonText="Delete"
+                            buttonText={<i class="fa-solid fa-trash"></i>}
                             modalComponent={<DeletePostModal postId={postId} />}
                         />
                     )}
+                    <i onClick={() => closeModal()} class="fa-solid fa-skull-crossbones"></i>
                 </div>
                 <div className='user-name' onClick={() => closeModal()}>
                     <img src={post.user.profile_pic} alt='user'></img>

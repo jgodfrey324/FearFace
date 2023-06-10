@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import OpenModalButton from '../OpenModalButton';
 import UpdateProductModal from './UpdateProduct';
@@ -15,6 +15,7 @@ function ProductDetails({ productId, visible, currentUserId }) {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products);
   const prodImages = Object.values(useSelector(state => state.productImages))
+  const history = useHistory()
 
 
 
@@ -64,24 +65,24 @@ function ProductDetails({ productId, visible, currentUserId }) {
               )
             }
           })}
-      <p>Details</p>
       <div className="product-description">
         <p>{product.description}</p>
       </div>
       <p className="product-price">$ {product.price.toFixed(2)}</p>
-      <div>
+      <div className='mp-btn-container'>
         {(currentUserId === product.user?.id) &&
-          < div classname="product-detail-buttons">
-            <OpenModalButton style={{ color: 'whitesmoke' }}
-              buttonText="Update"
-              modalComponent={<UpdateProductModal productId={product.id} />}
-            />
+          // < div classname="product-detail-buttons">
+          //   <OpenModalButton style={{ color: 'whitesmoke' }}
+          //     buttonText="Update"
+          //     modalComponent={<UpdateProductModal productId={product.id} />}
+          //   />
 
-            <OpenModalButton style={{ color: 'whitesmoke' }}
-              buttonText="Delete"
-              modalComponent={<DeleteProductModal productId={product.id} />
-              } />
-          </div>
+          //   <OpenModalButton style={{ color: 'whitesmoke' }}
+          //     buttonText="Delete"
+          //     modalComponent={<DeleteProductModal productId={product.id} />
+          //     } />
+          // </div>
+          <button className="mp-btn"onClick={() => history.push(`/users/${currentUserId}/products`)}>Manage Product</button>
 
         }
 

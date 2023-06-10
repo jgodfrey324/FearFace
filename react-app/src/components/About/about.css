@@ -1,0 +1,41 @@
+.person-info {
+    display: flex
+}
+
+
+.person-info {
+    margin-left: 15%;
+    margin-top: 80px;
+}
+
+.pfp-img {
+    height: 250px;
+    width: 250px;
+    border-radius: 150px;
+    object-fit: cover;
+}
+
+.bio {
+    margin-left: 50px;
+}
+
+.bio > .name {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.fa-brands {
+    font-size: 50px;
+    margin-right: 40px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer * {
+    height: 40px;
+    margin-top: 300px;
+    margin-bottom: 20px;
+}

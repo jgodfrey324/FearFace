@@ -11,6 +11,10 @@
     background-color: #2F2E30;
 }
 
+.new-post-house>textarea {
+    resize: none;
+}
+
 /* #root {
     position: relative;
 } */
@@ -31,6 +35,7 @@
 #comment-area>textarea {
     width: 500px;
     border-radius: 5px;
+    resize: none;
 }
 
 .detail-image-house {
@@ -62,19 +67,23 @@
 
 #comment-button {
     position: absolute;
-    left: 92.3%;
-    top: 70%;
+    left: 93%;
+    top: 65%;
+    border-radius: 5px;
 
 }
 
 #comment-button>button {
     padding: 0px 10px;
     border-radius: 5px;
+    background-color: transparent;
+    border-style: none;
 }
 
 #comment-button>button:hover {
-    box-shadow: 1px 1px 2px #d4bebe;
-    transition: all 0.3 ease 0s;
+    color: red;
+    border-style: none;
+    box-shadow: none;
 }
 
 #modal-content {
@@ -177,7 +186,13 @@
     color: #d4bebe;
     text-align: center;
     background-color: transparent;
+    /* margin-right: 5px; */
 
+}
+
+.fa-skull-crossbones {
+    /* border: 1px solid red; */
+    margin-left: 5px;
 }
 
 .modal-button:hover {
