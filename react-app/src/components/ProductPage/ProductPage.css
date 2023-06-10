@@ -221,3 +221,22 @@
     /* border: 1px solid white; */
     border-radius: 4px;
   }
+
+  .mp-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #2F2E30;
+  }
+
+  .mp-btn {
+    width: fit-content;
+    color: rgb(212, 190, 190);
+    background-color: #2F2E30;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+  }
+
+  .mp-btn:hover{
+    background-color:#151616
+  }
