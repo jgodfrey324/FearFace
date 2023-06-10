@@ -11,6 +11,10 @@
     background-color: #2F2E30;
 }
 
+.new-post-house>textarea {
+    resize: none;
+}
+
 /* #root {
     position: relative;
 } */
