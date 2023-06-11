@@ -64,13 +64,13 @@ const MyProducts = () => {
                             <div className="my-product-top-bar">
                                 <div className="product-buttons-house">
                                     <OpenModalButton
-                                        buttonText="Delete"
-                                        modalComponent={<DeleteProductModal productId={product.id} />
-                                        } />
-                                    <OpenModalButton
-                                        buttonText="Update"
+                                        buttonText={<i class="fa-regular fa-pen-to-square"></i>}
                                         modalComponent={<UpdateProductModal productId={product.id} />}
                                     />
+                                    <OpenModalButton
+                                        buttonText={<i class="fa-solid fa-trash"></i>}
+                                        modalComponent={<DeleteProductModal productId={product.id} />
+                                        } />
                                 </div >
                                 <h3 className="my-prod-name" onClick={() => history.push(`/marketplace`)} >{product.name}</h3>
                             </div>

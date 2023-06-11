@@ -26,8 +26,8 @@
     overflow: break-word;
 }
 
-.product-house *{
-    background-color:transparent;
+.product-house * {
+    background-color: transparent;
 }
 
 .product-house {
@@ -37,7 +37,7 @@
     cursor: pointer;
 }
 
-.product-house:hover{
+.product-house:hover {
     border: transparent;
     background-color: #2F2E30;
     box-shadow: 3px 3px 3px black;
@@ -45,7 +45,7 @@
     transition: all .4s ease
 }
 
-.product-house > p{
+.product-house>p {
     font-weight: 200;
     font-size: 16px
 }
@@ -56,8 +56,7 @@
     flex-direction: row;
     align-items: flex-end;
     row-gap: 2px;
-    width: 20%;
-    margin-right: 20px;
+    width: 10%;
 }
 
 .my-product-top-bar>h3 {
@@ -75,7 +74,7 @@
     margin: 0 10px;
 }
 
-.product-buttons-house>button {
+.s-house>button {
     width: -webkit-fill-available;
 }
 
@@ -107,12 +106,12 @@
     overflow-wrap: break-word;
 }
 
-.my-product-description > p{
+.my-product-description>p {
     font-weight: 200;
     font-size: 18px;
 }
 
-.product-house > .my-product-price {
+.product-house>.my-product-price {
     font-size: 25px;
     font-weight: bold;
 }
@@ -129,7 +128,7 @@
     margin-top: 15px;
 }
 
-.create-button > button {
+.create-button>button {
     border: 1px solid red;
     width: fit-content;
     color: rgb(212, 190, 190);
@@ -139,11 +138,12 @@
     padding: 10px;
 }
 
-.create-button > button:hover {
+.create-button>button:hover {
     border: none;
     width: fit-content;
     background-color: #2F2E30
 }
-.my-prod-name{
+
+.my-prod-name {
     color: #d4bebe;
 }
