@@ -3,6 +3,8 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from random import randint
+from random import choices
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -66,14 +68,25 @@ def sign_up():
     # print('request ==========================================================>', request.__dict__)
 
     if form.validate_on_submit():
-        print("hello from validate ======================================")
+
+        avatar_choices = ["https://images-ext-1.discordapp.net/external/zhxa2dTWchJ_tE1xmUySwcDE57OflnMUwdmKrEnRyyM/https/static1.dualshockersimages.com/wordpress/wp-content/uploads/2022/01/Nezukos-New-Demon-Form-in-Demon-Slayer-Explained.jpg?width=1836&height=1034",
+                          "https://images-ext-2.discordapp.net/external/Rl4I8LML5XaL5bbiQ4eR2mSatuZxXWzOawNMn1F_NsI/https/pbs.twimg.com/media/DXjlEkKV4AA-I_S.jpg?width=1034&height=1034",
+                          "https://images-ext-2.discordapp.net/external/goFUdKoDcnXOveVgy4Mq0zvl4legaJEDZYUVhXgeLZQ/https/e0.pxfuel.com/wallpapers/582/659/desktop-wallpaper-junji-ito-horror-manga-thumbnail.jpg?width=700&height=1034",
+                          "https://media.discordapp.net/attachments/1113249761743618210/1116871749980655708/image.png?width=786&height=814"]
+
+        pic = request._cached_json[0]['profile_pic']
+
+        if not pic:
+            pic = avatar_choices[randint(0, 3)]
+
+
         user = User(
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password'],
             first_name= form.data['first_name'],
             last_name = form.data['last_name'],
-            profile_pic = "https://media.discordapp.net/attachments/1113249761743618210/1116871749980655708/image.png?width=786&height=814"
+            profile_pic = pic
         )
         db.session.add(user)
         db.session.commit()

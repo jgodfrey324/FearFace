@@ -1,6 +1,15 @@
+import { useSelector } from "react-redux"
+import { Redirect } from "react-router-dom";
 import "./about.css"
 
 const AboutMe = () => {
+    const user = useSelector(state => state.session.user);
+
+
+    if (!user) return <Redirect to='/login'></Redirect>
+
+
+
     return (
         <>
         <div className="about-house">
@@ -33,7 +42,7 @@ const AboutMe = () => {
             <div className="person-info">
             <div className="pfp">
                 <img className="pfp-img"
-                src="https://i.imgur.com/Z4OqyWx.jpg"></img>
+                src="https://i.imgur.com/Uq6KjnH.jpg"></img>
             </div>
                 <div className="bio">
                     <div className="name">Pierce Henriksbo</div>

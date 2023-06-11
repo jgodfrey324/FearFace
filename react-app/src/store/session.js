@@ -89,7 +89,7 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, email, password, first_name, last_name) => async (dispatch) => {
+export const signUp = (profile_pic, username, email, password, first_name, last_name) => async (dispatch) => {
 
 	console.log('firstName from thunk', first_name)
 	console.log('lastName from thunk', last_name)
@@ -105,7 +105,8 @@ export const signUp = (username, email, password, first_name, last_name) => asyn
 			email,
 			password,
 			first_name,
-			last_name
+			last_name,
+			profile_pic
 		})
 	});
 
