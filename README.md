@@ -1,4 +1,48 @@
-# Flask React Project
+![FearFaceLogo](react-app/public/fearface-trans-logo.png)
+
+FearFace is a social media platform inspired by Facebook, designed to provide a similar user experience with some unique features. Enter at your own risk!
+
+Live site: [FearFace](https://fearface.onrender.com)
+
+## Wiki Links
+[Database Schema](https://github.com/jgodfrey324/FearFace/wiki/Database-Schema)
+
+[Redux Store Shape](https://github.com/jgodfrey324/FearFace/wiki/Redux-State-Shape)
+
+[API Routes](https://github.com/jgodfrey324/FearFace/wiki/API-Routes%3F)
+
+## Features
+- User registration and authentication: Users can create accounts and log in securely.
+
+- The Wall: Users can view a personalized news feed that displays posts from their friends and pages they follow.
+
+- Posts: Users can create, read, update, and delete their own posts.
+
+- Marketplace: Users can create, browse, edit, and delete products in the marketplace.
+
+- Commenting: Users can post and delete comments on posts and products.
+
+- Follow and Unfollow: Users can follow and unfollow other users to see their posts and updates in their news feed.
+
+## Installation
+1. Clone the repository:
+    git clone [here](https://github.com/jgodfrey324/FearFace)
+
+2. Install the dependencies:
+   npm install --prefix react-app &&
+   npm run build --prefix react-app &&
+   pip install -r requirements.txt &&
+   pip install psycopg2 &&
+   flask db upgrade &&
+   flask seed all
+
+
+## Acknowledgments
+FearFace is built using various open-source libraries and frameworks including Python, Flask, SQLAlchemy, JavaScript, React and Redux.
+
+
+
+<!-- # Flask React Project
 
 This is the starter for the Flask React project.
 
@@ -145,4 +189,4 @@ successfully deployed your Flask application to Render! You can find the URL for
 your site just below the name of the Web Service at the top of the page.
 
 [Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+[Dashboard]: https://dashboard.render.com/ -->
