@@ -40,8 +40,25 @@ def seed_product_images():
     image12 = ProductImage(
         url='https://i.ytimg.com/vi/vuXi8e93khU/maxresdefault.jpg', product_id=12
     )
-
-    images = [image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12]
+    image13 = ProductImage(
+        url="https://i.imgur.com/QzEppPr.jpg", product_id=13
+    )
+    image14 = ProductImage(
+        url="https://bbts1.azureedge.net/images/p/full/2022/08/e0c3ee85-5ef4-41da-ad47-df515337561e.jpg", product_id=14
+    )
+    image15 = ProductImage(
+        url="https://i.imgur.com/0aHKGy3.jpg", product_id=15
+    )
+    image16 = ProductImage(
+        url="https://static.wikia.nocookie.net/headhuntershorrorhouse/images/c/cb/Lambert_residence.jpg/revision/latest?cb=20220903111540", product_id=16
+    )
+    image17 = ProductImage(
+        url="https://i.pinimg.com/736x/18/32/1c/18321ca44c7235504c4bacbdff3d1ba5.jpg", product_id=17
+    )
+    image18 = ProductImage(
+        url="https://i.imgur.com/vk9oFqb.jpg", product_id=18
+    )
+    images = [image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, image14, image15, image16, image17, image18]
 
     [db.session.add(image) for image in images]
     db.session.commit()

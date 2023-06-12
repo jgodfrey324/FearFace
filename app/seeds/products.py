@@ -56,7 +56,31 @@ def seed_products():
         name="Vintage TV", location_city="Salem", location_state="Massachusetts", description="Well kept, woking vintage TV for sale. Looking change up the style of the room and the TV no longer fits our needs. First come first serve.", price=250.00, user_id=13, created_at=fake.date_between(start_date='-5y', end_date='today')
     )
 
-    products = [prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12]
+    prod13 = Product(
+        name ="Vintage Claw Gloves", location_city="Springwood",location_state="Ohio", description="Introducing the one and only Freddy Krueger Gloves—guaranteed to give you the most finger-lickin' fun you've ever had while scaring the socks off your friends! These bad boys are like a high-five from nightmares, straight from the man himself. Picture this: You're standing in a dark alley, ready to unleash some terror. These gloves are so razor-sharp, they can slice through butter faster than you can say scary movie marathon.", price=150.00, user_id=15, created_at=fake.date_between(start_date='-5y', end_date='today')
+    )
+
+    prod14 = Product(
+        name ="Billy", location_city="Los Angeles", location_state="California", description="Good condition, can move around on it's own too", price=100.00, user_id=16, created_at=fake.date_between(start_date='-5y', end_date='today')
+    )
+
+    prod15 = Product(
+        name ="La Prairie White Caviar Crème Extraordinare", location_city="Springwood", location_state="Ohio", description="A little bit used. Perfect condition. Good product but wasn't strong enough to make my skin glow. Originally $695", price=350.00, user_id=15, created_at=fake.date_between(start_date='-5y', end_date='today')
+    )
+
+    prod16 = Product(
+        name ="Lambert House", location_city="Los Angeles", location_state="California", description="Overall very good condition, might have a slight demon problem but nothing like a good cleansing wouldn't fix. We would've stayed but we couldn't turn down another offer for a different home. This house is fine trust me.", price=400000.00, user_id=3, created_at=fake.date_between(start_date='-5y', end_date='today')
+    )
+
+    prod17 = Product(
+        name ="Nun Portrait", location_city="Harrisville", location_state="Rhode Island", description="Very good condition. Perfect for the family living room. It has a cool effect where the eyes will follow you.", price=300.00, user_id=3, created_at=fake.date_between(start_date='-5y', end_date='today')
+    )
+
+    prod18 = Product(
+        name = "Vintage Clock", location_city="San Francisco", location_state="California", description="Good conditioned clock - a whimsically wicked way to wake up that will make you jump out of bed faster than a kangaroo on a trampoline! Say goodbye to those boring, mundane alarm clocks and embrace the dark side of timekeeping.", price=120.00, user_id=16, created_at=fake.date_between(start_date='-5y', end_date='today')
+    )
+
+    products = [prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12, prod13, prod14, prod15, prod16, prod17, prod18]
 
     [db.session.add(prod) for prod in products]
     db.session.commit()
