@@ -50,7 +50,7 @@ def seed_product_images():
         url="https://i.imgur.com/0aHKGy3.jpg", product_id=15
     )
     image16 = ProductImage(
-        url="https://static.wikia.nocookie.net/headhuntershorrorhouse/images/c/cb/Lambert_residence.jpg/revision/latest?cb=20220903111540", product_id=16
+        url="https://horrorfeminista.files.wordpress.com/2012/11/1insidious05.jpg", product_id=16
     )
     image17 = ProductImage(
         url="https://i.pinimg.com/736x/18/32/1c/18321ca44c7235504c4bacbdff3d1ba5.jpg", product_id=17
