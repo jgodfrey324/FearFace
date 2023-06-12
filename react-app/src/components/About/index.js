@@ -22,8 +22,8 @@ const AboutMe = () => {
                 </div>
                 <div className="bio">
                     <div className="name">Jenna Godfrey</div>
-                    <a href="https://github.com/jgodfrey324"><i className="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/jenna-godfrey-6ba51b107/"><i className="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/jgodfrey324" target="_blank"><i className="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/jenna-godfrey-6ba51b107/" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
                 </div>
             </div>
 
@@ -34,8 +34,8 @@ const AboutMe = () => {
             </div>
                 <div className="bio">
                     <div className="name">Raoul Andalis</div>
-                    <a href="https://github.com/raoulandalis"><i className="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/raoul-andalis/"><i className="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/raoulandalis" target="_blank"><i className="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/raoul-andalis/" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
                 </div>
             </div>
 
@@ -46,8 +46,8 @@ const AboutMe = () => {
             </div>
                 <div className="bio">
                     <div className="name">Pierce Henriksbo</div>
-                    <a href="https://google.com"><i className="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/pierce-henriksbo"><i className="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/pierceamisprime" target="_blank"><i className="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/pierce-henriksbo" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
                 </div>
             </div>
 
@@ -58,12 +58,14 @@ const AboutMe = () => {
             </div>
                 <div className="bio">
                 <div className="name">Tien Hoang</div>
-                    <a href="https://github.com/xuantien93"><i className="fa-brands fa-github"></i></a>
+                    <a href="https://github.com/xuantien93" target="_blank"><i className="fa-brands fa-github"></i></a>
                     {/* <a href="https://google.com"><i class="fa-brands fa-linkedin"></i></a> */}
                 </div>
             </div>
 
         </div>
+
+        <div style={{marginTop:"100px", marginLeft: '200px'}}>Candlewick on Login Page Made By <a href="https://codepen.io/shorinamaria" target="_blank">@shorinamaria</a></div>
 
         <div className="footer">
 
