@@ -193,6 +193,7 @@
 .fa-skull-crossbones {
     /* border: 1px solid red; */
     margin-left: 5px;
+    background-color: transparent;
 }
 
 .modal-button:hover {
@@ -263,12 +264,26 @@
     /* border: 1px solid blue; */
     font-size: 14px;
     background-color: #2F2E30;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .modal-comment-top-bar>a {
     text-decoration: none;
     background-color: #2F2E30;
+}
 
+.modal-comment-top-bar>a:hover {
+    color: white;
+}
+
+.modal-comment-top-bar > img {
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+    object-fit: cover;
+    /* border: 2px solid black */
 }
 
 .modal-comment-text-house {
