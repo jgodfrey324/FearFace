@@ -60,8 +60,12 @@ function App() {
           <Route>
             <h1 id="wrong">Turn around...</h1>
             <div className="frame-container">
-              <img id="tv" src="https://i.imgur.com/PIS3I3P.png"></img>
-              <iframe src="https://giphy.com/embed/r4OLGW3irym6k" width="480" height="309" frameBorder="0" className="giphy-embed" allowFullScreen></iframe>
+              <div className="frame-image">
+                <img id="tv" src="https://i.imgur.com/PIS3I3P.png"></img>
+              </div>
+              <div className="giphy-embed">
+                <iframe src="https://giphy.com/embed/r4OLGW3irym6k" frameBorder="0" allowFullScreen></iframe>
+              </div>
             </div>
           </Route>
         </Switch>

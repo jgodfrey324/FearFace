@@ -64,11 +64,11 @@ const MyProducts = () => {
                             <div className="my-product-top-bar">
                                 <div className="product-buttons-house">
                                     <OpenModalButton
-                                        buttonText={<i class="fa-regular fa-pen-to-square"></i>}
+                                        buttonText={<i className="fa-regular fa-pen-to-square"></i>}
                                         modalComponent={<UpdateProductModal productId={product.id} />}
                                     />
                                     <OpenModalButton
-                                        buttonText={<i class="fa-solid fa-trash"></i>}
+                                        buttonText={<i className="fa-solid fa-trash"></i>}
                                         modalComponent={<DeleteProductModal productId={product.id} />
                                         } />
                                 </div >

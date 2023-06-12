@@ -8,6 +8,8 @@ from faker import Faker
 fake = Faker()
 
 # Adds a demo user, you can add other users here if you want
+
+
 def seed_posts():
     post1 = Post(
         text='...🔪', user_id=1, created_at=fake.date_between(start_date='-5y', end_date='today'))
@@ -89,12 +91,14 @@ def seed_posts():
         text='Here\'s Johnny!', user_id=14, created_at=fake.date_between(start_date='-5y', end_date='today'))
     post40 = Post(
         text='Love how these pics turned out 😈 😘  Comment for more', user_id=5, created_at=fake.date_between(start_date='-5y', end_date='today'))
+
     # post41 = Post(
     #     text='How can you tell a dream from reality?', user_id=14, created_at=fake.date_between(start_date='-5y', end_date='today'))
     # post42 = Post(
     #     text='How can you tell a dream from reality?', user_id=14, created_at=fake.date_between(start_date='-5y', end_date='today'))
 
-    posts = [post1, post2, post3, post4, post5, post6, post7, post8, post9, post10, post11, post12, post13, post14, post15, post16, post17, post18, post19, post20, post21, post22, post23, post24, post25, post26, post27, post28, post29, post30, post31, post32, post33, post34, post35, post36, post37, post38, post39, post40]
+    posts = [post1, post2, post3, post4, post5, post6, post7, post8, post9, post10, post11, post12, post13, post14, post15, post16, post17, post18, post19, post20,
+             post21, post22, post23, post24, post25, post26, post27, post28, post29, post30, post31, post32, post33, post34, post35, post36, post37, post38, post39, post40]
 
     [db.session.add(post) for post in posts]
     db.session.commit()
@@ -108,7 +112,8 @@ def seed_posts():
 # it will reset the primary keys for you as well.
 def undo_posts():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.posts RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.posts RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM posts"))
 

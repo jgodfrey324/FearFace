@@ -408,41 +408,67 @@ p {
 
 .frame-container {
     display: flex;
-    align-items: center;
-    position: absolute;
+    /* align-items: center; */
+    position: relative;
     /* border: 5px solid red; */
-    top: 150px;
+    /* top: 120px; */
 }
 
+
+
 .giphy-embed {
-    height: 450px;
-    width: 600px;
+    height: 500px;
+    width: 620px;
     z-index: 200;
-    position: fixed;
-    top: 275px;
-    left: 568px;
+    position: absolute;
+    top: 250px;
+    left: 150px;
+    border-radius: 20px;
+    /* border: 1px solid red; */
+    background-color: transparent;
+}
+
+.giphy-embed>iframe {
+    /* border: 1px solid red; */
+    height: 390px;
+    width: 500px;
+    border-radius: 60px;
+}
+
+.frame-image {
+    top: 200px;
+    left: 100px;
+    height: 600px;
+    border-radius: 10px;
+    position: absolute;
 }
 
 .giphy-embed:hover {
     pointer-events: none;
 }
 
+/* iframe {
+    border-radius: 60px;
+    object-fit: fill;
+    width: 500px;
+    height: 550px;
+    /* background-color: transparent; */
+/* border: 1px solid red; */
+
+
 #wrong {
     color: white;
     /* margin-top: 120px; */
 }
 
-#tv {
+/* #tv {
     top: 200px;
     left: 500px;
     height: 600px;
     border-radius: 10px;
     position: fixed;
-}
+} */
 
-iframe {
-    border-radius: 60px;
-}
 
 .post-modal-menu-buttons>button {
     color: #d4bebe;
