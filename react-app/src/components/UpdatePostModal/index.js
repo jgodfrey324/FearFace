@@ -55,7 +55,7 @@ function UpdatePostModal({ postId }) {
             </div>
             <div id="update-textarea">
               <textarea
-                style={{ color: 'whitesmoke' }}
+                style={{ color: "whitesmoke" }}
                 placeholder={current_post?.text}
                 value={text}
                 onChange={(e) => setText(e.target.value)}

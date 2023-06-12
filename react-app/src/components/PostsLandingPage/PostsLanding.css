@@ -170,6 +170,8 @@ button {
     background-color: #2F2E30;
 }
 
+
+
 .delete-drop {
     width: 100%;
     background-color: #2F2E30;
@@ -363,6 +365,16 @@ p {
 .post-menu-buttons {
     background-color: transparent;
 }
+
+.modal-comment-menu-buttons {
+    background-color: #2F2E30;
+}
+
+.modal-comment-menu-buttons>button {
+    padding-left: 1px
+}
+
+
 
 .logo-container {
     display: flex;

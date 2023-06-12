@@ -147,3 +147,31 @@
 .my-prod-name {
     color: #d4bebe;
 }
+
+
+.my-product-delete {
+    /* border: 1px solid red; */
+    width: 90%;
+    margin-top: 30vh;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+
+.my-product-delete>button {
+    padding: 5px 5px;
+    margin: 5px 0px;
+    box-shadow: 1px 2px 2px;
+    color: #d4bebe;
+    /* border: 1px solid red; */
+    margin: 6px 3px;
+    border-radius: 5px;
+}
+
+.my-product-delete>button:hover {
+    box-shadow: 1px 1px 2px #d4bebe;
+    transition: all 0.3 ease 0s;
+}
+
+.my-product-delete>h1 {
+    margin-bottom: 20px;
+}

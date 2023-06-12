@@ -165,7 +165,7 @@ function PostDetailModal({ postId }) {
                                     <div className='modal-comment-menu-buttons'>
                                         {(isPostOwner || isCommentOwner) && (
                                             <OpenModalButton
-                                                buttonText="Delete"
+                                                buttonText={<i className="fa-solid fa-skull-crossbones"></i>}
                                                 modalComponent={<DeleteCommentModal commentId={comment.id} />}
                                             />
                                         )}
