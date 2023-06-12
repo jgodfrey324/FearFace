@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, NavLink, useParams, useHistory } from "react-router-dom";
+import { Redirect, NavLink, useParams } from "react-router-dom";
 import { getUserDetail } from '../../store/session';
 import { createPost, getAllPosts } from '../../store/posts';
 import { getComments } from '../../store/comments';
 import OpenModalButton from '../OpenModalButton';
-import DeletePostModal from '../UpdatePostModal/DeletePostModal';
-import UpdatePostModal from '../UpdatePostModal';
+// import DeletePostModal from '../UpdatePostModal/DeletePostModal';
+// import UpdatePostModal from '../UpdatePostModal';
 import PostDetailModal from '../PostsLandingPage/PostDetailModal';
 import { getAllPostImages } from '../../store/post_images';
 import EditDeleteDrop from '../PostsLandingPage/EditDeleteDrop';
@@ -17,7 +17,7 @@ import './ProfilePage.css'
 
 const ProfilePage = () => {
     const { userId } = useParams()
-    const history = useHistory()
+    // const history = useHistory()
     const dispatch = useDispatch()
     const userDetails = useSelector(state => state.session.user_details)
     const current_user = useSelector(state => state.session.user);
@@ -42,7 +42,7 @@ const ProfilePage = () => {
             async function data() {
                 const ress = await dispatch(getUserDetail(userId));
                 if (!ress) {
-                    console.log("im  inside something")
+                    // console.log("im  inside something")
                     return <h1 style={{ color: "white" }}>LOADING....</h1>
                 }
 
@@ -184,7 +184,7 @@ const ProfilePage = () => {
         <div className='profile-house'>
             <div className='profile-intro-house'>
                 <div className='profile-pic'>
-                    <img id="profile-pic-main" src={user.profile_pic}></img>
+                    <img id="profile-pic-main" src={user.profile_pic} alt='profile avatar'></img>
                 </div>
                 <div className='intro-house-text'>
                     <div className='profile-name-button'>
@@ -200,18 +200,13 @@ const ProfilePage = () => {
                     </div>
                     <p>{user.bio}</p>
                 </div>
-                {/* <div className='intro-house-button'>
-                    {friendId.includes(parseInt(userId)) && current_user.id !== parseInt(userId) && (
-                        <button onClick={handleUnfollow}>Unfollow</button>
-                    )}
-                </div> */}
             </div>
             <div className='my-profile-side-bar'>
                 <div className='user-following-house'>
                     <h3>following</h3>
                     {visiting_profile_friends.map((friend) => {
                         return (
-                            <div key={friend.id} className='following-house-user-link'><img id="profile-side-pic" src={friend.profile_pic}></img>
+                            <div key={friend.id} className='following-house-user-link'><img id="profile-side-pic" src={friend.profile_pic} alt='profile avatar'></img>
                                 <NavLink to={`/users/${friend.id}`}>{friend.first_name} {friend.last_name}</NavLink>
                             </div>
                         )
@@ -253,12 +248,6 @@ const ProfilePage = () => {
                                         <EditDeleteDrop user={user} postId={post.id}
                                         />
                                     )}
-                                    {/* {isCurrentUsers && (
-                                        <OpenModalButton
-                                            buttonText="Delete"
-                                            modalComponent={<DeletePostModal postId={post.id} setter={setPostsChanged} />}
-                                        />
-                                    )} */}
                                 </div>
                                 {current_user.id !== userId && (
                                     <div className='user-name'>

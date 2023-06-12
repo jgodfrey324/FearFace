@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-// import "./LoginForm.css";
 import { deleteComment } from "../../store/comments";
 
 

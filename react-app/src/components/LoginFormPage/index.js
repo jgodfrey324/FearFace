@@ -57,8 +57,8 @@ function LoginFormPage() {
             required
           />
         </label>
-        <button style={{ color: 'whitesmoke' }} onClick={demoUser} className="normal-demo-button">Demo User</button>
         <button type="submit" style={{ color: 'whitesmoke' }}>Log In</button>
+        <button style={{ color: 'whitesmoke' }} onClick={demoUser} className="normal-demo-button">Demo User</button>
       </form>
 
       <div class="candle">

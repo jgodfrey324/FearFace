@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts, createPost } from '../../store/posts';
-import { Redirect, NavLink, useHistory } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import OpenModalButton from '../OpenModalButton';
-import { useModal } from "../../context/Modal";
+// import { useModal } from "../../context/Modal";
 import PostDetailModal from './PostDetailModal';
 import { getUserDetail } from '../../store/session';
 import { getComments } from '../../store/comments';
@@ -15,8 +15,8 @@ import './PostsLanding.css';
 
 const PostsLanding = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
-    const { closeModal } = useModal();
+    // const history = useHistory()
+    // const { closeModal } = useModal();
     const posts = Object.values(useSelector(state => state.posts));
     const user = useSelector(state => state.session.user);
     const user_details = useSelector(state => state.session.user_details);
@@ -93,19 +93,11 @@ const PostsLanding = () => {
 
     // make friends object
     const friends = user_details[user.id]['is_following']
-    // console.log('friends on landing page ============================> ', friends);
-
-    //so what we have is a post image array
-    //every post image has a post id
 
 
 
     return (
         <div className='landing-house'>
-            {/* <div>
-                <button onClick={() => history.push(`/users/${user.id}`)} style={{ color: 'whitesmoke' }}>My Profile</button>
-                <h3>Check out the <NavLink to='/marketplace'>Marketplace!</NavLink></h3>
-            </div> */}
             <div className="lp-posts">
                 <form id="lp-form" onSubmit={submitForm} encType="multipart/form-data">
                     <div className='new-post-house'>
@@ -124,16 +116,6 @@ const PostsLanding = () => {
                             minLength={5}
                             // maxLength={5000}
                         />
-                        {/* <button disabled={text.length < 5} className={text.length < 5 ? 'offbtn' : 'onbtn'}>P o s t</button> */}
-                        {/* <label>
-                        <div>Add an Image</div>
-                        <input
-                            type='file'
-                            accept='image/*'
-                            onChange={(e) => setImage(e.target.files[0])}
-                        ></input>
-                    </label> */}
-                        {/* <button disabled={text.length < 5} className='glowing-btn'><span className='glowing-txt'>P <span class='faulty-letter'>O</span> S T</span></button> */}
                         <button className='glowing-btn'>POST</button>
 
                     </div>
@@ -148,12 +130,6 @@ const PostsLanding = () => {
                                         <EditDeleteDrop user={user} postId={post.id}
                                         />
                                     )}
-                                    {/* {isCurrentUsers && (
-                                        <OpenModalButton
-                                            buttonText="Delete"
-                                            modalComponent={<DeletePostModal postId={post.id} />}
-                                        />
-                                    )} */}
                                 </div>
                                 <div className='user-name'>
                                     <img src={post.user.profile_pic} alt='user'></img>

@@ -26,15 +26,27 @@ Live site: [FearFace](https://fearface.onrender.com)
 
 ## Installation
 1. Clone the repository:
+
     git clone [here](https://github.com/jgodfrey324/FearFace)
 
+
 2. Install the dependencies:
-   npm install --prefix react-app &&
-   npm run build --prefix react-app &&
-   pip install -r requirements.txt &&
-   pip install psycopg2 &&
-   flask db upgrade &&
-   flask seed all
+
+   cd into react-app folder and run npm install,
+   cd into root and run pipenv install -r requirements.txt &&
+   pipenv install psycopg2 &&
+   pipenv install faker &&
+   pipenv run flask db init &&
+   pipenv run flask db migrate &&
+   pipenv run flask db upgrade &&
+   pipenv run flask seed all
+
+
+3. Start project locally:
+
+   in root directory run pipenv run flask run
+   in seperate shell cd into react-app/
+   run npm start
 
 
 ## Acknowledgments
