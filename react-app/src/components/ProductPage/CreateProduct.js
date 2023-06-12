@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from "react-router-dom";
 import { createProductThunk } from '../../store/product';
-import { createProdImage } from '../../store/product_images';
+// import { createProdImage } from '../../store/product_images';
 // import { FileInput, FileField } from 'react-admin'
 import './CreateProduct.css'
 
@@ -18,8 +18,8 @@ const CreateProduct = () => {
     const [description, setDescription] = useState("")
     const [errors, setErrors] = useState({})
     const [submitted, setSubmitted] = useState(false);
-    const [imageLoading, setImageLoading] = useState(false);
-    const [image, setImage] = useState(null);
+    // const [imageLoading, setImageLoading] = useState(false);
+    // const [image, setImage] = useState(null);
 
     const user = useSelector(state => state.session.user)
 
@@ -50,7 +50,7 @@ const CreateProduct = () => {
         e.preventDefault()
 
         setSubmitted(true);
-        setImageLoading(true);
+        // setImageLoading(true);
 
         const formData = new FormData()
         formData.append("name", name)
@@ -60,17 +60,17 @@ const CreateProduct = () => {
         formData.append("description", description)
         // formData.append("preview_image", prevImage)
 
-        const formImageData = new FormData()
-        formImageData.append("file", image);
+        // const formImageData = new FormData()
+        // formImageData.append("file", image);
 
 
 
         if (!Object.values(errors).length) {
             const data = await dispatch(createProductThunk(formData))
 
-            if (image) {
-                dispatch(createProdImage(data.id, formImageData))
-            }
+            // if (image) {
+            //     dispatch(createProdImage(data.id, formImageData))
+            // }
 
             history.push('/marketplace')
             reset()

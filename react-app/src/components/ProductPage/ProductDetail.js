@@ -2,9 +2,9 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
-import OpenModalButton from '../OpenModalButton';
-import UpdateProductModal from './UpdateProduct';
-import DeleteProductModal from './DeleteProductModal';
+// import OpenModalButton from '../OpenModalButton';
+// import UpdateProductModal from './UpdateProduct';
+// import DeleteProductModal from './DeleteProductModal';
 import { getAllProducts } from '../../store/product.js'
 import { getAllProdImages } from '../../store/product_images';
 import "./ProductPage.css"
@@ -71,17 +71,6 @@ function ProductDetails({ productId, visible, currentUserId }) {
       <p className="product-price">$ {product.price.toFixed(2)}</p>
       <div className='mp-btn-container'>
         {(currentUserId === product.user?.id) &&
-          // < div classname="product-detail-buttons">
-          //   <OpenModalButton style={{ color: 'whitesmoke' }}
-          //     buttonText="Update"
-          //     modalComponent={<UpdateProductModal productId={product.id} />}
-          //   />
-
-          //   <OpenModalButton style={{ color: 'whitesmoke' }}
-          //     buttonText="Delete"
-          //     modalComponent={<DeleteProductModal productId={product.id} />
-          //     } />
-          // </div>
           <button className="mp-btn"onClick={() => history.push(`/users/${currentUserId}/products`)}>Manage Product</button>
 
         }

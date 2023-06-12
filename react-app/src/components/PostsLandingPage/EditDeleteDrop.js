@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from 'react-router-dom';
-import { logout } from "../../store/session";
+// import { useDispatch } from "react-redux";
+// import { useHistory } from 'react-router-dom';
+// import { logout } from "../../store/session";
 import UpdatePostModal from "../UpdatePostModal";
 import DeletePostModal from "../UpdatePostModal/DeletePostModal";
 import OpenModalButton from "../OpenModalButton";
 
 function EditDeleteDrop({ user, postId }) {
-    const dispatch = useDispatch();
-    const history = useHistory()
+    // const dispatch = useDispatch();
 
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
@@ -32,13 +31,13 @@ function EditDeleteDrop({ user, postId }) {
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
-    const handleLogout = (e) => {
-        e.preventDefault();
-        dispatch(logout());
-    };
+    // const handleLogout = (e) => {
+    //     e.preventDefault();
+    //     dispatch(logout());
+    // };
 
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-    const closeMenu = () => setShowMenu(false);
+    // const closeMenu = () => setShowMenu(false);
 
 
 

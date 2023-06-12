@@ -8,7 +8,7 @@ import { getComments } from '../../store/comments';
 import { postComment } from '../../store/comments';
 import OpenModalButton from '../OpenModalButton';
 import { getAllPostImages } from '../../store/post_images';
-import EditDeleteDrop from './EditDeleteDrop';
+// import EditDeleteDrop from './EditDeleteDrop';
 import "./PostDetailModal.css";
 import { useModal } from '../../context/Modal';
 
@@ -126,32 +126,6 @@ function PostDetailModal({ postId }) {
             <div className='post-modal-text-house'>
                 <p>{post.text}</p>
             </div>
-            {/* <form onSubmit={submitForm}>
-                <div className='new-comment-house'>
-                    <ul>
-                        {errors && (
-                            <p style={{ color: "red" }}>{errors}</p>
-                        )}
-                    </ul>
-                    <div id="update-comment-textarea">
-                        <div id="comment-area">
-                            <textarea
-                                style={{ color: 'whitesmoke' }}
-                                value={text}
-                                placeholder='Write a comment....'
-                                required
-                                onChange={(e) => setText(e.target.value)}
-                                minLength={5}
-                                // maxLength={5000}
-                                rows={5}
-                            />
-                        </div>
-                        <div id="comment-button">
-                            <button style={{ color: "whitesmoke" }}><i class="fa-solid fa-skull"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </form > */}
             <div className='comment-box'>
                 {postComments.map(comment => {
                     let isCommentOwner = comment.user.id === user.id
@@ -159,8 +133,9 @@ function PostDetailModal({ postId }) {
                         <div key={comment.id} className='post-modal-comment-house'>
                             <div id="comment-div">
                                 <div id="comment-name-delete">
-                                    <div className='modal-comment-top-bar'>
-                                        <NavLink to={`/user/${comment.user.id}`}>{comment.user.first_name} {comment.user.last_name}</NavLink>
+                                    <div className='modal-comment-top-bar' onClick={() => closeModal()}>
+                                        <img src={comment.user.profile_pic} alt='user'></img>
+                                        <NavLink to={`/users/${comment.user.id}`}>{comment.user.first_name} {comment.user.last_name}</NavLink>
                                     </div>
                                     <div className='modal-comment-menu-buttons'>
                                         {(isPostOwner || isCommentOwner) && (

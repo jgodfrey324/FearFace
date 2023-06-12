@@ -12,12 +12,11 @@ const ProductsLanding = () => {
     const history = useHistory()
     const productObj = useSelector(state => state.products)
     const user = useSelector(state => state.session.user)
-    // const prodImages = Object.values(useSelector(state => state.productImages))
 
     const [sideOpen, setSideOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState({});
 
-    const prodImages = Object.values(useSelector(state => state.productImages))
+    const prodImagesObj = useSelector(state => state.productImages)
 
 
     useEffect(() => {
@@ -27,11 +26,6 @@ const ProductsLanding = () => {
         }
     }, [selectedProduct]);
 
-
-
-    // useEffect(() => {
-    //     if (sideOpen === false) setSelectedProduct({})
-    // }, [sideOpen])
 
 
 
@@ -48,9 +42,10 @@ const ProductsLanding = () => {
 
     if (!productObj) return null;
 
-    // if (!prodImages) return null;
 
     const products = Object.values(productObj)
+
+    const prodImages = Object.values(prodImagesObj)
 
 
 
@@ -58,7 +53,7 @@ const ProductsLanding = () => {
         <div className='product-page-container'>
             <div className='trouble-makers'>
                 <div className="marketplace-and-button">
-                    <img id="mplace-logo"src="https://i.imgur.com/7xrEmmi.png"></img>
+                    <img id="mplace-logo"src="https://i.imgur.com/7xrEmmi.png" alt='marketplace'></img>
                     <button onClick={() => history.push('/marketplace/create')}>Create new listing</button>
                 </div>
                 <div className='product-view'>
@@ -70,13 +65,6 @@ const ProductsLanding = () => {
                                     >
                                     <div className="product-tile">
                                         {prodImages.map(image => {
-                                            if (!image.product_id) {
-                                                return (
-                                                    <div className="pr-image" key={image.id} >
-                                                        <img src={`https://media.discordapp.net/attachments/1113249761743618210/1116896594177048657/img-coming-removebg-preview.png?width=714&height=692`} alt='product'></img>
-                                                    </div>
-                                                )
-                                            }
                                             if (image.product_id === product.id) {
                                                 return (
                                                     <div className="pr-image" key={image.id} >
