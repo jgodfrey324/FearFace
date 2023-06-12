@@ -94,13 +94,13 @@ function PostDetailModal({ postId }) {
                         // />
 
                         <OpenModalButton
-                            buttonText={<i class="fa-regular fa-pen-to-square"></i>}
+                            buttonText={<i className="fa-regular fa-pen-to-square"></i>}
                             modalComponent={<UpdatePostModal postId={postId} />}
                         />
                     )}
                     {isPostOwner && (
                         <OpenModalButton
-                            buttonText={<i class="fa-solid fa-trash"></i>}
+                            buttonText={<i className="fa-solid fa-trash"></i>}
                             modalComponent={<DeletePostModal postId={postId} />}
                         />
                     )}
@@ -140,7 +140,7 @@ function PostDetailModal({ postId }) {
                                     <div className='modal-comment-menu-buttons'>
                                         {(isPostOwner || isCommentOwner) && (
                                             <OpenModalButton
-                                                buttonText="Delete"
+                                                buttonText={<i className="fa-solid fa-skull-crossbones"></i>}
                                                 modalComponent={<DeleteCommentModal commentId={comment.id} />}
                                             />
                                         )}
