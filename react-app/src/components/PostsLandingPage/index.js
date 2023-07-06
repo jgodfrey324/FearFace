@@ -114,7 +114,7 @@ const PostsLanding = () => {
                             required
                             onChange={(e) => setText(e.target.value)}
                             minLength={5}
-                            // maxLength={5000}
+                        // maxLength={5000}
                         />
                         <button className='glowing-btn'>POST</button>
 
