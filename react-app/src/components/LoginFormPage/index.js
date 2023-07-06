@@ -17,7 +17,7 @@ function LoginFormPage() {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors(data[0].split(":")[1]);
     }
 
   };
@@ -33,9 +33,9 @@ function LoginFormPage() {
       <p>Don't have an account? Sign up <NavLink to='/signup'>here.</NavLink></p>
       <form onSubmit={handleSubmit}>
         <span>
-          {errors.map((error, idx) => (
-            <li id="error-li" key={idx}>{error}</li>
-          ))}
+          <li id="error-li">{errors}</li>
+          {/* {errors.map((error, idx) => (
+          ))} */}
         </span>
         <label>
           Email

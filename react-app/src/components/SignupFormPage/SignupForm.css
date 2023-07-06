@@ -21,6 +21,8 @@
 
 .avatar-pics {
     margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .avatar-pics > label > img {
@@ -63,6 +65,7 @@
     /* border: 3px dotted orange; */
     margin-bottom: 15px;
     color: #B00B1B;
+    font-size: 20px
 }
 
 .signup-house > p {
@@ -101,10 +104,10 @@
     /* border: 1px solid green; */
     width: 100%;
     padding: 5px;
-    border: 1px solid #63242A;
-    height: 20px;
+    border: 2px solid #63242A;
+    height: 30px;
     border-radius: 5px;
-
+    font-size: 18px
 }
 
 .signup-house > form > label > input:focus {

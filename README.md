@@ -13,16 +13,36 @@ Live site: [FearFace](https://fearface.onrender.com)
 
 ## Features
 - User registration and authentication: Users can create accounts and log in securely.
+### SignUp
+<!-- ![FearFaceSignUp](https://i.imgur.com/9grMZV9.png) -->
+<img style="width: 700px;" src="https://i.imgur.com/9grMZV9.png"></img>
+
+### Login
+<!-- ![FearFaceLogin](https://i.imgur.com/0CR3esV.png) -->
+<img style="width: 700px" src="https://i.imgur.com/0CR3esV.png"></img>
 
 - The Wall: Users can view a personalized news feed that displays posts from their friends and pages they follow.
+### LandingPage
+<!-- ![FearFacelanding](https://i.imgur.com/OWe1UDr.png) -->
+<img style="width: 700px" src="https://i.imgur.com/OWe1UDr.png"></img>
 
 - Posts: Users can create, read, update, and delete their own posts.
+### Individual Post
+<!-- ![FearFaceIndividualPost](https://i.imgur.com/QtHTBM3.png) -->
+<img style="width: 700px" src="https://i.imgur.com/QtHTBM3.png"></img>
 
 - Marketplace: Users can create, browse, edit, and delete products in the marketplace.
-
+### Marketplace
+<!-- ![FearFaceMarket](https://i.imgur.com/vyjkKXb.png) -->
+<img style="width: 700px" src="https://i.imgur.com/vyjkKXb.png"></img>
 - Commenting: Users can post and delete comments on posts and products.
-
+### Comments
+<!-- ![FearFaceComments](https://i.imgur.com/bF7uP58.png) -->
+<img style="width: 700px" src="https://i.imgur.com/bF7uP58.png"></img>
 - Follow and Unfollow: Users can follow and unfollow other users to see their posts and updates in their news feed.
+
+### Follows
+<img style="width: 700px" src="https://i.imgur.com/a2EWhLf.png"></img>
 
 ## Installation
 1. Clone the repository:
