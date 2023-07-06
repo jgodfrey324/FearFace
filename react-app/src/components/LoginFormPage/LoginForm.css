@@ -20,6 +20,7 @@
     /* border: 3px dotted orange; */
     margin-bottom: 15px;
     color: #B00B1B;
+    font-size: 20px;
 }
 
 .login-house>p {
@@ -65,9 +66,10 @@
     /* border: 1px solid green; */
     width: 100%;
     padding: 5px;
-    border: 1px solid #63242A;
-    height: 20px;
+    border: 2px solid #63242A;
+    height: 30px;
     border-radius: 5px;
+    font-size: 18px;
 }
 
 .login-house>form>label>input:focus {
