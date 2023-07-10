@@ -59,7 +59,7 @@ const AboutMe = () => {
                     <div className="bio">
                         <div className="name">Tien Hoang</div>
                         <a href="https://github.com/xuantien93" target="_blank"><i className="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/tien-hoang-6205b5281"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.linkedin.com/in/tien-hoang-6205b5281" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
                 </div>
 
