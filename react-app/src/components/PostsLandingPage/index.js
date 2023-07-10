@@ -23,7 +23,6 @@ const PostsLanding = () => {
     const comments = Object.values(useSelector(state => state.comments));
     const postImages = Object.values(useSelector(state => state.postImages))
 
-    // console.log("post images ===========================", postImages)
     const [text, setText] = useState('');
     // const [url, setUrl] = useState('');
     const [errors, setErrors] = useState('');
@@ -48,14 +47,11 @@ const PostsLanding = () => {
 
         const data = await dispatch(createPost(formData));
         // if data is sent back set errors to the data
-        // console.log(data, 'd')
         if (data.errors) {
-            console.log('i went in here', data.errors)
             return setErrors(data.errors[0]);
         }
 
         if (submitted && errors) {
-            console.log('errors was reset!')
             setErrors('');
         }
         setText('')

@@ -48,7 +48,6 @@ def all_products():
         product_id = product['id']
         res[product_id] = product
 
-    # print("this is our products ============================",res)
     return res
 
 
@@ -145,7 +144,6 @@ def create_image(id):
     if file_to_upload:
         upload_result = cloudinary.uploader.upload(file_to_upload)
 
-        # print('upload_result url ---------------------------------> ', upload_result['url'])
         result = ProductImage(
             url = upload_result['url'],
             product_id = id

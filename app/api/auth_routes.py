@@ -64,9 +64,6 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-
-    # print('request ==========================================================>', request.__dict__)
-
     if form.validate_on_submit():
 
         avatar_choices = ["https://images-ext-1.discordapp.net/external/zhxa2dTWchJ_tE1xmUySwcDE57OflnMUwdmKrEnRyyM/https/static1.dualshockersimages.com/wordpress/wp-content/uploads/2022/01/Nezukos-New-Demon-Form-in-Demon-Slayer-Explained.jpg?width=1836&height=1034",

@@ -135,7 +135,6 @@ def create_image(id):
     if file_to_upload:
         upload_result = cloudinary.uploader.upload(file_to_upload)
 
-        # print('upload_result url ---------------------------------> ', upload_result['url'])
         result = PostImage(
             url = upload_result['url'],
             post_id = id
