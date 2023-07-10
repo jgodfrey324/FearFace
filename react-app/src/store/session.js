@@ -91,9 +91,6 @@ export const logout = () => async (dispatch) => {
 
 export const signUp = (profile_pic, username, email, password, first_name, last_name) => async (dispatch) => {
 
-	console.log('firstName from thunk', first_name)
-	console.log('lastName from thunk', last_name)
-
 
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",

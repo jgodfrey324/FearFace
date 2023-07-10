@@ -47,7 +47,6 @@ const CreateProduct = () => {
 
 
     const submitForm = async (e) => {
-        // console.log("is this submitting =====================================================")
         e.preventDefault()
 
         setSubmitted(true);

@@ -50,7 +50,6 @@ function EditDeleteDrop({ user, postId }) {
                 {user && (
                     <div className="edit-delete-post">
                         <div className="edit-drop">
-                            {console.log("I am in here")}
                             <OpenModalButton
                                 buttonText="Edit"
                                 modalComponent={<UpdatePostModal postId={postId} />}

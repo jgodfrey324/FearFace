@@ -50,7 +50,6 @@ function PostDetailModal({ postId }) {
         }
 
         if (submitted && errors) {
-            console.log('errors was reset!')
             setErrors('');
         }
 
@@ -86,7 +85,6 @@ function PostDetailModal({ postId }) {
 
     return (
         <div className='post-modal-house'>
-            {/* {console.log('am i being pranked ????????????')} */}
             <div className='post-modal-top-bar'>
                 <div className='post-modal-menu-buttons'>
                     {isPostOwner && (
@@ -111,10 +109,7 @@ function PostDetailModal({ postId }) {
                     <NavLink to={`/users/${post.user.id}`}>{post.user.first_name} {post.user.last_name}</NavLink>
                 </div>
             </div>
-            {/* {console.log('right above image map ===============> ')} */}
             {postImages.map(image => {
-                // console.log(typeof postId, '---------------------------------')
-                // console.log(image.post_id, '---------------------------------------')
                 if (image.post_id === postId) {
                     return (
                         <div key={image.id} className='detail-image-house'>

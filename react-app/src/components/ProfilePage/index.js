@@ -42,7 +42,6 @@ const ProfilePage = () => {
             async function data() {
                 const ress = await dispatch(getUserDetail(userId));
                 if (!ress) {
-                    // console.log("im  inside something")
                     return <h1 style={{ color: "white" }}>LOADING....</h1>
                 }
 
@@ -120,7 +119,6 @@ const ProfilePage = () => {
             return setErrors(data.errors[0]);
         }
         if (submitted && errors) {
-            console.log('errors was reset!')
             setErrors('');
         }
 
