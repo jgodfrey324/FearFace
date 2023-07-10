@@ -35,13 +35,14 @@ const UpdateProductModal = ({productId}) => {
     useEffect(() => {
         // dispatch(getAllProducts())
         const error = {}
-        if (!name) error.name = "Name is required"
-        if (!city) error.city = "City is required"
-        if (!state) error.state = "State is required"
-        if (!price) error.price = "Price is required"
-        if (+price <= 0) error.price = "Price must be greater than 0"
-        if (!(+price)) error.price = 'Price must be valid number'
-        if (!description) error.description = "description is required"
+        if (!name) error.name = "* Name is required"
+        if (!city) error.city = "* City is required"
+        if (!state) error.state = "* State is required"
+        if (!price) error.price = "* Price is required"
+        if (+price <= 0) error.price = "* Price must be greater than 0"
+        if (!(+price)) error.price = '* Price must be valid number'
+        if (!description) error.description = "* Description is required"
+        if (description.length < 5 || description.length > 5000) error.description = "* Description must be between 5 and 5000 characters"
         setErrors(error)
     }, [name, city, state, price, description])
 

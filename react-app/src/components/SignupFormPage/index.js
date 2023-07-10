@@ -19,7 +19,7 @@ function SignupFormPage() {
 
 
 
-  console.log('profile pic info ---------> ', profilePic);
+  // console.log('profile pic info ---------> ', profilePic);
 
   const pic1 = "https://images-ext-1.discordapp.net/external/zhxa2dTWchJ_tE1xmUySwcDE57OflnMUwdmKrEnRyyM/https/static1.dualshockersimages.com/wordpress/wp-content/uploads/2022/01/Nezukos-New-Demon-Form-in-Demon-Slayer-Explained.jpg?width=1836&height=1034"
   const pic2 = "https://images-ext-2.discordapp.net/external/Rl4I8LML5XaL5bbiQ4eR2mSatuZxXWzOawNMn1F_NsI/https/pbs.twimg.com/media/DXjlEkKV4AA-I_S.jpg?width=1034&height=1034"
@@ -34,11 +34,14 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       const data = await dispatch(signUp(profilePic, username, email, password, firstName, lastName));
-      if (data.errors) {
+      if (data) {
+        // setErrors(data[0].split(":")[1]);
+        console.log(data)
         setErrors(data)
       }
     } else {
-      setErrors(['Confirm Password field must be the same as the Password field']);
+      setErrors(['password: * Confirm Password field must be the same as the Password field']);
+      console.log(errors)
     }
   };
 
@@ -47,11 +50,7 @@ function SignupFormPage() {
       <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt='page logo' ></img>
       <p>Already have an account? Log in <NavLink to='/login'>here.</NavLink></p>
       <form onSubmit={handleSubmit}>
-      <span>
-          {errors.map((error, idx) => (
-            <li id="error-li" key={idx}>{error}</li>
-          ))}
-        </span>
+        {/* <li id="error-li">{errors}</li> */}
         <div className="choose-avatar">
           <label>
             Choose an avatar:
@@ -122,6 +121,11 @@ function SignupFormPage() {
             </div>
           </label>
         </div>
+        <span>
+          {errors.map((error, idx) => (
+            <li id="error-li" key={idx}>{error.split(':')[1]}</li>
+          ))}
+        </span>
         <label>
           Email
           <input
@@ -169,6 +173,8 @@ function SignupFormPage() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            minLength='8'
+						maxLength='30'
             required
           />
         </label>
