@@ -48,7 +48,7 @@ const MyProducts = () => {
         <div className="my-products-house">
             <img id="my-m-logo" src="https://i.imgur.com/1fIXctG.png" alt="my marketplace"></img>
             <div className="create-button">
-                <button onClick={() => history.push('/marketplace/create')}>Create new listing</button>
+                <button className="glowing-btn" style={{width: '150px', fontSize: '14px', marginLeft: '35px'}} onClick={() => history.push('/marketplace/create')}>Create new listing</button>
             </div>
             {/* <div className="side-bar-buttons">
                 <button onClick={() => history.push(`/users/${userId}`)}>My Profile</button>
