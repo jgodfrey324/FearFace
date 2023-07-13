@@ -54,7 +54,7 @@ const ProductsLanding = () => {
             <div className='trouble-makers'>
                 <div className="marketplace-and-button">
                     <img id="mplace-logo"src="https://i.imgur.com/7xrEmmi.png" alt='marketplace'></img>
-                    <button onClick={() => history.push('/marketplace/create')}>Create new listing</button>
+                    <button className="glowing-btn" style={{width: '150px', fontSize: '14px', marginLeft: '35px'}} onClick={() => history.push('/marketplace/create')}>Create new listing</button>
                 </div>
                 <div className='product-view'>
                     <div className='all-products-detail'>

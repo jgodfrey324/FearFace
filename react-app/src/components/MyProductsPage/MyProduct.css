@@ -128,15 +128,15 @@
     margin-top: 15px;
 }
 
-.create-button {
+/* .create-button {
     display: flex;
     justify-content: center;
-}
+} */
 
 .create-button>button {
     border: 1px solid red;
     width: fit-content;
-    color: rgb(212, 190, 190);
+    /* color: rgb(212, 190, 190); */
     /* margin-left: 30px; */
     border: none;
     border-radius: 4px;
