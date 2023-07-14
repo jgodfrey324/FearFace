@@ -203,24 +203,19 @@
     margin-left: 25px;
   }
 
-  .marketplace-and-button > button {
+  /* .marketplace-and-button > button {
     width: fit-content;
     color: rgb(212, 190, 190);
     margin-left: 30px;
     border: none;
-    /* box-shadow: 2px 2px 3px rgb(212, 190, 190); */
     border-radius: 4px;
     padding: 10px;
   }
 
   .marketplace-and-button > button:hover {
-    /* width: fit-content; */
-    /* color: white; */
     background-color:#2F2E30;
-    /* margin-left: 35px; */
-    /* border: 1px solid white; */
     border-radius: 4px;
-  }
+  } */
 
   .mp-btn-container {
     display: flex;

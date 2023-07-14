@@ -1,6 +1,10 @@
 ![FearFaceLogo](react-app/public/fearface-trans-logo.png)
 
-FearFace is a social media platform inspired by Facebook, designed to provide a similar user experience with some unique features. Enter at your own risk!
+FearFace is a horror-themed social media platform inspired by Facebook, developed by a team. A new user has the ability to browse the silly comments made by popular horror-movie characters, make a post of their own, comment, and even check out the haunted marketplace! If you are a horror fan, look out for all the witty references. Enter at your own risk!
+
+Our team is looking to build out more of the marketplace functionality soon!
+
+Some of the technologies used to create this project are: Python, Flask, SQLAlchemy, Javascript, React, HTML5, CSS3, Redux, PostgreSQL, GitHub
 
 Live site: [FearFace](https://fearface.onrender.com)
 

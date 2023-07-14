@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink } from "react-router-dom";
 import { login } from "../../store/session";
@@ -10,6 +10,16 @@ function LoginFormPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
+
+  //USER BROWSER DATA
+  const [isFirefox, setIsFirefox] = useState(false);
+
+  useEffect(() => {
+    setIsFirefox(navigator.userAgent.includes('Firefox'));
+  }, []);
+
+
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -29,8 +39,13 @@ function LoginFormPage() {
 
   return (
     <div className="login-house">
-      <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt='page logo'></img>
-      <p>Don't have an account? Sign up <NavLink to='/signup'>here.</NavLink></p>
+       <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt="page logo" />
+      <p>Don't have an account? Sign up <NavLink to="/signup">here.</NavLink></p>
+      {isFirefox ? (
+        <p id="firefoxMessage" style={{ color: 'red', fontWeight: 'bold' }}>
+          Best FearFace experience on Google Chrome!
+        </p>
+      ) : null}
       <form onSubmit={handleSubmit}>
         <span>
           <li id="error-li">{errors}</li>
