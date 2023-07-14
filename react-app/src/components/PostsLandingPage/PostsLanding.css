@@ -110,6 +110,7 @@ button {
     flex-direction: column;
     padding: 70px;
     width: fit-content;
+    width: auto;
     align-items: center;
     margin-bottom: 30px;
     box-shadow: -1px 3px 10px black;
@@ -193,6 +194,7 @@ button {
     height: 100px;
     width: -moz-available;
     width: -webkit-fill-available;
+    width: 100%;
     border-radius: 8px;
     font-size: 15px;
     padding: 5px;

@@ -94,9 +94,9 @@
 }
 
 .my-product-image>img {
-    width: -moz-available;
+    width: 90%;
     width: -webkit-fill-available;
-    height: -moz-available;
+    height: 90%;
     height: -webkit-fill-available;
     object-fit: cover;
     margin: 10px;
