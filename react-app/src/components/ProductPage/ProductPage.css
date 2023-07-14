@@ -1,12 +1,12 @@
   .product-page-container {
     display: flex;
     justify-content: space-between;
-    width: -webkit-fill-available;
+    width: -moz-available, -webkit-fill-available;
   }
 
   .all-products-detail {
     /* border: 2px solid orange; */
-    width: -webkit-fill-available;
+    width: -moz-available, -webkit-fill-available;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -40,15 +40,15 @@
   }
 
   .pr-image > img{
-    height: -webkit-fill-available;
-    width: -webkit-fill-available;
+    height: -moz-available, -webkit-fill-available;
+    width: -moz-available, -webkit-fill-available;
     object-fit: cover;
     border-radius: 10px;
   }
 
   .pr-image {
     height: 300px;
-    width: -webkit-fill-available;
+    width: -moz-available, -webkit-fill-available;
     margin-bottom: 10px;
   }
 

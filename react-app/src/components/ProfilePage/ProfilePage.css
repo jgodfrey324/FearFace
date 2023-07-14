@@ -59,7 +59,7 @@
     /* border: 1px solid orange;  */
     color: whitesmoke;
     /* margin: 10px 0; */
-    width: -webkit-fill-available;
+    width: -moz-available, -webkit-fill-available;
 }
 
 .intro-house-text > p {
@@ -108,8 +108,8 @@
 }
 
 #profile-pic-main {
-    height: -webkit-fill-available;
-    width: -webkit-fill-available;
+    height: -moz-available, -webkit-fill-available;
+    width: -moz-available, -webkit-fill-available;
     border-radius: 100px;
     object-fit: cover;
     border: 3px solid black;

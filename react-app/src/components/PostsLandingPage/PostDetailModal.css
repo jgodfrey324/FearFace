@@ -94,7 +94,7 @@
     overflow-y: auto;
     top: 100px;
     /* width: -webkit-fill-available; */
-    height: -webkit-fill-available;
+    height: -moz-available, -webkit-fill-available;
 }
 
 #modal-content>button {
@@ -211,7 +211,7 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
-    width: -webkit-fill-available;
+    width: -moz-available, -webkit-fill-available;
     background-color: #2F2E30;
 
 }
