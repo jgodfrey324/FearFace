@@ -59,6 +59,7 @@
     /* border: 1px solid orange;  */
     color: whitesmoke;
     /* margin: 10px 0; */
+    width: -moz-available;
     width: -webkit-fill-available;
 }
 
@@ -108,7 +109,9 @@
 }
 
 #profile-pic-main {
+    height: -moz-available;
     height: -webkit-fill-available;
+    width: -moz-available;
     width: -webkit-fill-available;
     border-radius: 100px;
     object-fit: cover;

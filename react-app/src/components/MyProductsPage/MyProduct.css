@@ -75,6 +75,7 @@
 }
 
 .s-house>button {
+    width: -moz-available;
     width: -webkit-fill-available;
 }
 
