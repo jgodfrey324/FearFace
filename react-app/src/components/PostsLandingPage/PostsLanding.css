@@ -88,7 +88,8 @@ button {
 .landing-house {
     /* border: 1px solid red; */
     margin-top: 20px;
-    width: -moz-available, -webkit-fill-available;
+    width: -moz-available;
+    width: -webkit-fill-available;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -190,7 +191,8 @@ button {
     margin-bottom: 20px;
     /* border: 3px solid blue; */
     height: 100px;
-    width: -moz-available, -webkit-fill-available;
+    width: -moz-available;
+    width: -webkit-fill-available;
     border-radius: 8px;
     font-size: 15px;
     padding: 5px;
@@ -276,7 +278,8 @@ span {
 .post-image-house>img {
     width: 75%;
     object-fit: cover;
-    height: -moz-available, -webkit-fill-available;
+    height: -moz-available;
+    height: -webkit-fill-available;
     /* box-shadow: 3px 0px 5px 151616; */
 }
 
