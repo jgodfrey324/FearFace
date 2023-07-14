@@ -75,7 +75,7 @@
 }
 
 .s-house>button {
-    width: -webkit-fill-available;
+    width: -moz-available, -webkit-fill-available;
 }
 
 .all-products-house {
@@ -93,8 +93,8 @@
 }
 
 .my-product-image>img {
-    width: -webkit-fill-available;
-    height: -webkit-fill-available;
+    width: -moz-available, -webkit-fill-available;
+    height: -moz-available, -webkit-fill-available;
     object-fit: cover;
     margin: 10px;
     border-radius: 7px;
