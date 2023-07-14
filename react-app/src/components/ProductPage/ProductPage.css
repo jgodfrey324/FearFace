@@ -2,11 +2,13 @@
     display: flex;
     justify-content: space-between;
     width: -webkit-fill-available;
+    width: auto;
   }
 
   .all-products-detail {
     /* border: 2px solid orange; */
     width: -webkit-fill-available;
+    width: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -41,7 +43,9 @@
 
   .pr-image > img{
     height: -webkit-fill-available;
+    height: 100%;
     width: -webkit-fill-available;
+    width: 100%;
     object-fit: cover;
     border-radius: 10px;
   }
@@ -49,6 +53,7 @@
   .pr-image {
     height: 300px;
     width: -webkit-fill-available;
+    width: auto;
     margin-bottom: 10px;
   }
 
