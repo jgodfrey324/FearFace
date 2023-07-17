@@ -6,7 +6,7 @@ const AboutMe = () => {
     const user = useSelector(state => state.session.user);
 
 
-    if (!user) return <Redirect to='/login'></Redirect>
+    // if (!user) return <Redirect to='/login'></Redirect>
 
 
 

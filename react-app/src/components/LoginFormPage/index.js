@@ -39,8 +39,9 @@ function LoginFormPage() {
 
   return (
     <div className="login-house">
-       <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt="page logo" />
+      <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt="page logo" />
       <p>Don't have an account? Sign up <NavLink to="/signup">here.</NavLink></p>
+      <a id="meet-dev" href="/about" target="_blank">Meet the Devs <i class="fa-solid fa-circle-info"></i></a>
       {isFirefox ? (
         <p id="firefoxMessage" style={{ color: 'red', fontWeight: 'bold' }}>
           Best FearFace experience on Google Chrome!
