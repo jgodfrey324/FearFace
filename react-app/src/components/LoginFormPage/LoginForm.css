@@ -23,6 +23,18 @@
     font-size: 20px;
 }
 
+#meet-dev {
+    text-decoration: none;
+    color: #B00B1B;
+    font-size: 17px;
+    margin-bottom: 10px;
+    padding: 7px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
 .login-house>p {
     /* border: 2px solid pink; */
     margin-top: 10px;

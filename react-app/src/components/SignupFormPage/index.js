@@ -44,13 +44,14 @@ function SignupFormPage() {
     <div className="signup-house">
       <img id="logo" src="https://i.imgur.com/rwR3GBq.png" alt='page logo' ></img>
       <p>Already have an account? Log in <NavLink to='/login'>here.</NavLink></p>
+      <a id="meet-dev" href="/about" target="_blank">Meet the Devs <i class="fa-solid fa-circle-info"></i></a>
       <form onSubmit={handleSubmit}>
         {/* <li id="error-li">{errors}</li> */}
         <div className="choose-avatar">
           <label>
             Choose an avatar:
             <div className="avatar-pics">
-                <input
+              <input
                 id='pic1'
                 hidden={true}
                 type="radio"
@@ -61,12 +62,12 @@ function SignupFormPage() {
                 onChange={(e) => {
                   setProfilePic(e.target.value)
                 }}
-                />
+              />
               <label htmlFor="pic1">
-                <img style={{height: '100px', width: '100px', borderRadius: '50px', objectFit: 'cover'}}src={pic1} alt='default 1'></img>
+                <img style={{ height: '100px', width: '100px', borderRadius: '50px', objectFit: 'cover' }} src={pic1} alt='default 1'></img>
               </label>
 
-                <input
+              <input
                 id='pic2'
                 hidden={true}
                 type="radio"
@@ -77,12 +78,12 @@ function SignupFormPage() {
                 onChange={(e) => {
                   setProfilePic(e.target.value)
                 }}
-                />
+              />
               <label htmlFor="pic2">
-                <img style={{height: '100px', width: '100px', borderRadius: '50px', objectFit: 'cover'}}src={pic2} alt='default 2'></img>
+                <img style={{ height: '100px', width: '100px', borderRadius: '50px', objectFit: 'cover' }} src={pic2} alt='default 2'></img>
               </label>
 
-                <input
+              <input
                 id='pic3'
                 hidden={true}
                 type="radio"
@@ -93,12 +94,12 @@ function SignupFormPage() {
                 onChange={(e) => {
                   setProfilePic(e.target.value)
                 }}
-                />
+              />
               <label htmlFor="pic3">
-                <img style={{height: '100px', width: '100px', borderRadius: '50px', objectFit: 'cover'}}src={pic3} alt='default 3'></img>
+                <img style={{ height: '100px', width: '100px', borderRadius: '50px', objectFit: 'cover' }} src={pic3} alt='default 3'></img>
               </label>
 
-                <input
+              <input
                 id='pic4'
                 hidden={true}
                 type="radio"
@@ -109,9 +110,9 @@ function SignupFormPage() {
                 onChange={(e) => {
                   setProfilePic(e.target.value)
                 }}
-                />
+              />
               <label htmlFor="pic4">
-                <img style={{height: '100px', width: '100px', borderRadius: '50px', objectFit: 'cover'}}src={pic4} alt='default 4'></img>
+                <img style={{ height: '100px', width: '100px', borderRadius: '50px', objectFit: 'cover' }} src={pic4} alt='default 4'></img>
               </label>
             </div>
           </label>
@@ -124,7 +125,7 @@ function SignupFormPage() {
         <label>
           Email
           <input
-            style={{color: 'whitesmoke'}}
+            style={{ color: 'whitesmoke' }}
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -134,7 +135,7 @@ function SignupFormPage() {
         <label>
           Username
           <input
-            style={{color: 'whitesmoke'}}
+            style={{ color: 'whitesmoke' }}
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -144,7 +145,7 @@ function SignupFormPage() {
         <label>
           First Name
           <input
-            style={{color: 'whitesmoke'}}
+            style={{ color: 'whitesmoke' }}
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
@@ -154,7 +155,7 @@ function SignupFormPage() {
         <label>
           Last Name
           <input
-            style={{color: 'whitesmoke'}}
+            style={{ color: 'whitesmoke' }}
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
@@ -164,26 +165,26 @@ function SignupFormPage() {
         <label>
           Password
           <input
-            style={{color: 'whitesmoke'}}
+            style={{ color: 'whitesmoke' }}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             minLength='8'
-						maxLength='30'
+            maxLength='30'
             required
           />
         </label>
         <label>
           Confirm Password
           <input
-            style={{color: 'whitesmoke'}}
+            style={{ color: 'whitesmoke' }}
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </label>
-        <button type="submit" style={{color: 'whitesmoke'}}>Sign Up</button>
+        <button type="submit" style={{ color: 'whitesmoke' }}>Sign Up</button>
       </form>
     </div>
   );
